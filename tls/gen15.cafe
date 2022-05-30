@@ -1,0 +1,4063 @@
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r2 : -> Rand .
+	op s : -> Sys .
+	red inv15(init, a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = true .
+	eq (chM(r21, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (skexM(r1, r3, r21, r10, r11) \in nw(s)) = true .
+	eq (shM(r1, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq (ckexM(r21, r21, r3, pubKeyEx(r12, r21)) \in nw(s)) = true .
+	eq decH(r11, pubKey(r9)) = hParams(r4, r6, r10) .
+	eq sign(r9) = sign(ca, owner(r9), pubKey(r9)) .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = true .
+	eq (chM(r21, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (skexM(r1, r3, r21, r10, r11) \in nw(s)) = true .
+	eq (shM(r1, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq (ckexM(r21, r21, r3, pubKeyEx(r12, r21)) \in nw(s)) = true .
+	eq decH(r11, pubKey(r9)) = hParams(r4, r6, r10) .
+	eq (sign(r9) = sign(ca, owner(r9), pubKey(r9))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = true .
+	eq (chM(r21, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (skexM(r1, r3, r21, r10, r11) \in nw(s)) = true .
+	eq (shM(r1, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq (ckexM(r21, r21, r3, pubKeyEx(r12, r21)) \in nw(s)) = true .
+	eq (decH(r11, pubKey(r9)) = hParams(r4, r6, r10)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = true .
+	eq (chM(r21, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (skexM(r1, r3, r21, r10, r11) \in nw(s)) = true .
+	eq (shM(r1, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq (ckexM(r21, r21, r3, pubKeyEx(r12, r21)) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = true .
+	eq (chM(r21, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (skexM(r1, r3, r21, r10, r11) \in nw(s)) = true .
+	eq (shM(r1, r3, r21, r6, r7, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = true .
+	eq (chM(r21, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (skexM(r1, r3, r21, r10, r11) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = true .
+	eq (chM(r21, r21, r3, r4, r5) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = true .
+	eq (scertM(r1, r3, r21, r9) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11, pubKey(r9)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> Cipher .
+	op s : -> Sys .
+	eq ss(s, r21, r3, r5) = none .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish2(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> Cipher .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (sf2M(r1, r3, r21, r8) \in nw(s)) = true .
+	eq (ch2M(r21, r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq decSym?(r8, prf-skey(ms(ss(s, r21, r3, r5)), r4, r7)) = true .
+	eq (sh2M(r1, r3, r21, r7, r5, cs(ss(s, r21, r3, r5))) \in nw(s)) = true .
+	eq decFin(r8, prf-skey(ms(ss(s, r21, r3, r5)), r4, r7)) = prf-sfin2(ms(ss(s, r21, r3, r5)), hAbbrHs(r21, r3, r4, r5, r6, r7, cs(ss(s, r21, r3, r5)))) .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish2(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> Cipher .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (sf2M(r1, r3, r21, r8) \in nw(s)) = true .
+	eq (ch2M(r21, r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq decSym?(r8, prf-skey(ms(ss(s, r21, r3, r5)), r4, r7)) = true .
+	eq (sh2M(r1, r3, r21, r7, r5, cs(ss(s, r21, r3, r5))) \in nw(s)) = true .
+	eq (decFin(r8, prf-skey(ms(ss(s, r21, r3, r5)), r4, r7)) = prf-sfin2(ms(ss(s, r21, r3, r5)), hAbbrHs(r21, r3, r4, r5, r6, r7, cs(ss(s, r21, r3, r5))))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish2(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> Cipher .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (sf2M(r1, r3, r21, r8) \in nw(s)) = true .
+	eq (ch2M(r21, r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq decSym?(r8, prf-skey(ms(ss(s, r21, r3, r5)), r4, r7)) = true .
+	eq (sh2M(r1, r3, r21, r7, r5, cs(ss(s, r21, r3, r5))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish2(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> Cipher .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (sf2M(r1, r3, r21, r8) \in nw(s)) = true .
+	eq (ch2M(r21, r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq decSym?(r8, prf-skey(ms(ss(s, r21, r3, r5)), r4, r7)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish2(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> Cipher .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (sf2M(r1, r3, r21, r8) \in nw(s)) = true .
+	eq (ch2M(r21, r21, r3, r4, r5, r6) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish2(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> Cipher .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (sf2M(r1, r3, r21, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(cfinish2(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> CipherSuites .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(chello(s, r1, r21, r3, r4), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> CipherSuites .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(chello(s, r1, r21, r3, r4), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op s : -> Sys .
+	eq ss(s, r1, r21, r4) = none .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(chello2(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op s : -> Sys .
+	eq (ss(s, r1, r21, r4) = none) = false .
+	eq (r3 \in ur(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(chello2(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op s : -> Sys .
+	eq (ss(s, r1, r21, r4) = none) = false .
+	eq (r3 \in ur(s)) = false .
+	eq (cs(ss(s, r1, r21, r4)) \in r5) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(chello2(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op s : -> Sys .
+	eq (ss(s, r1, r21, r4) = none) = false .
+	eq (r3 \in ur(s)) = false .
+	eq (cs(ss(s, r1, r21, r4)) \in r5) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(chello2(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r21, r4, r3, r10) \in nw(s)) = true .
+	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (skexM(r21, r4, r3, r11, r12) \in nw(s)) = true .
+	eq (shM(r21, r4, r3, r7, r8, r9) \in nw(s)) = true .
+	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
+	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r21, r4, r3, r10) \in nw(s)) = true .
+	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (skexM(r21, r4, r3, r11, r12) \in nw(s)) = true .
+	eq (shM(r21, r4, r3, r7, r8, r9) \in nw(s)) = true .
+	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
+	eq (sign(r10) = sign(ca, owner(r10), pubKey(r10))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r21, r4, r3, r10) \in nw(s)) = true .
+	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (skexM(r21, r4, r3, r11, r12) \in nw(s)) = true .
+	eq (shM(r21, r4, r3, r7, r8, r9) \in nw(s)) = true .
+	eq (decH(r12, pubKey(r10)) = hParams(r5, r7, r11)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r21, r4, r3, r10) \in nw(s)) = true .
+	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (skexM(r21, r4, r3, r11, r12) \in nw(s)) = true .
+	eq (shM(r21, r4, r3, r7, r8, r9) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r21, r4, r3, r10) \in nw(s)) = true .
+	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (skexM(r21, r4, r3, r11, r12) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r21, r4, r3, r10) \in nw(s)) = true .
+	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r21, r4, r3, r10) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12, pubKey(r10)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(ckeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> PubKey .
+	op r4 : -> Sign .
+	op s : -> Sys .
+	eq (r4 \in csign(nw(s))) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCert(s, r1, r21, r3, r4), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> PubKey .
+	op r4 : -> Sign .
+	op s : -> Sys .
+	eq (r4 \in csign(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCert(s, r1, r21, r3, r4), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cecfin2(nw(s))) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinish2a(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cecfin2(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinish2a(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> Pms .
+	op r8 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r7 \in cpms(nw(s))) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinish2b(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> Pms .
+	op r8 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r7 \in cpms(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinish2b(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cecfin(nw(s))) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cecfin(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> CipherSuites .
+	op s : -> Sys .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkChello(s, r1, r21, r3, r4), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op s : -> Sys .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkChello2(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCkeyex(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkCkeyex(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin2(nw(s))) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinish2a(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin2(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinish2a(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> Pms .
+	op r8 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r7 \in cpms(nw(s))) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinish2b(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> Pms .
+	op r8 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r7 \in cpms(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinish2b(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq b = r1 .
+	eq b1 = intruder .
+	eq r1 = intruder .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq b = r1 .
+	eq b1 = intruder .
+	eq (r1 = intruder) = false .
+	eq r21 = intruder .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq b = r1 .
+	eq b1 = intruder .
+	eq (r1 = intruder) = false .
+	eq (r21 = intruder) = false .
+	eq r1 = r21 .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true, use inv16 as a lemma 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq b = r1 .
+	eq b1 = intruder .
+	eq (r1 = intruder) = false .
+	eq (r21 = intruder) = false .
+	eq (r1 = r21) = false .
+	eq r3 = encFin(prf-skey(prf-ms(pms(pk, k), r, r2), r, r2), prf-sfin(prf-ms(pms(pk, k), r, r2), h)) .
+	eq (encFin(prf-skey(prf-ms(pms(pk, k), r, r2), r, r2), prf-sfin(prf-ms(pms(pk, k), r, r2), h)) \in cesfin(nw(s))) = true .
+	red inv16(s, r, r2, pk, k, h) implies inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq b = r1 .
+	eq b1 = intruder .
+	eq (r1 = intruder) = false .
+	eq (r21 = intruder) = false .
+	eq (r1 = r21) = false .
+	eq r3 = encFin(prf-skey(prf-ms(pms(pk, k), r, r2), r, r2), prf-sfin(prf-ms(pms(pk, k), r, r2), h)) .
+	eq (encFin(prf-skey(prf-ms(pms(pk, k), r, r2), r, r2), prf-sfin(prf-ms(pms(pk, k), r, r2), h)) \in cesfin(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq b = r1 .
+	eq b1 = intruder .
+	eq (r1 = intruder) = false .
+	eq (r21 = intruder) = false .
+	eq (r1 = r21) = false .
+	eq (r3 = encFin(prf-skey(prf-ms(pms(pk, k), r, r2), r, r2), prf-sfin(prf-ms(pms(pk, k), r, r2), h))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq b = r1 .
+	eq (b1 = intruder) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq a = r21 .
+	eq (b = r1) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = true .
+	eq (a = r21) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Cipher .
+	op s : -> Sys .
+	eq (r3 \in cesfin(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinisha(s, r1, r21, r3), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq r = r6 .
+	eq r2 = r8 .
+	eq r4 = intruder .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq r = r6 .
+	eq r2 = r8 .
+	eq (r4 = intruder) = false .
+	eq r5 = intruder .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq r = r6 .
+	eq r2 = r8 .
+	eq (r4 = intruder) = false .
+	eq (r5 = intruder) = false .
+	eq r4 = r5 .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true, use inv5 as a lemma 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq r = r6 .
+	eq r2 = r8 .
+	eq (r4 = intruder) = false .
+	eq (r5 = intruder) = false .
+	eq (r4 = r5) = false .
+	eq r1 = pms(pk, k) .
+	eq (pms(pk, k) \in cpms(nw(s))) = true .
+	red inv5(s, pk, k) implies inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq r = r6 .
+	eq r2 = r8 .
+	eq (r4 = intruder) = false .
+	eq (r5 = intruder) = false .
+	eq (r4 = r5) = false .
+	eq r1 = pms(pk, k) .
+	eq (pms(pk, k) \in cpms(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq r = r6 .
+	eq r2 = r8 .
+	eq (r4 = intruder) = false .
+	eq (r5 = intruder) = false .
+	eq (r4 = r5) = false .
+	eq (r1 = pms(pk, k)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq r = r6 .
+	eq (r2 = r8) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq b1 = intruder .
+	eq (r = r6) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq b = r5 .
+	eq (b1 = intruder) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq a = r4 .
+	eq (b = r5) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = true .
+	eq (a = r4) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = true .
+	eq (r3 \in csign(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Pms .
+	op r10 : -> Sid .
+	op r11 : -> PubKeyEx .
+	op r12 : -> PubKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> PubKey .
+	op r3 : -> Sign .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuites .
+	op r8 : -> Rand .
+	op r9 : -> CipherSuite .
+	op s : -> Sys .
+	eq (r1 \in cpms(nw(s))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSfinishb(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> CipherSuite .
+	op r5 : -> Sid .
+	op s : -> Sys .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkShello(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Rand .
+	op r4 : -> Sid .
+	op r5 : -> CipherSuite .
+	op s : -> Sys .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkShello2(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSkeyex(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(fkSkeyex(s, r1, r21, r3, r4, r5), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op s : -> Sys .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(scert(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op s : -> Sys .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(scert(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op s : -> Sys .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(scert(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true, use inv4 as a lemma 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq k = r9 .
+	red inv4(s, skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))))) implies inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq r21 = intruder .
+	eq (cfM(r1, intruder, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, intruder, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, intruder, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, intruder, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(r3, r3, intruder, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, intruder, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq r21 = intruder .
+	eq (cfM(r1, intruder, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, intruder, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, intruder, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, intruder, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(r3, r3, intruder, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, intruder, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq r21 = intruder .
+	eq (cfM(r1, intruder, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, intruder, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, intruder, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, intruder, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(r3, r3, intruder, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq r21 = intruder .
+	eq (cfM(r1, intruder, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, intruder, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, intruder, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, intruder, r6, r7, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq r21 = intruder .
+	eq (cfM(r1, intruder, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, intruder, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, intruder, r3, r4, r5) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq r21 = intruder .
+	eq (cfM(r1, intruder, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, intruder, r3, r10) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq r21 = intruder .
+	eq (cfM(r1, intruder, r3, r11) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq r3 = intruder .
+	eq (cfM(r1, r21, intruder, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, intruder, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, intruder, r4, r5) \in nw(s)) = true .
+	eq (shM(intruder, intruder, r21, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(intruder, intruder, r21, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = true .
+	eq (skexM(intruder, intruder, r21, pubKeyEx(r9, intruder), encH(priKey(intruder), hParams(r4, r6, pubKeyEx(r9, intruder)))) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq r3 = intruder .
+	eq (cfM(r1, r21, intruder, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, intruder, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, intruder, r4, r5) \in nw(s)) = true .
+	eq (shM(intruder, intruder, r21, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(intruder, intruder, r21, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = true .
+	eq (skexM(intruder, intruder, r21, pubKeyEx(r9, intruder), encH(priKey(intruder), hParams(r4, r6, pubKeyEx(r9, intruder)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq r3 = intruder .
+	eq (cfM(r1, r21, intruder, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, intruder, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, intruder, r4, r5) \in nw(s)) = true .
+	eq (shM(intruder, intruder, r21, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(intruder, intruder, r21, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq r3 = intruder .
+	eq (cfM(r1, r21, intruder, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, intruder, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, intruder, r4, r5) \in nw(s)) = true .
+	eq (shM(intruder, intruder, r21, r6, r7, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq r3 = intruder .
+	eq (cfM(r1, r21, intruder, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, intruder, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, intruder, r4, r5) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq r3 = intruder .
+	eq (cfM(r1, r21, intruder, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, intruder, r10) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq r3 = intruder .
+	eq (cfM(r1, r21, intruder, r11) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq r21 = r3 .
+	eq (cfM(r1, r3, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r3, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r3, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r3, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(r3, r3, r3, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r3, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq r21 = r3 .
+	eq (cfM(r1, r3, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r3, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r3, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r3, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(r3, r3, r3, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r3, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq r21 = r3 .
+	eq (cfM(r1, r3, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r3, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r3, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r3, r6, r7, r8) \in nw(s)) = true .
+	eq (scertM(r3, r3, r3, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq r21 = r3 .
+	eq (cfM(r1, r3, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r3, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r3, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r3, r6, r7, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq r21 = r3 .
+	eq (cfM(r1, r3, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r3, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r3, r3, r4, r5) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq r21 = r3 .
+	eq (cfM(r1, r3, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r3, r3, r10) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq r21 = r3 .
+	eq (cfM(r1, r3, r3, r11) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true, use inv4 as a lemma 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq (r21 = r3) = false .
+	eq h = hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10) .
+	eq priKey(r10) = k .
+	red inv4(s, ckexM(r1, r21, r3, r10)) implies inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq (r21 = r3) = false .
+	eq h = hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10) .
+	eq (priKey(r10) = k) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq r2 = r6 .
+	eq (r21 = intruder) = false .
+	eq (r3 = intruder) = false .
+	eq (r21 = r3) = false .
+	eq (h = hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq r = r4 .
+	eq (r2 = r6) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq b1 = r3 .
+	eq (r = r4) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq b = r3 .
+	eq (b1 = r3) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq a = r21 .
+	eq (b = r3) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
+	eq (k = r9) = false .
+	eq (a = r21) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
+	eq (decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r21, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10))) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3, r3, r21, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
+	eq (scertM(r3, r3, r21, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = true .
+	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = true .
+	eq (shM(r3, r3, r21, r6, r7, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = true .
+	eq (chM(r1, r21, r3, r4, r5) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = true .
+	eq (ckexM(r1, r21, r3, r10) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1, r21, r3, r11) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish(s, r1, r21, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op s : -> Sys .
+	eq ss(s, r21, r3, r5) = none .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (ch2M(r1, r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (sh2M(r3, r3, r21, r7, r5, cs(ss(s, r21, r3, r5))) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (ch2M(r1, r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (sh2M(r3, r3, r21, r7, r5, cs(ss(s, r21, r3, r5))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Sid .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op s : -> Sys .
+	eq (ss(s, r21, r3, r5) = none) = false .
+	eq (ch2M(r1, r21, r3, r4, r5, r6) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(sfinish2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> CipherSuite .
+	op r3 : -> Sid .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Prin .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuites .
+	op s : -> Sys .
+	eq (r21 \in r8) = true .
+	eq (r1 \in ur(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> CipherSuite .
+	op r3 : -> Sid .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Prin .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuites .
+	op s : -> Sys .
+	eq (r21 \in r8) = true .
+	eq (r1 \in ur(s)) = false .
+	eq (r3 \in ui(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> CipherSuite .
+	op r3 : -> Sid .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Prin .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuites .
+	op s : -> Sys .
+	eq (r21 \in r8) = true .
+	eq (r1 \in ur(s)) = false .
+	eq (r3 \in ui(s)) = false .
+	eq (chM(r4, r5, r6, r7, r8) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> CipherSuite .
+	op r3 : -> Sid .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Prin .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuites .
+	op s : -> Sys .
+	eq (r21 \in r8) = true .
+	eq (r1 \in ur(s)) = false .
+	eq (r3 \in ui(s)) = false .
+	eq (chM(r4, r5, r6, r7, r8) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> CipherSuite .
+	op r3 : -> Sid .
+	op r4 : -> Prin .
+	op r5 : -> Prin .
+	op r6 : -> Prin .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuites .
+	op s : -> Sys .
+	eq (r21 \in r8) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello(s, r1, r21, r3, r4, r5, r6, r7, r8), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> Sid .
+	op r7 : -> CipherSuites .
+	op s : -> Sys .
+	eq ss(s, r3, r4, r6) = none .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> Sid .
+	op r7 : -> CipherSuites .
+	op s : -> Sys .
+	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (r1 \in ur(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> Sid .
+	op r7 : -> CipherSuites .
+	op s : -> Sys .
+	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (r1 \in ur(s)) = false .
+	eq (cs(ss(s, r3, r4, r6)) \in r7) = true .
+	eq (ch2M(r21, r3, r4, r5, r6, r7) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> Sid .
+	op r7 : -> CipherSuites .
+	op s : -> Sys .
+	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (r1 \in ur(s)) = false .
+	eq (cs(ss(s, r3, r4, r6)) \in r7) = true .
+	eq (ch2M(r21, r3, r4, r5, r6, r7) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> Sid .
+	op r7 : -> CipherSuites .
+	op s : -> Sys .
+	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (r1 \in ur(s)) = false .
+	eq (cs(ss(s, r3, r4, r6)) \in r7) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(shello2(s, r1, r21, r3, r4, r5, r6, r7), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq (r1 \in uk(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(skeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq (r1 \in uk(s)) = false .
+	eq (chM(r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
+	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(skeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq (r1 \in uk(s)) = false .
+	eq (chM(r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
+	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(skeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq (r1 \in uk(s)) = false .
+	eq (chM(r21, r3, r4, r5, r6) \in nw(s)) = true .
+	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(skeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> true 
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op h : -> Hash .
+	op k : -> PriKeyEx .
+	op pk : -> PubKeyEx .
+	op r : -> Rand .
+	op r1 : -> PriKeyEx .
+	op r2 : -> Rand .
+	op r21 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq (r1 \in uk(s)) = false .
+	eq (chM(r21, r3, r4, r5, r6) \in nw(s)) = false .
+	red inv15(s, a, b, b1, r, r2, pk, k, h) implies inv15(skeyex(s, r1, r21, r3, r4, r5, r6, r7, r8, r9), a, b, b1, r, r2, pk, k, h) .
+close
+
+--> Time taken is 5666ms

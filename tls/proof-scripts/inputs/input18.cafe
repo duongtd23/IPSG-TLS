@@ -1,0 +1,15 @@
+load tls12-v16.cafe .
+load invariants.cafe .
+load proof-scripts/annotated-proofscores/inv18.cafe .
+
+-- set-cores 4 .
+
+:proven(inv4(S:Sys,M:Msg))
+:infer-proof inv18 .
+
+set-output proof-scripts/gen18.cafe .
+:save-proof .
+
+eof
+
+load proof-scripts/inputs/input18.cafe .

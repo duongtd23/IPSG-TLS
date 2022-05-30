@@ -1,0 +1,203 @@
+mod INV {
+  pr(TLS12)
+
+  var S : Sys
+  vars A A1 A2 A3 B B1 B2 B3 : Prin
+  vars R R1 R2 : Rand
+  var CS : CipherSuite
+  var CSs : CipherSuites
+  var I : Sid
+  var PMS : Pms
+  vars PK PK2 PK3 : PubKeyEx
+  vars K K2 : PriKeyEx
+  var CI : Cipher
+  vars HSK HSK2 : Key
+  vars H H2 : Hash
+  vars SK : PriKey
+  vars M M2 : Msg
+  vars CERT : Cert
+  vars SIGN : Sign
+  vars PKE : PubKey
+
+-- 3+7+9
+  op inv1 : Sys Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv1(S,A,B,R,R2,PK,K,H) = 
+    (not (A = intruder or B = intruder or A = B) and
+      cfM(A,A,B,encFin(
+        prf-ckey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-cfin(prf-ms(pms(PK,K),R,R2),H))) \in nw(S))
+    implies 
+      not (prf-ckey(prf-ms(pms(PK,K),R,R2), R,R2) \in chsk(nw(S))) .
+
+  op inv2 : Sys Prin PubKey Sign -> Bool
+  eq inv2(S,B,PKE,SIGN) = 
+    (not (B = intruder) and sign(ca,B,PKE) \in csign(nw(S)))
+    implies (pubKey(B) = PKE) .
+
+-- 4
+  op inv3 : Sys Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv3(S,A,B,R,R2,PK,K,H) = 
+    (not (A = intruder) and not (B = intruder) and
+      cfM(A,A,B,encFin(
+        prf-ckey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-cfin(prf-ms(pms(PK,K),R,R2),H))) \in nw(S))
+    implies 
+      K \in uk(S) .
+
+  op inv4 : Sys Msg -> Bool 
+  eq inv4(S,M) = (M \in nw(S) and (ckexM?(M) or skexM?(M)))
+    implies priKey(getKey(M)) \in uk(S) .
+  op inv5 : Sys PubKeyEx PriKeyEx -> Bool .
+  eq inv5(S,PK,K) = pms(PK,K) \in cpms(nw(S))
+    implies K \in uk(S) .
+
+-- 2
+  op inv6 : Sys Prin Prin Prin Cert -> Bool
+  eq inv6(S,A,B,B1,CERT) = 
+    (not (A = intruder or B = intruder or A = B) and
+      scertM(B1,B,A,CERT) \in nw(S) and
+      sign(CERT) = sign(ca,owner(CERT),pubKey(CERT)))
+    implies (owner(CERT) = B and pubKey(CERT) = pubKey(B)) .
+
+-- 4+5
+  op inv7 : Sys Prin Prin PubKeyEx PriKeyEx -> Bool
+  eq inv7(S,A,B,PK,K) = 
+    ((not (A = intruder or B = intruder or A = B) and
+     ckexM(A,A,B,pubKeyEx(K,A)) \in nw(S) and 
+     pms(PK,K) \in cpms(nw(S))) = false) .
+
+-- 4+5
+  op inv8 : Sys Prin Prin Prin PubKeyEx PubKeyEx Cipher -> Bool
+  eq inv8(S,A,B,B1,PK,PK2,CI) = 
+    ((not (A = intruder or B = intruder or A = B) and
+      skexM(B1,B,A,PK,CI) \in nw(S) and
+      decAsym?(CI,pubKey(B)) and
+      pms(PK2,priKey(PK)) \in cpms(nw(S))) = false) .
+
+-- 4+5+91+92+93
+  op inv9 : Sys Prin Prin Prin PubKeyEx PubKeyEx PriKeyEx Cipher Cert -> Bool
+  eq inv9(S,A,B,B1,PK,PK2,K,CI,CERT) = 
+    (not (A = intruder or B = intruder or A = B) and
+      skexM(B1,B,A,PK,CI) \in nw(S) and
+      scertM(B1,B,A,CERT) \in nw(S) and
+      sign(CERT) = sign(ca,owner(CERT),pubKey(CERT)) and
+      decAsym?(CI,pubKey(CERT)) and
+      pms(PK2,K) \in cpms(nw(S)))
+    implies (not (priKey(PK) = K) and 
+      owner(CERT) = B and pubKey(CERT) = pubKey(B)) .
+
+-- 7+14+15
+  op inv10 : Sys Prin Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv10(S,A,B,B1,R,R2,PK,K,H) = 
+    (not (A = intruder or B = intruder or A = B) and
+      ckexM(A,A,B,pubKeyEx(K,A)) \in nw(S) and
+      sfM(B1,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin(prf-ms(pms(PK,K),R,R2), H))) \in nw(S))
+    implies 
+      sfM(B,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin(prf-ms(pms(PK,K),R,R2), H))) \in nw(S) .
+
+-- 7+20+12
+  op inv11 : Sys Prin Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv11(S,A,B,B1,R,R2,PK,K,H) = 
+    (not (A = intruder or B = intruder or A = B) and
+      ckexM(A,A,B,pubKeyEx(K,A)) \in nw(S) and
+      sf2M(B1,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin2(prf-ms(pms(PK,K),R,R2), H))) \in nw(S))
+    implies 
+      sf2M(B,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin2(prf-ms(pms(PK,K),R,R2), H))) \in nw(S) .
+
+-- 5+13+18
+  op inv12 : Sys Prin Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv12(S,A,B,B1,R,R2,PK,K,H) = 
+    (not (A = intruder or B = intruder or A = B) and
+      sf2M(B1,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin2(prf-ms(pms(PK,K),R,R2), H))) \in nw(S))
+    implies 
+      K \in uk(S) .
+
+-- 5+18
+  op inv13 : Sys Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv13(S,R,R2,PK,K,H) = 
+    encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin2(prf-ms(pms(PK,K),R,R2), H)) \in cesfin2(nw(S))
+    implies 
+      K \in uk(S) .
+
+-- 7+16+17
+  op inv14 : Sys Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv14(S,A,B,R,R2,PK,K,H) = 
+    (not (A = intruder or B = intruder or A = B) and
+      ckexM(A,A,B,pubKeyEx(K,A)) \in nw(S) and
+      encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin(prf-ms(pms(PK,K),R,R2), H)) \in cesfin(nw(S)))
+    implies 
+      sfM(B,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin(prf-ms(pms(PK,K),R,R2), H))) \in nw(S) .
+
+-- 4+5+16
+  op inv15 : Sys Prin Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv15(S,A,B,B1,R,R2,PK,K,H) = 
+    (not (A = intruder or B = intruder or A = B) and
+      sfM(B1,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin(prf-ms(pms(PK,K),R,R2), H))) \in nw(S))
+    implies 
+      K \in uk(S) .
+
+-- 4+5
+  op inv16 : Sys Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv16(S,R,R2,PK,K,H) = 
+    encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin(prf-ms(pms(PK,K),R,R2), H)) \in cesfin(nw(S))
+    implies 
+      K \in uk(S) .
+
+-- 4
+  op inv17 : Sys Msg Msg -> Bool
+  eq inv17(S,M,M2) = 
+     (M \in nw(S) and ckexM?(M) and
+      M2 \in nw(S) and 
+      ((ckexM?(M2) and not(src(M) = src(M2) and dst(M) = dst(M2))) or 
+       skexM?(M2)))
+    implies not(priKey(getKey(M)) = priKey(getKey(M2))) .
+
+-- 4
+  op inv18 : Sys Prin Prin PubKeyEx PriKeyEx Rand Rand Sid -> Bool
+  eq inv18(S,A,B,PK,K,R,R2,I) = 
+    (not (ss(S,A,B,I) = none) and
+      ms(ss(S,A,B,I)) = prf-ms(pms(PK,K),R,R2))
+    implies K \in uk(S) .
+
+-- 17+18
+  op inv19 : Sys Prin Prin Prin Prin PubKeyEx PriKeyEx Rand Rand Sid -> Bool
+  eq inv19(S,A,B,A2,B2,PK,K,R,R2,I) =
+    (not (A2 = intruder) and not (B2 = intruder) and
+      not (ss(S,A,B,I) = none) and
+      ms(ss(S,A,B,I)) = prf-ms(pms(PK,K),R,R2) and
+      ckexM(A2,A2,B2,pubKeyEx(K,A2)) \in nw(S))
+    implies (A = A2 and B = B2) .
+
+-- 7+13+19
+  op inv20 : Sys Prin Prin Rand Rand PubKeyEx PriKeyEx Hash -> Bool
+  eq inv20(S,A,B,R,R2,PK,K,H) = 
+    (not (A = intruder or B = intruder or A = B) and
+      ckexM(A,A,B,pubKeyEx(K,A)) \in nw(S) and
+      encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin2(prf-ms(pms(PK,K),R,R2), H)) \in cesfin2(nw(S)))
+    implies 
+      sf2M(B,B,A,encFin(
+        prf-skey(prf-ms(pms(PK,K),R,R2), R,R2),
+        prf-sfin2(prf-ms(pms(PK,K),R,R2), H))) \in nw(S) .
+}

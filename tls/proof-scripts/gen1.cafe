@@ -1,0 +1,1015 @@
+
+:proven(inv3(S:Sys, A:Prin, B:Prin, R:Rand, R2:Rand, PK:PubKeyEx, K:PriKeyEx, H:Hash))
+:proven(inv7(S:Sys, A:Prin, B:Prin, PK:PubKeyEx, K:PriKeyEx))
+:proven(inv9(S:Sys, A:Prin, B:Prin, B1:Prin, PK:PubKeyEx, PK2:PubKeyEx, K:PriKeyEx, CI:Cipher, CERT:Cert))
+:goal{
+eq [inv1 :nonexec] : inv1(S:Sys, P1:Prin, P0:Prin, R:Rand, R0:Rand, P:PubKeyEx, P00:PriKeyEx, H:Hash)  = true .
+}
+:ind on (S:Sys)
+:apply(si)
+	:apply(tc)
+
+	:def csb1 = :ctf [decAsym?(C#Cipher, pubKey(C#Cert))  .]
+
+	:apply(csb1)
+
+	:def csb2 = :ctf [scertM(P#Prin, P1#Prin, P0#Prin, C#Cert) \in nw(S#Sys)  .]
+
+	:apply(csb2)
+
+	:def csb3 = :ctf [chM(P0#Prin, P0#Prin, P1#Prin, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb3)
+
+	:def csb4 = :ctf [skexM(P#Prin, P1#Prin, P0#Prin, P#PubKeyEx, C#Cipher) \in nw(S#Sys)  .]
+
+	:apply(csb4)
+
+	:def csb5 = :ctf [shM(P#Prin, P1#Prin, P0#Prin, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb5)
+
+	:def csb6 = :ctf [ckexM(P0#Prin, P0#Prin, P1#Prin, pubKeyEx(P#PriKeyEx, P0#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb6)
+
+	:def csb7 = :ctf {eq decH(C#Cipher, pubKey(C#Cert))  = hParams(R#Rand, R0#Rand, P#PubKeyEx) .}
+
+	:apply(csb7)
+
+	:def csb8 = :ctf {eq sign(C#Cert)  = sign(ca, owner(C#Cert), pubKey(C#Cert)) .}
+
+	:apply(csb8)
+
+	:def csb9 = :ctf {eq P00@PriKeyEx  = P#PriKeyEx .}
+
+	:apply(csb9)
+
+	:def csb10 = :ctf {eq P1@Prin  = P0#Prin .}
+
+	:apply(csb10)
+
+	:def csb11 = :ctf {eq P0@Prin  = P1#Prin .}
+
+	:apply(csb11)
+
+	:def csb12 = :ctf {eq P@PubKeyEx  = P#PubKeyEx .}
+
+	:apply(csb12)
+
+	:def csb13 = :ctf {eq R@Rand  = R#Rand .}
+
+	:apply(csb13)
+
+	:def csb14 = :ctf {eq R0@Rand  = R0#Rand .}
+
+	:apply(csb14)
+
+	:def csb15 = :ctf {eq P0#Prin  = intruder .}
+
+	:apply(csb15)
+
+	:def csb16 = :ctf [scertM(P#Prin, P1#Prin, intruder, C#Cert) \in nw(S#Sys)  .]
+
+	:apply(csb16)
+
+	:def csb17 = :ctf [chM(intruder, intruder, P1#Prin, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb17)
+
+	:def csb18 = :ctf [skexM(P#Prin, P1#Prin, intruder, P#PubKeyEx, C#Cipher) \in nw(S#Sys)  .]
+
+	:apply(csb18)
+
+	:def csb19 = :ctf [shM(P#Prin, P1#Prin, intruder, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb19)
+
+	:def csb20 = :ctf [ckexM(intruder, intruder, P1#Prin, pubKeyEx(P#PriKeyEx, intruder)) \in nw(S#Sys)  .]
+
+	:apply(csb20)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb21 = :ctf {eq P1#Prin  = intruder .}
+
+	:apply(csb21)
+
+	:def csb22 = :ctf [scertM(P#Prin, intruder, P0#Prin, C#Cert) \in nw(S#Sys)  .]
+
+	:apply(csb22)
+
+	:def csb23 = :ctf [chM(P0#Prin, P0#Prin, intruder, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb23)
+
+	:def csb24 = :ctf [skexM(P#Prin, intruder, P0#Prin, P#PubKeyEx, C#Cipher) \in nw(S#Sys)  .]
+
+	:apply(csb24)
+
+	:def csb25 = :ctf [shM(P#Prin, intruder, P0#Prin, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb25)
+
+	:def csb26 = :ctf [ckexM(P0#Prin, P0#Prin, intruder, pubKeyEx(P#PriKeyEx, P0#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb26)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb27 = :ctf {eq P0#Prin  = P1#Prin .}
+
+	:apply(csb27)
+
+	:def csb28 = :ctf [scertM(P#Prin, P1#Prin, P1#Prin, C#Cert) \in nw(S#Sys)  .]
+
+	:apply(csb28)
+
+	:def csb29 = :ctf [chM(P1#Prin, P1#Prin, P1#Prin, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb29)
+
+	:def csb30 = :ctf [skexM(P#Prin, P1#Prin, P1#Prin, P#PubKeyEx, C#Cipher) \in nw(S#Sys)  .]
+
+	:apply(csb30)
+
+	:def csb31 = :ctf [shM(P#Prin, P1#Prin, P1#Prin, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb31)
+
+	:def csb32 = :ctf [ckexM(P1#Prin, P1#Prin, P1#Prin, pubKeyEx(P#PriKeyEx, P1#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb32)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb33 = :ctf {eq H@Hash  = hFullHs(P0#Prin, P1#Prin, R#Rand, C#CipherSuites, R0#Rand, C#CipherSuite, S#Sid, C#Cert, P#PubKeyEx, C#Cipher, pubKeyEx(P#PriKeyEx, P0#Prin)) .}
+
+	:apply(csb33)
+
+	:def csb34 = :ctf [pms(P#PubKeyEx, P#PriKeyEx) \in cpms(nw(S#Sys))  .]
+
+	:apply(csb34)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal1]  by {A:Prin <- P1@Prin ; B:Prin <- P0@Prin ; K:PriKeyEx <- P00@PriKeyEx ; PK:PubKeyEx <- P@PubKeyEx ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal2]  by {A:Prin <- P1@Prin ; B1:Prin <- P#Prin ; B:Prin <- P0@Prin ; CERT:Cert <- C#Cert ; CI:Cipher <- C#Cipher ; K:PriKeyEx <- P00@PriKeyEx ; PK2:PubKeyEx <- P@PubKeyEx ; PK:PubKeyEx <- P#PubKeyEx ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb35 = :ctf {eq P1@Prin  = P0#Prin .}
+
+	:apply(csb35)
+
+	:def csb36 = :ctf {eq P0@Prin  = P1#Prin .}
+
+	:apply(csb36)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal2]  by {A:Prin <- P1@Prin ; B1:Prin <- P#Prin ; B:Prin <- P0@Prin ; CERT:Cert <- C#Cert ; CI:Cipher <- C#Cipher ; K:PriKeyEx <- P00@PriKeyEx ; PK2:PubKeyEx <- P@PubKeyEx ; PK:PubKeyEx <- P#PubKeyEx ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb37 = :ctf {eq ss(S#Sys, P0#Prin, P1#Prin, S#Sid)  = none .}
+
+	:apply(csb37)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb38 = :ctf [sf2M(P#Prin, P1#Prin, P0#Prin, C#Cipher) \in nw(S#Sys)  .]
+
+	:apply(csb38)
+
+	:def csb39 = :ctf [ch2M(P0#Prin, P0#Prin, P1#Prin, R#Rand, S#Sid, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb39)
+
+	:def csb40 = :ctf [decSym?(C#Cipher, prf-skey(ms(ss(S#Sys, P0#Prin, P1#Prin, S#Sid)), R#Rand, R0#Rand))  .]
+
+	:apply(csb40)
+
+	:def csb41 = :ctf [sh2M(P#Prin, P1#Prin, P0#Prin, R0#Rand, S#Sid, cs(ss(S#Sys, P0#Prin, P1#Prin, S#Sid))) \in nw(S#Sys)  .]
+
+	:apply(csb41)
+
+	:def csb42 = :ctf {eq decFin(C#Cipher, prf-skey(ms(ss(S#Sys, P0#Prin, P1#Prin, S#Sid)), R#Rand, R0#Rand))  = prf-sfin2(ms(ss(S#Sys, P0#Prin, P1#Prin, S#Sid)), hAbbrHs(P0#Prin, P1#Prin, R#Rand, S#Sid, C#CipherSuites, R0#Rand, cs(ss(S#Sys, P0#Prin, P1#Prin, S#Sid)))) .}
+
+	:apply(csb42)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb43 = :ctf [R#Rand \in ur(S#Sys)  .]
+
+	:apply(csb43)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb44 = :ctf {eq ss(S#Sys, P#Prin, P0#Prin, S#Sid)  = none .}
+
+	:apply(csb44)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb45 = :ctf [R#Rand \in ur(S#Sys)  .]
+
+	:apply(csb45)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb46 = :ctf [cs(ss(S#Sys, P#Prin, P0#Prin, S#Sid)) \in C#CipherSuites  .]
+
+	:apply(csb46)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb47 = :ctf [decAsym?(C#Cipher, pubKey(C#Cert))  .]
+
+	:apply(csb47)
+
+	:def csb48 = :ctf [P#PriKeyEx \in uk(S#Sys)  .]
+
+	:apply(csb48)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb49 = :ctf [scertM(P#Prin, P1#Prin, P0#Prin, C#Cert) \in nw(S#Sys)  .]
+
+	:apply(csb49)
+
+	:def csb50 = :ctf [chM(P0#Prin, P0#Prin, P1#Prin, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb50)
+
+	:def csb51 = :ctf [skexM(P#Prin, P1#Prin, P0#Prin, P#PubKeyEx, C#Cipher) \in nw(S#Sys)  .]
+
+	:apply(csb51)
+
+	:def csb52 = :ctf [shM(P#Prin, P1#Prin, P0#Prin, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb52)
+
+	:def csb53 = :ctf {eq decH(C#Cipher, pubKey(C#Cert))  = hParams(R#Rand, R0#Rand, P#PubKeyEx) .}
+
+	:apply(csb53)
+
+	:def csb54 = :ctf {eq sign(C#Cert)  = sign(ca, owner(C#Cert), pubKey(C#Cert)) .}
+
+	:apply(csb54)
+
+	:def csb55 = :ctf {eq P00@PriKeyEx  = P#PriKeyEx .}
+
+	:apply(csb55)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {A:Prin <- P1@Prin ; B:Prin <- P0@Prin ; H:Hash <- H@Hash ; K:PriKeyEx <- P00@PriKeyEx ; PK:PubKeyEx <- P@PubKeyEx ; R2:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb56 = :ctf [S#Sign \in csign(nw(S#Sys))  .]
+
+	:apply(csb56)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb57 = :ctf [C#Cipher \in cecfin2(nw(S#Sys))  .]
+
+	:apply(csb57)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb58 = :ctf [P#Pms \in cpms(nw(S#Sys))  .]
+
+	:apply(csb58)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb59 = :ctf [C#Cipher \in cecfin(nw(S#Sys))  .]
+
+	:apply(csb59)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb60 = :ctf [P#Pms \in cpms(nw(S#Sys))  .]
+
+	:apply(csb60)
+
+	:def csb61 = :ctf [S#Sign \in csign(nw(S#Sys))  .]
+
+	:apply(csb61)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb62 = :ctf [priKey(P#PubKeyEx) \in uk(S#Sys)  .]
+
+	:apply(csb62)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb63 = :ctf {eq P1@Prin  = P0@Prin .}
+
+	:apply(csb63)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb64 = :ctf {eq P1@Prin  = intruder .}
+
+	:apply(csb64)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb65 = :ctf {eq P0@Prin  = intruder .}
+
+	:apply(csb65)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb66 = :ctf {eq priKey(P#PubKeyEx)  = P00@PriKeyEx .}
+
+	:apply(csb66)
+
+	:def csb67 = :ctf [P00@PriKeyEx \in uk(S#Sys)  .]
+
+	:apply(csb67)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {A:Prin <- P1@Prin ; B:Prin <- P0@Prin ; H:Hash <- H@Hash ; K:PriKeyEx <- P00@PriKeyEx ; PK:PubKeyEx <- P@PubKeyEx ; R2:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb68 = :ctf [C#Cipher \in cesfin2(nw(S#Sys))  .]
+
+	:apply(csb68)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb69 = :ctf [P#Pms \in cpms(nw(S#Sys))  .]
+
+	:apply(csb69)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb70 = :ctf [C#Cipher \in cesfin(nw(S#Sys))  .]
+
+	:apply(csb70)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb71 = :ctf [P#Pms \in cpms(nw(S#Sys))  .]
+
+	:apply(csb71)
+
+	:def csb72 = :ctf [S#Sign \in csign(nw(S#Sys))  .]
+
+	:apply(csb72)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb73 = :ctf [priKey(P#PubKeyEx) \in uk(S#Sys)  .]
+
+	:apply(csb73)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb74 = :ctf {eq P1@Prin  = P0@Prin .}
+
+	:apply(csb74)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb75 = :ctf {eq P1@Prin  = intruder .}
+
+	:apply(csb75)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb76 = :ctf {eq P0@Prin  = intruder .}
+
+	:apply(csb76)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb77 = :ctf {eq priKey(P#PubKeyEx)  = P00@PriKeyEx .}
+
+	:apply(csb77)
+
+	:def csb78 = :ctf [P00@PriKeyEx \in uk(S#Sys)  .]
+
+	:apply(csb78)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {A:Prin <- P1@Prin ; B:Prin <- P0@Prin ; H:Hash <- H@Hash ; K:PriKeyEx <- P00@PriKeyEx ; PK:PubKeyEx <- P@PubKeyEx ; R2:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb79 = :ctf [chM(P#Prin, P0#Prin, P1#Prin, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb79)
+
+	:def csb80 = :ctf [shM(P1#Prin, P1#Prin, P0#Prin, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb80)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb81 = :ctf [cfM(P#Prin, P0#Prin, P1#Prin, C#Cipher) \in nw(S#Sys)  .]
+
+	:apply(csb81)
+
+	:def csb82 = :ctf [ckexM(P#Prin, P0#Prin, P1#Prin, P#PubKeyEx) \in nw(S#Sys)  .]
+
+	:apply(csb82)
+
+	:def csb83 = :ctf [chM(P#Prin, P0#Prin, P1#Prin, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb83)
+
+	:def csb84 = :ctf [shM(P1#Prin, P1#Prin, P0#Prin, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb84)
+
+	:def csb85 = :ctf [decSym?(C#Cipher, prf-ckey(prf-ms(pms(P#PubKeyEx, P#PriKeyEx), R#Rand, R0#Rand), R#Rand, R0#Rand))  .]
+
+	:apply(csb85)
+
+	:def csb86 = :ctf [scertM(P1#Prin, P1#Prin, P0#Prin, cert(P1#Prin, pubKey(P1#Prin), sign(ca, P1#Prin, pubKey(P1#Prin)))) \in nw(S#Sys)  .]
+
+	:apply(csb86)
+
+	:def csb87 = :ctf [skexM(P1#Prin, P1#Prin, P0#Prin, pubKeyEx(P#PriKeyEx, P1#Prin), encH(priKey(P1#Prin), hParams(R#Rand, R0#Rand, pubKeyEx(P#PriKeyEx, P1#Prin)))) \in nw(S#Sys)  .]
+
+	:apply(csb87)
+
+	:def csb88 = :ctf {eq decFin(C#Cipher, prf-ckey(prf-ms(pms(P#PubKeyEx, P#PriKeyEx), R#Rand, R0#Rand), R#Rand, R0#Rand))  = prf-cfin(prf-ms(pms(P#PubKeyEx, P#PriKeyEx), R#Rand, R0#Rand), hFullHs(P0#Prin, P1#Prin, R#Rand, C#CipherSuites, R0#Rand, C#CipherSuite, S#Sid, cert(P1#Prin, pubKey(P1#Prin), sign(ca, P1#Prin, pubKey(P1#Prin))), pubKeyEx(P#PriKeyEx, P1#Prin), encH(priKey(P1#Prin), hParams(R#Rand, R0#Rand, pubKeyEx(P#PriKeyEx, P1#Prin))), P#PubKeyEx)) .}
+
+	:apply(csb88)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb89 = :ctf {eq ss(S#Sys, P0#Prin, P1#Prin, S#Sid)  = none .}
+
+	:apply(csb89)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb90 = :ctf [ch2M(P#Prin, P0#Prin, P1#Prin, R#Rand, S#Sid, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb90)
+
+	:def csb91 = :ctf [sh2M(P1#Prin, P1#Prin, P0#Prin, R0#Rand, S#Sid, cs(ss(S#Sys, P0#Prin, P1#Prin, S#Sid))) \in nw(S#Sys)  .]
+
+	:apply(csb91)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb92 = :ctf [C#CipherSuite \in C#CipherSuites  .]
+
+	:apply(csb92)
+
+	:def csb93 = :ctf [R#Rand \in ur(S#Sys)  .]
+
+	:apply(csb93)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb94 = :ctf [S#Sid \in ui(S#Sys)  .]
+
+	:apply(csb94)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb95 = :ctf [chM(P#Prin, P0#Prin, P1#Prin, R0#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb95)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb96 = :ctf {eq ss(S#Sys, P0#Prin, P1#Prin, S#Sid)  = none .}
+
+	:apply(csb96)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb97 = :ctf [R#Rand \in ur(S#Sys)  .]
+
+	:apply(csb97)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb98 = :ctf [cs(ss(S#Sys, P0#Prin, P1#Prin, S#Sid)) \in C#CipherSuites  .]
+
+	:apply(csb98)
+
+	:def csb99 = :ctf [ch2M(P#Prin, P0#Prin, P1#Prin, R0#Rand, S#Sid, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb99)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:apply(tc)
+
+	:def csb100 = :ctf [P#PriKeyEx \in uk(S#Sys)  .]
+
+	:apply(csb100)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb101 = :ctf [chM(P#Prin, P0#Prin, P1#Prin, R#Rand, C#CipherSuites) \in nw(S#Sys)  .]
+
+	:apply(csb101)
+
+	:def csb102 = :ctf [shM(P1#Prin, P1#Prin, P0#Prin, R0#Rand, C#CipherSuite, S#Sid) \in nw(S#Sys)  .]
+
+	:apply(csb102)
+
+	:def csb103 = :ctf [scertM(P1#Prin, P1#Prin, P0#Prin, cert(P1#Prin, pubKey(P1#Prin), sign(ca, P1#Prin, pubKey(P1#Prin)))) \in nw(S#Sys)  .]
+
+	:apply(csb103)
+
+	:def csb104 = :ctf {eq P00@PriKeyEx  = P#PriKeyEx .}
+
+	:apply(csb104)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {A:Prin <- P1@Prin ; B:Prin <- P0@Prin ; H:Hash <- H@Hash ; K:PriKeyEx <- P00@PriKeyEx ; PK:PubKeyEx <- P@PubKeyEx ; R2:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv1]  by {H:Hash <- H@Hash ; P00:PriKeyEx <- P00@PriKeyEx ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:PubKeyEx <- P@PubKeyEx ; R0:Rand <- R0@Rand ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+

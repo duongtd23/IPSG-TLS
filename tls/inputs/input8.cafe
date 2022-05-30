@@ -1,0 +1,17 @@
+ipsgopen INV .
+  inv inv4(S:Sys,M:Msg) .
+  inv inv5(S:Sys,PK:PubKeyEx,K:PriKeyEx) .
+  generate inv8(S:Sys,A:Prin,B:Prin,B1:Prin,
+    PK:PubKeyEx,PK2:PubKeyEx,CI:Cipher)
+    induction on S:Sys .
+close
+
+set-output gen8.cafe .
+:save-proof .
+
+eof
+
+load inputs/input8.cafe .
+
+load tls12-v16.cafe .
+load invariants.cafe .

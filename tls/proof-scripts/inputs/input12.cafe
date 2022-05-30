@@ -1,0 +1,17 @@
+load tls12-v16.cafe .
+load invariants.cafe .
+load proof-scripts/annotated-proofscores/inv12.cafe .
+
+-- set-cores 4 .
+
+:proven(inv5(S:Sys,PK:PubKeyEx,K:PriKeyEx))
+:proven(inv13(S:Sys,R:Rand,R2:Rand,PK:PubKeyEx,K:PriKeyEx,H:Hash))
+:proven(inv18(S:Sys,A:Prin,B:Prin,PK:PubKeyEx,K:PriKeyEx,R:Rand,R2:Rand,I:Sid))
+:infer-proof inv12 .
+
+set-output proof-scripts/gen12.cafe .
+:save-proof .
+
+eof
+
+load proof-scripts/inputs/input12.cafe .

@@ -1,0 +1,15 @@
+ipsgopen INV .
+  inv inv2(S:Sys,B:Prin,PKE:PubKey,SIGN:Sign) .
+  generate inv6(S:Sys,A:Prin,B:Prin,B1:Prin,CERT:Cert)
+  induction on S:Sys .
+close
+
+set-output gen6.cafe .
+:save-proof .
+
+eof
+
+load inputs/input6.cafe .
+
+load tls12-v16.cafe .
+load invariants.cafe .

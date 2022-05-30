@@ -1,0 +1,1401 @@
+mod! PRINCIPAL {
+  [Prin]
+  ops intruder ca : -> Prin {constr}
+  eq (intruder = ca) = false .
+}
+
+-- public key of a principal
+mod! PUBLIC-KEY {
+  pr(PRINCIPAL)
+  [PubKey]
+  op pubKey : Prin -> PubKey
+  op owner : PubKey -> Prin
+  vars A B : Prin 
+  eq owner(pubKey(A)) = A .
+  eq (pubKey(A) = pubKey(B)) = (A = B) .
+}
+
+-- private key of a principal
+mod! PRIVATE-KEY {
+  pr(PRINCIPAL)
+  [PriKey]
+  op priKey : Prin -> PriKey 
+  vars A B : Prin 
+  eq (priKey(A) = priKey(B)) = (A = B) .
+}
+
+mod! RANDOM {
+  [Rand]
+}
+
+mod! CIPHER-SUITE {
+  [CipherSuite]
+}
+
+mod! SID {
+  [Sid]
+}
+
+-- signature of a certificate, sign(CA,A,K) denotes the signature 
+-- signed by the certificate authority CA for the principal A, 
+-- where K is A's public key
+mod! SIGNATURE {
+  pr(PRINCIPAL + PUBLIC-KEY + PRIVATE-KEY)
+  [Sign]
+
+  op sign    : Prin Prin PubKey -> Sign {constr}
+  op signer  : Sign -> Prin
+  op forwhom : Sign -> Prin
+  op pubKey  : Sign -> PubKey
+
+  var G : Sign
+  vars CA CA2 A B A1 A2 B1 B2 : Prin
+  vars PK PK1 PK2 : PubKey
+  
+  eq signer (sign(CA,A,PK)) = CA .
+  eq forwhom(sign(CA,A,PK)) = A .
+  eq pubKey (sign(CA,A,PK)) = PK .
+
+  eq (sign(CA,A,PK) = sign(CA2,A2,PK2))
+    = (A = A2 and PK = PK2) .
+}
+
+-- cert(A,K,sign(CA,A,K)) denotes the certificate of the principal A 
+--  with its public key K 
+-- signed by the certificate authority CA
+-- other principal can verify this certificate by using 
+--  the public key of CA
+mod! CERTIFICATE {
+  pr(SIGNATURE)
+  [Cert]
+
+  op cert   : Prin PubKey Sign -> Cert {constr}
+  op owner  : Cert -> Prin
+  op pubKey : Cert -> PubKey
+  op sign   : Cert -> Sign
+  
+  var C : Cert 
+  vars A A1 A2 : Prin
+  vars PK PK1 PK2 : PubKey
+  vars G G1 G2 : Sign
+  
+  eq owner (cert(A,PK,G)) = A .
+  eq pubKey(cert(A,PK,G)) = PK .
+  eq sign  (cert(A,PK,G)) = G .
+
+  eq (cert(A,PK,G) = cert(A2,PK2,G2))
+    = (A = A2 and PK = PK2 and G = G2) . 
+}
+
+-- private part of the public key share
+-- e.g., a is the private part of the public key share g^a
+mod! PRIVATE-KEY-EXCHANGE {
+  pr(PRINCIPAL)
+  [PriKeyEx]
+  op priKeyEx : Prin -> PriKeyEx
+}
+
+-- public key share in the server/client key exchange message
+mod! PUBLIC-KEY-EXCHANGE {
+  pr(PRIVATE-KEY-EXCHANGE)
+  [PubKeyEx]
+
+-- C (or S) randomly choose a private key, and then
+-- calculate the share key to send to S (or C)
+  op pubKeyEx : PriKeyEx Prin -> PubKeyEx {constr}
+  op owner : PubKeyEx -> Prin
+  op priKey : PubKeyEx -> PriKeyEx
+
+  vars A B : Prin 
+  vars K K2 : PriKeyEx
+  eq owner(pubKeyEx(K,A)) = A .
+  eq priKey(pubKeyEx(K,A)) = K .
+
+  eq (pubKeyEx(K,A) = pubKeyEx(K2,B)) 
+    = (K = K2 and A = B) .
+}
+
+mod! PRE-MASTER-SECRET {
+  pr(PUBLIC-KEY-EXCHANGE)
+  [Pms]
+
+-- calculate the pre master secret (symetric shared key)
+-- by a key exchange algorithm such as ECDH
+-- pms(Pub,Pri), where Pub is the public key that C/S received 
+-- from S/C, and Pri is the private key of C/S
+-- e.g., with DH, Pub <-> A (= g^a mod p), and Pri <-> b
+  op pms : PubKeyEx PriKeyEx -> Pms {constr}
+  op pmsPub : Pms -> PubKeyEx
+  op pmsPri : Pms -> PriKeyEx
+
+  vars A B : Prin
+  vars K K2 : PriKeyEx
+  vars PK PK2 : PubKeyEx
+  var PMS : Pms
+
+  eq pmsPub(pms(PK,K)) = PK .
+  eq pmsPri(pms(PK,K)) = K .
+
+  eq (pms(PK,K) = pms(PK2,K2)) 
+    = ((PK = PK2 and K = K2) or
+       (priKey(PK) = K2 and priKey(PK2) = K) ) .
+
+-- public and private keys must be different
+  eq (pmsPri(PMS) = priKey(pmsPub(PMS))) = false .
+}
+
+mod! MASTER-SECRET {
+  pr(PRE-MASTER-SECRET + RANDOM)
+  [Ms]
+
+-- pseudo random function
+  op prf-ms : Pms Rand Rand -> Ms {constr}
+  op getPms : Ms -> Pms
+  op getRand1 : Ms -> Rand
+  op getRand2 : Ms -> Rand
+
+  vars R R2 R' R2' : Rand
+  vars PMS PMS' : Pms
+
+  eq getPms(prf-ms(PMS,R,R2)) = PMS .
+  eq getRand1(prf-ms(PMS,R,R2)) = R .
+  eq getRand2(prf-ms(PMS,R,R2)) = R2 .
+
+  eq (prf-ms(PMS,R,R2) = prf-ms(PMS',R',R2')) =
+    (PMS = PMS' and R = R' and R2 = R2') .
+}
+
+mod! KEY-EXCHANGE {
+  pr(MASTER-SECRET + PRIVATE-KEY + PUBLIC-KEY)
+
+  [Key]
+
+  vars A B : Prin
+  vars K K2 : PriKeyEx
+  vars R R2 R' R2' : Rand
+  vars MS MS' : Ms
+
+-- calculate the client handshake key prf-ckey(PMS,Rand_C,Rand_S)
+-- kind of prf function
+  op prf-ckey : Ms Rand Rand -> Key {constr}
+
+-- calculate the server handshake key prf-skey(PMS,Rand_S,Rand_C)
+-- kind of prf function
+  op prf-skey : Ms Rand Rand -> Key {constr}
+
+  op getMs : Key -> Ms
+  op getRand1 : Key -> Rand
+  op getRand2 : Key -> Rand
+
+  eq (prf-ckey(MS,R,R2) = prf-ckey(MS',R',R2')) =
+    (MS = MS' and R = R' and R2 = R2') .
+  eq (prf-skey(MS,R,R2) = prf-skey(MS',R',R2')) =
+    (MS = MS' and R = R' and R2 = R2') .
+  
+  eq getMs(prf-ckey(MS,R,R2)) = MS .
+  eq getRand1(prf-ckey(MS,R,R2)) = R .
+  eq getRand2(prf-ckey(MS,R,R2)) = R2 .
+  eq getMs(prf-skey(MS,R,R2)) = MS .
+  eq getRand1(prf-skey(MS,R,R2)) = R .
+  eq getRand2(prf-skey(MS,R,R2)) = R2 .
+}
+
+mod! LIST(D :: TRIV) {
+  [Elt.D < List]
+  op _\in_ : Elt.D List -> Bool 
+}
+
+view TRIV2CIPHER-SUITE from TRIV to CIPHER-SUITE {
+  sort Elt -> CipherSuite
+}
+view TRIV2PRIKEYEX from TRIV to PRIVATE-KEY-EXCHANGE {
+  sort Elt -> PriKeyEx
+}
+view TRIV2RANDOM from TRIV to RANDOM {
+  sort Elt -> Rand
+}
+view TRIV2SID from TRIV to SID {
+  sort Elt -> Sid
+}
+
+mod! ENCRYPTION {
+  pr(KEY-EXCHANGE + CERTIFICATE + SID)
+  pr(LIST(D <= TRIV2CIPHER-SUITE)*{sort List -> CipherSuites})
+
+  [Cipher]
+  [Hash]
+
+-- finish verify data
+  [FinVD]
+
+  op prf-cfin  : Ms Hash -> FinVD {constr}
+  op prf-sfin  : Ms Hash -> FinVD {constr}
+  op prf-cfin2 : Ms Hash -> FinVD {constr}
+  op prf-sfin2 : Ms Hash -> FinVD {constr}
+
+  vars CI CI2 CI' : Cipher
+  vars K K2 K' : PriKeyEx
+  vars PK PK2 PK' PK2' : PubKeyEx
+
+  vars KE KE2 : PriKey
+  vars PKE PKE2 : PubKey
+
+  vars PMS : Pms
+  vars MS MS2 : Ms
+  vars KR KR2 : Key 
+  vars CE CE' : Cert
+  vars H H2 : Hash
+  vars A B A' B' : Prin
+  vars R R2 R' R2' R3 R4 : Rand
+  vars CSs CSs' : CipherSuites
+  vars CS CS' : CipherSuite
+  vars I I' : Sid
+  vars CERT CERT' : Cert 
+  vars FVD FVD' FVD2 : FinVD
+
+  op hFullHs : Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid
+    Cert
+    PubKeyEx Cipher
+    PubKeyEx -> Hash {constr}
+  op hAbbrHs : Prin Prin Rand Sid CipherSuites
+    Rand CipherSuite -> Hash {constr}
+  op hParams : Rand Rand PubKeyEx -> Hash {constr}
+
+  eq (hFullHs(A,B,R,CSs,R2,CS,I,CERT,PK,CI,PK2) =
+      hFullHs(A',B',R',CSs',R2',CS',I',CERT',PK',CI',PK2')) =
+    (A = A' and B = B' and R = R' and CSs = CSs' and R2 = R2' and
+     CS = CS' and I = I' and CERT = CERT' and PK = PK' and
+     CI = CI' and PK2 = PK2') . 
+  eq (hAbbrHs(A,B,R,I,CSs,R2,CS) =
+      hAbbrHs(A',B',R',I',CSs',R2',CS')) =
+    (A = A' and B = B' and R = R' and CSs = CSs' and 
+     R2 = R2' and CS = CS' and I = I') . 
+  eq (hParams(R,R2,PK) = hParams(R3,R4,PK')) =
+    (R = R3 and R2 = R4 and PK = PK') .
+  eq (hFullHs(A,B,R,CSs,R2,CS,I,CERT,PK,CI,PK2) = 
+    hAbbrHs(A',B',R',I',CSs',R2',CS')) = false .
+  eq (hFullHs(A,B,R,CSs,R2,CS,I,CERT,PK,CI,PK2) = hParams(R',R2',PK')) = false .
+  eq (hAbbrHs(A,B,R,I,CSs,R2,CS) = hParams(R',R2',PK')) = false .
+
+-- server signs the key exchange params
+  op encFin : Key FinVD -> Cipher {constr}
+  op encH : PriKey Hash -> Cipher {constr}
+
+-- decryption using symetric key
+  op decSym? : Cipher Key -> Bool
+  op decFin : Cipher Key -> FinVD
+  eq decSym?(encFin(KR,FVD),KR2) = (KR = KR2) .
+  ceq decFin(encFin(KR,FVD),KR2) = FVD if decSym?(encFin(KR,FVD),KR2) .
+  
+-- decryption using asymetric key
+  op decAsym? : Cipher PubKey -> Bool
+  op decH : Cipher PubKey -> Hash
+  eq decAsym?(encH(priKey(A), H), PKE) = (PKE = pubKey(A)) .
+  ceq decH(encH(KE, H), PKE) = H if decAsym?(encH(KE, H), PKE) .
+
+  eq (encH(KE, H) = encH(KE2, H2)) = (KE = KE2 and H = H2) .
+
+  eq (encFin(KR,FVD) = encFin(KR2,FVD2))
+    = (KR = KR2 and FVD = FVD2) .  
+  eq (prf-cfin(MS,H) = prf-cfin(MS2,H2))
+    = (MS = MS2 and H = H2) .
+  eq (prf-sfin(MS,H) = prf-sfin(MS2,H2))
+    = (MS = MS2 and H = H2) .
+  eq (prf-cfin2(MS,H) = prf-cfin2(MS2,H2))
+    = (MS = MS2 and H = H2) .
+  eq (prf-sfin2(MS,H) = prf-sfin2(MS2,H2))
+    = (MS = MS2 and H = H2) .
+}
+
+mod! MESSAGE {
+  pr(ENCRYPTION)
+
+  [Msg]
+
+-- client hello, server hello messages
+  op chM : Prin Prin Prin Rand CipherSuites -> Msg {constr}
+  op shM : Prin Prin Prin Rand CipherSuite Sid -> Msg {constr}
+
+-- server certificate message
+  op scertM : Prin Prin Prin Cert -> Msg {constr}
+
+-- client key exchange, server key exchange messages
+  op skexM : Prin Prin Prin PubKeyEx Cipher -> Msg {constr}
+  op ckexM : Prin Prin Prin PubKeyEx -> Msg {constr}
+
+-- client finish, server finish messages
+  op cfM : Prin Prin Prin Cipher -> Msg {constr}
+  op sfM : Prin Prin Prin Cipher -> Msg {constr}
+
+-- client hello 2 - resumption using psk
+  op ch2M : Prin Prin Prin Rand Sid CipherSuites -> Msg {constr}
+  op sh2M : Prin Prin Prin Rand Sid CipherSuite -> Msg {constr}
+
+  op sf2M : Prin Prin Prin Cipher -> Msg {constr}
+  op cf2M : Prin Prin Prin Cipher -> Msg {constr}
+
+  op chM? : Msg -> Bool
+  op shM? : Msg -> Bool
+  op scertM? : Msg -> Bool
+  op skexM? : Msg -> Bool
+  op ckexM? : Msg -> Bool
+  op cfM? : Msg -> Bool
+  op sfM? : Msg -> Bool
+  op ch2M? : Msg -> Bool
+  op sh2M? : Msg -> Bool
+  op cf2M? : Msg -> Bool
+  op sf2M? : Msg -> Bool
+
+  op crt : Msg -> Prin
+  op src : Msg -> Prin
+  op dst : Msg -> Prin
+
+  op getCS : Msg -> CipherSuites
+  op getKey : Msg -> PubKeyEx
+  op getRand : Msg -> Rand
+  op getCipher : Msg -> Cipher
+  op getCert : Msg -> Cert
+
+  vars M M1 M2 : Msg
+  vars A A' B A2 B2 A2' B' B2'  : Prin
+  vars R R2 : Rand
+  vars CSs CSs2 : CipherSuites
+  vars CS CS2 : CipherSuite
+  vars K K2 : PriKeyEx
+  vars PK PK2 : PubKeyEx
+  vars CERT CERT2 : Cert
+  vars CI CI2 : Cipher
+  vars I I2 : Sid
+
+  eq chM?(chM(A,A',B,R,CSs)) = true .
+  eq chM?(shM(A,A',B,R,CS,I)) = false .
+  eq chM?(scertM(A,A',B,CERT)) = false .
+  eq chM?(skexM(A,A',B,PK,CI)) = false .
+  eq chM?(ckexM(A,A',B,PK)) = false .
+  eq chM?(cfM(A,A',B,CI)) = false .
+  eq chM?(sfM(A,A',B,CI)) = false .
+  eq chM?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq chM?(sh2M(A,A',B,R,I,CS)) = false .
+  eq chM?(sf2M(A,A',B,CI)) = false .
+  eq chM?(cf2M(A,A',B,CI)) = false .
+
+  eq shM?(chM(A,A',B,R,CSs)) = false .
+  eq shM?(shM(A,A',B,R,CS,I)) = true .
+  eq shM?(scertM(A,A',B,CERT)) = false .
+  eq shM?(skexM(A,A',B,PK,CI)) = false .
+  eq shM?(ckexM(A,A',B,PK)) = false .
+  eq shM?(cfM(A,A',B,CI)) = false .
+  eq shM?(sfM(A,A',B,CI)) = false .
+  eq shM?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq shM?(sh2M(A,A',B,R,I,CS)) = false .
+  eq shM?(sf2M(A,A',B,CI)) = false .
+  eq shM?(cf2M(A,A',B,CI)) = false .
+
+  eq scertM?(chM(A,A',B,R,CSs)) = false .
+  eq scertM?(shM(A,A',B,R,CS,I)) = false .
+  eq scertM?(scertM(A,A',B,CERT)) = true .
+  eq scertM?(skexM(A,A',B,PK,CI)) = false .
+  eq scertM?(ckexM(A,A',B,PK)) = false .
+  eq scertM?(cfM(A,A',B,CI)) = false .
+  eq scertM?(sfM(A,A',B,CI)) = false .
+  eq scertM?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq scertM?(sh2M(A,A',B,R,I,CS)) = false .
+  eq scertM?(sf2M(A,A',B,CI)) = false .
+  eq scertM?(cf2M(A,A',B,CI)) = false .
+
+  eq skexM?(chM(A,A',B,R,CSs)) = false .
+  eq skexM?(shM(A,A',B,R,CS,I)) = false .
+  eq skexM?(scertM(A,A',B,CERT)) = false .
+  eq skexM?(skexM(A,A',B,PK,CI)) = true .
+  eq skexM?(ckexM(A,A',B,PK)) = false .
+  eq skexM?(cfM(A,A',B,CI)) = false .
+  eq skexM?(sfM(A,A',B,CI)) = false .
+  eq skexM?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq skexM?(sh2M(A,A',B,R,I,CS)) = false .
+  eq skexM?(sf2M(A,A',B,CI)) = false .
+  eq skexM?(cf2M(A,A',B,CI)) = false .
+
+  eq ckexM?(chM(A,A',B,R,CSs)) = false .
+  eq ckexM?(shM(A,A',B,R,CS,I)) = false .
+  eq ckexM?(scertM(A,A',B,CERT)) = false .
+  eq ckexM?(skexM(A,A',B,PK,CI)) = false .
+  eq ckexM?(ckexM(A,A',B,PK)) = true .
+  eq ckexM?(cfM(A,A',B,CI)) = false .
+  eq ckexM?(sfM(A,A',B,CI)) = false .
+  eq ckexM?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq ckexM?(sh2M(A,A',B,R,I,CS)) = false .
+  eq ckexM?(sf2M(A,A',B,CI)) = false .
+  eq ckexM?(cf2M(A,A',B,CI)) = false .
+
+  eq cfM?(chM(A,A',B,R,CSs)) = false .
+  eq cfM?(shM(A,A',B,R,CS,I)) = false .
+  eq cfM?(scertM(A,A',B,CERT)) = false .
+  eq cfM?(skexM(A,A',B,PK,CI)) = false .
+  eq cfM?(ckexM(A,A',B,PK)) = false .
+  eq cfM?(cfM(A,A',B,CI)) = true .
+  eq cfM?(sfM(A,A',B,CI)) = false .
+  eq cfM?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq cfM?(sh2M(A,A',B,R,I,CS)) = false .
+  eq cfM?(sf2M(A,A',B,CI)) = false .
+  eq cfM?(cf2M(A,A',B,CI)) = false .
+
+  eq sfM?(chM(A,A',B,R,CSs)) = false .
+  eq sfM?(shM(A,A',B,R,CS,I)) = false .
+  eq sfM?(scertM(A,A',B,CERT)) = false .
+  eq sfM?(skexM(A,A',B,PK,CI)) = false .
+  eq sfM?(ckexM(A,A',B,PK)) = false .
+  eq sfM?(cfM(A,A',B,CI)) = false .
+  eq sfM?(sfM(A,A',B,CI)) = true .
+  eq sfM?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq sfM?(sh2M(A,A',B,R,I,CS)) = false .
+  eq sfM?(sf2M(A,A',B,CI)) = false .
+  eq sfM?(cf2M(A,A',B,CI)) = false .
+
+  eq ch2M?(chM(A,A',B,R,CSs)) = false .
+  eq ch2M?(shM(A,A',B,R,CS,I)) = false .
+  eq ch2M?(scertM(A,A',B,CERT)) = false .
+  eq ch2M?(skexM(A,A',B,PK,CI)) = false .
+  eq ch2M?(ckexM(A,A',B,PK)) = false .
+  eq ch2M?(cfM(A,A',B,CI)) = false .
+  eq ch2M?(sfM(A,A',B,CI)) = false .
+  eq ch2M?(ch2M(A,A',B,R,I,CSs)) = true .
+  eq ch2M?(sh2M(A,A',B,R,I,CS)) = false .
+  eq ch2M?(sf2M(A,A',B,CI)) = false .
+  eq ch2M?(cf2M(A,A',B,CI)) = false .
+
+  eq sh2M?(chM(A,A',B,R,CSs)) = false .
+  eq sh2M?(shM(A,A',B,R,CS,I)) = false .
+  eq sh2M?(scertM(A,A',B,CERT)) = false .
+  eq sh2M?(skexM(A,A',B,PK,CI)) = false .
+  eq sh2M?(ckexM(A,A',B,PK)) = false .
+  eq sh2M?(cfM(A,A',B,CI)) = false .
+  eq sh2M?(sfM(A,A',B,CI)) = false .
+  eq sh2M?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq sh2M?(sh2M(A,A',B,R,I,CS)) = true .
+  eq sh2M?(sf2M(A,A',B,CI)) = false .
+  eq sh2M?(cf2M(A,A',B,CI)) = false .
+
+  eq cf2M?(chM(A,A',B,R,CSs)) = false .
+  eq cf2M?(shM(A,A',B,R,CS,I)) = false .
+  eq cf2M?(scertM(A,A',B,CERT)) = false .
+  eq cf2M?(skexM(A,A',B,PK,CI)) = false .
+  eq cf2M?(ckexM(A,A',B,PK)) = false .
+  eq cf2M?(cfM(A,A',B,CI)) = false .
+  eq cf2M?(sfM(A,A',B,CI)) = false .
+  eq cf2M?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq cf2M?(sh2M(A,A',B,R,I,CS)) = false .
+  eq cf2M?(sf2M(A,A',B,CI)) = false .
+  eq cf2M?(cf2M(A,A',B,CI)) = true .
+
+  eq sf2M?(chM(A,A',B,R,CSs)) = false .
+  eq sf2M?(shM(A,A',B,R,CS,I)) = false .
+  eq sf2M?(scertM(A,A',B,CERT)) = false .
+  eq sf2M?(skexM(A,A',B,PK,CI)) = false .
+  eq sf2M?(ckexM(A,A',B,PK)) = false .
+  eq sf2M?(cfM(A,A',B,CI)) = false .
+  eq sf2M?(sfM(A,A',B,CI)) = false .
+  eq sf2M?(ch2M(A,A',B,R,I,CSs)) = false .
+  eq sf2M?(sh2M(A,A',B,R,I,CS)) = false .
+  eq sf2M?(sf2M(A,A',B,CI)) = true .
+  eq sf2M?(cf2M(A,A',B,CI)) = false .
+
+  eq (chM(A',A,B,R,CSs) = chM(A2',A2,B2,R2,CSs2))
+    = (A' = A2' and A = A2 and B = B2 and R = R2 and 
+      CSs = CSs2) .
+  eq (chM(A',A,B,R,CSs) = shM(A2',A2,B2,R2,CS2,I2)) = false .
+  eq (chM(A',A,B,R,CSs) = scertM(A2',A2,B2,CERT2)) = false .
+  eq (chM(A',A,B,R,CSs) = skexM(A2',A2,B2,PK2,CI2)) = false .
+  eq (chM(A',A,B,R,CSs) = ckexM(A2',A2,B2,PK2)) = false .
+  eq (chM(A',A,B,R,CSs) = cfM(A2',A2,B2,CI2)) = false .
+  eq (chM(A',A,B,R,CSs) = sfM(A2',A2,B2,CI2)) = false .
+  eq (chM(A',A,B,R,CSs) = ch2M(A2',A2,B2,R2,I2,CSs2)) = false .
+  eq (chM(A',A,B,R,CSs) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (chM(A',A,B,R,CSs) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (chM(A',A,B,R,CSs) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (shM(A',A,B,R,CS,I) = shM(A2',A2,B2,R2,CS2,I2))
+    = (A' = A2' and A = A2 and B = B2 and R = R2 and 
+      CS = CS2 and I = I2) .
+  eq (shM(A',A,B,R,CS,I) = scertM(A2',A2,B2,CERT2)) = false .
+  eq (shM(A',A,B,R,CS,I) = skexM(A2',A2,B2,PK2,CI2)) = false .
+  eq (shM(A',A,B,R,CS,I) = ckexM(A2',A2,B2,PK2)) = false .
+  eq (shM(A',A,B,R,CS,I) = cfM(A2',A2,B2,CI2)) = false .
+  eq (shM(A',A,B,R,CS,I) = sfM(A2',A2,B2,CI2)) = false .
+  eq (shM(A',A,B,R,CS,I) = ch2M(A2',A2,B2,R2,I2,CSs2)) = false .
+  eq (shM(A',A,B,R,CS,I) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (shM(A',A,B,R,CS,I) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (shM(A',A,B,R,CS,I) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (scertM(A',A,B,CERT) = scertM(A2',A2,B2,CERT2)) 
+    = (A' = A2' and A = A2 and B = B2 and CERT = CERT2) .
+  eq (scertM(A',A,B,CERT) = skexM(A2',A2,B2,PK2,CI2)) = false .
+  eq (scertM(A',A,B,CERT) = ckexM(A2',A2,B2,PK2)) = false .
+  eq (scertM(A',A,B,CERT) = cfM(A2',A2,B2,CI2)) = false .
+  eq (scertM(A',A,B,CERT) = sfM(A2',A2,B2,CI2)) = false .
+  eq (scertM(A',A,B,CERT) = ch2M(A2',A2,B2,R2,I2,CSs2)) = false .
+  eq (scertM(A',A,B,CERT) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (scertM(A',A,B,CERT) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (scertM(A',A,B,CERT) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (skexM(A',A,B,PK,CI) = skexM(A2',A2,B2,PK2,CI2)) 
+    = (A' = A2' and A = A2 and B = B2 and PK = PK2 and 
+      CI = CI2) .
+  eq (skexM(A',A,B,PK,CI) = ckexM(A2',A2,B2,PK2)) = false .
+  eq (skexM(A',A,B,PK,CI) = cfM(A2',A2,B2,CI2)) = false .
+  eq (skexM(A',A,B,PK,CI) = sfM(A2',A2,B2,CI2)) = false .
+  eq (skexM(A',A,B,PK,CI) = ch2M(A2',A2,B2,R2,I2,CSs2)) = false .
+  eq (skexM(A',A,B,PK,CI) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (skexM(A',A,B,PK,CI) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (skexM(A',A,B,PK,CI) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (ckexM(A',A,B,PK) = ckexM(A2',A2,B2,PK2)) 
+    = (A' = A2' and A = A2 and B = B2 and PK = PK2) .
+  eq (ckexM(A',A,B,PK) = cfM(A2',A2,B2,CI2)) = false .
+  eq (ckexM(A',A,B,PK) = sfM(A2',A2,B2,CI2)) = false .
+  eq (ckexM(A',A,B,PK) = ch2M(A2',A2,B2,R2,I2,CSs2)) = false .
+  eq (ckexM(A',A,B,PK) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (ckexM(A',A,B,PK) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (ckexM(A',A,B,PK) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (cfM(A',A,B,CI) = cfM(A2',A2,B2,CI2)) 
+    = (A' = A2' and A = A2 and B = B2 and CI = CI2) .
+  eq (cfM(A',A,B,CI) = sfM(A2',A2,B2,CI2)) = false .
+  eq (cfM(A',A,B,CI) = ch2M(A2',A2,B2,R2,I2,CSs2)) = false .
+  eq (cfM(A',A,B,CI) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (cfM(A',A,B,CI) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (cfM(A',A,B,CI) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (sfM(A',A,B,CI) = sfM(A2',A2,B2,CI2)) 
+    = (A' = A2' and A = A2 and B = B2 and CI = CI2) .
+  eq (sfM(A',A,B,CI) = ch2M(A2',A2,B2,R2,I2,CSs2)) = false .
+  eq (sfM(A',A,B,CI) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (sfM(A',A,B,CI) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (sfM(A',A,B,CI) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (ch2M(A',A,B,R,I,CSs) = ch2M(A2',A2,B2,R2,I2,CSs2))
+    = (A' = A2' and A = A2 and B = B2 and R = R2 and 
+      CSs = CSs2 and I = I2) .
+  eq (ch2M(A',A,B,R,I,CSs) = sh2M(A2',A2,B2,R2,I2,CS2)) = false .
+  eq (ch2M(A',A,B,R,I,CSs) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (ch2M(A',A,B,R,I,CSs) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (sh2M(A',A,B,R,I,CS) = sh2M(A2',A2,B2,R2,I2,CS2))
+    = (A' = A2' and A = A2 and B = B2 and R = R2 and 
+      CS = CS2 and I = I2) .
+  eq (sh2M(A',A,B,R,I,CS) = cf2M(A2',A2,B2,CI2)) = false .
+  eq (sh2M(A',A,B,R,I,CS) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (cf2M(A',A,B,CI) = cf2M(A2',A2,B2,CI2))
+    = (A' = A2' and A = A2 and B = B2 and CI = CI2) .
+  eq (cf2M(A',A,B,CI) = sf2M(A2',A2,B2,CI2)) = false .
+
+  eq (sf2M(A',A,B,CI) = sf2M(A2',A2,B2,CI2))
+    = (A' = A2' and A = A2 and B = B2 and CI = CI2) .
+
+
+-- TODO: add more ...
+  eq crt(chM(A,A',B,R,CSs)) = A .
+  eq crt(shM(A,A',B,R,CS,I)) = A .
+  eq crt(scertM(A,A',B,CERT)) = A .
+  eq crt(skexM(A,A',B,PK,CI)) = A .
+  eq crt(ckexM(A,A',B,PK)) = A .
+  eq crt(cfM(A,A',B,CI)) = A .
+  eq crt(sfM(A,A',B,CI)) = A .
+  eq crt(ch2M(A,A',B,R,I,CSs)) = A .
+  eq crt(sh2M(A,A',B,R,I,CS)) = A .
+  eq crt(sf2M(A,A',B,CI)) = A .
+  eq crt(cf2M(A,A',B,CI)) = A .
+  
+  eq src(chM(A,A',B,R,CSs)) = A' .
+  eq src(shM(A,A',B,R,CS,I)) = A' .
+  eq src(skexM(A,A',B,PK,CI)) = A' .
+  eq src(ckexM(A,A',B,PK)) = A' .
+  
+  eq dst(chM(A,A',B,R,CSs)) = B .
+  eq dst(shM(A,A',B,R,CS,I)) = B .
+  eq dst(ckexM(A,A',B,PK)) = B .
+  eq dst(skexM(A,A',B,PK,CI)) = B .
+
+  eq getCS(chM(A,A',B,R,CSs)) = CSs .
+  eq getCS(shM(A,A',B,R,CS,I)) = CS .
+  
+  eq getRand(chM(A,A',B,R,CSs)) = R .
+  eq getRand(shM(A,A',B,R,CS,I)) = R .
+  
+  eq getKey(skexM(A,A',B,PK,CI)) = PK .
+  eq getKey(ckexM(A,A',B,PK)) = PK .
+  
+  eq getCipher(cfM(A,A',B,CI)) = CI .
+  eq getCipher(sfM(A,A',B,CI)) = CI .
+  eq getCipher(sf2M(A,A',B,CI)) = CI .
+  eq getCipher(cf2M(A,A',B,CI)) = CI .
+  eq getCipher(skexM(A,A',B,PK,CI)) = CI .
+
+  eq getCert(scertM(A,A',B,CERT)) = CERT .
+}
+
+mod! BAG (D :: TRIV) {
+  [Elt.D < Bag]
+  op void : -> Bag {constr}
+  op _,_ : Bag Bag -> Bag {assoc comm id: void}
+  op _\in_ : Elt.D Bag -> Bool
+  var B : Bag
+  vars E1 E2 : Elt.D
+  eq E1 \in void = false .
+  eq E1 \in E2 = (E1 = E2) .
+  eq E1 \in (E2,B) = (E1 = E2) or (E1 \in B) .
+}
+
+mod! SET (D :: TRIV) {
+  [Elt.D < Set]
+  op empty : -> Set {constr}
+  op __ : Set Set -> Set {assoc comm idem id: empty}
+  op _\in_ : Elt.D Set -> Bool
+  var S : Set
+  vars E1 E2 : Elt.D
+  eq E1 \in empty = false .
+  eq E1 \in E2 = (E1 = E2) .
+  eq E1 \in (E2 S) = (E1 = E2) or (E1 \in S) .
+}
+
+mod! COLLECTION(D :: TRIV) {
+  [Elt.D < Col]
+  op _\in_ : Elt.D Col -> Bool 
+}
+
+view TRIV2SIGN from TRIV to SIGNATURE {
+  sort Elt -> Sign
+}
+view TRIV2MESSAGE from TRIV to MESSAGE {
+  sort Elt -> Msg
+}
+view TRIV2CIPHER from TRIV to ENCRYPTION {
+  sort Elt -> Cipher
+}
+view TRIV2PMS from TRIV to PRE-MASTER-SECRET {
+  sort Elt -> Pms
+}
+view TRIV2KEYEX from TRIV to KEY-EXCHANGE {
+  sort Elt -> Key
+}
+mod! NETWORK {
+  pr(KEY-EXCHANGE)
+  pr(BAG(D <= TRIV2MESSAGE)*{sort Bag -> Network})
+  pr(COLLECTION(D <= TRIV2CIPHER)*{sort Col -> ColEnc})
+  pr(COLLECTION(D <= TRIV2SIGN)*{sort Col -> ColSign})
+  pr(COLLECTION(D <= TRIV2PMS)*{sort Col -> ColPms})
+  pr(COLLECTION(D <= TRIV2KEYEX)*{sort Col -> ColHsK})
+
+-- collection of gleaned signatures
+  op csign : Network -> ColSign
+
+-- collection of gleaned client-finish ciphertexts
+  op cecfin : Network -> ColEnc
+
+-- collection of gleaned server-finish ciphertexts
+  op cesfin : Network -> ColEnc
+  
+-- collection of gleaned client-finish-2 ciphertexts
+  op cecfin2 : Network -> ColEnc
+
+-- collection of gleaned server-finish-2 ciphertexts
+  op cesfin2 : Network -> ColEnc
+
+  vars NW NW10 : Network
+  vars M M2 : Msg
+  -- vars K K2 : Key
+  var PMS : Pms
+  var G : Sign
+  vars ECFIN ESFIN ECFIN2 ESFIN2 : Cipher
+  vars R1 R2 : Rand
+  vars A B : Prin
+  vars PK PK2 : PubKeyEx
+  vars K K2 : PriKeyEx
+  vars HSK HSK2 : Key
+
+  op cpms : Network -> ColPms
+  eq PMS \in cpms(void) = false .
+  eq PMS \in cpms(M,NW) = 
+      ((ckexM?(M) or skexM?(M)) and 
+           owner(getKey(M)) = intruder and
+           priKey(getKey(M)) = pmsPri(PMS))
+       or PMS \in cpms(NW) .
+
+-- collection of gleaned handshake keys
+  op chsk : Network -> ColHsK
+  eq HSK \in chsk(NW) = getPms(getMs(HSK)) \in cpms(NW) .
+
+  -- op existPriKexM : Pms Network -> Bool .
+  -- eq existPriKexM(PMS, void) = false . 
+  -- eq existPriKexM(PMS, (M,NW))
+  --   = ((ckexM?(M) or skexM?(M)) and 
+  --          owner(getKey(M)) = intruder and
+  --          priKey(getKey(M)) = pmsPri(PMS) and
+  --          time(PMS) = time(M))
+  --      or existPriKexM(PMS, NW) .
+
+-- csign
+  eq G \in csign(void) = false .
+  eq G \in csign(M,NW) 
+    = (scertM?(M) and G = sign(getCert(M)))
+    or G \in csign(NW) .
+
+-- cecfin
+  eq ECFIN \in cecfin(void) = false .
+  eq ECFIN \in cecfin(M,NW) 
+    = (cfM?(M) and ECFIN = getCipher(M)) 
+    or ECFIN \in cecfin(NW) .
+
+-- cesfin
+  eq ESFIN \in cesfin(void) = false .
+  eq ESFIN \in cesfin(M, NW)
+    = (sfM?(M) and ESFIN = getCipher(M)) 
+    or ESFIN \in cesfin(NW) .
+
+-- cecfin2
+  eq ECFIN2 \in cecfin2(void) = false .
+  eq ECFIN2 \in cecfin2(M, NW) 
+    = (cf2M?(M) and ECFIN2 = getCipher(M)) 
+    or ECFIN2 \in cecfin2(NW) .
+
+-- cesfin2
+  eq ESFIN2 \in cesfin2(void) = false .
+  eq ESFIN2 \in cesfin2(M, NW)
+    = (sf2M?(M) and ESFIN2 = getCipher(M)) 
+    or ESFIN2 \in cesfin2(NW) .
+}
+
+mod! SESSION-STATE {
+  pr(KEY-EXCHANGE + CIPHER-SUITE)
+  [Session]
+
+  op none : -> Session {constr}
+  op st : CipherSuite Ms -> Session {constr}
+  
+  op cs : Session -> CipherSuite
+  op ms : Session -> Ms
+
+  var S : Session 
+  vars CS CS1 : CipherSuite
+  vars MS MS1 MS2 : Ms
+
+  eq cs(st(CS,MS)) = CS .
+  eq ms(st(CS,MS)) = MS .
+
+  eq (st(CS,MS) = st(CS1,MS1))
+     = (CS = CS1 and MS = MS1) .
+}
+
+mod TLS12 {
+  pr(NETWORK + SESSION-STATE)
+  pr(SET(D <= TRIV2RANDOM)*{sort Set -> URand})
+  pr(SET(D <= TRIV2SID)*{sort Set -> USid})
+  pr(SET(D <= TRIV2PRIKEYEX)*{sort Set -> PriKeyExS})
+  pr(SET(D <= TRIV2KEYEX)*{sort Set -> KeyS})
+  [Sys]
+
+-- initial state
+  op init : -> Sys {constr}
+
+-- transitions
+  op chello : Sys Prin Prin Rand CipherSuites -> Sys {constr}
+
+  op shello : Sys Rand CipherSuite Sid
+    Prin Prin Prin Rand CipherSuites -> Sys {constr}
+
+  op scert : Sys
+    Prin Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid -> Sys {constr}
+  
+  op skeyex : Sys PriKeyEx
+    Prin Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid -> Sys {constr}
+
+  op ckeyex : Sys PriKeyEx
+    Prin Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid 
+    Cert
+    PubKeyEx Cipher -> Sys {constr}
+
+  op cfinish : Sys 
+    Prin Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid
+    Cert
+    PubKeyEx Cipher
+    PriKeyEx -> Sys {constr}
+
+  op sfinish : Sys 
+    Prin Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid
+    PriKeyEx
+    PubKeyEx
+    Cipher -> Sys {constr}
+
+-- session resumption
+  op chello2 : Sys Prin Prin Rand Sid CipherSuites 
+    -> Sys {constr}
+
+-- server hello resumption
+  op shello2 : Sys Rand
+    Prin Prin Prin Rand Sid CipherSuites -> Sys {constr}
+
+-- server finish 2
+  op sfinish2 : Sys
+    Prin Prin Prin Rand Sid CipherSuites 
+    Rand -> Sys {constr}
+
+-- client finish 2
+  op cfinish2 : Sys
+    Prin Prin Prin Rand Sid CipherSuites 
+    Rand 
+    Cipher -> Sys {constr}
+
+-- observations
+  op nw : Sys -> Network
+  op ur : Sys -> URand
+  op uk : Sys -> PriKeyExS
+  op ui : Sys -> USid
+  op ss : Sys Prin Prin Sid -> Session
+
+  var S : Sys
+  vars A B A2 B2 A3 B3 A4 : Prin 
+  vars CSs : CipherSuites
+  vars CS CS2 : CipherSuite
+  vars HSK HSK2 : Key
+  vars K K2 K3 K4 K5 : PriKeyEx
+  vars PK PK2 PK4 PK5 : PubKeyEx
+  vars PKE : PubKey
+  vars R R2 R3 R4 R5 : Rand
+  vars M M2 : Msg
+  vars CERT : Cert
+  vars CI CI2 CI3 : Cipher
+  vars I I2 : Sid
+  vars G : Sign
+  vars PMS : Pms
+  vars FVD : FinVD
+
+-- abbreviation of pqKey
+  op $pms : Sys PubKeyEx PriKeyEx Prin Prin -> Pms
+  eq $pms(S,PK,K,A,B) = pms(PK,K) .
+
+  eq nw(init) = void .
+  eq ur(init) = empty .
+  eq uk(init) = empty .
+  eq ui(init) = empty .
+  eq ss(init,A,B,I) = none .
+
+-- client hello 
+  op c-chello : Sys Prin Rand -> Bool
+  eq c-chello(S,A,R) = not(R \in ur(S)) .
+  ceq nw(chello(S,A,B,R,CSs)) = 
+    (chM(A,A,B,R,CSs) , nw(S)) if c-chello(S,A,R) .
+  ceq ur(chello(S,A,B,R,CSs)) = 
+    (R ur(S)) if c-chello(S,A,R) .
+  eq uk(chello(S,A,B,R,CSs)) = uk(S) .
+  eq ui(chello(S,A,B,R,CSs)) = ui(S) .
+  eq ss(chello(S,A,B,R,CSs),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq chello(S,A,B,R,CSs) = S if not c-chello(S,A,R) .
+
+-- server hello
+  op c-shello : Sys Rand CipherSuite Sid
+    Prin Prin Prin Rand CipherSuites -> Bool
+  eq c-shello(S,R2,CS,I,A2,A,B,R,CSs) = 
+    (not(R2 \in ur(S)) and not(I \in ui(S)) and   
+     chM(A2,A,B,R,CSs) \in nw(S) and
+     CS \in CSs) .
+  ceq nw(shello(S,R2,CS,I,A2,A,B,R,CSs)) = 
+    (shM(B,B,A,R2,CS,I) , nw(S)) 
+    if c-shello(S,R2,CS,I,A2,A,B,R,CSs) .
+  ceq ur(shello(S,R2,CS,I,A2,A,B,R,CSs)) = 
+    (R2 ur(S)) 
+    if c-shello(S,R2,CS,I,A2,A,B,R,CSs) .
+  eq uk(shello(S,R2,CS,I,A2,A,B,R,CSs)) = uk(S) .
+  ceq ui(shello(S,R2,CS,I,A2,A,B,R,CSs)) = 
+    (I ui(S)) 
+    if c-shello(S,R2,CS,I,A2,A,B,R,CSs) .
+  eq ss(shello(S,R2,CS,I,A2,A,B,R,CSs),A3,B3,I2) = 
+    ss(S,A3,B3,I2) .
+  ceq shello(S,R2,CS,I,A2,A,B,R,CSs) = S 
+    if not c-shello(S,R2,CS,I,A2,A,B,R,CSs) .
+
+-- server certificate
+  op c-scert : Sys 
+    Prin Prin Prin Rand CipherSuites 
+    Rand CipherSuite Sid -> Bool
+  eq c-scert(S,A2,A,B,R,CSs,R2,CS,I) = 
+    (chM(A2,A,B,R,CSs) \in nw(S) and
+     shM(B,B,A,R2,CS,I) \in nw(S)) .
+  ceq nw(scert(S,A2,A,B,R,CSs,R2,CS,I)) = 
+    (scertM(B,B,A,scertAb(B)) , nw(S)) 
+    if c-scert(S,A2,A,B,R,CSs,R2,CS,I) .
+  eq ur(scert(S,A2,A,B,R,CSs,R2,CS,I)) = ur(S) . 
+  eq uk(scert(S,A2,A,B,R,CSs,R2,CS,I)) = uk(S) .
+  eq ui(scert(S,A2,A,B,R,CSs,R2,CS,I)) = ui(S) . 
+  eq ss(scert(S,A2,A,B,R,CSs,R2,CS,I),A3,B3,I2) = 
+    ss(S,A3,B3,I2) .
+  ceq scert(S,A2,A,B,R,CSs,R2,CS,I) = S 
+    if not c-scert(S,A2,A,B,R,CSs,R2,CS,I) .
+
+-- server key exchange
+  op c-skeyex : Sys PriKeyEx
+    Prin Prin Prin Rand CipherSuites 
+    Rand CipherSuite Sid -> Bool
+  op c-skeyex' : Sys
+    Prin Prin Prin Rand CipherSuites 
+    Rand CipherSuite Sid -> Bool
+  eq c-skeyex(S,K,A2,A,B,R,CSs,R2,CS,I) = 
+    (c-skeyex'(S,A2,A,B,R,CSs,R2,CS,I) and
+     not(K \in uk(S)) ) .
+  eq c-skeyex'(S,A2,A,B,R,CSs,R2,CS,I) = 
+    (c-scert(S,A2,A,B,R,CSs,R2,CS,I) and
+     scertM(B,B,A,scertAb(B)) \in nw(S)) .
+
+  ceq nw(skeyex(S,K,A2,A,B,R,CSs,R2,CS,I)) = 
+    (skexM(B,B,A,pubKeyEx(K,B),
+      shashkeyAb(B,K,R,R2)) , nw(S)) 
+    if c-skeyex(S,K,A2,A,B,R,CSs,R2,CS,I) .
+  eq ur(skeyex(S,K,A2,A,B,R,CSs,R2,CS,I)) = ur(S) . 
+  ceq uk(skeyex(S,K,A2,A,B,R,CSs,R2,CS,I)) = (K uk(S))
+    if c-skeyex(S,K,A2,A,B,R,CSs,R2,CS,I) .
+  eq ui(skeyex(S,K,A2,A,B,R,CSs,R2,CS,I)) = ui(S) . 
+  eq ss(skeyex(S,K,A2,A,B,R,CSs,R2,CS,I),A3,B3,I2) = 
+    ss(S,A3,B3,I2) .
+  ceq skeyex(S,K,A2,A,B,R,CSs,R2,CS,I) = S 
+    if not c-skeyex(S,K,A2,A,B,R,CSs,R2,CS,I) .
+
+-- client key exchange
+  op c-ckeyex : Sys PriKeyEx
+    Prin Prin Prin Rand CipherSuites 
+    Rand CipherSuite Sid 
+    Cert
+    PubKeyEx Cipher -> Bool
+  op c-ckeyex' : Sys
+    Prin Prin Prin Rand CipherSuites 
+    Rand CipherSuite Sid 
+    Cert
+    PubKeyEx Cipher -> Bool
+  eq c-ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) = 
+    (c-ckeyex'(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) and
+     not(K2 \in uk(S))) .
+  eq c-ckeyex'(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) = 
+    (chM(A,A,B,R,CSs) \in nw(S) and
+     shM(B2,B,A,R2,CS,I) \in nw(S) and
+     scertM(B2,B,A,CERT) \in nw(S) and
+      sign(CERT) = sign(ca,owner(CERT),pubKey(CERT)) and
+     skexM(B2,B,A,PK,CI) \in nw(S) and
+      decAsym?(CI,pubKey(CERT)) and
+      decH(CI,pubKey(CERT)) = hParams(R,R2,PK)) .
+
+  ceq nw(ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI)) = 
+    (ckexM(A,A,B,pubKeyEx(K2,A)) , nw(S)) 
+    if c-ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) .
+  eq ur(ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI)) = ur(S) . 
+  ceq uk(ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI)) = (K2 uk(S))
+    if c-ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) .
+  eq ui(ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI)) = ui(S) . 
+  eq ss(ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI),A3,B3,I2) 
+    = ss(S,A3,B3,I2) .
+  ceq ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) = S 
+    if not c-ckeyex(S,K2,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) .
+
+-- client finish
+  op c-cfinish : Sys
+    Prin Prin Prin Rand CipherSuites 
+    Rand CipherSuite Sid 
+    Cert
+    PubKeyEx Cipher
+    PriKeyEx -> Bool
+  eq c-cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2) = 
+    (c-ckeyex'(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI) and
+     ckexM(A,A,B,pubKeyEx(K2,A)) \in nw(S)) .
+
+  ceq nw(cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2)) = 
+    (cfM(A,A,B, encFin(
+        prf-ckey(prf-ms($pms(S,PK,K2,A,B),R,R2), R,R2),
+        prf-cfin(prf-ms($pms(S,PK,K2,A,B),R,R2), 
+          hFullHs(A,B,R,CSs, R2,CS,I, CERT, PK, CI, pubKeyEx(K2,A)))
+      )) , nw(S)) 
+    if c-cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2) .
+  eq ur(cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2)) = ur(S) . 
+  eq uk(cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2)) = uk(S) .
+  eq ui(cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2)) = ui(S) . 
+  eq ss(cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2),A3,B3,I2) 
+    = ss(S,A3,B3,I2) .
+  ceq cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2) = S 
+    if not c-cfinish(S,B2,A,B,R,CSs,R2,CS,I,CERT,PK,CI,K2) .
+
+-- server finish
+  op c-sfinish : Sys
+    Prin Prin Prin Rand CipherSuites 
+    Rand CipherSuite Sid 
+    PriKeyEx
+    PubKeyEx
+    Cipher -> Bool
+  eq c-sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI) = 
+    (c-skeyex'(S,A2,A,B,R,CSs,R2,CS,I) and
+     skexM(B,B,A,pubKeyEx(K,B),
+      shashkeyAb(B,K,R,R2)) \in nw(S) and
+     ckexM(A2,A,B,PK2) \in nw(S) and
+     cfM(A2,A,B,CI) \in nw(S) and
+      decSym?(CI,prf-ckey(prf-ms($pms(S,PK2,K,A,B),R,R2), R,R2)) and
+      decFin(CI,prf-ckey(prf-ms($pms(S,PK2,K,A,B),R,R2), R,R2)) =
+        prf-cfin(prf-ms($pms(S,PK2,K,A,B),R,R2),
+          hFullHs(A,B,R,CSs, R2,CS,I, scertAb(B), 
+            pubKeyEx(K,B), shashkeyAb(B,K,R,R2), PK2))) .
+
+  ceq nw(sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI)) = 
+    (sfM(B,B,A, encFin(
+        prf-skey(prf-ms($pms(S,PK2,K,A,B),R,R2), R,R2),
+        prf-sfin(prf-ms($pms(S,PK2,K,A,B),R,R2),
+          hFullHs(A,B,R,CSs, R2,CS,I, scertAb(B), 
+            pubKeyEx(K,B), shashkeyAb(B,K,R,R2), PK2))
+      )) , nw(S)) 
+    if c-sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI) .
+  eq ur(sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI)) = ur(S) . 
+  eq uk(sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI)) = uk(S) .
+  eq ui(sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI)) = ui(S) . 
+  eq ss(sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI),A3,B3,I2) 
+    = (if A3 = A and B3 = B and I = I2 then
+        st(CS,prf-ms($pms(S,PK2,K,A,B),R,R2))
+      else
+        ss(S,A3,B3,I2) 
+      fi) .
+  ceq sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI) = S 
+    if not c-sfinish(S,A2,A,B,R,CSs,R2,CS,I,K,PK2,CI) .
+
+-- client hello 2
+  op c-chello2 : Sys Prin Prin Rand Sid CipherSuites -> Bool
+  eq c-chello2(S,A,B,R,I,CSs) = 
+    (not(R \in ur(S)) and not(ss(S,A,B,I) = none) and
+     cs(ss(S,A,B,I)) \in CSs) .
+  ceq nw(chello2(S,A,B,R,I,CSs)) =
+      (ch2M(A,A,B,R,I,CSs) , nw(S)) 
+    if c-chello2(S,A,B,R,I,CSs) .
+  ceq ur(chello2(S,A,B,R,I,CSs)) = 
+    (R ur(S)) if c-chello2(S,A,B,R,I,CSs) .
+  eq uk(chello2(S,A,B,R,I,CSs)) = uk(S) .
+  eq ui(chello2(S,A,B,R,I,CSs)) = ui(S) .
+  eq ss(chello2(S,A,B,R,I,CSs),A3,B3,I2) = ss(S,A3,B3,I2) .
+  ceq chello2(S,A,B,R,I,CSs) = S 
+    if not c-chello2(S,A,B,R,I,CSs) .
+
+-- server hello 2
+  op c-shello2 : Sys Rand
+    Prin Prin Prin Rand Sid CipherSuites -> Bool
+  eq c-shello2(S,R2,A2,A,B,R,I,CSs) = 
+    (ch2M(A2,A,B,R,I,CSs) \in nw(S) and
+     not(R2 \in ur(S)) and not(ss(S,A,B,I) = none) and
+     cs(ss(S,A,B,I)) \in CSs) .
+  ceq nw(shello2(S,R2,A2,A,B,R,I,CSs)) =
+      (sh2M(B,B,A,R2,I,cs(ss(S,A,B,I))) , nw(S)) 
+    if c-shello2(S,R2,A2,A,B,R,I,CSs) .
+  ceq ur(shello2(S,R2,A2,A,B,R,I,CSs)) = 
+    (R2 ur(S)) if c-shello2(S,R2,A2,A,B,R,I,CSs) .
+  eq uk(shello2(S,R2,A2,A,B,R,I,CSs)) = uk(S) .
+  eq ui(shello2(S,R2,A2,A,B,R,I,CSs)) = ui(S) .
+  eq ss(shello2(S,R2,A2,A,B,R,I,CSs),A3,B3,I2) 
+    = ss(S,A3,B3,I2) .
+  ceq shello2(S,R2,A2,A,B,R,I,CSs) = S 
+    if not c-shello2(S,R2,A2,A,B,R,I,CSs) .
+
+-- server finish 2
+  op c-sfinish2 : Sys
+    Prin Prin Prin Rand Sid CipherSuites 
+    Rand -> Bool
+  eq c-sfinish2(S,A2,A,B,R,I,CSs,R2) = 
+    (not(ss(S,A,B,I) = none) and
+     ch2M(A2,A,B,R,I,CSs) \in nw(S) and
+     sh2M(B,B,A,R2,I,cs(ss(S,A,B,I))) \in nw(S)) .
+  ceq nw(sfinish2(S,A2,A,B,R,I,CSs,R2)) =
+      (sf2M(B,B,A,encFin(
+          prf-skey(ms(ss(S,A,B,I)), R,R2),
+          prf-sfin2(ms(ss(S,A,B,I)),
+            hAbbrHs(A,B,R,I,CSs,R2,cs(ss(S,A,B,I))))
+        )) , nw(S)) 
+    if c-sfinish2(S,A2,A,B,R,I,CSs,R2) .
+  eq ur(sfinish2(S,A2,A,B,R,I,CSs,R2)) = ur(S) .
+  eq uk(sfinish2(S,A2,A,B,R,I,CSs,R2)) = uk(S) .
+  eq ui(sfinish2(S,A2,A,B,R,I,CSs,R2)) = ui(S) .
+  eq ss(sfinish2(S,A2,A,B,R,I,CSs,R2),A3,B3,I2) 
+    = ss(S,A3,B3,I2) .
+  ceq sfinish2(S,A2,A,B,R,I,CSs,R2) = S 
+    if not c-sfinish2(S,A2,A,B,R,I,CSs,R2) .
+
+-- client finish 2
+  op c-cfinish2 : Sys
+    Prin Prin Prin Rand Sid CipherSuites 
+    Rand 
+    Cipher -> Bool
+  eq c-cfinish2(S,B2,A,B,R,I,CSs,R2,CI) = 
+    (not(ss(S,A,B,I) = none) and
+     ch2M(A,A,B,R,I,CSs) \in nw(S) and
+     sh2M(B2,B,A,R2,I,cs(ss(S,A,B,I))) \in nw(S) and
+     sf2M(B2,B,A,CI) \in nw(S) and
+      decSym?(CI, prf-skey(ms(ss(S,A,B,I)), R,R2)) and
+      decFin(CI, prf-skey(ms(ss(S,A,B,I)), R,R2)) =
+        prf-sfin2(ms(ss(S,A,B,I)),
+          hAbbrHs(A,B,R,I,CSs,R2,cs(ss(S,A,B,I))))) .
+  ceq nw(cfinish2(S,B2,A,B,R,I,CSs,R2,CI)) =
+      (cf2M(A,A,B,encFin(
+          prf-ckey(ms(ss(S,A,B,I)), R,R2),
+          prf-cfin2(ms(ss(S,A,B,I)),
+            hAbbrHs(A,B,R,I,CSs,R2,cs(ss(S,A,B,I))))
+        )) , nw(S)) 
+    if c-cfinish2(S,B2,A,B,R,I,CSs,R2,CI) .
+  eq ur(cfinish2(S,B2,A,B,R,I,CSs,R2,CI)) = ur(S) .
+  eq uk(cfinish2(S,B2,A,B,R,I,CSs,R2,CI)) = uk(S) .
+  eq ui(cfinish2(S,B2,A,B,R,I,CSs,R2,CI)) = ui(S) .
+  eq ss(cfinish2(S,B2,A,B,R,I,CSs,R2,CI),A3,B3,I2) 
+    = ss(S,A3,B3,I2) .
+  ceq cfinish2(S,B2,A,B,R,I,CSs,R2,CI) = S 
+    if not c-cfinish2(S,B2,A,B,R,I,CSs,R2,CI) .
+
+-- intruder
+  op fkChello : Sys Prin Prin Rand CipherSuites -> Sys {constr}
+  op fkShello : Sys Prin Prin Rand CipherSuite Sid -> Sys {constr}
+  
+  op fkCert : Sys Prin Prin PubKey Sign -> Sys {constr}
+  op fkSkeyex : Sys Prin Prin PubKeyEx Rand Rand -> Sys {constr}
+  
+  op fkCkeyex : Sys Prin Prin PubKeyEx -> Sys {constr}
+  op fkCfinisha : Sys Prin Prin Cipher -> Sys {constr}
+  op fkCfinishb : Sys Pms PubKey Sign
+    Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid
+    PubKeyEx
+    PubKeyEx -> Sys {constr}
+
+  op fkSfinisha : Sys Prin Prin Cipher -> Sys {constr}
+  op fkSfinishb : Sys Pms PubKey Sign
+    Prin Prin Rand CipherSuites
+    Rand CipherSuite Sid
+    PubKeyEx
+    PubKeyEx -> Sys {constr}
+
+  op fkChello2 : Sys Prin Prin Rand Sid CipherSuites -> Sys {constr}
+  op fkShello2 : Sys Prin Prin Rand Sid CipherSuite -> Sys {constr}
+ 
+  op fkCfinish2a : Sys Prin Prin Cipher -> Sys {constr}
+  op fkSfinish2a : Sys Prin Prin Cipher -> Sys {constr}
+
+  op fkCfinish2b : Sys Prin Prin Rand Sid CipherSuites 
+    Rand Pms CipherSuite -> Sys {constr}
+  op fkSfinish2b : Sys Prin Prin Rand Sid CipherSuites 
+    Rand Pms CipherSuite -> Sys {constr}
+
+-- fake client hello
+  eq nw(fkChello(S,A,B,R,CSs)) = 
+    (chM(intruder,A,B,R,CSs) , nw(S)) .
+  eq ur(fkChello(S,A,B,R,CSs)) = ur(S) .
+  eq uk(fkChello(S,A,B,R,CSs)) = uk(S) .
+  eq ui(fkChello(S,A,B,R,CSs)) = ui(S) .
+  eq ss(fkChello(S,A,B,R,CSs),A2,B2,I) = ss(S,A2,B2,I) .
+
+-- fake server hello
+  eq nw(fkShello(S,B,A,R,CS,I)) = 
+    (shM(intruder,B,A,R,CS,I) , nw(S)) .
+  eq ur(fkShello(S,B,A,R,CS,I)) = ur(S) .
+  eq uk(fkShello(S,B,A,R,CS,I)) = uk(S) .
+  eq ui(fkShello(S,B,A,R,CS,I)) = ui(S) .
+  eq ss(fkShello(S,B,A,R,CS,I),A2,B2,I2) = ss(S,A2,B2,I2) .
+
+-- fake server certificate
+  op c-fkCert : Sys Prin Prin PubKey Sign -> Bool
+  eq c-fkCert(S,B,A,PKE,G) = G \in csign(nw(S)) .
+  ceq nw(fkCert(S,B,A,PKE,G)) 
+      = (scertM(intruder,B,A,cert(B,PKE,G)) , nw(S))
+    if c-fkCert(S,B,A,PKE,G) .
+  eq ur(fkCert(S,B,A,PKE,G)) = ur(S) .
+  eq uk(fkCert(S,B,A,PKE,G)) = uk(S) .
+  eq ui(fkCert(S,B,A,PKE,G)) = ui(S) .
+  eq ss(fkCert(S,B,A,PKE,G),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq fkCert(S,B,A,PKE,G) = S 
+    if not c-fkCert(S,B,A,PKE,G) .
+
+-- fake sever key exchange
+  op c-fkSkeyex : Sys Prin PubKeyEx -> Bool
+  eq c-fkSkeyex(S,B,PK) = not(priKey(PK) \in uk(S)) .
+  ceq nw(fkSkeyex(S,B,A,PK,R,R2)) = 
+    (skexM(intruder,B,A,PK, 
+      encH(priKey(intruder), hParams(R,R2,PK))) , nw(S))
+  if c-fkSkeyex(S,B,PK) .
+  eq ur(fkSkeyex(S,B,A,PK,R,R2)) = ur(S) .
+  ceq uk(fkSkeyex(S,B,A,PK,R,R2)) = (priKey(PK) uk(S))
+  if c-fkSkeyex(S,B,PK) .
+  eq ui(fkSkeyex(S,B,A,PK,R,R2)) = ui(S) .
+  eq ss(fkSkeyex(S,B,A,PK,R,R2),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq fkSkeyex(S,B,A,PK,R,R2) = S 
+    if not c-fkSkeyex(S,B,PK) .
+
+-- fake client key exchange
+  op c-fkCkeyex : Sys PubKeyEx -> Bool
+  eq c-fkCkeyex(S,PK) = not (priKey(PK) \in uk(S)) .
+  ceq nw(fkCkeyex(S,A,B,PK)) = 
+    (ckexM(intruder,A,B,PK) , nw(S))
+  if c-fkCkeyex(S,PK) .
+  eq ur(fkCkeyex(S,A,B,PK)) = ur(S) .
+  ceq uk(fkCkeyex(S,A,B,PK)) = (priKey(PK) uk(S)) 
+  if c-fkCkeyex(S,PK) .
+  eq ui(fkCkeyex(S,A,B,PK)) = ui(S) .
+  eq ss(fkCkeyex(S,A,B,PK),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq fkCkeyex(S,A,B,PK) = S 
+    if not c-fkCkeyex(S,PK) .
+
+-- fake client finish - case a
+  op c-fkCfinisha : Sys Prin Prin Cipher -> Bool
+  eq c-fkCfinisha(S,A,B,CI) = CI \in cecfin(nw(S)) .
+  ceq nw(fkCfinisha(S,A,B,CI)) = 
+      (cfM(intruder,A,B,CI) , nw(S)) 
+    if c-fkCfinisha(S,A,B,CI) .
+  eq ur(fkCfinisha(S,A,B,CI)) = ur(S) .
+  eq uk(fkCfinisha(S,A,B,CI)) = uk(S) .
+  eq ui(fkCfinisha(S,A,B,CI)) = ui(S) .
+  eq ss(fkCfinisha(S,A,B,CI),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq fkCfinisha(S,A,B,CI) = S 
+    if not c-fkCfinisha(S,A,B,CI) .
+
+-- fake client finish - case b
+  op c-fkCfinishb : Sys Pms Sign -> Bool
+  eq c-fkCfinishb(S,PMS,G)
+    = (PMS \in cpms(nw(S)) and G \in csign(nw(S))) .
+  ceq nw(fkCfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) =
+      (cfM(intruder,A,B,encFin(
+          prf-ckey(prf-ms(PMS,R,R2), R,R2),
+          prf-cfin(prf-ms(PMS,R,R2),
+            hFullHs(A,B,R,CSs, R2,CS,I, cert(B,PKE,G), PK, 
+              encH(priKey(intruder), hParams(R,R2,PK)), PK2))
+        )) , nw(S)) 
+    if c-fkCfinishb(S,PMS,G) .
+  eq ur(fkCfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) 
+    = ur(S) .
+  eq uk(fkCfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) 
+    = uk(S) .
+  eq ui(fkCfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) 
+    = ui(S) .
+  eq ss(fkCfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2),
+    A2,B2,I2) = ss(S,A2,B2,I2) .
+  ceq fkCfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2) = S 
+    if not c-fkCfinishb(S,PMS,G) .
+
+-- fake server finish - case a
+  op c-fkSfinisha : Sys Prin Prin Cipher -> Bool
+  eq c-fkSfinisha(S,B,A,CI) = CI \in cesfin(nw(S)) .
+  ceq nw(fkSfinisha(S,B,A,CI)) = 
+      (sfM(intruder,B,A,CI) , nw(S)) 
+    if c-fkSfinisha(S,B,A,CI) .
+  eq ur(fkSfinisha(S,B,A,CI)) = ur(S) .
+  eq uk(fkSfinisha(S,B,A,CI)) = uk(S) .
+  eq ui(fkSfinisha(S,B,A,CI)) = ui(S) .
+  eq ss(fkSfinisha(S,B,A,CI),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq fkSfinisha(S,B,A,CI) = S 
+    if not c-fkSfinisha(S,B,A,CI) .
+
+-- fake server finish - case b
+  op c-fkSfinishb : Sys Pms Sign -> Bool
+  eq c-fkSfinishb(S,PMS,G) = c-fkCfinishb(S,PMS,G) .
+  ceq nw(fkSfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) =
+      (sfM(intruder,B,A,encFin(
+          prf-skey(prf-ms(PMS,R,R2), R,R2),
+          prf-sfin(prf-ms(PMS,R,R2),
+            hFullHs(A,B,R,CSs, R2,CS,I, cert(B,PKE,G), PK,
+              encH(priKey(intruder), hParams(R,R2,PK)), PK2))
+        )) , nw(S)) 
+    if c-fkSfinishb(S,PMS,G) .
+  eq ur(fkSfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) 
+    = ur(S) .
+  eq uk(fkSfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) 
+    = uk(S) .
+  eq ui(fkSfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2)) 
+    = ui(S) .
+  eq ss(fkSfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2),
+    A2,B2,I2) = ss(S,A2,B2,I2) .
+  ceq fkSfinishb(S,PMS,PKE,G,A,B,R,CSs,R2,CS,I,PK,PK2) = S 
+    if not c-fkSfinishb(S,PMS,G) .
+
+-- fake client hello 2 
+  eq nw(fkChello2(S,A,B,R,I,CSs)) = 
+    (ch2M(intruder,A,B,R,I,CSs) , nw(S)) .
+  eq ur(fkChello2(S,A,B,R,I,CSs)) = ur(S) .
+  eq uk(fkChello2(S,A,B,R,I,CSs)) = uk(S) .
+  eq ui(fkChello2(S,A,B,R,I,CSs)) = ui(S) .
+  eq ss(fkChello2(S,A,B,R,I,CSs),A2,B2,I2) = ss(S,A2,B2,I2) .
+
+-- fake server hello 2
+  eq nw(fkShello2(S,B,A,R,I,CS)) = 
+    (sh2M(intruder,B,A,R,I,CS) , nw(S)) .
+  eq ur(fkShello2(S,B,A,R,I,CS)) = ur(S) .
+  eq uk(fkShello2(S,B,A,R,I,CS)) = uk(S) .
+  eq ui(fkShello2(S,B,A,R,I,CS)) = ui(S) .
+  eq ss(fkShello2(S,B,A,R,I,CS),A2,B2,I2) = ss(S,A2,B2,I2) .
+
+-- fake client finish2 - case a
+  op c-fkCfinish2a : Sys Prin Prin Cipher -> Bool
+  eq c-fkCfinish2a(S,A,B,CI) = CI \in cecfin2(nw(S)) .
+  ceq nw(fkCfinish2a(S,A,B,CI)) = 
+      (cf2M(intruder,A,B,CI) , nw(S)) 
+    if c-fkCfinish2a(S,A,B,CI) .
+  eq ur(fkCfinish2a(S,A,B,CI)) = ur(S) .
+  eq uk(fkCfinish2a(S,A,B,CI)) = uk(S) .
+  eq ui(fkCfinish2a(S,A,B,CI)) = ui(S) .
+  eq ss(fkCfinish2a(S,A,B,CI),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq fkCfinish2a(S,A,B,CI) = S 
+    if not c-fkCfinish2a(S,A,B,CI) .
+
+-- fake server finish2 - case a
+  op c-fkSfinish2a : Sys Prin Prin Cipher -> Bool
+  eq c-fkSfinish2a(S,B,A,CI) = CI \in cesfin2(nw(S)) .
+  ceq nw(fkSfinish2a(S,B,A,CI)) = 
+      (sf2M(intruder,B,A,CI) , nw(S)) 
+    if c-fkSfinish2a(S,B,A,CI) .
+  eq ur(fkSfinish2a(S,B,A,CI)) = ur(S) .
+  eq uk(fkSfinish2a(S,B,A,CI)) = uk(S) .
+  eq ui(fkSfinish2a(S,B,A,CI)) = ui(S) .
+  eq ss(fkSfinish2a(S,B,A,CI),A2,B2,I) = ss(S,A2,B2,I) .
+  ceq fkSfinish2a(S,B,A,CI) = S 
+    if not c-fkSfinish2a(S,B,A,CI) .
+
+-- fake client finish2 - case b
+  op c-fkCfinish2b : Sys Pms -> Bool
+  eq c-fkCfinish2b(S,PMS) = PMS \in cpms(nw(S)) .
+  ceq nw(fkCfinish2b(S,A,B,R,I,CSs,R2,PMS,CS)) =
+      (cf2M(intruder,A,B,encFin(
+          prf-ckey(prf-ms(PMS,R,R2), R,R2),
+          prf-cfin2(prf-ms(PMS,R,R2),
+            hAbbrHs(A,B,R,I,CSs,R2,CS))
+        )) , nw(S)) 
+    if c-fkCfinish2b(S,PMS) .
+  eq ur(fkCfinish2b(S,A,B,R,I,CSs,R2,PMS,CS)) = ur(S) .
+  eq uk(fkCfinish2b(S,A,B,R,I,CSs,R2,PMS,CS)) = uk(S) .
+  eq ui(fkCfinish2b(S,A,B,R,I,CSs,R2,PMS,CS)) = ui(S) .
+  eq ss(fkCfinish2b(S,A,B,R,I,CSs,R2,PMS,CS),A2,B2,I2) 
+    = ss(S,A2,B2,I2) .
+  ceq fkCfinish2b(S,A,B,R,I,CSs,R2,PMS,CS) = S 
+    if not c-fkCfinish2b(S,PMS) .
+
+-- fake server finish2 - case b
+  op c-fkSfinish2b : Sys Pms -> Bool
+  eq c-fkSfinish2b(S,PMS) = PMS \in cpms(nw(S)) .
+  ceq nw(fkSfinish2b(S,B,A,R,I,CSs,R2,PMS,CS)) =
+      (sf2M(intruder,B,A,encFin(
+          prf-skey(prf-ms(PMS,R,R2), R,R2),
+          prf-sfin2(prf-ms(PMS,R,R2),
+            hAbbrHs(A,B,R,I,CSs,R2,CS))
+        )) , nw(S)) 
+    if c-fkSfinish2b(S,PMS) .
+  eq ur(fkSfinish2b(S,B,A,R,I,CSs,R2,PMS,CS)) = ur(S) .
+  eq uk(fkSfinish2b(S,B,A,R,I,CSs,R2,PMS,CS)) = uk(S) .
+  eq ui(fkSfinish2b(S,B,A,R,I,CSs,R2,PMS,CS)) = ui(S) .
+  eq ss(fkSfinish2b(S,B,A,R,I,CSs,R2,PMS,CS),A2,B2,I2)
+    = ss(S,A2,B2,I2) .
+  ceq fkSfinish2b(S,B,A,R,I,CSs,R2,PMS,CS) = S 
+    if not c-fkSfinish2b(S,PMS) .
+
+-- abbreviation of server's certificate
+  op scertAb : Prin -> Cert
+  eq scertAb(B) = cert(B,pubKey(B),sign(ca,B,pubKey(B))) .
+
+-- abbreviation of enc_PriS(H(R_C, R_S, PublicKeyShare_S))
+  op shashkeyAb : Prin PriKeyEx Rand Rand -> Cipher
+  eq shashkeyAb(B,K,R,R2) = encH(priKey(B), hParams(R,R2,pubKeyEx(K,B))) .
+}
