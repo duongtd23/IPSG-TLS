@@ -1,0 +1,28 @@
+load mcs/mcs.cafe .
+
+ipsgopen INV .
+  inv mutex(S:Sys, P:Pid, Q:Pid) .
+  inv inv1(S:Sys, P:Pid, Q:Pid) .
+  inv inv2(S:Sys, P:Pid, Q:Pid) .
+  inv inv3(S:Sys, P:Pid) .
+  inv inv4(S:Sys, P:Pid) .
+  inv inv5(S:Sys, P:Pid, Q:Pid) .
+  inv inv6(S:Sys, P:Pid, Q:Pid) .
+  inv inv7(S:Sys, P:Pid, Q:Pid) .
+  
+  generate mutex(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv1(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv2(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv3(S:Sys, P:Pid) induction on S:Sys .
+  generate inv4(S:Sys, P:Pid) induction on S:Sys .
+  generate inv5(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv6(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv7(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+close
+
+set-output mcs/mcs-prsc.cafe .
+:save-proof .
+
+eof
+
+load mcs/input.cafe .

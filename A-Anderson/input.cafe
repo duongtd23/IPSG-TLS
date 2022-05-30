@@ -1,0 +1,31 @@
+load A-Anderson/anderson.cafe .
+
+ipsgopen INV .
+  inv lm1(I:SNat, J:SNat) .
+  inv mutex(S:Sys, P:Pid, Q:Pid) .
+  inv inv1(S:Sys, P:Pid, Q:Pid) .
+  inv inv2(S:Sys, P:Pid) .
+  inv inv3(S:Sys, P:Pid, Q:Pid) .
+  inv inv4(S:Sys, P:Pid) .
+  inv inv5(S:Sys, P:Pid) .
+  inv inv6(S:Sys, P:Pid) .
+  inv inv7(S:Sys) .
+  inv inv8(S:Sys, I:SNat, J:SNat) .
+  
+  generate mutex(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv1(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv2(S:Sys, P:Pid) induction on S:Sys .
+  generate inv3(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv4(S:Sys, P:Pid) induction on S:Sys .
+  generate inv5(S:Sys, P:Pid) induction on S:Sys .
+  generate inv6(S:Sys, P:Pid) induction on S:Sys .
+  generate inv7(S:Sys) induction on S:Sys .
+  generate inv8(S:Sys, I:SNat, J:SNat) induction on S:Sys .
+close
+
+set-output A-Anderson/proof-scores.cafe .
+:save-proof .
+
+eof
+
+load A-Anderson/input.cafe .

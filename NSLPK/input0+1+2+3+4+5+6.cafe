@@ -1,0 +1,73 @@
+load /Users/duongtd/projects/ipsg/examples/nslpk/nslpk.cafe .
+
+ipsgopen INV .
+  inv inv0(S:Sys, C1:Cipher1) .
+  inv inv1(S:Sys, C2:Cipher2) .
+  inv inv2(S:Sys, C3:Cipher3) .
+  inv inv3(S:Sys, N:Nonce) .
+  inv inv4(S:Sys, E1:Cipher1) .
+  inv inv5(S:Sys, E2:Cipher2) .
+  inv inv6(S:Sys, N:Nonce) .
+  inv lm1(M:Msg, NW:Network) .
+  inv lm2(E1:Cipher1, M:Msg, NW:Network) .
+  inv lm3(M:Msg, NW:Network) .
+  inv lm4(E2:Cipher2, M:Msg, NW:Network) .
+
+  generate inv0(S:Sys, C1:Cipher1) induction on S:Sys . -- done
+  generate inv1(S:Sys, C2:Cipher2) induction on S:Sys . -- done
+  generate inv2(S:Sys, C3:Cipher3) induction on S:Sys . -- done
+  generate inv3(S:Sys, N:Nonce) induction on S:Sys . 
+  generate inv4(S:Sys, E1:Cipher1) induction on S:Sys . -- done
+  generate inv5(S:Sys, E2:Cipher2) induction on S:Sys . -- done
+  generate inv6(S:Sys, N:Nonce) induction on S:Sys . -- done
+close
+
+set-output /Users/duongtd/projects/ipsg/examples/nslpk/gen0123456.cafe .
+:save-proof .
+
+eof
+
+depth = 2
+ipsgopen INV .
+  -- inv inv0(S:Sys, C1:Cipher1) .
+  -- inv inv1(S:Sys, C2:Cipher2) .
+  -- inv inv2(S:Sys, C3:Cipher3) .
+  -- inv inv3(S:Sys, N:Nonce) .
+  inv inv5(S:Sys, E2:Cipher2) .
+  inv lm3(M:Msg, NW:Network) .
+  inv lm4(E2:Cipher2, M:Msg, NW:Network) .
+  
+  -- generate inv0(S:Sys, C1:Cipher1) induction on S:Sys . -- done
+  -- generate inv1(S:Sys, C2:Cipher2) induction on S:Sys . -- done
+  -- generate inv2(S:Sys, C3:Cipher3) induction on S:Sys . -- done
+  generate inv3(S:Sys, N:Nonce) induction on S:Sys only sdm3 . 
+close
+
+set-output /Users/duongtd/projects/ipsg/examples/nslpk/gen3-sdm3.cafe .
+:save-proof .
+
+eof
+
+ipsgopen INV .
+  -- inv inv0(S:Sys, C1:Cipher1) .
+  -- inv inv1(S:Sys, C2:Cipher2) .
+  -- inv inv2(S:Sys, C3:Cipher3) .
+  -- inv inv3(S:Sys, N:Nonce) .
+  inv inv4(S:Sys, E1:Cipher1) .
+  inv lm1(M:Msg, NW:Network) .
+  inv lm2(E1:Cipher1, M:Msg, NW:Network) .
+  
+  -- generate inv0(S:Sys, C1:Cipher1) induction on S:Sys . -- done
+  -- generate inv1(S:Sys, C2:Cipher2) induction on S:Sys . -- done
+  -- generate inv2(S:Sys, C3:Cipher3) induction on S:Sys . -- done
+  generate inv3(S:Sys, N:Nonce) induction on S:Sys only sdm2 . 
+close
+
+set-output /Users/duongtd/projects/ipsg/examples/nslpk/gen3-sdm2.cafe .
+:save-proof .
+
+eof
+
+
+
+load /Users/duongtd/projects/ipsg/examples/nslpk/input0123456.cafe .

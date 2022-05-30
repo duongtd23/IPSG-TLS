@@ -1,0 +1,15 @@
+load qlock/qlock.cafe .
+
+ipsgopen QLOCK .
+  inv inv1(S:Sys, P:Pid, Q:Pid) .
+  inv inv2(S:Sys, P:Pid) .
+  generate inv1(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
+  generate inv2(S:Sys, P:Pid) induction on S:Sys .
+close
+
+set-output qlock/qlock-prsc.cafe .
+:save-proof .
+
+eof
+
+load qlock/input.cafe .

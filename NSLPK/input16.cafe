@@ -1,0 +1,12 @@
+-- load /Users/duongtd/projects/ipsg/examples/nslpk/nslpk.cafe .
+
+ipsgopen INV .
+  generate inv16(S:Sys,P:Prin,Q:Prin,E2:Cipher2) induction on S:Sys .
+close
+
+set-output /Users/duongtd/projects/ipsg/examples/nslpk/gen16.cafe .
+:save-proof .
+
+eof
+
+load /Users/duongtd/projects/ipsg/examples/nslpk/input16.cafe .

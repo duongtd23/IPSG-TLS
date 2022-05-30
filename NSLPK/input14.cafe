@@ -1,0 +1,18 @@
+-- load /Users/duongtd/projects/ipsg/examples/nslpk/nslpk.cafe .
+
+ipsgopen INV .
+  inv inv3(S:Sys,N:Nonce) .
+  inv inv9(S:Sys,M:Msg) .
+  inv inv12(S:Sys,P:Prin,Q:Prin,R:Rand,E2:Cipher2)  .
+  generate inv14(S:Sys,P:Prin,Q:Prin,Q1:Prin,
+    R:Rand,E2:Cipher2) induction on S:Sys .
+close
+
+set-output /Users/duongtd/projects/ipsg/examples/nslpk/gen14.cafe .
+:save-proof .
+
+eof
+
+depth = 0
+
+load /Users/duongtd/projects/ipsg/examples/nslpk/input14.cafe .

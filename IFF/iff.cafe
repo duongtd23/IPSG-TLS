@@ -1,0 +1,234 @@
+mod! AGENT {
+  [Agent]
+  op enemy : -> Agent {constr}
+  -- eq (P:Agent = P) = true .
+}
+
+mod! KEY {
+  pr(AGENT)
+  [Key]
+  op k : Agent -> Key
+  op p : Key -> Agent
+  var P : Agent
+  vars K1 K2 : Key
+  eq p(k(P)) = P .
+  ceq (K1 = K2) = true if not(p(K1) = enemy) and not(p(K2) = enemy) .
+  ceq (K1 = K2) = false if not(p(K1) = enemy) and p(K2) = enemy .
+}
+
+mod! RAND {
+  [Rand]
+  -- op _=_ : Rand Rand -> Bool {comm}
+}
+
+mod! CIPHER {
+  pr(AGENT + KEY + RAND)
+  [Cipher]
+  op enc : Key Rand Agent -> Cipher
+  op k : Cipher -> Key
+  op r : Cipher -> Rand
+  op p : Cipher -> Agent
+  vars K K' : Key
+  vars R R' : Rand
+  vars P P' : Agent
+  vars C1 C2 : Cipher
+  eq k(enc(K,R,P)) = K .
+  eq r(enc(K,R,P)) = R .
+  eq p(enc(K,R,P)) = P .
+  eq (enc(K,R,P) = enc(K',R',P')) = (K = K' and R = R' and P = P') .
+  -- eq (C1 = C2) = (k(C1) = k(C2) and r(C1) = r(C2) and p(C1) = p(C2)) .
+}
+
+mod! MSG {
+  pr(AGENT + RAND + CIPHER)
+  [Msg]
+  --      creator source destination body
+  --      ---------------------------------
+  op cm : Agent    Agent   Agent        Rand   -> Msg
+  op rm : Agent    Agent   Agent        Cipher -> Msg
+  --
+  op cm? : Msg -> Bool
+  op rm? : Msg -> Bool
+  op crt : Msg -> Agent
+  op src : Msg -> Agent
+  op dst : Msg -> Agent
+  op r : Msg -> Rand
+  op c : Msg -> Cipher
+  --
+  vars P1 P2 P3 : Agent
+  var R : Rand
+  var C : Cipher
+  vars M1 M2 : Msg
+  --
+  eq cm?(cm(P1,P2,P3,R)) = true .
+  eq cm?(rm(P1,P2,P3,C)) = false .
+  eq rm?(cm(P1,P2,P3,R)) = false .
+  eq rm?(rm(P1,P2,P3,C)) = true .
+  eq crt(cm(P1,P2,P3,R)) = P1 .
+  eq crt(rm(P1,P2,P3,C)) = P1 .
+  eq src(cm(P1,P2,P3,R)) = P2 .
+  eq src(rm(P1,P2,P3,C)) = P2 .
+  eq dst(cm(P1,P2,P3,R)) = P3 .
+  eq dst(rm(P1,P2,P3,C)) = P3 .
+  eq r(cm(P1,P2,P3,R)) = R .
+  eq c(rm(P1,P2,P3,C)) = C .
+  --
+  ceq (M1 = M2) = (cm?(M1) and crt(M1) = crt(M2) and src(M1) = src(M2) and dst(M1) = dst(M2) and r(M1) = r(M2)) if cm?(M2) .
+  ceq (M1 = M2) = (rm?(M1) and crt(M1) = crt(M2) and src(M1) = src(M2) and dst(M1) = dst(M2) and c(M1) = c(M2)) if rm?(M2) .
+}
+
+mod! BAG (D :: TRIV) {
+  [Elt.D < Bag]
+  op void : -> Bag
+  op _,_ : Bag Bag -> Bag { assoc comm id: void }
+  op _\in_ : Elt.D Bag -> Bool
+  var B : Bag
+  vars E1 E2 : Elt.D
+  eq E1 \in void = false .
+  ceq E1 \in (E2,B) = true if E1 = E2 .
+  ceq E1 \in (E2,B) = E1 \in B if not(E1 = E2) .
+
+-- lm
+  -- op lmm1 : Elt.D Elt.D Bag -> Bool .
+  -- eq lmm1(E1, E2, B) = (E1 = E2 implies (E2 \in B) = (E1 \in B)) .
+}
+
+mod! SET (D :: TRIV) {
+  [Elt.D < Set]
+  op empty : -> Set
+  op __ : Set Set -> Set { assoc comm idem id: empty }
+  op _\in_ : Elt.D Set -> Bool
+  var S : Set
+  vars E1 E2 : Elt.D
+  eq E1 \in empty = false .
+  ceq E1 \in (E2 S) = true if E1 = E2 .
+  ceq E1 \in (E2 S) = E1 \in S if not(E1 = E2) .
+
+-- lm
+  op lmm1 : Elt.D Elt.D Set -> Bool .
+  eq lmm1(E1, E2, S) = (E1 = E2 implies (E2 \in S) = (E1 \in S)) .
+}
+
+mod! COLLECTION(D :: TRIV) {
+  [Elt.D < Col]
+  op _\in_ : Elt.D Col -> Bool
+}
+
+view TRIV2MSG from TRIV to MSG {
+  sort Elt -> Msg
+}
+view TRIV2CIPHER from TRIV to CIPHER {
+  sort Elt -> Cipher
+}
+view TRIV2RAND from TRIV to RAND {
+  sort Elt -> Rand
+}
+
+mod! NETWORK {
+  pr(BAG(D <= TRIV2MSG)*{ sort Bag -> Network })
+  pr(COLLECTION(D <= TRIV2RAND)*{sort Col -> ColRands})
+  pr(COLLECTION(D <= TRIV2CIPHER)*{sort Col -> ColCiphers})
+--
+  op rands : Network -> ColRands
+  op ciphers : Network -> ColCiphers
+--
+  var NW : Network
+  var M : Msg
+  var R : Rand
+  var C : Cipher
+-- rands
+  eq R \in rands(void) = false .
+  ceq R \in rands(M,NW) = true if cm?(M) and R = r(M) .
+  ceq R \in rands(M,NW) = true if rm?(M) and k(enemy) = k(c(M)) and R = r(c(M)) .
+  ceq R \in rands(M,NW) = R \in rands(NW)
+      if not(cm?(M) and R = r(M)) and
+         not(rm?(M) and k(enemy) = k(c(M)) and R = r(c(M))) .
+-- ciphers
+  eq C \in ciphers(void) = false .
+  ceq C \in ciphers(M,NW) = true if rm?(M) and C = c(M) .
+  ceq C \in ciphers(M,NW) = C \in ciphers(NW) if not(rm?(M) and C = c(M)) .
+  ceq C \in ciphers(M,NW) = (rm?(M) and C = c(M)) if C \in ciphers(NW) = false .
+
+}
+
+--
+-- Identify-Friend-or-Foe System
+--
+mod* IFF {
+  pr(NETWORK)
+  pr(SET(RAND)*{sort Set -> URands})
+  [Field]
+-- an arbitrary initial state
+  op init : -> Field {constr}
+-- observations
+  op nw : Field -> Network
+  op ur : Field -> URands
+-- actions
+  op sdcm : Field Agent Agent Rand -> Field {constr}
+  op sdrm : Field Agent Msg -> Field {constr}
+  --
+  op fkcm1 : Field Agent Agent Rand -> Field {constr}
+  op fkrm1 : Field Agent Agent Cipher -> Field {constr}
+  op fkrm2 : Field Agent Agent Rand -> Field {constr}
+-- CafeOBJ variables
+  var F : Field
+  vars P1 P2 P3 : Agent
+  vars M1 M2 : Msg
+  var R : Rand
+  var C : Cipher
+  var K : Key
+-- for any initial state
+  eq nw(init) = void .
+  eq ur(init) = empty .
+-- for action sdcm
+  op c-sdcm : Field Agent Agent Rand -> Bool
+  eq c-sdcm(F,P1,P2,R) = (not (R \in ur(F))) .
+  --
+  ceq nw(sdcm(F,P1,P2,R)) = (cm(P1,P1,P2,R) , nw(F)) if c-sdcm(F,P1,P2,R) .
+  ceq ur(sdcm(F,P1,P2,R)) = (R ur(F))                if c-sdcm(F,P1,P2,R) .
+  ceq sdcm(F,P1,P2,R)     = F                      if not c-sdcm(F,P1,P2,R) .
+-- for action sdrm
+  op c-sdrm : Field Agent Msg -> Bool
+  eq c-sdrm(F,P1,M1) = (M1 \in nw(F) and cm?(M1) and P1 = dst(M1)) .
+  --
+  ceq nw(sdrm(F,P1,M1)) = rm(P1,P1,src(M1),enc(k(P1),r(M1),P1)) , nw(F) if c-sdrm(F,P1,M1) .
+  eq ur(sdrm(F,P1,M1))  = ur(F) .
+  ceq sdrm(F,P1,M1)     = F                                             if not c-sdrm(F,P1,M1) .
+-- for action fkcm1
+  op c-fkcm1 : Field Agent Agent Rand -> Bool
+  eq c-fkcm1(F,P1,P2,R) = R \in rands(nw(F)) .
+  --
+  ceq nw(fkcm1(F,P1,P2,R)) = cm(enemy,P1,P2,R) , nw(F) if c-fkcm1(F,P1,P2,R) .
+  eq ur(fkcm1(F,P1,P2,R))  = ur(F) .
+  ceq fkcm1(F,P1,P2,R)     = F                         if not c-fkcm1(F,P1,P2,R) .
+-- for action fkrm1
+  op c-fkrm1 : Field Agent Agent Cipher -> Bool
+  eq c-fkrm1(F,P1,P2,C) = C \in ciphers(nw(F)) .
+  --
+  ceq nw(fkrm1(F,P1,P2,C)) = rm(enemy,P1,P2,C) , nw(F) if c-fkrm1(F,P1,P2,C) .
+  eq ur(fkrm1(F,P1,P2,C))  = ur(F) .
+  ceq fkrm1(F,P1,P2,C)     = F                         if not c-fkrm1(F,P1,P2,C) .
+-- for action fkrm2
+  op c-fkrm2 : Field Agent Agent Rand -> Bool
+  eq c-fkrm2(F,P1,P2,R) = R \in rands(nw(F)) .
+  --
+  ceq nw(fkrm2(F,P1,P2,R)) = rm(enemy,P1,P2,enc(k(enemy),R,P1)) , nw(F) if c-fkrm2(F,P1,P2,R) .
+  eq ur(fkrm2(F,P1,P2,R))  = ur(F) .
+  ceq fkrm2(F,P1,P2,R)     = F                       if not c-fkrm2(F,P1,P2,R) .
+
+-- INV
+-- declare invariant candidates
+  op inv1 : Field Agent Agent Agent Key Rand -> Bool
+  op inv2 : Field Key Rand -> Bool
+-- CafeOBJ variables
+  var F : Field
+  vars P1 P2 P3 : Agent
+  var K : Key
+  var R : Rand
+-- define invariant candidates
+  eq inv1(F,P1,P2,P3,K,R) = ((not(K = k(enemy)) and rm(P1,P2,P3,enc(K,R,P2)) \in nw(F)) implies not(P2 = enemy)) .
+  eq inv2(F,K,R) = (enc(K,R,enemy) \in ciphers(nw(F)) implies (K = k(enemy))) .
+
+  var NW : Network 
+  ceq M1 \in (NW,M2) = (M1 = M2) if (M1 \in NW) = false .
+}

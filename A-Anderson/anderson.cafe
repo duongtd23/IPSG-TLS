@@ -1,0 +1,140 @@
+-- Loop: Remainder Section
+--  rs: place[i] = fetch&inc(next);
+--  ws: repeat until array[place[i]];
+--    Critical Section
+--  cs: array[array[place[i]+1] = true;
+
+mod! LABEL {
+  [Label]
+  ops rs ws cs : -> Label {constr}
+  eq (rs = ws) = false .
+  eq (rs = cs) = false .
+  eq (ws = cs) = false .
+}
+
+mod* SIMPLE-NAT {
+  [ SZero SNzNat < SNat ]
+  op 0 : -> SZero {constr}
+  op s : SNat -> SNzNat {constr}
+  vars I J L : SNat
+  vars K G H : SNzNat
+  eq (0 = K) = false .
+  eq (0 = s(I)) = false .
+  eq (I = s(I)) = false .
+
+  op _<_ : SNat SNat -> Bool .
+  eq (I < 0) = false .
+  eq (0 < K) = true .
+  eq (I < s(I)) = true .
+  eq (I < s(s(I))) = true .
+  eq (I < I) = false .
+  ceq (I < s(J)) = true if I < J .
+  ceq (s(I) < J) = false if (I < J) = false .
+  eq (s(I) = s(J)) = (I = J) .
+  ceq (I < s(0)) = false if (I = 0) = false .
+  ceq (I < s(J)) = false if (I = J) = false and (I < J) = false .
+  ceq (s(I) < s(J)) = true if I < J . 
+  -- ceq (I = J) = true if ((I < J) = false and (J < I) = false) .
+}
+
+mod ANDERSON {
+  pr(LABEL + SIMPLE-NAT)
+  [Pid] [Sys]
+-- any initial state
+  op init : -> Sys {constr}
+  
+-- transitions
+  op want : Sys Pid -> Sys {constr}
+  op try  : Sys Pid -> Sys {constr}
+  op exit : Sys Pid -> Sys {constr}
+
+-- observations
+  op pc : Sys Pid -> Label .
+  op next : Sys -> SNat .
+  op place : Sys Pid -> SNat .
+  op array : Sys SNat -> Bool .
+
+  var S : Sys
+  vars I J : SNat
+  vars P Q : Pid
+
+-- initial state
+  eq pc(init,P) = rs .
+  eq next(init) = 0 .
+  eq place(init,P) = 0 .
+  eq array(init,I) = (if I = 0 then true else false fi) .
+
+-- want
+  op c-want : Sys Pid -> Bool
+  eq c-want(S,P) = (pc(S,P) = rs) .
+  ceq pc(want(S,P),Q) = (if P = Q then ws else pc(S,Q) fi) if c-want(S,P) .
+  ceq place(want(S,P),Q) = (if P = Q then next(S) else place(S,Q) fi) if c-want(S,P) .
+  ceq next(want(S,P)) = s(next(S)) if c-want(S,P) .
+  eq array(want(S,P),I) = array(S,I) .
+  ceq want(S,P) = S if c-want(S,P) = false .
+  
+-- try
+  op c-try : Sys Pid -> Bool
+  eq c-try(S,P) = (pc(S,P) = ws and array(S,place(S,P)) = true) .
+  ceq pc(try(S,P),Q) = (if P = Q then cs else pc(S,Q) fi) if c-try(S,P) .
+  eq place(try(S,P),Q) = place(S,Q) .
+  eq array(try(S,P),I) = array(S,I) .
+  eq next(try(S,P)) = next(S) .
+  ceq try(S,P) = S if c-try(S,P) = false .
+
+-- exit
+  op c-exit : Sys Pid -> Bool
+  eq c-exit(S,P) = (pc(S,P) = cs) .
+  ceq pc(exit(S,P),Q) = (if P = Q then rs else pc(S,Q) fi) if c-exit(S,P) .
+  eq place(exit(S,P),Q) = place(S,Q) .
+  eq next(exit(S,P)) = next(S) .
+  ceq array(exit(S,P),I) = 
+    (if I = s(place(S,P)) then
+       true
+     else
+       array(S,I)
+    fi) if c-exit(S,P) .
+  ceq exit(S,P) = S if c-exit(S,P) = false .
+}
+
+mod INV {
+  pr(ANDERSON)
+
+  var S : Sys .
+  vars P Q R1 : Pid .
+  vars G H : SNzNat .
+  vars I J K : SNat .
+
+  op mutex : Sys Pid Pid -> Bool
+  op inv1 : Sys Pid Pid -> Bool
+  op inv2 : Sys Pid -> Bool
+  op inv3 : Sys Pid Pid -> Bool
+  op inv4 : Sys Pid -> Bool
+  op inv5 : Sys Pid -> Bool
+  op inv6 : Sys Pid -> Bool
+  op inv7 : Sys -> Bool
+  op inv8 : Sys SNat SNat -> Bool
+  
+  eq mutex(S,P,Q) = (pc(S,P) = cs and pc(S,Q) = cs implies (P = Q)) .
+
+  eq inv1(S,P,Q) = ((pc(S,P) = ws and array(S,place(S,P)) = true and (P = Q) = false) implies 
+      (pc(S,Q) = cs or (pc(S,Q) = ws and array(S,place(S,Q)) = true)) = false) .
+      
+  eq inv2(S,P) = ((pc(S,P) = cs) implies (array(S,place(S,P)) = true)) .
+   
+  eq inv3(S,P,Q) = ((place(S,P) = place(S,Q) and (P = Q) = false) implies (place(S,P) = 0)) .
+  
+  eq inv4(S,P) = (place(S,P) = next(S) implies (next(S) = 0 and pc(S,P) = rs)) .
+
+  eq inv5(S,P) = ((place(S,P) < s(next(S))) = true) .
+
+  eq inv6(S,P) = (pc(S,P) = cs or (pc(S,P) = ws and array(S,place(S,P)) = true)) implies 
+        (array(S,next(S)) = false) .
+
+  eq inv7(S) = (array(S,s(next(S))) = false) . 
+
+  eq inv8(S,I,J) = ((array(S,J) = true and I < s(J)) implies array(S,I) = true) .
+
+  op lm1 : SNat SNat -> Bool .
+  eq lm1(I,J) = (((I = J) = false and I < s(J)) implies I < J) .
+}

@@ -1,0 +1,15 @@
+-- load /Users/duongtd/projects/ipsg/examples/nslpk/nslpk.cafe .
+
+ipsgopen INV .
+  inv inv1(S:Sys,E2:Cipher2) .
+  inv inv3(S:Sys,N:Nonce) .
+  generate inv15(S:Sys,P:Prin,Q:Prin,Q1:Prin,
+    R:Rand,E2:Cipher2) induction on S:Sys .
+close
+
+set-output /Users/duongtd/projects/ipsg/examples/nslpk/gen15.cafe .
+:save-proof .
+
+eof
+
+load /Users/duongtd/projects/ipsg/examples/nslpk/input15.cafe .

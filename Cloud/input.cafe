@@ -1,0 +1,26 @@
+load Cloud/cloud.cafe .
+
+ipsgopen CLOUD .
+  inv inv1(S:Sys, I:Client) .
+  inv inv2(S:Sys, I:Client) .
+  inv inv3(S:Sys, I:Client, J:Client) .
+  inv inv4(S:Sys, I:Client, J:Client) .
+  inv inv5(S:Sys, I:Client) .
+  inv inv6(S:Sys, I:Client) .
+  inv inv7(S:Sys, I:Client, J:Client) .
+
+  generate inv1(S:Sys, I:Client) induction on S:Sys .
+  generate inv2(S:Sys, I:Client) induction on S:Sys .
+  generate inv3(S:Sys, I:Client, J:Client) induction on S:Sys .
+  generate inv4(S:Sys, I:Client, J:Client) induction on S:Sys .
+  generate inv5(S:Sys, I:Client) induction on S:Sys .
+  generate inv6(S:Sys, I:Client) induction on S:Sys .
+  generate inv7(S:Sys, I:Client, J:Client) induction on S:Sys .
+
+close
+
+set-output Cloud/proof-scores.cafe .
+:save-proof .
+
+eof
+load Cloud/input.cafe .

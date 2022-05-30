@@ -1,0 +1,32 @@
+open INV .
+	op m : -> Msg .
+	op s : -> Sys .
+  eq m \in nw(s) = true .
+  eq m1?(m) = true .
+  eq key(cipher1(m)) = intruder .
+  red lm1(m, nw(s)) .
+close
+
+open INV .
+	op m : -> Msg .
+	op s : -> Sys .
+  eq m \in nw(s) = true .
+  eq m1?(m) = true .
+  eq (key(cipher1(m)) = intruder) = false .
+  red lm1(m, nw(s)) .
+close
+
+open INV .
+	op m : -> Msg .
+	op s : -> Sys .
+  eq m \in nw(s) = true .
+  eq m1?(m) = false .
+  red lm1(m, nw(s)) .
+close
+
+open INV .
+	op m : -> Msg .
+	op s : -> Sys .
+  eq m \in nw(s) = false .
+  red lm1(m, nw(s)) .
+close

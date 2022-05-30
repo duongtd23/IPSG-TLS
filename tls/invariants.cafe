@@ -74,7 +74,7 @@ mod INV {
       decAsym?(CI,pubKey(B)) and
       pms(PK2,priKey(PK)) \in cpms(nw(S))) = false) .
 
--- 4+5+91+92+93
+-- 4+5+2+6+8
   op inv9 : Sys Prin Prin Prin PubKeyEx PubKeyEx PriKeyEx Cipher Cert -> Bool
   eq inv9(S,A,B,B1,PK,PK2,K,CI,CERT) = 
     (not (A = intruder or B = intruder or A = B) and

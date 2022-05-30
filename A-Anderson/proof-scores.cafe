@@ -1,0 +1,1500 @@
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op s : -> Sys .
+	red mutex(init, p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq p = r1 .
+	red mutex(s, p, q) implies mutex(exit(s, r1), p, q) .
+close
+
+--> true, use mutex as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	red mutex(s, p, r1) implies mutex(s, p, q) implies mutex(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red mutex(s, p, q) implies mutex(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq p = r1 .
+	eq q = r1 .
+	red mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true, use inv1 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq pc(s, q) = cs .
+	red inv1(s, p, q) implies mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq (pc(s, q) = cs) = false .
+	red mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true, use inv1 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq pc(s, p) = cs .
+	red inv1(s, q, p) implies mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq (pc(s, p) = cs) = false .
+	red mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	red mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red mutex(s, p, q) implies mutex(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	red mutex(s, p, q) implies mutex(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	red mutex(s, p, q) implies mutex(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	red mutex(s, p, q) implies mutex(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red mutex(s, p, q) implies mutex(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op s : -> Sys .
+	red inv1(init, p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq p = r1 .
+	red inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	red inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true, use inv3 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq place(s, q) = s(place(s, r1)) .
+	red inv3(s, p, q) implies inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq (place(s, q) = s(place(s, r1))) = false .
+	eq p = q .
+	red inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true, use mutex as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq (place(s, q) = s(place(s, r1))) = false .
+	eq (p = q) = false .
+	eq array(s, place(s, q)) = true .
+	eq pc(s, q) = cs .
+	red mutex(s, q, r1) implies inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true, use inv1 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq (place(s, q) = s(place(s, r1))) = false .
+	eq (p = q) = false .
+	eq array(s, place(s, q)) = true .
+	eq (pc(s, q) = cs) = false .
+	eq pc(s, q) = ws .
+	red inv1(s, q, r1) implies inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq (place(s, q) = s(place(s, r1))) = false .
+	eq (p = q) = false .
+	eq array(s, place(s, q)) = true .
+	eq (pc(s, q) = cs) = false .
+	eq (pc(s, q) = ws) = false .
+	red inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true, use mutex as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq (place(s, q) = s(place(s, r1))) = false .
+	eq (p = q) = false .
+	eq array(s, place(s, q)) = false .
+	eq pc(s, q) = cs .
+	red mutex(s, q, r1) implies inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq (place(s, q) = s(place(s, r1))) = false .
+	eq (p = q) = false .
+	eq array(s, place(s, q)) = false .
+	eq (pc(s, q) = cs) = false .
+	red inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true, use inv1 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	eq (place(s, p) = s(place(s, r1))) = false .
+	red inv1(s, p, r1) implies inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv1(s, p, q) implies inv1(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq p = r1 .
+	red inv1(s, p, q) implies inv1(try(s, r1), p, q) .
+close
+
+--> true, use inv1 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq (p = r1) = false .
+	red inv1(s, p, r1) implies inv1(s, p, q) implies inv1(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv1(s, p, q) implies inv1(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv1(s, p, q) implies inv1(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq q = r1 .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true, use inv6 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq array(s, place(s, q)) = true .
+	eq pc(s, q) = cs .
+	eq array(s, next(s)) = true .
+	red inv6(s, q) implies inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq array(s, place(s, q)) = true .
+	eq pc(s, q) = cs .
+	eq array(s, next(s)) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true, use inv6 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq array(s, place(s, q)) = true .
+	eq (pc(s, q) = cs) = false .
+	eq pc(s, q) = ws .
+	eq array(s, next(s)) = true .
+	red inv6(s, q) implies inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq array(s, place(s, q)) = true .
+	eq (pc(s, q) = cs) = false .
+	eq pc(s, q) = ws .
+	eq array(s, next(s)) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq array(s, place(s, q)) = true .
+	eq (pc(s, q) = cs) = false .
+	eq (pc(s, q) = ws) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true, use inv2 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq array(s, place(s, q)) = false .
+	eq pc(s, q) = cs .
+	red inv2(s, q) implies inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	eq array(s, place(s, q)) = false .
+	eq (pc(s, q) = cs) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true, use inv6 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq array(s, place(s, p)) = true .
+	eq array(s, next(s)) = true .
+	red inv6(s, p) implies inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq array(s, place(s, p)) = true .
+	eq array(s, next(s)) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq array(s, place(s, p)) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv1(s, p, q) implies inv1(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op s : -> Sys .
+	red inv2(init, p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq p = r1 .
+	red inv2(s, p) implies inv2(exit(s, r1), p) .
+close
+
+--> true, use mutex as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	red mutex(s, p, r1) implies inv2(s, p) implies inv2(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv2(s, p) implies inv2(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq p = r1 .
+	red inv2(s, p) implies inv2(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq (p = r1) = false .
+	red inv2(s, p) implies inv2(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv2(s, p) implies inv2(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv2(s, p) implies inv2(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	red inv2(s, p) implies inv2(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	red inv2(s, p) implies inv2(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv2(s, p) implies inv2(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op s : -> Sys .
+	red inv3(init, p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	red inv3(s, p, q) implies inv3(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv3(s, p, q) implies inv3(exit(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	red inv3(s, p, q) implies inv3(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv3(s, p, q) implies inv3(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv3(s, p, q) implies inv3(try(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq q = r1 .
+	red inv3(s, p, q) implies inv3(want(s, r1), p, q) .
+close
+
+--> true, use inv4 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	eq (q = r1) = false .
+	red inv4(s, q) implies inv3(s, p, q) implies inv3(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq place(s, p) = 0 .
+	red inv3(s, p, q) implies inv3(want(s, r1), p, q) .
+close
+
+--> true, use inv4 as a lemma 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq (place(s, p) = 0) = false .
+	eq next(s) = place(s, p) .
+	red inv4(s, p) implies inv3(s, p, q) implies inv3(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq q = r1 .
+	eq (place(s, p) = 0) = false .
+	eq (next(s) = place(s, p)) = false .
+	red inv3(s, p, q) implies inv3(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
+	red inv3(s, p, q) implies inv3(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op q : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv3(s, p, q) implies inv3(want(s, r1), p, q) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op s : -> Sys .
+	red inv4(init, p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq p = r1 .
+	red inv4(s, p) implies inv4(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	red inv4(s, p) implies inv4(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv4(s, p) implies inv4(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq p = r1 .
+	red inv4(s, p) implies inv4(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	eq (p = r1) = false .
+	red inv4(s, p) implies inv4(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv4(s, p) implies inv4(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv4(s, p) implies inv4(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	red inv4(s, p) implies inv4(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq next(s) = 0 .
+	eq place(s, p) = 0 .
+	red inv4(s, p) implies inv4(want(s, r1), p) .
+close
+
+--> true, use inv5 as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq next(s) = 0 .
+	eq (place(s, p) = 0) = false .
+	red inv5(s, p) implies inv4(s, p) implies inv4(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (next(s) = 0) = false .
+	eq place(s, p) = next(s) .
+	red inv4(s, p) implies inv4(want(s, r1), p) .
+close
+
+--> true, use inv5 as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (next(s) = 0) = false .
+	eq (place(s, p) = next(s)) = false .
+	eq place(s, p) = s(next(s)) .
+	red inv5(s, p) implies inv4(s, p) implies inv4(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (next(s) = 0) = false .
+	eq (place(s, p) = next(s)) = false .
+	eq (place(s, p) = s(next(s))) = false .
+	red inv4(s, p) implies inv4(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv4(s, p) implies inv4(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op s : -> Sys .
+	red inv5(init, p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	red inv5(s, p) implies inv5(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv5(s, p) implies inv5(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	red inv5(s, p) implies inv5(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv5(s, p) implies inv5(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv5(s, p) implies inv5(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq p = r1 .
+	red inv5(s, p) implies inv5(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (place(s, p) < s(next(s))) = true .
+	red inv5(s, p) implies inv5(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq (p = r1) = false .
+	eq (place(s, p) < s(next(s))) = false .
+	red inv5(s, p) implies inv5(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv5(s, p) implies inv5(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op s : -> Sys .
+	red inv6(init, p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq p = r1 .
+	red inv6(s, p) implies inv6(exit(s, r1), p) .
+close
+
+--> true, use inv4 as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq next(s) = s(place(s, r1)) .
+	red inv4(s, p) implies inv6(s, p) implies inv6(exit(s, r1), p) .
+close
+
+--> true, use inv6 as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq place(s, p) = s(place(s, r1)) .
+	eq (next(s) = s(place(s, r1))) = false .
+	red inv6(s, r1) implies inv6(s, p) implies inv6(exit(s, r1), p) .
+close
+
+--> true, use mutex as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (place(s, p) = s(place(s, r1))) = false .
+	eq next(s) = s(place(s, r1)) .
+	eq pc(s, p) = cs .
+	red mutex(s, p, r1) implies inv6(s, p) implies inv6(exit(s, r1), p) .
+close
+
+--> true, use inv1 as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (place(s, p) = s(place(s, r1))) = false .
+	eq next(s) = s(place(s, r1)) .
+	eq (pc(s, p) = cs) = false .
+	red inv1(s, p, r1) implies inv6(s, p) implies inv6(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (p = r1) = false .
+	eq (place(s, p) = s(place(s, r1))) = false .
+	eq (next(s) = s(place(s, r1))) = false .
+	red inv6(s, p) implies inv6(exit(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv6(s, p) implies inv6(exit(s, r1), p) .
+close
+
+--> true, use inv6 as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	red inv6(s, r1) implies inv6(s, p) implies inv6(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv6(s, p) implies inv6(try(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv6(s, p) implies inv6(try(s, r1), p) .
+close
+
+--> true, use inv7 as a lemma 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	red inv7(s) implies inv6(s, p) implies inv6(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op p : -> Pid .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv6(s, p) implies inv6(want(s, r1), p) .
+close
+
+--> true 
+open INV .
+	op s : -> Sys .
+	red inv7(init) .
+close
+
+--> true, use inv4 as a lemma 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq next(s) = place(s, r1) .
+	red inv4(s, r1) implies inv7(s) implies inv7(exit(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (next(s) = place(s, r1)) = false .
+	red inv7(s) implies inv7(exit(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv7(s) implies inv7(exit(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	red inv7(s) implies inv7(try(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv7(s) implies inv7(try(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv7(s) implies inv7(try(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq array(s, s(next(s))) = true .
+	red inv7(s) implies inv7(want(s, r1))  .
+close
+
+--> true, use inv8 as a lemma 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq array(s, s(next(s))) = false .
+	eq array(s, s(s(next(s)))) = true .
+	red inv8(s, s(next(s)), s(s(next(s)))) implies inv7(s) implies inv7(want(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	eq array(s, s(next(s))) = false .
+	eq array(s, s(s(next(s)))) = false .
+	red inv7(s) implies inv7(want(s, r1))  .
+close
+
+--> true 
+open INV .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv7(s) implies inv7(want(s, r1))  .
+close
+
+--> true, use inv8 as a lemma 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op s : -> Sys .
+	red inv8(init, i, j) implies inv8(init, i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq j = s(place(s, r1)) .
+	eq i = s(place(s, r1)) .
+	red inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq j = s(place(s, r1)) .
+	eq (i = s(place(s, r1))) = false .
+	eq array(s, i) = true .
+	red inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq j = s(place(s, r1)) .
+	eq (i = s(place(s, r1))) = false .
+	eq array(s, i) = false .
+	eq array(s, s(place(s, r1))) = true .
+	red inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true, use inv8 as a lemma 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq j = s(place(s, r1)) .
+	eq (i = s(place(s, r1))) = false .
+	eq array(s, i) = false .
+	eq array(s, s(place(s, r1))) = false .
+	eq (i < s(place(s, r1))) = true .
+	eq array(s, place(s, r1)) = true .
+	red inv8(s, i, place(s, r1)) implies inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true, use inv2 as a lemma 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq j = s(place(s, r1)) .
+	eq (i = s(place(s, r1))) = false .
+	eq array(s, i) = false .
+	eq array(s, s(place(s, r1))) = false .
+	eq (i < s(place(s, r1))) = true .
+	eq array(s, place(s, r1)) = false .
+	red inv2(s, r1) implies inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq j = s(place(s, r1)) .
+	eq (i = s(place(s, r1))) = false .
+	eq array(s, i) = false .
+	eq array(s, s(place(s, r1))) = false .
+	eq (i < s(place(s, r1))) = false .
+	red inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (j = s(place(s, r1))) = false .
+	eq i = s(place(s, r1)) .
+	red inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = cs .
+	eq (j = s(place(s, r1))) = false .
+	eq (i = s(place(s, r1))) = false .
+	red inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = cs) = false .
+	red inv8(s, i, j) implies inv8(exit(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq pc(s, r1) = ws .
+	red inv8(s, i, j) implies inv8(try(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = true .
+	eq (pc(s, r1) = ws) = false .
+	red inv8(s, i, j) implies inv8(try(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq array(s, place(s, r1)) = false .
+	red inv8(s, i, j) implies inv8(try(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq pc(s, r1) = rs .
+	red inv8(s, i, j) implies inv8(want(s, r1), i, j) .
+close
+
+--> true 
+open INV .
+	op i : -> SNat .
+	op j : -> SNat .
+	op r1 : -> Pid .
+	op s : -> Sys .
+	eq (pc(s, r1) = rs) = false .
+	red inv8(s, i, j) implies inv8(want(s, r1), i, j) .
+close
+
+--> Time taken is 1308ms

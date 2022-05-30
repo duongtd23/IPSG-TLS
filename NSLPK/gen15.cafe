@@ -1,0 +1,897 @@
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op s : -> Sys .
+	red inv15(init, p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher1 .
+	op s : -> Sys .
+	eq (r3 \in cenc1(nw(s))) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm11(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher1 .
+	op s : -> Sys .
+	eq (r3 \in cenc1(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm11(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm12(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm12(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true, use inv1 as a lemma 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq e2 = r3 .
+	eq p = intruder .
+	red inv1(s, e2) implies inv15(s, p, q, q1, r, e2) implies inv15(fkm21(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq e2 = r3 .
+	eq (p = intruder) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm21(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (e2 = r3) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm21(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm21(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq r2 = intruder .
+	eq q = r1 .
+	eq r1 = intruder .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true, use inv3 as a lemma 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq r2 = intruder .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq e2 = enc2(intruder, r3, r4, r1) .
+	eq r3 = n(intruder, r1, r) .
+	eq (n(intruder, r1, r) \in cnonce(nw(s))) = true .
+	eq creator(r4) = r1 .
+	red inv3(s, r4) implies inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq r2 = intruder .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq e2 = enc2(intruder, r3, r4, r1) .
+	eq r3 = n(intruder, r1, r) .
+	eq (n(intruder, r1, r) \in cnonce(nw(s))) = true .
+	eq (creator(r4) = r1) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq r2 = intruder .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq e2 = enc2(intruder, r3, r4, r1) .
+	eq r3 = n(intruder, r1, r) .
+	eq (n(intruder, r1, r) \in cnonce(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq r2 = intruder .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq e2 = enc2(intruder, r3, r4, r1) .
+	eq (r3 = n(intruder, r1, r)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq r2 = intruder .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq (e2 = enc2(intruder, r3, r4, r1)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq r2 = intruder .
+	eq (q = r1) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq q1 = intruder .
+	eq (r2 = intruder) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq p = intruder .
+	eq (q1 = intruder) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (p = intruder) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm22(s, r1, r2, r3, r4), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher3 .
+	op s : -> Sys .
+	eq (r3 \in cenc3(nw(s))) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm31(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher3 .
+	op s : -> Sys .
+	eq (r3 \in cenc3(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm31(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm32(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(fkm32(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Rand .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm1(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Rand .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm1(s, r1, r2, r3), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq r2 = intruder .
+	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq q = r4 .
+	eq q1 = r4 .
+	eq r4 = intruder .
+	eq (m1(r3, intruder, intruder, r5) \in nw(s)) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq r2 = intruder .
+	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq q = r4 .
+	eq q1 = r4 .
+	eq r4 = intruder .
+	eq (m1(r3, intruder, intruder, r5) \in nw(s)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq r2 = intruder .
+	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq q = r4 .
+	eq q1 = r4 .
+	eq (r4 = intruder) = false .
+	eq e2 = enc2(intruder, nonce(r5), n(r4, intruder, r1), r4) .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq r2 = intruder .
+	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq q = r4 .
+	eq q1 = r4 .
+	eq (r4 = intruder) = false .
+	eq (e2 = enc2(intruder, nonce(r5), n(r4, intruder, r1), r4)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq r2 = intruder .
+	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq q = r4 .
+	eq (q1 = r4) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq r2 = intruder .
+	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq (q = r4) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq r2 = intruder .
+	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq p = intruder .
+	eq (r2 = intruder) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (p = intruder) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3, r2, r4, r5) \in nw(s)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq (key(r5) = r4) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq (principal(r5) = r2) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm2(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1, r2, r4) .
+	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm3(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1, r2, r4) .
+	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm3(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
+	eq (nonce1(r5) = n(r1, r2, r4)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm3(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3, r2, r1, r5) \in nw(s)) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm3(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq (principal(r5) = r2) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm3(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> true 
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op q1 : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq (key(r5) = r1) = false .
+	red inv15(s, p, q, q1, r, e2) implies inv15(sdm3(s, r1, r2, r3, r4, r5), p, q, q1, r, e2) .
+close
+
+--> Time taken is 762ms

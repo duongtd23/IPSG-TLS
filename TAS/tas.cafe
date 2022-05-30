@@ -1,0 +1,210 @@
+mod! LABEL {
+  [Label]
+  ops rs cs : -> Label {constr} .
+  eq (rs = cs) = false .
+}
+
+mod* PID {
+  [Pid]
+}
+
+--
+-- Pseudo-code of Test&Set mutual exclusion protocol
+--
+-- Loop: "Remainder Section"
+--   rs: repeat while test&set(locked);
+--       "Critical Section"
+--  cs: locked := false;
+--
+
+mod* TAS {
+  pr(LABEL)
+  pr(PID)
+  [Sys]
+  op init : -> Sys {constr} .
+  op enter : Sys Pid -> Sys {constr} .
+  op exit : Sys Pid -> Sys {constr} .
+  op pc : Sys Pid -> Label .
+  op locked : Sys -> Bool .
+  var S : Sys .
+  vars P Q : Pid .
+  -- init
+  eq pc(init,P) = rs .
+  eq locked(init) = false .
+  -- enter
+  op c-enter : Sys Pid -> Bool .
+  eq c-enter(S,P) = (pc(S,P) = rs and not locked(S)) .
+  --
+  ceq pc(enter(S,P),Q) = (if P = Q then cs else pc(S,Q) fi) if c-enter(S,P) .
+  ceq locked(enter(S,P)) = true if c-enter(S,P) .
+  ceq enter(S,P) = S if not c-enter(S,P) .
+  -- exit
+  op c-exit : Sys Pid -> Bool .
+  eq c-exit(S,P) = (pc(S,P) = cs) .
+  --
+  ceq pc(exit(S,P),Q) = (if P = Q then rs else pc(S,Q) fi) if c-exit(S,P) .
+  ceq locked(exit(S,P)) = false if c-exit(S,P) .
+  ceq exit(S,P) = S if not c-exit(S,P) .
+  --
+  -- proeprties
+  --
+  op mutex : Sys Pid Pid -> Bool .
+  op inv1 : Sys Pid -> Bool .
+  eq mutex(S,P,Q) = (pc(S,P) = cs and pc(S,Q) = cs implies P = Q) .
+  eq inv1(S,P) = (pc(S,P) = cs implies locked(S)) .
+}
+
+-- -- mutex
+-- open TAS .
+--   ops p q : -> Pid .
+--   red mutex(init,p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-enter(s,r) = true .
+--   eq pc(s,r) = rs .
+--   eq locked(s) = false .
+--   eq p = r .
+--   eq q = r .
+--   red mutex(s,p,q) implies mutex(enter(s,r),p,q) .
+-- close
+
+-- --> here
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-enter(s,r) = true .
+--   eq pc(s,r) = rs .
+--   eq locked(s) = false .
+--   eq p = r .
+--   eq (q = r) = false .
+--   eq pc(s,q) = cs .
+--   red inv1(s,q) implies mutex(s,p,q) implies mutex(enter(s,r),p,q) .
+--   red mutex(s,p,q) implies mutex(enter(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-enter(s,r) = true .
+--   eq pc(s,r) = rs .
+--   eq locked(s) = false .
+--   eq p = r .
+--   eq (q = r) = false .
+--   eq (pc(s,q) = cs) = false .
+--   red mutex(s,p,q) implies mutex(enter(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-enter(s,r) = true .
+--   eq pc(s,r) = rs .
+--   eq locked(s) = false .
+--   eq (p = r) = false .
+--   eq q = r .
+--   red inv1(s,p) implies mutex(s,p,q) implies mutex(enter(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-enter(s,r) = true .
+--   eq pc(s,r) = rs .
+--   eq locked(s) = false .
+--   eq (p = r) = false .
+--   eq (q = r) = false .
+--   red mutex(s,p,q) implies mutex(enter(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   eq c-enter(s,r) = false .
+--   red mutex(s,p,q) implies mutex(enter(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-exit(s,r) = true .
+--   eq pc(s,r) = cs .
+--   eq p = r .
+--   red mutex(s,p,q) implies mutex(exit(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-exit(s,r) = true .
+--   eq pc(s,r) = cs .
+--   eq (p = r) = false .
+--   eq q = r .
+--   red mutex(s,p,q) implies mutex(exit(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   -- eq c-exit(s,r) = true .
+--   eq pc(s,r) = cs .
+--   eq (p = r) = false .
+--   eq (q = r) = false .
+--   red mutex(s,p,q) implies mutex(exit(s,r),p,q) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p q r : -> Pid .
+--   eq c-exit(s,r) = false .
+--   red mutex(s,p,q) implies mutex(exit(s,r),p,q) .
+-- close
+
+--   -- inv1
+-- open TAS .
+--   op p : -> Pid .
+--   red inv1(init,p) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p r : -> Pid .
+--   -- eq c-enter(s,r) = true .
+--   eq pc(s,r) = rs .
+--   eq locked(s) = false .
+--   red inv1(s,p) implies inv1(enter(s,r),p) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p r : -> Pid .
+--   eq c-enter(s,r) = false .
+--   red inv1(s,p) implies inv1(enter(s,r),p) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p r : -> Pid .
+--   -- eq c-exit(s,r) = true .
+--   eq pc(s,r) = cs .
+--   eq p = r .
+--   red inv1(s,p) implies inv1(exit(s,r),p) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p r : -> Pid .
+--   -- eq c-exit(s,r) = true .
+--   eq pc(s,r) = cs .
+--   eq (p = r) = false .
+--   red mutex(s,p,r) implies inv1(s,p) implies inv1(exit(s,r),p) .
+-- close
+
+-- open TAS .
+--   op s : -> Sys .
+--   ops p r : -> Pid .
+--   eq c-exit(s,r) = false .
+--   red inv1(s,p) implies inv1(exit(s,r),p) .
+-- close
