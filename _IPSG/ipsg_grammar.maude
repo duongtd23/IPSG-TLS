@@ -1,0 +1,26 @@
+load cafeinmaudealpha/grammar.maude
+
+***(
+  define file input syntax
+)
+fmod IPSG-INPUT-SYNTAX is 
+  pr INPUT .
+
+  sorts Decl DeclList InputModule .
+  subsort Decl < DeclList .
+  subsort InputModule < @Input@ .
+
+  op __ : DeclList DeclList -> DeclList [assoc gather(e E)] .
+  op generate_`(_`)induction on_. : @Token@ @NeTokenList@ @Token@ -> Decl .
+  op generate_`(_`)induction on_only_. : @Token@ @NeTokenList@ @Token@ @NeTokenList@ -> Decl .
+  op generate_`(_`)induction on_exclude_. : @Token@ @NeTokenList@ @Token@ @NeTokenList@ -> Decl .
+  op generate_`(_`). : @Token@ @NeTokenList@ -> Decl .
+  op inv_`(_`) . : @Token@ @NeTokenList@ -> Decl .
+  op ipsgopen_._close : @Token@ DeclList -> InputModule .
+endfm
+
+fmod IPSG-GRAMMAR is 
+  pr META-CIM-SIGN .
+  op IPSGGRAMMAR : -> FModule .
+  eq IPSGGRAMMAR = addImports(GRAMMAR, (including 'IPSG-INPUT-SYNTAX .)) .
+endfm

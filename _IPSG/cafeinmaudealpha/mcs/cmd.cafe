@@ -1,0 +1,5 @@
+load mcs/mcs.cafe .
+
+eof
+
+load mcs/cmd.cafe .
