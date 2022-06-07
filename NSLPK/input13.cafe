@@ -1,4 +1,4 @@
--- load /Users/duongtd/projects/ipsg/examples/nslpk/nslpk.cafe .
+-- load NSLPK/nslpk.cafe .
 
 ipsgopen INV .
   inv inv3(S:Sys,N:Nonce) .
@@ -7,9 +7,9 @@ ipsgopen INV .
   inv inv16(S:Sys,P:Prin,Q:Prin,E2:Cipher2) .
   generate inv13(S:Sys,P:Prin,Q:Prin,R:Rand) induction on S:Sys .
 close
-set-output /Users/duongtd/projects/ipsg/examples/nslpk/gen13.cafe .
+set-output NSLPK/prsc13.cafe .
 :save-proof .
 
 eof
-depth = 3
-load /Users/duongtd/projects/ipsg/examples/nslpk/input13.cafe .
+
+load NSLPK/input13.cafe .

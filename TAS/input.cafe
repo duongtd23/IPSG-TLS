@@ -1,4 +1,4 @@
-load tas/tas.cafe .
+load TAS/tas.cafe .
 
 ipsgopen TAS .
   inv mutex(S:Sys, P:Pid, Q:Pid) .
@@ -7,9 +7,9 @@ ipsgopen TAS .
   generate inv1(S:Sys, P:Pid) induction on S:Sys .
 close
 
-set-output tas/tas-prsc.cafe .
+set-output TAS/proof-scores.cafe .
 :save-proof .
 
 eof
 
-load tas/input.cafe .
+load TAS/input.cafe .

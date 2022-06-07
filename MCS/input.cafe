@@ -1,4 +1,4 @@
-load mcs/mcs.cafe .
+load MCS/mcs.cafe .
 
 ipsgopen INV .
   inv mutex(S:Sys, P:Pid, Q:Pid) .
@@ -20,9 +20,9 @@ ipsgopen INV .
   generate inv7(S:Sys, P:Pid, Q:Pid) induction on S:Sys .
 close
 
-set-output mcs/mcs-prsc.cafe .
+set-output MCS/proof-scores.cafe .
 :save-proof .
 
 eof
 
-load mcs/input.cafe .
+load MCS/input.cafe .

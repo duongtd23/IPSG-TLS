@@ -1,4 +1,4 @@
-load iff/iff.cafe .
+load IFF/iff.cafe .
 
 ipsgopen IFF .
   inv inv1(F:Field, A1:Agent, A2:Agent, A3:Agent, K:Key, R:Rand) .
@@ -8,9 +8,9 @@ ipsgopen IFF .
   generate inv2(F:Field, K:Key, R:Rand) induction on F:Field .
 close
 
-set-output iff/iff-prsc.cafe .
+set-output IFF/proof-scores.cafe .
 :save-proof .
 
 eof
 
-load iff/input.cafe .
+load IFF/input.cafe .

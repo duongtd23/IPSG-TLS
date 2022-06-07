@@ -1,4 +1,4 @@
-load qlock/qlock.cafe .
+load Qlock/qlock.cafe .
 
 ipsgopen QLOCK .
   inv inv1(S:Sys, P:Pid, Q:Pid) .
@@ -7,9 +7,9 @@ ipsgopen QLOCK .
   generate inv2(S:Sys, P:Pid) induction on S:Sys .
 close
 
-set-output qlock/qlock-prsc.cafe .
+set-output Qlock/proof-scores.cafe .
 :save-proof .
 
 eof
 
-load qlock/input.cafe .
+load Qlock/input.cafe .
