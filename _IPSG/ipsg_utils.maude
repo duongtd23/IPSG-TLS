@@ -710,7 +710,7 @@ fmod IPSG-CONFIG is
   Note that depth = 0 indicates that we do not try this case
 )
   op depthTryUseLm : -> Nat .
-  eq depthTryUseLm = 2 .
+  eq depthTryUseLm = 0 .
 
   op checkLmFirst : -> Bool .
   eq checkLmFirst = true .

@@ -593,8 +593,6 @@ mod! MESSAGE {
   eq (sf2M(A',A,B,CI) = sf2M(A2',A2,B2,CI2))
     = (A' = A2' and A = A2 and B = B2 and CI = CI2) .
 
-
--- TODO: add more ...
   eq crt(chM(A,A',B,R,CSs)) = A .
   eq crt(shM(A,A',B,R,CS,I)) = A .
   eq crt(scertM(A,A',B,CERT)) = A .

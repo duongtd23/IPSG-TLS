@@ -574,9 +574,6 @@ fmod IPSG-LIST-LEMMA-GEN is
   eq lms2InvList((nil).ListLemmas) = (nil).InvList .
   eq lms2InvList(LM LMS) = lm2InvInput(LM) lms2InvList(LMS) .
 
-  --- op nullLemmas : -> IPSGLemmas .
-  --- eq nullLemmas = ipsglemmas((nil).ListLemmas,0) .
-
 endfm
 
 ***( 

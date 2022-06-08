@@ -3,8 +3,6 @@
 -- based on an atomic queue and an abstract
 -- version of the Dijkstra's binary semaphore
 -- 
--- PidQueue queue = empty;
--- ...
 -- Loop: Remainder Section
 --  rs: enq(queue,i);
 --  ws: repeat until top(queue) = i;

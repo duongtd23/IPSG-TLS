@@ -222,8 +222,3 @@ fmod ISPG-LEMMA-CONJECTURE is
     fi 
     if EQ1 := eq TE2 = TE3 [none] . .
 endfm
-
---- fmod IPSG-LM-STRENGTHEN is
----   pr META-TERM .
----   op 
---- endfm

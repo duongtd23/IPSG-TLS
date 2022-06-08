@@ -451,39 +451,6 @@ fmod SPEC-MODULE-ANALYZE is
 endfm
 
 ***(
-  define file input syntax
-fmod INPUT-IPSG-SYNTAX is 
-  pr QID-LIST .
-  sorts Token Bubble NeTokenList .
-
-  op token : Qid -> Token [special (id-hook Bubble (1 1) 
-                                    op-hook qidSymbol (<Qids> : ~> Qid)
-                                    id-hook Exclude (. { } ( )))] .
-
-  op bubble : QidList -> Bubble [special (
-          id-hook Bubble (1 -1)
-          op-hook qidListSymbol (__ : QidList QidList ~> QidList) 
-          op-hook qidSymbol (<Qids> : ~> Qid)
-  )] .
-
-  op neTokenList : QidList -> NeTokenList [special (
-          id-hook Bubble (1 -1)
-          op-hook qidListSymbol (__ : QidList QidList ~> QidList)
-          op-hook qidSymbol (<Qids> : ~> Qid)
-          id-hook Exclude ( . { } ( ) -> ))] .
-
-  sorts Decl DeclList InputModule .
-  subsort Decl < DeclList .
-
-  op __ : DeclList DeclList -> DeclList [assoc gather(e E)] .
-  op generate_`(_`)induction on_. : Token NeTokenList Token -> Decl .
-  op generate_`(_`)induction on_only_. : Token NeTokenList Token Token -> Decl .
-  op generate_`(_`). : Token NeTokenList -> Decl .
-  op inv_`(_`) . : Token NeTokenList -> Decl .
-  op ipsgopen_._close : Token DeclList -> InputModule .
-endfm
-)
-***(
   parse file input
 )
 fmod INPUT-IPSG-PARSE is
@@ -770,7 +737,6 @@ fmod IPSG-CONDITION-EQUATION is
 
   eq checkContrast2(TE1, TE2) = checkResult('false.Bool, false) [owise] .
 
-  --- TODO: add more implementation here
 endfm
 
 ***(
@@ -1313,123 +1279,6 @@ fmod ISPG-HANDLE-INVS is
   eq doPermutateParams2(PRL1, PRL2, PRL3, PA1 PRL4) =
     doPermutateParams(PRL1, remove(PRL2, PA1), PRL3 PA1) ,
     doPermutateParams2(PRL1, PRL2, PRL3, PRL4) .
-
-***(
-  ceq handleFalseCase(PRSC1, MS1, INSP1) = 
-    if PRSC2 == PRSC1 then
-      if testUseInvsT(PRSC1, MS1, INVL) == PRSC1 then
-        if tryUseMt1Lm(PRSC1, MS1, INVL, INVL, 
-            genMapInvTermPernSet(INVL, MOD, getEqs(getPrscModule(PRSC1))), 
-            (none).EquationSet, depthTryUseLm) == PRSC1 then
-          if autoGenLemmas then
-            conjectLemma(PRSC1, MS1, INSP1)
-          else
-            addComment2Prsc(PRSC1, '\r 'false '\o)
-          fi
-        else
-          tryUseMt1Lm(PRSC1, MS1, INVL, INVL, 
-            genMapInvTermPernSet(INVL, MOD, getEqs(getPrscModule(PRSC1))), 
-            (none).EquationSet, depthTryUseLm)
-        fi
-      else
-        testUseInvsT(PRSC1, MS1, INVL)
-      fi
-    else
-      PRSC2
-    fi
-    if INVL := getInputSpecInvs(INSP1) /\
-    PRSC2 := testUseInvs(PRSC1, MS1, INVL) /\
-    MOD := tempMod2(getPrscModule(PRSC1), MS1, getPrscILemma(PRSC1)) .
-
-  op conjectLemma : IPSGProofScore IPSGModuleSpec IPSGInputSpec -> IPSGProofScore .
-  ceq conjectLemma(PRSC1, MS1, INSP1) = 
-    addComment2Prsc(
-      handleFalseCase(
-        addLemmas2Prsc(PRSC1,LM),
-        MS1,
-        addLmsInv(INSP1,lm2InvInput(LM))
-      ), 
-      '\m 'generated 'and 'used 'as 'a 'lemma '\o '\n
-      '-- tokenize(STR1) '\n 
-      '-- aEq2QidListRaw(EQ1,getPrscModule(PRSC1)))
-  if
-    N := s(getIPSGLmsNo(getPrscILemma(PRSC1))) /\
-    QI1 := handleLmName(getInvTagetName(PRSC1),N) /\
-    TEL := getFreshConstList(PRSC1) /\
-    TCL := getEqConstPairs(PRSC1) /\
-    MCV1 := generateMapConstVar(TEL,TCL) /\
-    OP1 := generateLmOpDel(QI1, MCV1) /\
-    MOD := tempMod2(getPrscModule(PRSC1), MS1, getPrscILemma(PRSC1)) /\
-    EQ1 := generateLmEquation(QI1, 
-      reduceEqsSet(getEqs(getPrscModule(PRSC1)), MOD), MCV1, TCL) /\
-    LM := lm(OP1, EQ1, N) /\
-    STR1 := aOp2String(OP1) /\
-    STR2 := aEq2String(EQ1, getPrscModule(PRSC1)) .
-
-  op handleLmName : Qid Nat -> Qid .
-  ceq handleLmName(QI1,N) =
-    (if substr(STR1:String,0,2) == "lm" then
-      qid(STR1:String + "-" + string(N,10))
-    else
-      qid(prefixLmName + string(N,10))
-    fi)
-    if STR1:String := string(QI1) .
-
-  --- ceq testUseInvsT(PRSC1, MOD, INV1 INVL, (INV1 |-> | TP , TP2 | , MITTPS)) 
-  ---   = if PRSC2 == PRSC1 
-  ---     then testUseInvsT(PRSC1, MOD, INVL)
-  ---     else PRSC2
-  ---     fi 
-  --- if 
-  --- PRSC2 := doTestUseInvT(PRSC1, MOD, INV1) .
-
-  --- ceq testUseInvT(PRSC1, MOD, INV1) = 
-  ---   if TP == empty 
-  ---   then PRSC1
-  ---   else doTestUseInvT(PRSC1, MOD, INV1, TP, TP)
-  ---   fi
-  ---   if MOD := tempMod2(getPrscModule(PRSC1), MOD, getPrscILemma(PRSC1)) /\
-  ---     TES := params2TermSet(PRSC1, MOD) /\
-  ---     TP := findMatchesTL(MOD, TES, getInvParams(INV1)) .
-
-  --- eq doTestUseInvT(PRSC1, MOD, INV1, (empty).TermPernSet, TP2) 
-  ---   = if TP2 == empty
-  ---     then PRSC1 
-  ---     else testUseInvT2(PRSC1, MOD, INV1, TP2) 
-  ---     fi .
-  --- ceq doTestUseInvT(PRSC1, MOD, INV1, ({TEL}, TP), TP2) =
-  ---   (if getTerm(metaReduce(MOD, LM:Term)) == 'false.Bool or-else
-  ---       getTerm(metaReduce(MOD, TE:Term)) == 'true.Bool then
-  ---     prsc(getPrscModule(PRSC1),
-  ---       (getInvName(INV1) '`( myDownTermL(TEL, MOD) '`) ) ' 'implies 
-  ---         getPrscReductionCmd(PRSC1),
-  ---       TE:Term,
-  ---       '\g 'true '`, ' 'use getInvName(INV1) 'as 'a 'lemma '\o,
-  ---       getPrscMapEqs(PRSC1),
-  ---       getInvTagetName(PRSC1),
-  ---       getInvTargetParams(PRSC1),
-  ---       getInvTransName(PRSC1),
-  ---       getInvTransParams(PRSC1),
-  ---       getPrscILemma(PRSC1))
-  ---   else
-  ---     doTestUseInvT(PRSC1, MOD, INV1, TP, TP2)
-  ---   fi)
-  ---   if LM:Term := getInvName(INV1)[ TEL ] /\
-  ---     TE:Term := '_implies_[LM:Term, getPrscMetaReduceCmd(PRSC1)] .
-  ---     --- [print "--> trying " LM:Term] .
-
-  --- op testUseInvT2 : IPSGProofScore Module Invariant TermPernSet -> IPSGProofScore .
-  --- ceq testUseInvT2(PRSC1, MOD, INV1, TP2) = 
-  ---   if TP3 == empty 
-  ---   then PRSC1
-  ---   else doTestUseInvT(PRSC1, MOD, INV1, TP3, empty) 
-  ---   fi
-  ---   if TES := eqs2TermSet(getEqs(getPrscModule(PRSC1))) /\
-  ---     TP := findMatchesTL(MOD, TES, getInvParams(INV1)) /\
-  ---     TP3 := substractSet(TP, TP2) .
-  ---     --- N := | TP2 | /\ N2 := | TP | /\ N3 := | TP3 | [print "1172 " N " ## " N2 " ## " N3] .
-
-)
 endfm
 
 ***(
