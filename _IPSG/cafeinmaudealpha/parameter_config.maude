@@ -1,9 +1,0 @@
-fmod PARAMETER-CONFIG is
-  pr NAT .
-
-  ops numInstVars backtrackLevels extraImpLevels : -> Nat .
-
-  eq backtrackLevels = 6 .
-  eq numInstVars = 2 .
-  eq extraImpLevels = 1 .
-endfm

@@ -1,6 +1,6 @@
-load tls12-v16.cafe .
-load invariants.cafe .
-load proof-scripts/annotated-proofscores/inv20.cafe .
+load TLS/tls12.cafe .
+load TLS/invariants.cafe .
+load TLS/proof-scripts/annotated-proofscores/inv20.cafe .
 
 -- set-cores 4 .
 
@@ -10,9 +10,9 @@ load proof-scripts/annotated-proofscores/inv20.cafe .
     K:PriKeyEx,R:Rand,R2:Rand,I:Sid))
 :infer-proof inv20 .
 
-set-output proof-scripts/gen20.cafe .
+set-output TLS/proof-scripts/gen20.cafe .
 :save-proof .
 
 eof
 
-load proof-scripts/inputs/input20.cafe .
+load TLS/proof-scripts/inputs/input20.cafe .

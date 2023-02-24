@@ -1,11 +1,11 @@
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op s : -> Sys .
-	red inv17(init, e1) .
+	red inv17(init,e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -13,11 +13,24 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq creator(nonce(e1)) = intruder .
+	red inv17(s,e1) implies inv17(fkm11(s,r1,r2,r3),e1) .
+close
+
+--> true
+open INV .
+	op e1 : -> Cipher1 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher1 .
+	op s : -> Sys .
+	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = true .
-	red inv17(s, e1) implies inv17(fkm11(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm11(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -25,12 +38,13 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = true .
-	red inv17(s, e1) implies inv17(fkm11(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm11(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -38,13 +52,14 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq e1 = r3 .
-	red inv17(s, e1) implies inv17(fkm11(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm11(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -52,13 +67,14 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq (e1 = r3) = false .
-	red inv17(s, e1) implies inv17(fkm11(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm11(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -66,10 +82,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = false .
-	red inv17(s, e1) implies inv17(fkm11(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm11(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -77,11 +93,24 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq creator(nonce(e1)) = intruder .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
+close
+
+--> true
+open INV .
+	op e1 : -> Cipher1 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = true .
-	red inv17(s, e1) implies inv17(fkm12(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -89,12 +118,13 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = true .
-	red inv17(s, e1) implies inv17(fkm12(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -102,13 +132,14 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq r2 = intruder .
-	red inv17(s, e1) implies inv17(fkm12(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
 close
 
---> true, use inv18 as a lemma 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -116,14 +147,16 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e1 = enc1(r2, r3, r1) .
-	red inv18(s, r3) implies inv17(s, e1) implies inv17(fkm12(s, r1, r2, r3), e1) .
+	eq e1 = enc1(r2,r3,r1) .
+	eq creator(r3) = intruder .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -131,14 +164,71 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e1 = enc1(r2, r3, r1)) = false .
-	red inv17(s, e1) implies inv17(fkm12(s, r1, r2, r3), e1) .
+	eq e1 = enc1(r2,r3,r1) .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
+open INV .
+	op e1 : -> Cipher1 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
+	eq (e1 \in cenc1(nw(s))) = false .
+	eq (random(nonce(e1)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e1 = enc1(r2,r3,r1) .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc1(r2,r3,r1) \in cenc1(nw(s))) = true .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e1 : -> Cipher1 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
+	eq (e1 \in cenc1(nw(s))) = false .
+	eq (random(nonce(e1)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e1 = enc1(r2,r3,r1) .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc1(r2,r3,r1) \in cenc1(nw(s))) = false .
+	red inv18(s,r3) implies inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
+close
+
+--> true
+open INV .
+	op e1 : -> Cipher1 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e1)) = intruder) = false .
+	eq (e1 \in cenc1(nw(s))) = false .
+	eq (random(nonce(e1)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e1 = enc1(r2,r3,r1)) = false .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
+close
+
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -146,10 +236,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv17(s, e1) implies inv17(fkm12(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm12(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -157,10 +247,10 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
-	red inv17(s, e1) implies inv17(fkm21(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm21(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -168,10 +258,10 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = false .
-	red inv17(s, e1) implies inv17(fkm21(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm21(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -181,10 +271,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
-	red inv17(s, e1) implies inv17(fkm22(s, r1, r2, r3, r4), e1) .
+	red inv17(s,e1) implies inv17(fkm22(s,r1,r2,r3,r4),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -194,10 +284,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = false .
-	red inv17(s, e1) implies inv17(fkm22(s, r1, r2, r3, r4), e1) .
+	red inv17(s,e1) implies inv17(fkm22(s,r1,r2,r3,r4),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -206,10 +296,10 @@ open INV .
 	op r4 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv17(s, e1) implies inv17(fkm22(s, r1, r2, r3, r4), e1) .
+	red inv17(s,e1) implies inv17(fkm22(s,r1,r2,r3,r4),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -217,10 +307,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
-	red inv17(s, e1) implies inv17(fkm31(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm31(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -228,10 +318,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = false .
-	red inv17(s, e1) implies inv17(fkm31(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm31(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -239,10 +329,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
-	red inv17(s, e1) implies inv17(fkm32(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm32(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -250,10 +340,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv17(s, e1) implies inv17(fkm32(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(fkm32(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -261,10 +351,10 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = true .
-	red inv17(s, e1) implies inv17(sdm1(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -272,11 +362,24 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq creator(nonce(e1)) = intruder .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
+close
+
+--> true
+open INV .
+	op e1 : -> Cipher1 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Rand .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = false .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq random(nonce(e1)) = r3 .
-	red inv17(s, e1) implies inv17(sdm1(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -284,12 +387,13 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (random(nonce(e1)) = r3) = false .
 	eq (e1 \in cenc1(nw(s))) = true .
-	red inv17(s, e1) implies inv17(sdm1(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -297,13 +401,14 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (random(nonce(e1)) = r3) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = true .
-	red inv17(s, e1) implies inv17(sdm1(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -311,14 +416,15 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (random(nonce(e1)) = r3) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq r2 = intruder .
-	red inv17(s, e1) implies inv17(sdm1(s, r1, r2, r3), e1) .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -326,15 +432,16 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (random(nonce(e1)) = r3) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e1 = enc1(r2, n(r1, r2, r3), r1) .
-	red inv17(s, e1) implies inv17(sdm1(s, r1, r2, r3), e1) .
+	eq e1 = enc1(r2,n(r1,r2,r3),r1) .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -342,15 +449,16 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(nonce(e1)) = intruder) = false .
 	eq (random(nonce(e1)) = r3) = false .
 	eq (e1 \in cenc1(nw(s))) = false .
 	eq (random(nonce(e1)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e1 = enc1(r2, n(r1, r2, r3), r1)) = false .
-	red inv17(s, e1) implies inv17(sdm1(s, r1, r2, r3), e1) .
+	eq (e1 = enc1(r2,n(r1,r2,r3),r1)) = false .
+	red inv17(s,e1) implies inv17(sdm1(s,r1,r2,r3),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
@@ -362,10 +470,10 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = true .
-	red inv17(s, e1) implies inv17(sdm2(s, r1, r2, r3, r4, r5), e1) .
+	red inv17(s,e1) implies inv17(sdm2(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
@@ -377,11 +485,11 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	red inv17(s, e1) implies inv17(sdm2(s, r1, r2, r3, r4, r5), e1) .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	red inv17(s,e1) implies inv17(sdm2(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
@@ -393,11 +501,11 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = false .
-	red inv17(s, e1) implies inv17(sdm2(s, r1, r2, r3, r4, r5), e1) .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = false .
+	red inv17(s,e1) implies inv17(sdm2(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
@@ -408,10 +516,10 @@ open INV .
 	op s : -> Sys .
 	eq principal(r5) = r2 .
 	eq (key(r5) = r4) = false .
-	red inv17(s, e1) implies inv17(sdm2(s, r1, r2, r3, r4, r5), e1) .
+	red inv17(s,e1) implies inv17(sdm2(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
@@ -421,10 +529,10 @@ open INV .
 	op r5 : -> Cipher1 .
 	op s : -> Sys .
 	eq (principal(r5) = r2) = false .
-	red inv17(s, e1) implies inv17(sdm2(s, r1, r2, r3, r4, r5), e1) .
+	red inv17(s,e1) implies inv17(sdm2(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -435,13 +543,13 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
-	red inv17(s, e1) implies inv17(sdm3(s, r1, r2, r3, r4, r5), e1) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	red inv17(s,e1) implies inv17(sdm3(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -452,13 +560,13 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = false .
-	red inv17(s, e1) implies inv17(sdm3(s, r1, r2, r3, r4, r5), e1) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = false .
+	red inv17(s,e1) implies inv17(sdm3(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -469,12 +577,12 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq (nonce1(r5) = n(r1, r2, r4)) = false .
-	red inv17(s, e1) implies inv17(sdm3(s, r1, r2, r3, r4, r5), e1) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq (nonce1(r5) = n(r1,r2,r4)) = false .
+	red inv17(s,e1) implies inv17(sdm3(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -485,11 +593,11 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = false .
-	red inv17(s, e1) implies inv17(sdm3(s, r1, r2, r3, r4, r5), e1) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = false .
+	red inv17(s,e1) implies inv17(sdm3(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -500,10 +608,10 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq (principal(r5) = r2) = false .
-	red inv17(s, e1) implies inv17(sdm3(s, r1, r2, r3, r4, r5), e1) .
+	red inv17(s,e1) implies inv17(sdm3(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true 
+--> true
 open INV .
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
@@ -513,17 +621,17 @@ open INV .
 	op r5 : -> Cipher2 .
 	op s : -> Sys .
 	eq (key(r5) = r1) = false .
-	red inv17(s, e1) implies inv17(sdm3(s, r1, r2, r3, r4, r5), e1) .
+	red inv17(s,e1) implies inv17(sdm3(s,r1,r2,r3,r4,r5),e1) .
 close
 
---> true, use inv18 as a lemma 
+--> true
 open INV .
 	op n : -> Nonce .
 	op s : -> Sys .
-	red inv18(init, n) implies inv18(init, n) .
+	red inv18(init,n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -531,11 +639,24 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(fkm11(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher1 .
+	op s : -> Sys .
+	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(fkm11(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm11(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -543,12 +664,13 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(fkm11(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm11(s,r1,r2,r3),n) .
 close
 
---> true, use inv17 as a lemma 
+--> true, use inv17 as a lemma
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -556,13 +678,15 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq nonce(r3) = n .
-	red inv17(s, r3) implies inv18(s, n) implies inv18(fkm11(s, r1, r2, r3), n) .
+	eq key(r3) = intruder .
+	red inv17(s,r3) implies inv18(s,n) implies inv18(fkm11(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -570,13 +694,30 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
+	eq (n \in cnonce(nw(s))) = false .
+	eq (random(n) \in ur(s)) = false .
+	eq nonce(r3) = n .
+	eq (key(r3) = intruder) = false .
+	red inv18(s,n) implies inv18(fkm11(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher1 .
+	op s : -> Sys .
+	eq (r3 \in cenc1(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (nonce(r3) = n) = false .
-	red inv18(s, n) implies inv18(fkm11(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm11(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -584,10 +725,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = false .
-	red inv18(s, n) implies inv18(fkm11(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm11(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -595,11 +736,24 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(fkm12(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(fkm12(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm12(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -607,12 +761,13 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(fkm12(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm12(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -620,13 +775,14 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq n = r3 .
-	red inv18(s, n) implies inv18(fkm12(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm12(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -634,13 +790,14 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (n = r3) = false .
-	red inv18(s, n) implies inv18(fkm12(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm12(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -648,10 +805,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv18(s, n) implies inv18(fkm12(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm12(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -659,11 +816,24 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(fkm21(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -671,12 +841,13 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(fkm21(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
 close
 
---> true, use inv19 as a lemma 
+--> true, use inv19 as a lemma
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -684,13 +855,15 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq nonce1(r3) = n .
-	red inv19(s, r3) implies inv18(s, n) implies inv18(fkm21(s, r1, r2, r3), n) .
+	eq key(r3) = intruder .
+	red inv19(s,r3) implies inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
 close
 
---> true, use inv19 as a lemma 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -698,14 +871,32 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
+	eq (n \in cnonce(nw(s))) = false .
+	eq (random(n) \in ur(s)) = false .
+	eq nonce1(r3) = n .
+	eq (key(r3) = intruder) = false .
+	red inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
+close
+
+--> true, use inv19 as a lemma
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (nonce1(r3) = n) = false .
 	eq nonce2(r3) = n .
-	red inv19(s, r3) implies inv18(s, n) implies inv18(fkm21(s, r1, r2, r3), n) .
+	eq key(r3) = intruder .
+	red inv19(s,r3) implies inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -713,14 +904,32 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
+	eq (n \in cnonce(nw(s))) = false .
+	eq (random(n) \in ur(s)) = false .
+	eq (nonce1(r3) = n) = false .
+	eq nonce2(r3) = n .
+	eq (key(r3) = intruder) = false .
+	red inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (nonce1(r3) = n) = false .
 	eq (nonce2(r3) = n) = false .
-	red inv18(s, n) implies inv18(fkm21(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -728,10 +937,10 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = false .
-	red inv18(s, n) implies inv18(fkm21(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm21(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -741,11 +950,26 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(fkm22(s, r1, r2, r3, r4), n) .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -755,12 +979,13 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(fkm22(s, r1, r2, r3, r4), n) .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -770,13 +995,14 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq n = r3 .
-	red inv18(s, n) implies inv18(fkm22(s, r1, r2, r3, r4), n) .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -786,14 +1012,15 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (n = r3) = false .
 	eq n = r4 .
-	red inv18(s, n) implies inv18(fkm22(s, r1, r2, r3, r4), n) .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -803,14 +1030,15 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (n = r3) = false .
 	eq (n = r4) = false .
-	red inv18(s, n) implies inv18(fkm22(s, r1, r2, r3, r4), n) .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -820,10 +1048,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = false .
-	red inv18(s, n) implies inv18(fkm22(s, r1, r2, r3, r4), n) .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -832,10 +1060,10 @@ open INV .
 	op r4 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv18(s, n) implies inv18(fkm22(s, r1, r2, r3, r4), n) .
+	red inv18(s,n) implies inv18(fkm22(s,r1,r2,r3,r4),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -843,11 +1071,24 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(fkm31(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher3 .
+	op s : -> Sys .
+	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(fkm31(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm31(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -855,12 +1096,13 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(fkm31(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm31(s,r1,r2,r3),n) .
 close
 
---> true, use inv20 as a lemma 
+--> true, use inv20 as a lemma
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -868,13 +1110,15 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq nonce(r3) = n .
-	red inv20(s, r3) implies inv18(s, n) implies inv18(fkm31(s, r1, r2, r3), n) .
+	eq key(r3) = intruder .
+	red inv20(s,r3) implies inv18(s,n) implies inv18(fkm31(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -882,13 +1126,30 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
+	eq (n \in cnonce(nw(s))) = false .
+	eq (random(n) \in ur(s)) = false .
+	eq nonce(r3) = n .
+	eq (key(r3) = intruder) = false .
+	red inv18(s,n) implies inv18(fkm31(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher3 .
+	op s : -> Sys .
+	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (nonce(r3) = n) = false .
-	red inv18(s, n) implies inv18(fkm31(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm31(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -896,10 +1157,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = false .
-	red inv18(s, n) implies inv18(fkm31(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm31(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -907,11 +1168,24 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(fkm32(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(fkm32(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm32(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -919,12 +1193,13 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(fkm32(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm32(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -932,13 +1207,14 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq n = r3 .
-	red inv18(s, n) implies inv18(fkm32(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm32(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -946,13 +1222,14 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (n = r3) = false .
-	red inv18(s, n) implies inv18(fkm32(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm32(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -960,10 +1237,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv18(s, n) implies inv18(fkm32(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(fkm32(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -971,10 +1248,10 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = true .
-	red inv18(s, n) implies inv18(sdm1(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -982,11 +1259,24 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Rand .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = false .
+	eq (creator(n) = intruder) = false .
 	eq random(n) = r3 .
-	red inv18(s, n) implies inv18(sdm1(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -994,12 +1284,13 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r3) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(sdm1(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1007,13 +1298,14 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r3) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(sdm1(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1021,15 +1313,16 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r3) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq n = n(r1, intruder, r3) .
-	red inv18(s, n) implies inv18(sdm1(s, r1, r2, r3), n) .
+	eq n = n(r1,intruder,r3) .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1037,15 +1330,16 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r3) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (n = n(r1, intruder, r3)) = false .
-	red inv18(s, n) implies inv18(sdm1(s, r1, r2, r3), n) .
+	eq (n = n(r1,intruder,r3)) = false .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1053,14 +1347,15 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r3) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	red inv18(s, n) implies inv18(sdm1(s, r1, r2, r3), n) .
+	red inv18(s,n) implies inv18(sdm1(s,r1,r2,r3),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1072,10 +1367,10 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = true .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1087,12 +1382,30 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq random(n) = r1 .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1104,13 +1417,14 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r1) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1122,14 +1436,15 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r1) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true, use inv10 as a lemma 
+--> true, use inv10 as a lemma
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1141,17 +1456,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r1) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
 	eq nonce(r5) = n .
-	red inv10(s, m1(r3, intruder, r4, r5)) implies inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv10(s,m1(r3,intruder,r4,r5)) implies inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1163,18 +1479,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r1) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
 	eq (nonce(r5) = n) = false .
-	eq n = n(r4, intruder, r1) .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	eq n = n(r4,intruder,r1) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1186,18 +1503,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r1) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
 	eq (nonce(r5) = n) = false .
-	eq (n = n(r4, intruder, r1)) = false .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	eq (n = n(r4,intruder,r1)) = false .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1209,16 +1527,17 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r1) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1230,15 +1549,16 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (random(n) = r1) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1250,11 +1570,11 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = false .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = false .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1265,10 +1585,10 @@ open INV .
 	op s : -> Sys .
 	eq principal(r5) = r2 .
 	eq (key(r5) = r4) = false .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Rand .
@@ -1278,10 +1598,10 @@ open INV .
 	op r5 : -> Cipher1 .
 	op s : -> Sys .
 	eq (principal(r5) = r2) = false .
-	red inv18(s, n) implies inv18(sdm2(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm2(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1292,14 +1612,33 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq creator(n) = intruder .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
+close
+
+--> true
+open INV .
+	op n : -> Nonce .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = true .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1310,15 +1649,16 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = true .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true, use inv9 as a lemma 
+--> true, use inv9 as a lemma
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1329,19 +1669,20 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m2(r3, intruder, r1, r5) \in nw(s)) = true .
-	eq (m1(r1, r1, intruder, enc1(intruder, n(r1, intruder, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,intruder,r1,r5) \in nw(s)) = true .
+	eq (m1(r1,r1,intruder,enc1(intruder,n(r1,intruder,r4),r1)) \in nw(s)) = true .
 	eq nonce2(r5) = n .
-	red inv9(s, m2(r3, intruder, r1, r5)) implies inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	red inv9(s,m2(r3,intruder,r1,r5)) implies inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1352,19 +1693,20 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m2(r3, intruder, r1, r5) \in nw(s)) = true .
-	eq (m1(r1, r1, intruder, enc1(intruder, n(r1, intruder, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,intruder,r1,r5) \in nw(s)) = true .
+	eq (m1(r1,r1,intruder,enc1(intruder,n(r1,intruder,r4),r1)) \in nw(s)) = true .
 	eq (nonce2(r5) = n) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1375,18 +1717,19 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m2(r3, intruder, r1, r5) \in nw(s)) = true .
-	eq (m1(r1, r1, intruder, enc1(intruder, n(r1, intruder, r4), r1)) \in nw(s)) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	eq (m2(r3,intruder,r1,r5) \in nw(s)) = true .
+	eq (m1(r1,r1,intruder,enc1(intruder,n(r1,intruder,r4),r1)) \in nw(s)) = false .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1397,17 +1740,18 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m2(r3, intruder, r1, r5) \in nw(s)) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	eq (m2(r3,intruder,r1,r5) \in nw(s)) = false .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1418,16 +1762,17 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(n) = intruder) = false .
 	eq (n \in cnonce(nw(s))) = false .
 	eq (random(n) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1438,13 +1783,13 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = false .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1455,12 +1800,12 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq (nonce1(r5) = n(r1, r2, r4)) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq (nonce1(r5) = n(r1,r2,r4)) = false .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1471,11 +1816,11 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = false .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1486,10 +1831,10 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq (principal(r5) = r2) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op n : -> Nonce .
 	op r1 : -> Prin .
@@ -1499,17 +1844,17 @@ open INV .
 	op r5 : -> Cipher2 .
 	op s : -> Sys .
 	eq (key(r5) = r1) = false .
-	red inv18(s, n) implies inv18(sdm3(s, r1, r2, r3, r4, r5), n) .
+	red inv18(s,n) implies inv18(sdm3(s,r1,r2,r3,r4,r5),n) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op s : -> Sys .
-	red inv19(init, e2) .
+	red inv19(init,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1517,10 +1862,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
-	red inv19(s, e2) implies inv19(fkm11(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm11(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1528,10 +1873,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = false .
-	red inv19(s, e2) implies inv19(fkm11(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm11(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1539,10 +1884,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
-	red inv19(s, e2) implies inv19(fkm12(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm12(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1550,10 +1895,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv19(s, e2) implies inv19(fkm12(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm12(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1561,11 +1906,26 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq creator(nonce1(e2)) = intruder .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv19(s, e2) implies inv19(fkm21(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1573,13 +1933,137 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq e2 = r3 .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (e2 = r3) = false .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq e2 = r3 .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (e2 = r3) = false .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher2 .
+	op s : -> Sys .
+	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = true .
-	red inv19(s, e2) implies inv19(fkm21(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1587,14 +2071,16 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq e2 = r3 .
-	red inv19(s, e2) implies inv19(fkm21(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1602,14 +2088,16 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (e2 = r3) = false .
-	red inv19(s, e2) implies inv19(fkm21(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1617,13 +2105,15 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq e2 = r3 .
-	red inv19(s, e2) implies inv19(fkm21(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1631,13 +2121,15 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (e2 = r3) = false .
-	red inv19(s, e2) implies inv19(fkm21(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1645,10 +2137,10 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = false .
-	red inv19(s, e2) implies inv19(fkm21(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm21(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1658,11 +2150,28 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq creator(nonce1(e2)) = intruder .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1672,13 +2181,703 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq r2 = intruder .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq creator(r3) = intruder .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,r3,r4,r1)) = false .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq r2 = intruder .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq creator(r3) = intruder .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,r3,r4,r1)) = false .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = true .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1688,14 +2887,16 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true, use inv18 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1705,16 +2906,42 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq creator(r3) = intruder .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
 	eq (random(r3) \in ur(s)) = true .
-	red inv18(s, r4) implies inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true, use inv18 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1724,16 +2951,21 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
 	eq (random(r3) \in ur(s)) = false .
-	red inv18(s, r3) implies inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true, use inv18 as a lemma
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1743,15 +2975,21 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, r3, r4, r1)) = false .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1761,13 +2999,228 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,r3,r4,r1)) = false .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true, use inv18 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1777,15 +3230,40 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq creator(r3) = intruder .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
 	eq (random(r3) \in ur(s)) = true .
-	red inv18(s, r4) implies inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true, use inv18 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1795,15 +3273,20 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
 	eq (random(r3) \in ur(s)) = false .
-	red inv18(s, r3) implies inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true, use inv18 as a lemma
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1813,14 +3296,224 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, r3, r4, r1)) = false .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq creator(r4) = intruder .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq creator(r3) = intruder .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	eq (random(r4) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r4) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq (creator(r4) = intruder) = false .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc2(r2,r3,r4,r1) \in cenc2(nw(s))) = false .
+	red inv18(s,r3) implies inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,r3,r4,r1)) = false .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
+close
+
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1830,10 +3523,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = false .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1842,10 +3535,10 @@ open INV .
 	op r4 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv19(s, e2) implies inv19(fkm22(s, r1, r2, r3, r4), e2) .
+	red inv19(s,e2) implies inv19(fkm22(s,r1,r2,r3,r4),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1853,10 +3546,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
-	red inv19(s, e2) implies inv19(fkm31(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm31(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1864,10 +3557,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = false .
-	red inv19(s, e2) implies inv19(fkm31(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm31(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1875,10 +3568,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
-	red inv19(s, e2) implies inv19(fkm32(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm32(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1886,10 +3579,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv19(s, e2) implies inv19(fkm32(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(fkm32(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1897,10 +3590,10 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = true .
-	red inv19(s, e2) implies inv19(sdm1(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(sdm1(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -1908,10 +3601,10 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
-	red inv19(s, e2) implies inv19(sdm1(s, r1, r2, r3), e2) .
+	red inv19(s,e2) implies inv19(sdm1(s,r1,r2,r3),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -1923,10 +3616,10 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -1938,13 +3631,32 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	eq random(nonce2(e2)) = r1 .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq creator(nonce1(e2)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq random(nonce1(e2)) = r1 .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -1956,14 +3668,15 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	eq random(nonce2(e2)) = r1 .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -1975,15 +3688,16 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	eq random(nonce2(e2)) = r1 .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -1995,17 +3709,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	eq random(nonce2(e2)) = r1 .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2017,17 +3732,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	eq random(nonce2(e2)) = r1 .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true, use inv10 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2039,17 +3755,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	eq random(nonce2(e2)) = r1 .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4) .
-	red inv10(s, m1(r3, r2, r4, r5)) implies inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq creator(nonce(r5)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2061,17 +3779,20 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	eq random(nonce2(e2)) = r1 .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq random(nonce(r5)) = r1 .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2083,14 +3804,646 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true, use inv10 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = false .
+	red inv10(s,m1(r3,r2,r4,r5)) implies inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq creator(nonce2(e2)) = intruder .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq creator(nonce1(e2)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq random(nonce1(e2)) = r1 .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq r2 = intruder .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq r2 = intruder .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq creator(nonce(r5)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq random(nonce(r5)) = r1 .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true, use inv10 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = false .
+	red inv10(s,m1(r3,r2,r4,r5)) implies inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq random(nonce2(e2)) = r1 .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq r2 = intruder .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq r2 = intruder .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq creator(nonce(r5)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq random(nonce(r5)) = r1 .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true, use inv10 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = false .
+	red inv10(s,m1(r3,r2,r4,r5)) implies inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq creator(nonce1(e2)) = intruder .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq random(nonce1(e2)) = r1 .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2102,15 +4455,17 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq random(nonce1(e2)) = r1 .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce2(e2)) \in ur(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2122,17 +4477,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq random(nonce1(e2)) = r1 .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2144,17 +4501,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq random(nonce1(e2)) = r1 .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true, use inv10 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2166,17 +4525,20 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq random(nonce1(e2)) = r1 .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4) .
-	red inv10(s, m1(r3, r2, r4, r5)) implies inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq creator(nonce(r5)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2188,17 +4550,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq random(nonce1(e2)) = r1 .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq random(nonce(r5)) = r1 .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2210,14 +4576,123 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq random(nonce1(e2)) = r1 .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq random(nonce1(e2)) = r1 .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true, use inv10 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq random(nonce1(e2)) = r1 .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = false .
+	red inv10(s,m1(r3,r2,r4,r5)) implies inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq random(nonce1(e2)) = r1 .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2229,16 +4704,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2250,18 +4727,20 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2273,18 +4752,20 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true, use inv10 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2296,18 +4777,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4) .
-	red inv10(s, m1(r3, r2, r4, r5)) implies inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq creator(nonce(r5)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2319,18 +4803,22 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = true .
 	eq (random(nonce2(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq random(nonce(r5)) = r1 .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2342,17 +4830,130 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true, use inv10 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = false .
+	red inv10(s,m1(r3,r2,r4,r5)) implies inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = true .
+	eq (random(nonce2(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2364,17 +4965,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true, use inv10 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2386,17 +4989,20 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4) .
-	red inv10(s, m1(r3, r2, r4, r5)) implies inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq creator(nonce(r5)) = intruder .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2408,17 +5014,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
 	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
 	eq (random(nonce1(e2)) = r1) = false .
 	eq (e2 \in cenc2(nw(s))) = false .
 	eq (random(nonce1(e2)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq random(nonce(r5)) = r1 .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2430,11 +5040,118 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = true .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true, use inv10 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	eq (creator(nonce(r5)) = intruder) = false .
+	eq (random(nonce(r5)) = r1) = false .
+	eq (random(nonce(r5)) \in ur(s)) = false .
+	eq (enc2(r2,nonce(r5),n(r4,r2,r1),r4) \in cenc2(nw(s))) = false .
+	red inv10(s,m1(r3,r2,r4,r5)) implies inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	eq (creator(nonce2(e2)) = intruder) = false .
+	eq (random(nonce2(e2)) = r1) = false .
+	eq (creator(nonce1(e2)) = intruder) = false .
+	eq (random(nonce1(e2)) = r1) = false .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (random(nonce1(e2)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op r1 : -> Rand .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Cipher1 .
+	op s : -> Sys .
+	eq principal(r5) = r2 .
+	eq key(r5) = r4 .
+	eq (r1 \in ur(s)) = false .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
+close
+
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2445,10 +5162,10 @@ open INV .
 	op s : -> Sys .
 	eq principal(r5) = r2 .
 	eq (key(r5) = r4) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
@@ -2458,10 +5175,10 @@ open INV .
 	op r5 : -> Cipher1 .
 	op s : -> Sys .
 	eq (principal(r5) = r2) = false .
-	red inv19(s, e2) implies inv19(sdm2(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm2(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -2472,13 +5189,13 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
-	red inv19(s, e2) implies inv19(sdm3(s, r1, r2, r3, r4, r5), e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	red inv19(s,e2) implies inv19(sdm3(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -2489,13 +5206,13 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = false .
-	red inv19(s, e2) implies inv19(sdm3(s, r1, r2, r3, r4, r5), e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm3(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -2506,12 +5223,12 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq (nonce1(r5) = n(r1, r2, r4)) = false .
-	red inv19(s, e2) implies inv19(sdm3(s, r1, r2, r3, r4, r5), e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq (nonce1(r5) = n(r1,r2,r4)) = false .
+	red inv19(s,e2) implies inv19(sdm3(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -2522,11 +5239,11 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = false .
-	red inv19(s, e2) implies inv19(sdm3(s, r1, r2, r3, r4, r5), e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = false .
+	red inv19(s,e2) implies inv19(sdm3(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -2537,10 +5254,10 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq (principal(r5) = r2) = false .
-	red inv19(s, e2) implies inv19(sdm3(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm3(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
@@ -2550,17 +5267,17 @@ open INV .
 	op r5 : -> Cipher2 .
 	op s : -> Sys .
 	eq (key(r5) = r1) = false .
-	red inv19(s, e2) implies inv19(sdm3(s, r1, r2, r3, r4, r5), e2) .
+	red inv19(s,e2) implies inv19(sdm3(s,r1,r2,r3,r4,r5),e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op s : -> Sys .
-	red inv20(init, e3) .
+	red inv20(init,e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2568,10 +5285,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
-	red inv20(s, e3) implies inv20(fkm11(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm11(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2579,10 +5296,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = false .
-	red inv20(s, e3) implies inv20(fkm11(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm11(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2590,10 +5307,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
-	red inv20(s, e3) implies inv20(fkm12(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm12(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2601,10 +5318,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv20(s, e3) implies inv20(fkm12(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm12(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2612,10 +5329,10 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
-	red inv20(s, e3) implies inv20(fkm21(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm21(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2623,10 +5340,10 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = false .
-	red inv20(s, e3) implies inv20(fkm21(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm21(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2636,10 +5353,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
-	red inv20(s, e3) implies inv20(fkm22(s, r1, r2, r3, r4), e3) .
+	red inv20(s,e3) implies inv20(fkm22(s,r1,r2,r3,r4),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2649,10 +5366,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = false .
-	red inv20(s, e3) implies inv20(fkm22(s, r1, r2, r3, r4), e3) .
+	red inv20(s,e3) implies inv20(fkm22(s,r1,r2,r3,r4),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2661,10 +5378,10 @@ open INV .
 	op r4 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv20(s, e3) implies inv20(fkm22(s, r1, r2, r3, r4), e3) .
+	red inv20(s,e3) implies inv20(fkm22(s,r1,r2,r3,r4),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2672,11 +5389,24 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq creator(nonce(e3)) = intruder .
+	red inv20(s,e3) implies inv20(fkm31(s,r1,r2,r3),e3) .
+close
+
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Cipher3 .
+	op s : -> Sys .
+	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = true .
-	red inv20(s, e3) implies inv20(fkm31(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm31(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2684,12 +5414,13 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = true .
-	red inv20(s, e3) implies inv20(fkm31(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm31(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2697,13 +5428,14 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq e3 = r3 .
-	red inv20(s, e3) implies inv20(fkm31(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm31(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2711,13 +5443,14 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq (e3 = r3) = false .
-	red inv20(s, e3) implies inv20(fkm31(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm31(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2725,10 +5458,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = false .
-	red inv20(s, e3) implies inv20(fkm31(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm31(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2736,11 +5469,24 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq creator(nonce(e3)) = intruder .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
+close
+
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = true .
-	red inv20(s, e3) implies inv20(fkm32(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2748,12 +5494,13 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = true .
-	red inv20(s, e3) implies inv20(fkm32(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2761,13 +5508,14 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq r2 = intruder .
-	red inv20(s, e3) implies inv20(fkm32(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
 close
 
---> true, use inv18 as a lemma 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2775,14 +5523,16 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e3 = enc3(r2, r3) .
-	red inv18(s, r3) implies inv20(s, e3) implies inv20(fkm32(s, r1, r2, r3), e3) .
+	eq e3 = enc3(r2,r3) .
+	eq creator(r3) = intruder .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2790,14 +5540,71 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e3 = enc3(r2, r3)) = false .
-	red inv20(s, e3) implies inv20(fkm32(s, r1, r2, r3), e3) .
+	eq e3 = enc3(r2,r3) .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = true .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
+	eq (e3 \in cenc3(nw(s))) = false .
+	eq (random(nonce(e3)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e3 = enc3(r2,r3) .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc3(r2,r3) \in cenc3(nw(s))) = true .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
+close
+
+--> true, use inv18 as a lemma
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
+	eq (e3 \in cenc3(nw(s))) = false .
+	eq (random(nonce(e3)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e3 = enc3(r2,r3) .
+	eq (creator(r3) = intruder) = false .
+	eq (random(r3) \in ur(s)) = false .
+	eq (enc3(r2,r3) \in cenc3(nw(s))) = false .
+	red inv18(s,r3) implies inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
+close
+
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
+	eq (e3 \in cenc3(nw(s))) = false .
+	eq (random(nonce(e3)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e3 = enc3(r2,r3)) = false .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
+close
+
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2805,10 +5612,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv20(s, e3) implies inv20(fkm32(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(fkm32(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2816,10 +5623,10 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = true .
-	red inv20(s, e3) implies inv20(sdm1(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(sdm1(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2827,10 +5634,10 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
-	red inv20(s, e3) implies inv20(sdm1(s, r1, r2, r3), e3) .
+	red inv20(s,e3) implies inv20(sdm1(s,r1,r2,r3),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
@@ -2842,10 +5649,10 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = true .
-	red inv20(s, e3) implies inv20(sdm2(s, r1, r2, r3, r4, r5), e3) .
+	red inv20(s,e3) implies inv20(sdm2(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
@@ -2857,11 +5664,11 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
-	red inv20(s, e3) implies inv20(sdm2(s, r1, r2, r3, r4, r5), e3) .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
+	red inv20(s,e3) implies inv20(sdm2(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
@@ -2873,11 +5680,11 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = false .
-	red inv20(s, e3) implies inv20(sdm2(s, r1, r2, r3, r4, r5), e3) .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = false .
+	red inv20(s,e3) implies inv20(sdm2(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
@@ -2888,10 +5695,10 @@ open INV .
 	op s : -> Sys .
 	eq principal(r5) = r2 .
 	eq (key(r5) = r4) = false .
-	red inv20(s, e3) implies inv20(sdm2(s, r1, r2, r3, r4, r5), e3) .
+	red inv20(s,e3) implies inv20(sdm2(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
@@ -2901,10 +5708,10 @@ open INV .
 	op r5 : -> Cipher1 .
 	op s : -> Sys .
 	eq (principal(r5) = r2) = false .
-	red inv20(s, e3) implies inv20(sdm2(s, r1, r2, r3, r4, r5), e3) .
+	red inv20(s,e3) implies inv20(sdm2(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2915,14 +5722,33 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq creator(nonce(e3)) = intruder .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
+close
+
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = true .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2933,15 +5759,16 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = true .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2952,18 +5779,19 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m2(r3, intruder, r1, r5) \in nw(s)) = true .
-	eq (m1(r1, r1, intruder, enc1(intruder, n(r1, intruder, r4), r1)) \in nw(s)) = true .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq (m2(r3,intruder,r1,r5) \in nw(s)) = true .
+	eq (m1(r1,r1,intruder,enc1(intruder,n(r1,intruder,r4),r1)) \in nw(s)) = true .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2974,18 +5802,19 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m2(r3, intruder, r1, r5) \in nw(s)) = true .
-	eq (m1(r1, r1, intruder, enc1(intruder, n(r1, intruder, r4), r1)) \in nw(s)) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq (m2(r3,intruder,r1,r5) \in nw(s)) = true .
+	eq (m1(r1,r1,intruder,enc1(intruder,n(r1,intruder,r4),r1)) \in nw(s)) = false .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -2996,17 +5825,18 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq r2 = intruder .
-	eq (m2(r3, intruder, r1, r5) \in nw(s)) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq (m2(r3,intruder,r1,r5) \in nw(s)) = false .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true, use inv9 as a lemma 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -3017,17 +5847,19 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq e3 = enc3(r2, nonce2(r5)) .
-	red inv9(s, m2(r3, r2, r1, r5)) implies inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq e3 = enc3(r2,nonce2(r5)) .
+	eq creator(nonce2(r5)) = intruder .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -3038,17 +5870,20 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
 	eq (e3 \in cenc3(nw(s))) = false .
 	eq (random(nonce(e3)) \in ur(s)) = false .
 	eq (r2 = intruder) = false .
-	eq (e3 = enc3(r2, nonce2(r5))) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq e3 = enc3(r2,nonce2(r5)) .
+	eq (creator(nonce2(r5)) = intruder) = false .
+	eq (random(nonce2(r5)) \in ur(s)) = true .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -3059,13 +5894,21 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
+	eq (e3 \in cenc3(nw(s))) = false .
+	eq (random(nonce(e3)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e3 = enc3(r2,nonce2(r5)) .
+	eq (creator(nonce2(r5)) = intruder) = false .
+	eq (random(nonce2(r5)) \in ur(s)) = false .
+	eq (enc3(r2,nonce2(r5)) \in cenc3(nw(s))) = true .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true, use inv9 as a lemma
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -3076,12 +5919,21 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq (nonce1(r5) = n(r1, r2, r4)) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
+	eq (e3 \in cenc3(nw(s))) = false .
+	eq (random(nonce(e3)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq e3 = enc3(r2,nonce2(r5)) .
+	eq (creator(nonce2(r5)) = intruder) = false .
+	eq (random(nonce2(r5)) \in ur(s)) = false .
+	eq (enc3(r2,nonce2(r5)) \in cenc3(nw(s))) = false .
+	red inv9(s,m2(r3,r2,r1,r5)) implies inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -3092,11 +5944,66 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	eq (creator(nonce(e3)) = intruder) = false .
+	eq (e3 \in cenc3(nw(s))) = false .
+	eq (random(nonce(e3)) \in ur(s)) = false .
+	eq (r2 = intruder) = false .
+	eq (e3 = enc3(r2,nonce2(r5))) = false .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = false .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
+close
+
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq (nonce1(r5) = n(r1,r2,r4)) = false .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
+close
+
+--> true
+open INV .
+	op e3 : -> Cipher3 .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> Cipher2 .
+	op s : -> Sys .
+	eq key(r5) = r1 .
+	eq principal(r5) = r2 .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = false .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
+close
+
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -3107,10 +6014,10 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq (principal(r5) = r2) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> true 
+--> true
 open INV .
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
@@ -3120,7 +6027,7 @@ open INV .
 	op r5 : -> Cipher2 .
 	op s : -> Sys .
 	eq (key(r5) = r1) = false .
-	red inv20(s, e3) implies inv20(sdm3(s, r1, r2, r3, r4, r5), e3) .
+	red inv20(s,e3) implies inv20(sdm3(s,r1,r2,r3,r4,r5),e3) .
 close
 
---> Time taken is 2937ms
+--> Time taken is 2846ms

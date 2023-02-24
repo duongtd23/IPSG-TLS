@@ -1,1100 +1,1472 @@
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op s : -> Sys .
-	red inv1(init, i) .
+	red inv1(init,i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq i = r1 .
-	red inv1(s, i) implies inv1(getval(s, r1), i) .
+	red inv1(s,i) implies inv1(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq (i = r1) = false .
-	red inv1(s, i) implies inv1(getval(s, r1), i) .
+	red inv1(s,i) implies inv1(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv1(s, i) implies inv1(getval(s, r1), i) .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv1(s,i) implies inv1(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = idlec) = false .
-	red inv1(s, i) implies inv1(getval(s, r1), i) .
+	red inv1(s,i) implies inv1(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
+	eq statusp(s,r1) = updated .
 	eq i = r1 .
-	red inv1(s, i) implies inv1(gotoidle(s, r1), i) .
+	red inv1(s,i) implies inv1(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
+	eq statusp(s,r1) = updated .
 	eq (i = r1) = false .
-	red inv1(s, i) implies inv1(gotoidle(s, r1), i) .
+	red inv1(s,i) implies inv1(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = updated) = false .
-	red inv1(s, i) implies inv1(gotoidle(s, r1), i) .
+	eq (statusp(s,r1) = updated) = false .
+	red inv1(s,i) implies inv1(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = busy) = false .
-	red inv1(s, i) implies inv1(gotoidle(s, r1), i) .
+	red inv1(s,i) implies inv1(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq i = r1 .
-	red inv1(s, i) implies inv1(modval(s, r1), i) .
+	red inv1(s,i) implies inv1(modval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq (i = r1) = false .
-	red inv1(s, i) implies inv1(modval(s, r1), i) .
+	red inv1(s,i) implies inv1(modval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv1(s, i) implies inv1(modval(s, r1), i) .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv1(s,i) implies inv1(modval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = gotval .
 	eq i = r1 .
-	eq (tmp(s, r1) <= valp(s, r1)) = true .
-	red inv1(s, i) implies inv1(update(s, r1), i) .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
 close
 
---> true, use inv2 as a lemma 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = gotval .
 	eq i = r1 .
-	eq (tmp(s, r1) <= valp(s, r1)) = false .
-	red inv2(s, i) implies inv1(s, i) implies inv1(update(s, r1), i) .
+	eq (tmp(s,r1) <= valp(s,r1)) = false .
+	eq valc(s) = tmp(s,r1) .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
 close
 
---> true, use inv3 as a lemma 
+--> true, use inv2 as a lemma
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = gotval .
+	eq i = r1 .
+	eq (tmp(s,r1) <= valp(s,r1)) = false .
+	eq (valc(s) = tmp(s,r1)) = false .
+	red inv2(s,r1) implies inv1(s,i) implies inv1(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
 	eq (i = r1) = false .
-	red inv3(s, i, r1) implies inv1(s, i) implies inv1(update(s, r1), i) .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq statusp(s,i) = updated .
+	eq valc(s) = valp(s,i) .
+	eq valp(s,i) = valp(s,r1) .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
 close
 
---> true 
+--> true, use inv3 as a lemma
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = gotval) = false .
-	red inv1(s, i) implies inv1(update(s, r1), i) .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq statusp(s,i) = updated .
+	eq valc(s) = valp(s,i) .
+	eq (valp(s,i) = valp(s,r1)) = false .
+	red inv3(s,i,r1) implies inv1(s,i) implies inv1(update(s,r1),i) .
 close
 
---> true 
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq statusp(s,i) = updated .
+	eq (valc(s) = valp(s,i)) = false .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq (statusp(s,i) = updated) = false .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = false .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = gotval) = false .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
+close
+
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = busy) = false .
-	red inv1(s, i) implies inv1(update(s, r1), i) .
+	red inv1(s,i) implies inv1(update(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op s : -> Sys .
-	red inv2(init, i) .
+	red inv2(init,i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq i = r1 .
-	red inv2(s, i) implies inv2(getval(s, r1), i) .
+	red inv2(s,i) implies inv2(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq (i = r1) = false .
-	red inv2(s, i) implies inv2(getval(s, r1), i) .
+	red inv2(s,i) implies inv2(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv2(s, i) implies inv2(getval(s, r1), i) .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv2(s,i) implies inv2(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = idlec) = false .
-	red inv2(s, i) implies inv2(getval(s, r1), i) .
+	red inv2(s,i) implies inv2(getval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
+	eq statusp(s,r1) = updated .
 	eq i = r1 .
-	red inv2(s, i) implies inv2(gotoidle(s, r1), i) .
+	red inv2(s,i) implies inv2(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
+	eq statusp(s,r1) = updated .
 	eq (i = r1) = false .
-	red inv2(s, i) implies inv2(gotoidle(s, r1), i) .
+	red inv2(s,i) implies inv2(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = updated) = false .
-	red inv2(s, i) implies inv2(gotoidle(s, r1), i) .
+	eq (statusp(s,r1) = updated) = false .
+	red inv2(s,i) implies inv2(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = busy) = false .
-	red inv2(s, i) implies inv2(gotoidle(s, r1), i) .
+	red inv2(s,i) implies inv2(gotoidle(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
-	red inv2(s, i) implies inv2(modval(s, r1), i) .
+	eq statusp(s,r1) = idlep .
+	red inv2(s,i) implies inv2(modval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv2(s, i) implies inv2(modval(s, r1), i) .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv2(s,i) implies inv2(modval(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = gotval .
 	eq i = r1 .
-	red inv2(s, i) implies inv2(update(s, r1), i) .
+	red inv2(s,i) implies inv2(update(s,r1),i) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = gotval .
 	eq (i = r1) = false .
-	red inv4(s, i, r1) implies inv2(s, i) implies inv2(update(s, r1), i) .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq statusp(s,i) = gotval .
+	eq valc(s) = tmp(s,i) .
+	eq tmp(s,i) = valp(s,r1) .
+	red inv2(s,i) implies inv2(update(s,r1),i) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = gotval) = false .
-	red inv2(s, i) implies inv2(update(s, r1), i) .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq statusp(s,i) = gotval .
+	eq valc(s) = tmp(s,i) .
+	eq (tmp(s,i) = valp(s,r1)) = false .
+	red inv4(s,i,r1) implies inv2(s,i) implies inv2(update(s,r1),i) .
 close
 
---> true 
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq statusp(s,i) = gotval .
+	eq (valc(s) = tmp(s,i)) = false .
+	red inv2(s,i) implies inv2(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = true .
+	eq (statusp(s,i) = gotval) = false .
+	red inv2(s,i) implies inv2(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (tmp(s,r1) <= valp(s,r1)) = false .
+	red inv2(s,i) implies inv2(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = gotval) = false .
+	red inv2(s,i) implies inv2(update(s,r1),i) .
+close
+
+--> true
 open CLOUD .
 	op i : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = busy) = false .
-	red inv2(s, i) implies inv2(update(s, r1), i) .
+	red inv2(s,i) implies inv2(update(s,r1),i) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op s : -> Sys .
-	red inv3(init, i, j) .
+	red inv3(init,i,j) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq j = r1 .
 	eq i = r1 .
-	red inv3(s, i, j) implies inv3(getval(s, r1), i, j) .
+	red inv3(s,i,j) implies inv3(getval(s,r1),i,j) .
 close
 
---> true, use inv5 as a lemma 
+--> true, use inv5 as a lemma
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
 	eq j = r1 .
 	eq (i = r1) = false .
-	red inv5(s, i) implies inv3(s, i, j) implies inv3(getval(s, r1), i, j) .
+	eq statusp(s,i) = updated .
+	red inv5(s,i) implies inv3(s,i,j) implies inv3(getval(s,r1),i,j) .
 close
 
---> true, use inv6 as a lemma 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
+	eq statusp(s,r1) = idlep .
+	eq j = r1 .
+	eq (i = r1) = false .
+	eq (statusp(s,i) = updated) = false .
+	red inv3(s,i,j) implies inv3(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
 	eq (j = r1) = false .
-	red inv6(s, j) implies inv3(s, i, j) implies inv3(getval(s, r1), i, j) .
+	eq i = r1 .
+	red inv3(s,i,j) implies inv3(getval(s,r1),i,j) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = idlec .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv3(s, i, j) implies inv3(getval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = idlec) = false .
-	red inv3(s, i, j) implies inv3(getval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq j = r1 .
-	red inv3(s, i, j) implies inv3(gotoidle(s, r1), i, j) .
-close
-
---> true, use inv3 as a lemma 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
+	eq statusp(s,r1) = idlep .
 	eq (j = r1) = false .
-	red inv3(s, r1, j) implies inv3(s, i, j) implies inv3(gotoidle(s, r1), i, j) .
+	eq (i = r1) = false .
+	red inv3(s,i,j) implies inv3(getval(s,r1),i,j) .
 close
 
---> true 
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv3(s,i,j) implies inv3(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = idlec) = false .
+	red inv3(s,i,j) implies inv3(getval(s,r1),i,j) .
+close
+
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = updated) = false .
-	red inv3(s, i, j) implies inv3(gotoidle(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv3(s, i, j) implies inv3(gotoidle(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
-	red inv3(s, i, j) implies inv3(modval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv3(s, i, j) implies inv3(modval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = updated .
 	eq j = r1 .
-	red inv3(s, i, j) implies inv3(update(s, r1), i, j) .
+	red inv3(s,i,j) implies inv3(gotoidle(s,r1),i,j) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = updated .
 	eq (j = r1) = false .
-	red inv4(s, j, r1) implies inv3(s, i, j) implies inv3(update(s, r1), i, j) .
+	eq i = r1 .
+	red inv3(s,i,j) implies inv3(gotoidle(s,r1),i,j) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = gotval) = false .
-	red inv3(s, i, j) implies inv3(update(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv3(s, i, j) implies inv3(update(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op s : -> Sys .
-	red inv4(init, i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
-	eq i = r1 .
-	eq j = r1 .
-	red inv4(s, i, j) implies inv4(getval(s, r1), i, j) .
-close
-
---> true, use inv6 as a lemma 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
-	eq i = r1 .
+	eq statusp(s,r1) = updated .
 	eq (j = r1) = false .
-	red inv6(s, j) implies inv4(s, i, j) implies inv4(getval(s, r1), i, j) .
-close
-
---> true, use inv6 as a lemma 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
 	eq (i = r1) = false .
-	red inv6(s, i) implies inv4(s, i, j) implies inv4(getval(s, r1), i, j) .
+	red inv3(s,i,j) implies inv3(gotoidle(s,r1),i,j) .
 close
 
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv4(s, i, j) implies inv4(getval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = idlec) = false .
-	red inv4(s, i, j) implies inv4(getval(s, r1), i, j) .
-close
-
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
+	eq (statusp(s,r1) = updated) = false .
+	red inv3(s,i,j) implies inv3(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv3(s,i,j) implies inv3(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusp(s,r1) = idlep .
+	red inv3(s,i,j) implies inv3(modval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv3(s,i,j) implies inv3(modval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq j = r1 .
+	red inv3(s,i,j) implies inv3(update(s,r1),i,j) .
+close
+
+--> true, use inv4 as a lemma
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (j = r1) = false .
 	eq i = r1 .
-	red inv4(s, i, j) implies inv4(gotoidle(s, r1), i, j) .
+	eq statusp(s,j) = gotval .
+	red inv4(s,j,r1) implies inv3(s,i,j) implies inv3(update(s,r1),i,j) .
 close
 
---> true, use inv3 as a lemma 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq (i = r1) = false .
-	red inv3(s, r1, i) implies inv4(s, i, j) implies inv4(gotoidle(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq (statusp(s, r1) = updated) = false .
-	red inv4(s, i, j) implies inv4(gotoidle(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv4(s, i, j) implies inv4(gotoidle(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
-	red inv4(s, i, j) implies inv4(modval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv4(s, i, j) implies inv4(modval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = gotval .
+	eq (j = r1) = false .
 	eq i = r1 .
-	red inv4(s, i, j) implies inv4(update(s, r1), i, j) .
+	eq (statusp(s,j) = gotval) = false .
+	red inv3(s,i,j) implies inv3(update(s,r1),i,j) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusp(s,r1) = gotval .
+	eq (j = r1) = false .
 	eq (i = r1) = false .
-	red inv4(s, i, r1) implies inv4(s, i, j) implies inv4(update(s, r1), i, j) .
+	red inv3(s,i,j) implies inv3(update(s,r1),i,j) .
 close
 
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = gotval) = false .
-	red inv4(s, i, j) implies inv4(update(s, r1), i, j) .
+	eq (statusp(s,r1) = gotval) = false .
+	red inv3(s,i,j) implies inv3(update(s,r1),i,j) .
 close
 
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv4(s, i, j) implies inv4(update(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op s : -> Sys .
-	red inv5(init, i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
-	red inv5(s, i) implies inv5(getval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv5(s, i) implies inv5(getval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = idlec) = false .
-	red inv5(s, i) implies inv5(getval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq i = r1 .
-	red inv5(s, i) implies inv5(gotoidle(s, r1), i) .
-close
-
---> true, use inv7 as a lemma 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq (i = r1) = false .
-	red inv7(s, i, r1) implies inv5(s, i) implies inv5(gotoidle(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq (statusp(s, r1) = updated) = false .
-	red inv5(s, i) implies inv5(gotoidle(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv5(s, i) implies inv5(gotoidle(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
-	red inv5(s, i) implies inv5(modval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv5(s, i) implies inv5(modval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
-	red inv5(s, i) implies inv5(update(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq (statusp(s, r1) = gotval) = false .
-	red inv5(s, i) implies inv5(update(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv5(s, i) implies inv5(update(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op s : -> Sys .
-	red inv6(init, i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
-	red inv6(s, i) implies inv6(getval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv6(s, i) implies inv6(getval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = idlec) = false .
-	red inv6(s, i) implies inv6(getval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq i = r1 .
-	red inv6(s, i) implies inv6(gotoidle(s, r1), i) .
-close
-
---> true, use inv3 as a lemma 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq (i = r1) = false .
-	red inv3(s, r1, i) implies inv6(s, i) implies inv6(gotoidle(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq (statusp(s, r1) = updated) = false .
-	red inv6(s, i) implies inv6(gotoidle(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv6(s, i) implies inv6(gotoidle(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
-	red inv6(s, i) implies inv6(modval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv6(s, i) implies inv6(modval(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
-	red inv6(s, i) implies inv6(update(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq (statusp(s, r1) = gotval) = false .
-	red inv6(s, i) implies inv6(update(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = busy) = false .
-	red inv6(s, i) implies inv6(update(s, r1), i) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op s : -> Sys .
-	red inv7(init, i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
-	eq i = r1 .
-	red inv7(s, i, j) implies inv7(getval(s, r1), i, j) .
-close
-
---> true, use inv5 as a lemma 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq statusp(s, r1) = idlep .
-	eq (i = r1) = false .
-	red inv5(s, i) implies inv7(s, i, j) implies inv7(getval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = idlec .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv7(s, i, j) implies inv7(getval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusc(s) = idlec) = false .
-	red inv7(s, i, j) implies inv7(getval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq i = r1 .
-	red inv7(s, i, j) implies inv7(gotoidle(s, r1), i, j) .
-close
-
---> true, use inv7 as a lemma 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = updated .
-	eq (i = r1) = false .
-	red inv7(s, i, r1) implies inv7(s, i, j) implies inv7(gotoidle(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq (statusp(s, r1) = updated) = false .
-	red inv7(s, i, j) implies inv7(gotoidle(s, r1), i, j) .
-close
-
---> true 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = busy) = false .
-	red inv7(s, i, j) implies inv7(gotoidle(s, r1), i, j) .
+	red inv3(s,i,j) implies inv3(update(s,r1),i,j) .
 close
 
---> true 
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op s : -> Sys .
+	red inv4(init,i,j) .
+close
+
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq statusp(s, r1) = idlep .
-	red inv7(s, i, j) implies inv7(modval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq (statusp(s, r1) = idlep) = false .
-	red inv7(s, i, j) implies inv7(modval(s, r1), i, j) .
-close
-
---> true 
-open CLOUD .
-	op i : -> Client .
-	op j : -> Client .
-	op r1 : -> Client .
-	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
 	eq i = r1 .
 	eq j = r1 .
-	red inv7(s, i, j) implies inv7(update(s, r1), i, j) .
+	red inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
 close
 
---> true, use inv3 as a lemma 
+--> true, use inv6 as a lemma
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
 	eq i = r1 .
 	eq (j = r1) = false .
-	red inv3(s, j, i) implies inv7(s, i, j) implies inv7(update(s, r1), i, j) .
+	eq statusp(s,j) = gotval .
+	red inv6(s,j) implies inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
 close
 
---> true, use inv3 as a lemma 
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
-	eq statusc(s) = busy .
-	eq statusp(s, r1) = gotval .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq (statusp(s,j) = gotval) = false .
+	red inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
+close
+
+--> true, use inv6 as a lemma
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
 	eq (i = r1) = false .
-	red inv3(s, i, r1) implies inv7(s, i, j) implies inv7(update(s, r1), i, j) .
+	eq j = r1 .
+	eq statusp(s,i) = gotval .
+	red inv6(s,i) implies inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
 close
 
---> true 
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq (statusp(s,i) = gotval) = false .
+	red inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = idlec) = false .
+	red inv4(s,i,j) implies inv4(getval(s,r1),i,j) .
+close
+
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq statusc(s) = busy .
-	eq (statusp(s, r1) = gotval) = false .
-	red inv7(s, i, j) implies inv7(update(s, r1), i, j) .
+	eq statusp(s,r1) = updated .
+	eq i = r1 .
+	red inv4(s,i,j) implies inv4(gotoidle(s,r1),i,j) .
 close
 
---> true 
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red inv4(s,i,j) implies inv4(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv4(s,i,j) implies inv4(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = updated) = false .
+	red inv4(s,i,j) implies inv4(gotoidle(s,r1),i,j) .
+close
+
+--> true
 open CLOUD .
 	op i : -> Client .
 	op j : -> Client .
 	op r1 : -> Client .
 	op s : -> Sys .
 	eq (statusc(s) = busy) = false .
-	red inv7(s, i, j) implies inv7(update(s, r1), i, j) .
+	red inv4(s,i,j) implies inv4(gotoidle(s,r1),i,j) .
 close
 
---> Time taken is 503ms
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusp(s,r1) = idlep .
+	red inv4(s,i,j) implies inv4(modval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv4(s,i,j) implies inv4(modval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq i = r1 .
+	red inv4(s,i,j) implies inv4(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red inv4(s,i,j) implies inv4(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv4(s,i,j) implies inv4(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = gotval) = false .
+	red inv4(s,i,j) implies inv4(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv4(s,i,j) implies inv4(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op s : -> Sys .
+	red inv5(init,i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	red inv5(s,i) implies inv5(getval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv5(s,i) implies inv5(getval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = idlec) = false .
+	red inv5(s,i) implies inv5(getval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq i = r1 .
+	red inv5(s,i) implies inv5(gotoidle(s,r1),i) .
+close
+
+--> true, use inv7 as a lemma
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq statusp(s,i) = updated .
+	red inv7(s,i,r1) implies inv5(s,i) implies inv5(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq (statusp(s,i) = updated) = false .
+	red inv5(s,i) implies inv5(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = updated) = false .
+	red inv5(s,i) implies inv5(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv5(s,i) implies inv5(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusp(s,r1) = idlep .
+	red inv5(s,i) implies inv5(modval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv5(s,i) implies inv5(modval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	red inv5(s,i) implies inv5(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = gotval) = false .
+	red inv5(s,i) implies inv5(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv5(s,i) implies inv5(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op s : -> Sys .
+	red inv6(init,i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	red inv6(s,i) implies inv6(getval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv6(s,i) implies inv6(getval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = idlec) = false .
+	red inv6(s,i) implies inv6(getval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq i = r1 .
+	red inv6(s,i) implies inv6(gotoidle(s,r1),i) .
+close
+
+--> true, use inv3 as a lemma
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq statusp(s,i) = gotval .
+	red inv3(s,r1,i) implies inv6(s,i) implies inv6(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq (statusp(s,i) = gotval) = false .
+	red inv6(s,i) implies inv6(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = updated) = false .
+	red inv6(s,i) implies inv6(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv6(s,i) implies inv6(gotoidle(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusp(s,r1) = idlep .
+	red inv6(s,i) implies inv6(modval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv6(s,i) implies inv6(modval(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	red inv6(s,i) implies inv6(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = gotval) = false .
+	red inv6(s,i) implies inv6(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv6(s,i) implies inv6(update(s,r1),i) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op s : -> Sys .
+	red inv7(init,i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	eq i = r1 .
+	red inv7(s,i,j) implies inv7(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red inv7(s,i,j) implies inv7(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq statusp(s,r1) = idlep .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv7(s,i,j) implies inv7(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = idlec .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv7(s,i,j) implies inv7(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = idlec) = false .
+	red inv7(s,i,j) implies inv7(getval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq i = r1 .
+	red inv7(s,i,j) implies inv7(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red inv7(s,i,j) implies inv7(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = updated .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv7(s,i,j) implies inv7(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = updated) = false .
+	red inv7(s,i,j) implies inv7(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv7(s,i,j) implies inv7(gotoidle(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusp(s,r1) = idlep .
+	red inv7(s,i,j) implies inv7(modval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusp(s,r1) = idlep) = false .
+	red inv7(s,i,j) implies inv7(modval(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq i = r1 .
+	eq j = r1 .
+	red inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> true, use inv3 as a lemma
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq statusp(s,j) = updated .
+	red inv3(s,j,r1) implies inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq (statusp(s,j) = updated) = false .
+	red inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> true, use inv3 as a lemma
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq statusp(s,i) = updated .
+	red inv3(s,i,r1) implies inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq (statusp(s,i) = updated) = false .
+	red inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq statusp(s,r1) = gotval .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq statusc(s) = busy .
+	eq (statusp(s,r1) = gotval) = false .
+	red inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> true
+open CLOUD .
+	op i : -> Client .
+	op j : -> Client .
+	op r1 : -> Client .
+	op s : -> Sys .
+	eq (statusc(s) = busy) = false .
+	red inv7(s,i,j) implies inv7(update(s,r1),i,j) .
+close
+
+--> Time taken is 237ms

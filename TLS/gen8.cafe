@@ -1,4 +1,4 @@
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -7,42 +7,10 @@ open INV .
 	op pk : -> PubKeyEx .
 	op pk2 : -> PubKeyEx .
 	op s : -> Sys .
-	red inv8(init, a, b, b1, pk, pk2, ci) .
+	red inv8(init,a,b,b1,pk,pk2,ci) .
 close
 
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r10 : -> PubKeyEx .
-	op r11 : -> Cipher .
-	op r12 : -> PriKeyEx .
-	op r2 : -> Prin .
-	op r3 : -> Prin .
-	op r4 : -> Rand .
-	op r5 : -> CipherSuites .
-	op r6 : -> Rand .
-	op r7 : -> CipherSuite .
-	op r8 : -> Sid .
-	op r9 : -> Cert .
-	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = true .
-	eq (chM(r2, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (skexM(r1, r3, r2, r10, r11) \in nw(s)) = true .
-	eq (shM(r1, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq (ckexM(r2, r2, r3, pubKeyEx(r12, r2)) \in nw(s)) = true .
-	eq decH(r11, pubKey(r9)) = hParams(r4, r6, r10) .
-	eq sign(r9) = sign(ca, owner(r9), pubKey(r9)) .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -63,18 +31,18 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = true .
-	eq (chM(r2, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (skexM(r1, r3, r2, r10, r11) \in nw(s)) = true .
-	eq (shM(r1, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq (ckexM(r2, r2, r3, pubKeyEx(r12, r2)) \in nw(s)) = true .
-	eq decH(r11, pubKey(r9)) = hParams(r4, r6, r10) .
-	eq (sign(r9) = sign(ca, owner(r9), pubKey(r9))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = true .
+	eq (chM(r2,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (skexM(r1,r3,r2,r10,r11) \in nw(s)) = true .
+	eq (shM(r1,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq (ckexM(r2,r2,r3,pubKeyEx(r12,r2)) \in nw(s)) = true .
+	eq decH(r11,pubKey(r9)) = hParams(r4,r6,r10) .
+	eq sign(r9) = sign(ca,owner(r9),pubKey(r9)) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -95,17 +63,18 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = true .
-	eq (chM(r2, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (skexM(r1, r3, r2, r10, r11) \in nw(s)) = true .
-	eq (shM(r1, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq (ckexM(r2, r2, r3, pubKeyEx(r12, r2)) \in nw(s)) = true .
-	eq (decH(r11, pubKey(r9)) = hParams(r4, r6, r10)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = true .
+	eq (chM(r2,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (skexM(r1,r3,r2,r10,r11) \in nw(s)) = true .
+	eq (shM(r1,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq (ckexM(r2,r2,r3,pubKeyEx(r12,r2)) \in nw(s)) = true .
+	eq decH(r11,pubKey(r9)) = hParams(r4,r6,r10) .
+	eq (sign(r9) = sign(ca,owner(r9),pubKey(r9))) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -126,16 +95,17 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = true .
-	eq (chM(r2, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (skexM(r1, r3, r2, r10, r11) \in nw(s)) = true .
-	eq (shM(r1, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq (ckexM(r2, r2, r3, pubKeyEx(r12, r2)) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = true .
+	eq (chM(r2,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (skexM(r1,r3,r2,r10,r11) \in nw(s)) = true .
+	eq (shM(r1,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq (ckexM(r2,r2,r3,pubKeyEx(r12,r2)) \in nw(s)) = true .
+	eq (decH(r11,pubKey(r9)) = hParams(r4,r6,r10)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -156,15 +126,16 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = true .
-	eq (chM(r2, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (skexM(r1, r3, r2, r10, r11) \in nw(s)) = true .
-	eq (shM(r1, r3, r2, r6, r7, r8) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = true .
+	eq (chM(r2,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (skexM(r1,r3,r2,r10,r11) \in nw(s)) = true .
+	eq (shM(r1,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq (ckexM(r2,r2,r3,pubKeyEx(r12,r2)) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -185,14 +156,15 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = true .
-	eq (chM(r2, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (skexM(r1, r3, r2, r10, r11) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = true .
+	eq (chM(r2,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (skexM(r1,r3,r2,r10,r11) \in nw(s)) = true .
+	eq (shM(r1,r3,r2,r6,r7,r8) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -213,13 +185,14 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = true .
-	eq (chM(r2, r2, r3, r4, r5) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = true .
+	eq (chM(r2,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (skexM(r1,r3,r2,r10,r11) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -240,12 +213,13 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = true .
-	eq (scertM(r1, r3, r2, r9) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = true .
+	eq (chM(r2,r2,r3,r4,r5) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -266,11 +240,37 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> Cert .
 	op s : -> Sys .
-	eq decAsym?(r11, pubKey(r9)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r11,pubKey(r9)) = true .
+	eq (scertM(r1,r3,r2,r9) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r12 : -> PriKeyEx .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> Cert .
+	op s : -> Sys .
+	eq decAsym?(r11,pubKey(r9)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -287,11 +287,11 @@ open INV .
 	op r7 : -> Rand .
 	op r8 : -> Cipher .
 	op s : -> Sys .
-	eq ss(s, r2, r3, r5) = none .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish2(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq ss(s,r2,r3,r5) = none .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish2(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -308,16 +308,16 @@ open INV .
 	op r7 : -> Rand .
 	op r8 : -> Cipher .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (sf2M(r1, r3, r2, r8) \in nw(s)) = true .
-	eq (ch2M(r2, r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq decSym?(r8, prf-skey(ms(ss(s, r2, r3, r5)), r4, r7)) = true .
-	eq (sh2M(r1, r3, r2, r7, r5, cs(ss(s, r2, r3, r5))) \in nw(s)) = true .
-	eq decFin(r8, prf-skey(ms(ss(s, r2, r3, r5)), r4, r7)) = prf-sfin2(ms(ss(s, r2, r3, r5)), hAbbrHs(r2, r3, r4, r5, r6, r7, cs(ss(s, r2, r3, r5)))) .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish2(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (sf2M(r1,r3,r2,r8) \in nw(s)) = true .
+	eq (ch2M(r2,r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq decSym?(r8,prf-skey(ms(ss(s,r2,r3,r5)),r4,r7)) = true .
+	eq (sh2M(r1,r3,r2,r7,r5,cs(ss(s,r2,r3,r5))) \in nw(s)) = true .
+	eq decFin(r8,prf-skey(ms(ss(s,r2,r3,r5)),r4,r7)) = prf-sfin2(ms(ss(s,r2,r3,r5)),hAbbrHs(r2,r3,r4,r5,r6,r7,cs(ss(s,r2,r3,r5)))) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish2(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -334,16 +334,16 @@ open INV .
 	op r7 : -> Rand .
 	op r8 : -> Cipher .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (sf2M(r1, r3, r2, r8) \in nw(s)) = true .
-	eq (ch2M(r2, r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq decSym?(r8, prf-skey(ms(ss(s, r2, r3, r5)), r4, r7)) = true .
-	eq (sh2M(r1, r3, r2, r7, r5, cs(ss(s, r2, r3, r5))) \in nw(s)) = true .
-	eq (decFin(r8, prf-skey(ms(ss(s, r2, r3, r5)), r4, r7)) = prf-sfin2(ms(ss(s, r2, r3, r5)), hAbbrHs(r2, r3, r4, r5, r6, r7, cs(ss(s, r2, r3, r5))))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish2(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (sf2M(r1,r3,r2,r8) \in nw(s)) = true .
+	eq (ch2M(r2,r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq decSym?(r8,prf-skey(ms(ss(s,r2,r3,r5)),r4,r7)) = true .
+	eq (sh2M(r1,r3,r2,r7,r5,cs(ss(s,r2,r3,r5))) \in nw(s)) = true .
+	eq (decFin(r8,prf-skey(ms(ss(s,r2,r3,r5)),r4,r7)) = prf-sfin2(ms(ss(s,r2,r3,r5)),hAbbrHs(r2,r3,r4,r5,r6,r7,cs(ss(s,r2,r3,r5))))) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish2(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -360,15 +360,15 @@ open INV .
 	op r7 : -> Rand .
 	op r8 : -> Cipher .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (sf2M(r1, r3, r2, r8) \in nw(s)) = true .
-	eq (ch2M(r2, r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq decSym?(r8, prf-skey(ms(ss(s, r2, r3, r5)), r4, r7)) = true .
-	eq (sh2M(r1, r3, r2, r7, r5, cs(ss(s, r2, r3, r5))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish2(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (sf2M(r1,r3,r2,r8) \in nw(s)) = true .
+	eq (ch2M(r2,r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq decSym?(r8,prf-skey(ms(ss(s,r2,r3,r5)),r4,r7)) = true .
+	eq (sh2M(r1,r3,r2,r7,r5,cs(ss(s,r2,r3,r5))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish2(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -385,14 +385,14 @@ open INV .
 	op r7 : -> Rand .
 	op r8 : -> Cipher .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (sf2M(r1, r3, r2, r8) \in nw(s)) = true .
-	eq (ch2M(r2, r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq decSym?(r8, prf-skey(ms(ss(s, r2, r3, r5)), r4, r7)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish2(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (sf2M(r1,r3,r2,r8) \in nw(s)) = true .
+	eq (ch2M(r2,r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq decSym?(r8,prf-skey(ms(ss(s,r2,r3,r5)),r4,r7)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish2(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -409,13 +409,13 @@ open INV .
 	op r7 : -> Rand .
 	op r8 : -> Cipher .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (sf2M(r1, r3, r2, r8) \in nw(s)) = true .
-	eq (ch2M(r2, r2, r3, r4, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish2(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (sf2M(r1,r3,r2,r8) \in nw(s)) = true .
+	eq (ch2M(r2,r2,r3,r4,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish2(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -432,12 +432,12 @@ open INV .
 	op r7 : -> Rand .
 	op r8 : -> Cipher .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (sf2M(r1, r3, r2, r8) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(cfinish2(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (sf2M(r1,r3,r2,r8) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(cfinish2(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -451,10 +451,10 @@ open INV .
 	op r4 : -> CipherSuites .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(chello(s, r1, r2, r3, r4), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(chello(s,r1,r2,r3,r4),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -468,10 +468,10 @@ open INV .
 	op r4 : -> CipherSuites .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(chello(s, r1, r2, r3, r4), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(chello(s,r1,r2,r3,r4),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -485,11 +485,11 @@ open INV .
 	op r4 : -> Sid .
 	op r5 : -> CipherSuites .
 	op s : -> Sys .
-	eq ss(s, r1, r2, r4) = none .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(chello2(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq ss(s,r1,r2,r4) = none .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(chello2(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -503,12 +503,12 @@ open INV .
 	op r4 : -> Sid .
 	op r5 : -> CipherSuites .
 	op s : -> Sys .
-	eq (ss(s, r1, r2, r4) = none) = false .
+	eq (ss(s,r1,r2,r4) = none) = false .
 	eq (r3 \in ur(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(chello2(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(chello2(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -522,13 +522,13 @@ open INV .
 	op r4 : -> Sid .
 	op r5 : -> CipherSuites .
 	op s : -> Sys .
-	eq (ss(s, r1, r2, r4) = none) = false .
+	eq (ss(s,r1,r2,r4) = none) = false .
 	eq (r3 \in ur(s)) = false .
-	eq (cs(ss(s, r1, r2, r4)) \in r5) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(chello2(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (cs(ss(s,r1,r2,r4)) \in r5) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(chello2(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -542,13 +542,13 @@ open INV .
 	op r4 : -> Sid .
 	op r5 : -> CipherSuites .
 	op s : -> Sys .
-	eq (ss(s, r1, r2, r4) = none) = false .
+	eq (ss(s,r1,r2,r4) = none) = false .
 	eq (r3 \in ur(s)) = false .
-	eq (cs(ss(s, r1, r2, r4)) \in r5) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(chello2(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (cs(ss(s,r1,r2,r4)) \in r5) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(chello2(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -569,12 +569,12 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -595,19 +595,19 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq a = b .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -628,20 +628,20 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq a = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -662,21 +662,21 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq b = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -697,29 +697,30 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = true .
-	eq (chM(intruder, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, intruder, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, intruder, r7, r8, r9) \in nw(s)) = true .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,intruder,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,intruder,r7,r8,r9) \in nw(s)) = true .
 	eq priKey(pk) = r1 .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
-	red inv4(s, skexM(b1, b, a, pk, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq (pms(pk2,r1) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -740,29 +741,30 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = true .
-	eq (chM(intruder, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, intruder, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, intruder, r7, r8, r9) \in nw(s)) = true .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,intruder,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,intruder,r7,r8,r9) \in nw(s)) = true .
 	eq priKey(pk) = r1 .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq (pms(pk2,r1) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(b1,b,a,pk,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -783,28 +785,29 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = true .
-	eq (chM(intruder, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, intruder, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, intruder, r7, r8, r9) \in nw(s)) = true .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,intruder,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,intruder,r7,r8,r9) \in nw(s)) = true .
 	eq priKey(pk) = r1 .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -825,27 +828,69 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = true .
-	eq (chM(intruder, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, intruder, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, intruder, r7, r8, r9) \in nw(s)) = true .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,intruder,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,intruder,r7,r8,r9) \in nw(s)) = true .
+	eq priKey(pk) = r1 .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> PriKeyEx .
+	op r10 : -> Cert .
+	op r11 : -> PubKeyEx .
+	op r12 : -> Cipher .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq decAsym?(r12,pubKey(r10)) = true .
+	eq (r1 \in uk(s)) = false .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r3 = intruder .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,intruder,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,intruder,r7,r8,r9) \in nw(s)) = true .
 	eq (priKey(pk) = r1) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -866,26 +911,26 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = true .
-	eq (chM(intruder, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, intruder, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, intruder, r7, r8, r9) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,intruder,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,intruder,r7,r8,r9) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -906,25 +951,25 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = true .
-	eq (chM(intruder, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, intruder, r11, r12) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,intruder,r11,r12) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -945,24 +990,24 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = true .
-	eq (chM(intruder, intruder, r4, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = true .
+	eq (chM(intruder,intruder,r4,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -983,23 +1028,23 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r3 = intruder .
-	eq (scertM(r2, r4, intruder, r10) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,intruder,r10) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1020,22 +1065,22 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq sign(r10) = sign(ca, owner(r10), pubKey(r10)) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq sign(r10) = sign(ca,owner(r10),pubKey(r10)) .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq (r3 = intruder) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1056,18 +1101,18 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq decH(r12, pubKey(r10)) = hParams(r5, r7, r11) .
-	eq (sign(r10) = sign(ca, owner(r10), pubKey(r10))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq decH(r12,pubKey(r10)) = hParams(r5,r7,r11) .
+	eq (sign(r10) = sign(ca,owner(r10),pubKey(r10))) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1088,17 +1133,17 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (decH(r12, pubKey(r10)) = hParams(r5, r7, r11)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (decH(r12,pubKey(r10)) = hParams(r5,r7,r11)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1119,16 +1164,16 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = true .
-	eq (shM(r2, r4, r3, r7, r8, r9) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = true .
+	eq (shM(r2,r4,r3,r7,r8,r9) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1149,15 +1194,15 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (skexM(r2, r4, r3, r11, r12) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (skexM(r2,r4,r3,r11,r12) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1178,14 +1223,14 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = true .
-	eq (chM(r3, r3, r4, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = true .
+	eq (chM(r3,r3,r4,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1206,13 +1251,13 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = true .
+	eq decAsym?(r12,pubKey(r10)) = true .
 	eq (r1 \in uk(s)) = false .
-	eq (scertM(r2, r4, r3, r10) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq (scertM(r2,r4,r3,r10) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1233,11 +1278,11 @@ open INV .
 	op r8 : -> CipherSuite .
 	op r9 : -> Sid .
 	op s : -> Sys .
-	eq decAsym?(r12, pubKey(r10)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(ckeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(r12,pubKey(r10)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(ckeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1251,10 +1296,10 @@ open INV .
 	op r4 : -> Sign .
 	op s : -> Sys .
 	eq (r4 \in csign(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCert(s, r1, r2, r3, r4), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCert(s,r1,r2,r3,r4),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1268,10 +1313,10 @@ open INV .
 	op r4 : -> Sign .
 	op s : -> Sys .
 	eq (r4 \in csign(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCert(s, r1, r2, r3, r4), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCert(s,r1,r2,r3,r4),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1284,10 +1329,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cecfin2(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinish2a(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinish2a(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1300,10 +1345,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cecfin2(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinish2a(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinish2a(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1321,10 +1366,10 @@ open INV .
 	op r8 : -> CipherSuite .
 	op s : -> Sys .
 	eq (r7 \in cpms(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinish2b(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinish2b(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1342,10 +1387,10 @@ open INV .
 	op r8 : -> CipherSuite .
 	op s : -> Sys .
 	eq (r7 \in cpms(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinish2b(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinish2b(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1358,10 +1403,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cecfin(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinisha(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinisha(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1374,10 +1419,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cecfin(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinisha(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinisha(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1400,10 +1445,10 @@ open INV .
 	op s : -> Sys .
 	eq (r1 \in cpms(nw(s))) = true .
 	eq (r3 \in csign(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinishb(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinishb(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1426,10 +1471,10 @@ open INV .
 	op s : -> Sys .
 	eq (r1 \in cpms(nw(s))) = true .
 	eq (r3 \in csign(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinishb(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinishb(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1451,10 +1496,10 @@ open INV .
 	op r9 : -> CipherSuite .
 	op s : -> Sys .
 	eq (r1 \in cpms(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCfinishb(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCfinishb(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1467,10 +1512,10 @@ open INV .
 	op r3 : -> Rand .
 	op r4 : -> CipherSuites .
 	op s : -> Sys .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkChello(s, r1, r2, r3, r4), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkChello(s,r1,r2,r3,r4),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1484,10 +1529,10 @@ open INV .
 	op r4 : -> Sid .
 	op r5 : -> CipherSuites .
 	op s : -> Sys .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkChello2(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkChello2(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1500,10 +1545,10 @@ open INV .
 	op r3 : -> PubKeyEx .
 	op s : -> Sys .
 	eq (priKey(r3) \in uk(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1517,10 +1562,10 @@ open INV .
 	op s : -> Sys .
 	eq (priKey(r3) \in uk(s)) = false .
 	eq a = b .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1535,10 +1580,10 @@ open INV .
 	eq (priKey(r3) \in uk(s)) = false .
 	eq (a = b) = false .
 	eq a = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1554,10 +1599,10 @@ open INV .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq b = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1574,13 +1619,14 @@ open INV .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
 	eq priKey(pk) = priKey(r3) .
-	red inv4(s, skexM(b1, b, a, pk, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1597,13 +1643,37 @@ open INV .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq priKey(pk) = priKey(r3) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(b1,b,a,pk,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
 	eq (priKey(pk) = priKey(r3)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1620,12 +1690,12 @@ open INV .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1642,11 +1712,11 @@ open INV .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1663,10 +1733,10 @@ open INV .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq (owner(r3) = intruder) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkCkeyex(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkCkeyex(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1679,10 +1749,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cesfin2(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinish2a(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinish2a(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1695,10 +1765,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cesfin2(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinish2a(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinish2a(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1716,10 +1786,10 @@ open INV .
 	op r8 : -> CipherSuite .
 	op s : -> Sys .
 	eq (r7 \in cpms(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinish2b(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinish2b(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1737,10 +1807,10 @@ open INV .
 	op r8 : -> CipherSuite .
 	op s : -> Sys .
 	eq (r7 \in cpms(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinish2b(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinish2b(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1753,10 +1823,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cesfin(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinisha(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinisha(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1769,10 +1839,10 @@ open INV .
 	op r3 : -> Cipher .
 	op s : -> Sys .
 	eq (r3 \in cesfin(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinisha(s, r1, r2, r3), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinisha(s,r1,r2,r3),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1795,10 +1865,10 @@ open INV .
 	op s : -> Sys .
 	eq (r1 \in cpms(nw(s))) = true .
 	eq (r3 \in csign(nw(s))) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinishb(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinishb(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1821,10 +1891,10 @@ open INV .
 	op s : -> Sys .
 	eq (r1 \in cpms(nw(s))) = true .
 	eq (r3 \in csign(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinishb(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinishb(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1846,10 +1916,10 @@ open INV .
 	op r9 : -> CipherSuite .
 	op s : -> Sys .
 	eq (r1 \in cpms(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSfinishb(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSfinishb(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1863,10 +1933,10 @@ open INV .
 	op r4 : -> CipherSuite .
 	op r5 : -> Sid .
 	op s : -> Sys .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkShello(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkShello(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1880,10 +1950,10 @@ open INV .
 	op r4 : -> Sid .
 	op r5 : -> CipherSuite .
 	op s : -> Sys .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkShello2(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkShello2(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1898,10 +1968,10 @@ open INV .
 	op r5 : -> Rand .
 	op s : -> Sys .
 	eq (priKey(r3) \in uk(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1917,10 +1987,10 @@ open INV .
 	op s : -> Sys .
 	eq (priKey(r3) \in uk(s)) = false .
 	eq a = b .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1937,10 +2007,10 @@ open INV .
 	eq (priKey(r3) \in uk(s)) = false .
 	eq (a = b) = false .
 	eq a = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1958,10 +2028,10 @@ open INV .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq b = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -1984,11 +2054,11 @@ open INV .
 	eq b1 = intruder .
 	eq pk = r3 .
 	eq owner(r3) = intruder .
-	eq ci = encH(priKey(intruder), hParams(r4, r5, r3)) .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq ci = encH(priKey(intruder),hParams(r4,r5,r3)) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2011,13 +2081,14 @@ open INV .
 	eq b1 = intruder .
 	eq pk = r3 .
 	eq owner(r3) = intruder .
-	eq (ci = encH(priKey(intruder), hParams(r4, r5, r3))) = false .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(intruder, b, a, r3, ci) \in nw(s)) = true .
-	red inv4(s, skexM(intruder, b, a, r3, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (ci = encH(priKey(intruder),hParams(r4,r5,r3))) = false .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(intruder,b,a,r3,ci) \in nw(s)) = true .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2040,13 +2111,14 @@ open INV .
 	eq b1 = intruder .
 	eq pk = r3 .
 	eq owner(r3) = intruder .
-	eq (ci = encH(priKey(intruder), hParams(r4, r5, r3))) = false .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(intruder, b, a, r3, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (ci = encH(priKey(intruder),hParams(r4,r5,r3))) = false .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(intruder,b,a,r3,ci) \in nw(s)) = true .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(intruder,b,a,r3,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2069,12 +2141,41 @@ open INV .
 	eq b1 = intruder .
 	eq pk = r3 .
 	eq owner(r3) = intruder .
-	eq (ci = encH(priKey(intruder), hParams(r4, r5, r3))) = false .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (ci = encH(priKey(intruder),hParams(r4,r5,r3))) = false .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(intruder,b,a,r3,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq r1 = b .
+	eq b1 = intruder .
+	eq pk = r3 .
+	eq owner(r3) = intruder .
+	eq (ci = encH(priKey(intruder),hParams(r4,r5,r3))) = false .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2097,11 +2198,11 @@ open INV .
 	eq b1 = intruder .
 	eq pk = r3 .
 	eq (owner(r3) = intruder) = false .
-	eq ci = encH(priKey(intruder), hParams(r4, r5, r3)) .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq ci = encH(priKey(intruder),hParams(r4,r5,r3)) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2124,11 +2225,11 @@ open INV .
 	eq b1 = intruder .
 	eq pk = r3 .
 	eq (owner(r3) = intruder) = false .
-	eq (ci = encH(priKey(intruder), hParams(r4, r5, r3))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (ci = encH(priKey(intruder),hParams(r4,r5,r3))) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2151,13 +2252,14 @@ open INV .
 	eq b1 = intruder .
 	eq (pk = r3) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(intruder, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(intruder,b,a,pk,ci) \in nw(s)) = true .
 	eq priKey(pk) = priKey(r3) .
-	red inv4(s, skexM(intruder, b, a, pk, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2180,122 +2282,14 @@ open INV .
 	eq b1 = intruder .
 	eq (pk = r3) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(intruder, b, a, pk, ci) \in nw(s)) = true .
-	eq (priKey(pk) = priKey(r3)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq r2 = a .
-	eq r1 = b .
-	eq b1 = intruder .
-	eq (pk = r3) = false .
-	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(intruder, b, a, pk, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq r2 = a .
-	eq r1 = b .
-	eq b1 = intruder .
-	eq (pk = r3) = false .
-	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq r2 = a .
-	eq r1 = b .
-	eq b1 = intruder .
-	eq (pk = r3) = false .
-	eq (owner(r3) = intruder) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true, use inv4 as a lemma 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq r2 = a .
-	eq r1 = b .
-	eq (b1 = intruder) = false .
-	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(intruder,b,a,pk,ci) \in nw(s)) = true .
 	eq priKey(pk) = priKey(r3) .
-	red inv4(s, skexM(b1, b, a, pk, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(intruder,b,a,pk,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2315,15 +2309,16 @@ open INV .
 	eq (b = intruder) = false .
 	eq r2 = a .
 	eq r1 = b .
-	eq (b1 = intruder) = false .
+	eq b1 = intruder .
+	eq (pk = r3) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(intruder,b,a,pk,ci) \in nw(s)) = true .
 	eq (priKey(pk) = priKey(r3)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2343,14 +2338,15 @@ open INV .
 	eq (b = intruder) = false .
 	eq r2 = a .
 	eq r1 = b .
-	eq (b1 = intruder) = false .
+	eq b1 = intruder .
+	eq (pk = r3) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(intruder,b,a,pk,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2370,13 +2366,14 @@ open INV .
 	eq (b = intruder) = false .
 	eq r2 = a .
 	eq r1 = b .
-	eq (b1 = intruder) = false .
+	eq b1 = intruder .
+	eq (pk = r3) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2396,12 +2393,13 @@ open INV .
 	eq (b = intruder) = false .
 	eq r2 = a .
 	eq r1 = b .
-	eq (b1 = intruder) = false .
+	eq b1 = intruder .
+	eq (pk = r3) = false .
 	eq (owner(r3) = intruder) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2420,15 +2418,17 @@ open INV .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r2 = a .
-	eq (r1 = b) = false .
+	eq r1 = b .
+	eq (b1 = intruder) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
 	eq priKey(pk) = priKey(r3) .
-	red inv4(s, skexM(b1, b, a, pk, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2447,116 +2447,17 @@ open INV .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r2 = a .
-	eq (r1 = b) = false .
+	eq r1 = b .
+	eq (b1 = intruder) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
-	eq (priKey(pk) = priKey(r3)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq r2 = a .
-	eq (r1 = b) = false .
-	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq r2 = a .
-	eq (r1 = b) = false .
-	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq r2 = a .
-	eq (r1 = b) = false .
-	eq (owner(r3) = intruder) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
-close
-
---> true, use inv4 as a lemma 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> PubKeyEx .
-	op r4 : -> Rand .
-	op r5 : -> Rand .
-	op s : -> Sys .
-	eq (priKey(r3) \in uk(s)) = false .
-	eq (a = b) = false .
-	eq (a = intruder) = false .
-	eq (b = intruder) = false .
-	eq (r2 = a) = false .
-	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
 	eq priKey(pk) = priKey(r3) .
-	red inv4(s, skexM(b1, b, a, pk, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(b1,b,a,pk,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2574,15 +2475,253 @@ open INV .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
-	eq (r2 = a) = false .
+	eq r2 = a .
+	eq r1 = b .
+	eq (b1 = intruder) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
 	eq (priKey(pk) = priKey(r3)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq r1 = b .
+	eq (b1 = intruder) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq r1 = b .
+	eq (b1 = intruder) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq r1 = b .
+	eq (b1 = intruder) = false .
+	eq (owner(r3) = intruder) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq (r1 = b) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq priKey(pk) = priKey(r3) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq (r1 = b) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq priKey(pk) = priKey(r3) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(b1,b,a,pk,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq (r1 = b) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq (priKey(pk) = priKey(r3)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq (r1 = b) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq (r1 = b) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r2 = a .
+	eq (r1 = b) = false .
+	eq (owner(r3) = intruder) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2602,12 +2741,14 @@ open INV .
 	eq (b = intruder) = false .
 	eq (r2 = a) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq priKey(pk) = priKey(r3) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2627,11 +2768,89 @@ open INV .
 	eq (b = intruder) = false .
 	eq (r2 = a) = false .
 	eq owner(r3) = intruder .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq priKey(pk) = priKey(r3) .
+	eq (pms(pk2,priKey(r3)) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(b1,b,a,pk,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq (r2 = a) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq (priKey(pk) = priKey(r3)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq (r2 = a) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> PubKeyEx .
+	op r4 : -> Rand .
+	op r5 : -> Rand .
+	op s : -> Sys .
+	eq (priKey(r3) \in uk(s)) = false .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq (r2 = a) = false .
+	eq owner(r3) = intruder .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2651,10 +2870,10 @@ open INV .
 	eq (b = intruder) = false .
 	eq (r2 = a) = false .
 	eq (owner(r3) = intruder) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(fkSkeyex(s, r1, r2, r3, r4, r5), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(fkSkeyex(s,r1,r2,r3,r4,r5),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2671,12 +2890,12 @@ open INV .
 	op r7 : -> CipherSuite .
 	op r8 : -> Sid .
 	op s : -> Sys .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(scert(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(scert(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2693,12 +2912,12 @@ open INV .
 	op r7 : -> CipherSuite .
 	op r8 : -> Sid .
 	op s : -> Sys .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(scert(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(scert(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2715,42 +2934,11 @@ open INV .
 	op r7 : -> CipherSuite .
 	op r8 : -> Sid .
 	op s : -> Sys .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(scert(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(scert(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
-open INV .
-	op a : -> Prin .
-	op b : -> Prin .
-	op b1 : -> Prin .
-	op ci : -> Cipher .
-	op pk : -> PubKeyEx .
-	op pk2 : -> PubKeyEx .
-	op r1 : -> Prin .
-	op r10 : -> PubKeyEx .
-	op r11 : -> Cipher .
-	op r2 : -> Prin .
-	op r3 : -> Prin .
-	op r4 : -> Rand .
-	op r5 : -> CipherSuites .
-	op r6 : -> Rand .
-	op r7 : -> CipherSuite .
-	op r8 : -> Sid .
-	op r9 : -> PriKeyEx .
-	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = true .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
-	eq (scertM(r3, r3, r2, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
-	eq (skexM(r3, r3, r2, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
-	eq decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r2, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10)) .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
-close
-
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2770,18 +2958,18 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = true .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
-	eq (scertM(r3, r3, r2, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
-	eq (skexM(r3, r3, r2, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = true .
-	eq (decFin(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = prf-cfin(prf-ms(pms(r10, r9), r4, r6), hFullHs(r2, r3, r4, r5, r6, r7, r8, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3))), pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3))), r10))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = true .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq decSym?(r11,prf-ckey(prf-ms(pms(r10,r9),r4,r6),r4,r6)) = true .
+	eq (scertM(r3,r3,r2,cert(r3,pubKey(r3),sign(ca,r3,pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3,r3,r2,pubKeyEx(r9,r3),encH(priKey(r3),hParams(r4,r6,pubKeyEx(r9,r3)))) \in nw(s)) = true .
+	eq decFin(r11,prf-ckey(prf-ms(pms(r10,r9),r4,r6),r4,r6)) = prf-cfin(prf-ms(pms(r10,r9),r4,r6),hFullHs(r2,r3,r4,r5,r6,r7,r8,cert(r3,pubKey(r3),sign(ca,r3,pubKey(r3))),pubKeyEx(r9,r3),encH(priKey(r3),hParams(r4,r6,pubKeyEx(r9,r3))),r10)) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2801,17 +2989,18 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = true .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
-	eq (scertM(r3, r3, r2, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = true .
-	eq (skexM(r3, r3, r2, pubKeyEx(r9, r3), encH(priKey(r3), hParams(r4, r6, pubKeyEx(r9, r3)))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = true .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq decSym?(r11,prf-ckey(prf-ms(pms(r10,r9),r4,r6),r4,r6)) = true .
+	eq (scertM(r3,r3,r2,cert(r3,pubKey(r3),sign(ca,r3,pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3,r3,r2,pubKeyEx(r9,r3),encH(priKey(r3),hParams(r4,r6,pubKeyEx(r9,r3)))) \in nw(s)) = true .
+	eq (decFin(r11,prf-ckey(prf-ms(pms(r10,r9),r4,r6),r4,r6)) = prf-cfin(prf-ms(pms(r10,r9),r4,r6),hFullHs(r2,r3,r4,r5,r6,r7,r8,cert(r3,pubKey(r3),sign(ca,r3,pubKey(r3))),pubKeyEx(r9,r3),encH(priKey(r3),hParams(r4,r6,pubKeyEx(r9,r3))),r10))) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2831,16 +3020,17 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = true .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = true .
-	eq (scertM(r3, r3, r2, cert(r3, pubKey(r3), sign(ca, r3, pubKey(r3)))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = true .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq decSym?(r11,prf-ckey(prf-ms(pms(r10,r9),r4,r6),r4,r6)) = true .
+	eq (scertM(r3,r3,r2,cert(r3,pubKey(r3),sign(ca,r3,pubKey(r3)))) \in nw(s)) = true .
+	eq (skexM(r3,r3,r2,pubKeyEx(r9,r3),encH(priKey(r3),hParams(r4,r6,pubKeyEx(r9,r3)))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2860,15 +3050,16 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = true .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = true .
-	eq decSym?(r11, prf-ckey(prf-ms(pms(r10, r9), r4, r6), r4, r6)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = true .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq decSym?(r11,prf-ckey(prf-ms(pms(r10,r9),r4,r6),r4,r6)) = true .
+	eq (scertM(r3,r3,r2,cert(r3,pubKey(r3),sign(ca,r3,pubKey(r3)))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2888,14 +3079,15 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = true .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = true .
-	eq (shM(r3, r3, r2, r6, r7, r8) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = true .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = true .
+	eq decSym?(r11,prf-ckey(prf-ms(pms(r10,r9),r4,r6),r4,r6)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2915,13 +3107,14 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = true .
-	eq (chM(r1, r2, r3, r4, r5) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = true .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = true .
+	eq (shM(r3,r3,r2,r6,r7,r8) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2941,12 +3134,13 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = true .
-	eq (ckexM(r1, r2, r3, r10) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = true .
+	eq (chM(r1,r2,r3,r4,r5) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2966,11 +3160,36 @@ open INV .
 	op r8 : -> Sid .
 	op r9 : -> PriKeyEx .
 	op s : -> Sys .
-	eq (cfM(r1, r2, r3, r11) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish(s, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11), a, b, b1, pk, pk2, ci) .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = true .
+	eq (ckexM(r1,r2,r3,r10) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> Prin .
+	op r10 : -> PubKeyEx .
+	op r11 : -> Cipher .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Rand .
+	op r5 : -> CipherSuites .
+	op r6 : -> Rand .
+	op r7 : -> CipherSuite .
+	op r8 : -> Sid .
+	op r9 : -> PriKeyEx .
+	op s : -> Sys .
+	eq (cfM(r1,r2,r3,r11) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish(s,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -2986,11 +3205,11 @@ open INV .
 	op r6 : -> CipherSuites .
 	op r7 : -> Rand .
 	op s : -> Sys .
-	eq ss(s, r2, r3, r5) = none .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq ss(s,r2,r3,r5) = none .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3006,13 +3225,13 @@ open INV .
 	op r6 : -> CipherSuites .
 	op r7 : -> Rand .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (ch2M(r1, r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (sh2M(r3, r3, r2, r7, r5, cs(ss(s, r2, r3, r5))) \in nw(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (ch2M(r1,r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (sh2M(r3,r3,r2,r7,r5,cs(ss(s,r2,r3,r5))) \in nw(s)) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3028,13 +3247,13 @@ open INV .
 	op r6 : -> CipherSuites .
 	op r7 : -> Rand .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (ch2M(r1, r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (sh2M(r3, r3, r2, r7, r5, cs(ss(s, r2, r3, r5))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (ch2M(r1,r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (sh2M(r3,r3,r2,r7,r5,cs(ss(s,r2,r3,r5))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3050,12 +3269,12 @@ open INV .
 	op r6 : -> CipherSuites .
 	op r7 : -> Rand .
 	op s : -> Sys .
-	eq (ss(s, r2, r3, r5) = none) = false .
-	eq (ch2M(r1, r2, r3, r4, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(sfinish2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq (ss(s,r2,r3,r5) = none) = false .
+	eq (ch2M(r1,r2,r3,r4,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(sfinish2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3074,10 +3293,10 @@ open INV .
 	op s : -> Sys .
 	eq (r2 \in r8) = true .
 	eq (r1 \in ur(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3097,10 +3316,10 @@ open INV .
 	eq (r2 \in r8) = true .
 	eq (r1 \in ur(s)) = false .
 	eq (r3 \in ui(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3120,11 +3339,11 @@ open INV .
 	eq (r2 \in r8) = true .
 	eq (r1 \in ur(s)) = false .
 	eq (r3 \in ui(s)) = false .
-	eq (chM(r4, r5, r6, r7, r8) \in nw(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (chM(r4,r5,r6,r7,r8) \in nw(s)) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3144,11 +3363,11 @@ open INV .
 	eq (r2 \in r8) = true .
 	eq (r1 \in ur(s)) = false .
 	eq (r3 \in ui(s)) = false .
-	eq (chM(r4, r5, r6, r7, r8) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	eq (chM(r4,r5,r6,r7,r8) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3166,10 +3385,10 @@ open INV .
 	op r8 : -> CipherSuites .
 	op s : -> Sys .
 	eq (r2 \in r8) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello(s, r1, r2, r3, r4, r5, r6, r7, r8), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello(s,r1,r2,r3,r4,r5,r6,r7,r8),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3185,11 +3404,11 @@ open INV .
 	op r6 : -> Sid .
 	op r7 : -> CipherSuites .
 	op s : -> Sys .
-	eq ss(s, r3, r4, r6) = none .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq ss(s,r3,r4,r6) = none .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3205,12 +3424,12 @@ open INV .
 	op r6 : -> Sid .
 	op r7 : -> CipherSuites .
 	op s : -> Sys .
-	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (ss(s,r3,r4,r6) = none) = false .
 	eq (r1 \in ur(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3226,14 +3445,14 @@ open INV .
 	op r6 : -> Sid .
 	op r7 : -> CipherSuites .
 	op s : -> Sys .
-	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (ss(s,r3,r4,r6) = none) = false .
 	eq (r1 \in ur(s)) = false .
-	eq (cs(ss(s, r3, r4, r6)) \in r7) = true .
-	eq (ch2M(r2, r3, r4, r5, r6, r7) \in nw(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq (cs(ss(s,r3,r4,r6)) \in r7) = true .
+	eq (ch2M(r2,r3,r4,r5,r6,r7) \in nw(s)) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3249,14 +3468,14 @@ open INV .
 	op r6 : -> Sid .
 	op r7 : -> CipherSuites .
 	op s : -> Sys .
-	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (ss(s,r3,r4,r6) = none) = false .
 	eq (r1 \in ur(s)) = false .
-	eq (cs(ss(s, r3, r4, r6)) \in r7) = true .
-	eq (ch2M(r2, r3, r4, r5, r6, r7) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq (cs(ss(s,r3,r4,r6)) \in r7) = true .
+	eq (ch2M(r2,r3,r4,r5,r6,r7) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3272,13 +3491,13 @@ open INV .
 	op r6 : -> Sid .
 	op r7 : -> CipherSuites .
 	op s : -> Sys .
-	eq (ss(s, r3, r4, r6) = none) = false .
+	eq (ss(s,r3,r4,r6) = none) = false .
 	eq (r1 \in ur(s)) = false .
-	eq (cs(ss(s, r3, r4, r6)) \in r7) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(shello2(s, r1, r2, r3, r4, r5, r6, r7), a, b, b1, pk, pk2, ci) .
+	eq (cs(ss(s,r3,r4,r6)) \in r7) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(shello2(s,r1,r2,r3,r4,r5,r6,r7),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3297,10 +3516,10 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3319,14 +3538,14 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq a = b .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3345,15 +3564,15 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq a = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3372,16 +3591,16 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq b = intruder .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true, use inv4 as a lemma 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3400,23 +3619,24 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r4 = intruder .
-	eq (chM(r2, r3, intruder, r5, r6) \in nw(s)) = true .
-	eq (shM(intruder, intruder, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(intruder, intruder, r3, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = true .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = true .
+	eq (shM(intruder,intruder,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(intruder,intruder,r3,cert(intruder,pubKey(intruder),sign(ca,intruder,pubKey(intruder)))) \in nw(s)) = true .
 	eq priKey(pk) = r1 .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = true .
-	red inv4(s, skexM(b1, b, a, pk, ci)) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq (pms(pk2,r1) \in cpms(nw(s))) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv4 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3435,23 +3655,24 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r4 = intruder .
-	eq (chM(r2, r3, intruder, r5, r6) \in nw(s)) = true .
-	eq (shM(intruder, intruder, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(intruder, intruder, r3, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = true .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = true .
+	eq (shM(intruder,intruder,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(intruder,intruder,r3,cert(intruder,pubKey(intruder),sign(ca,intruder,pubKey(intruder)))) \in nw(s)) = true .
 	eq priKey(pk) = r1 .
-	eq decAsym?(ci, pubKey(b)) = true .
-	eq (skexM(b1, b, a, pk, ci) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = true .
+	eq (pms(pk2,r1) \in cpms(nw(s))) = false .
+	red inv4(s,skexM(b1,b,a,pk,ci)) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3470,22 +3691,23 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r4 = intruder .
-	eq (chM(r2, r3, intruder, r5, r6) \in nw(s)) = true .
-	eq (shM(intruder, intruder, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(intruder, intruder, r3, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = true .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = true .
+	eq (shM(intruder,intruder,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(intruder,intruder,r3,cert(intruder,pubKey(intruder),sign(ca,intruder,pubKey(intruder)))) \in nw(s)) = true .
 	eq priKey(pk) = r1 .
-	eq decAsym?(ci, pubKey(b)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq decAsym?(ci,pubKey(b)) = true .
+	eq (skexM(b1,b,a,pk,ci) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3504,21 +3726,55 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r4 = intruder .
-	eq (chM(r2, r3, intruder, r5, r6) \in nw(s)) = true .
-	eq (shM(intruder, intruder, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(intruder, intruder, r3, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = true .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = true .
+	eq (shM(intruder,intruder,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(intruder,intruder,r3,cert(intruder,pubKey(intruder),sign(ca,intruder,pubKey(intruder)))) \in nw(s)) = true .
+	eq priKey(pk) = r1 .
+	eq decAsym?(ci,pubKey(b)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> PriKeyEx .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq (r1 \in uk(s)) = false .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq r4 = intruder .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = true .
+	eq (shM(intruder,intruder,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(intruder,intruder,r3,cert(intruder,pubKey(intruder),sign(ca,intruder,pubKey(intruder)))) \in nw(s)) = true .
 	eq (priKey(pk) = r1) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3537,20 +3793,20 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r4 = intruder .
-	eq (chM(r2, r3, intruder, r5, r6) \in nw(s)) = true .
-	eq (shM(intruder, intruder, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(intruder, intruder, r3, cert(intruder, pubKey(intruder), sign(ca, intruder, pubKey(intruder)))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = true .
+	eq (shM(intruder,intruder,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(intruder,intruder,r3,cert(intruder,pubKey(intruder),sign(ca,intruder,pubKey(intruder)))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3569,19 +3825,19 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r4 = intruder .
-	eq (chM(r2, r3, intruder, r5, r6) \in nw(s)) = true .
-	eq (shM(intruder, intruder, r3, r7, r8, r9) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = true .
+	eq (shM(intruder,intruder,r3,r7,r8,r9) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3600,18 +3856,18 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq r4 = intruder .
-	eq (chM(r2, r3, intruder, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r3,intruder,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3630,19 +3886,19 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq (r4 = intruder) = false .
 	eq a = r3 .
 	eq b = r3 .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3661,9 +3917,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3671,13 +3927,13 @@ open INV .
 	eq a = r3 .
 	eq (b = r3) = false .
 	eq r3 = intruder .
-	eq (chM(r2, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, intruder, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, intruder, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,intruder,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,intruder,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3696,9 +3952,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3706,13 +3962,13 @@ open INV .
 	eq a = r3 .
 	eq (b = r3) = false .
 	eq r3 = intruder .
-	eq (chM(r2, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, intruder, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, intruder, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,intruder,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,intruder,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3731,9 +3987,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3741,12 +3997,12 @@ open INV .
 	eq a = r3 .
 	eq (b = r3) = false .
 	eq r3 = intruder .
-	eq (chM(r2, intruder, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, intruder, r7, r8, r9) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,intruder,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,intruder,r7,r8,r9) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3765,9 +4021,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3775,11 +4031,11 @@ open INV .
 	eq a = r3 .
 	eq (b = r3) = false .
 	eq r3 = intruder .
-	eq (chM(r2, intruder, r4, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,intruder,r4,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3798,9 +4054,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3810,13 +4066,13 @@ open INV .
 	eq (r3 = intruder) = false .
 	eq b = r4 .
 	eq r3 = r4 .
-	eq (chM(r2, r4, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r4, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r4, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r4,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r4,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r4,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3835,9 +4091,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3847,13 +4103,13 @@ open INV .
 	eq (r3 = intruder) = false .
 	eq b = r4 .
 	eq r3 = r4 .
-	eq (chM(r2, r4, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r4, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r4, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r4,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r4,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r4,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3872,9 +4128,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3884,12 +4140,12 @@ open INV .
 	eq (r3 = intruder) = false .
 	eq b = r4 .
 	eq r3 = r4 .
-	eq (chM(r2, r4, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r4, r7, r8, r9) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r4,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r4,r7,r8,r9) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3908,9 +4164,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3920,11 +4176,11 @@ open INV .
 	eq (r3 = intruder) = false .
 	eq b = r4 .
 	eq r3 = r4 .
-	eq (chM(r2, r4, r4, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r4,r4,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true, use inv5 as a lemma 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3943,9 +4199,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3956,13 +4212,14 @@ open INV .
 	eq b = r4 .
 	eq (r3 = r4) = false .
 	eq b1 = r4 .
-	eq ci = encH(priKey(r4), hParams(r5, r7, pubKeyEx(r1, r4))) .
-	eq pk = pubKeyEx(r1, r4) .
-	eq (pms(pk2, r1) \in cpms(nw(s))) = true .
-	red inv5(s, pk2, r1) implies inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq ci = encH(priKey(r4),hParams(r5,r7,pubKeyEx(r1,r4))) .
+	eq pk = pubKeyEx(r1,r4) .
+	eq (pms(pk2,r1) \in cpms(nw(s))) = true .
+	eq (skexM(r4,r4,r3,pubKeyEx(r1,r4),encH(priKey(r4),hParams(r5,r7,pubKeyEx(r1,r4)))) \in nw(s)) = true .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true, use inv5 as a lemma
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -3981,9 +4238,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -3994,13 +4251,14 @@ open INV .
 	eq b = r4 .
 	eq (r3 = r4) = false .
 	eq b1 = r4 .
-	eq ci = encH(priKey(r4), hParams(r5, r7, pubKeyEx(r1, r4))) .
-	eq pk = pubKeyEx(r1, r4) .
-	eq (pms(pk2, r1) \in cpms(nw(s))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq ci = encH(priKey(r4),hParams(r5,r7,pubKeyEx(r1,r4))) .
+	eq pk = pubKeyEx(r1,r4) .
+	eq (pms(pk2,r1) \in cpms(nw(s))) = true .
+	eq (skexM(r4,r4,r3,pubKeyEx(r1,r4),encH(priKey(r4),hParams(r5,r7,pubKeyEx(r1,r4)))) \in nw(s)) = false .
+	red inv5(s,pk2,r1) implies inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4019,9 +4277,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -4032,12 +4290,13 @@ open INV .
 	eq b = r4 .
 	eq (r3 = r4) = false .
 	eq b1 = r4 .
-	eq ci = encH(priKey(r4), hParams(r5, r7, pubKeyEx(r1, r4))) .
-	eq (pk = pubKeyEx(r1, r4)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq ci = encH(priKey(r4),hParams(r5,r7,pubKeyEx(r1,r4))) .
+	eq pk = pubKeyEx(r1,r4) .
+	eq (pms(pk2,r1) \in cpms(nw(s))) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4056,9 +4315,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -4069,11 +4328,12 @@ open INV .
 	eq b = r4 .
 	eq (r3 = r4) = false .
 	eq b1 = r4 .
-	eq (ci = encH(priKey(r4), hParams(r5, r7, pubKeyEx(r1, r4)))) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq ci = encH(priKey(r4),hParams(r5,r7,pubKeyEx(r1,r4))) .
+	eq (pk = pubKeyEx(r1,r4)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4092,9 +4352,45 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
+	eq (a = b) = false .
+	eq (a = intruder) = false .
+	eq (b = intruder) = false .
+	eq (r4 = intruder) = false .
+	eq a = r3 .
+	eq (b = r3) = false .
+	eq (r3 = intruder) = false .
+	eq b = r4 .
+	eq (r3 = r4) = false .
+	eq b1 = r4 .
+	eq (ci = encH(priKey(r4),hParams(r5,r7,pubKeyEx(r1,r4)))) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
+close
+
+--> true
+open INV .
+	op a : -> Prin .
+	op b : -> Prin .
+	op b1 : -> Prin .
+	op ci : -> Cipher .
+	op pk : -> PubKeyEx .
+	op pk2 : -> PubKeyEx .
+	op r1 : -> PriKeyEx .
+	op r2 : -> Prin .
+	op r3 : -> Prin .
+	op r4 : -> Prin .
+	op r5 : -> Rand .
+	op r6 : -> CipherSuites .
+	op r7 : -> Rand .
+	op r8 : -> CipherSuite .
+	op r9 : -> Sid .
+	op s : -> Sys .
+	eq (r1 \in uk(s)) = false .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -4105,10 +4401,10 @@ open INV .
 	eq b = r4 .
 	eq (r3 = r4) = false .
 	eq (b1 = r4) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4127,9 +4423,9 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
@@ -4138,10 +4434,10 @@ open INV .
 	eq (b = r3) = false .
 	eq (r3 = intruder) = false .
 	eq (b = r4) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4160,18 +4456,18 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = true .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = true .
 	eq (a = b) = false .
 	eq (a = intruder) = false .
 	eq (b = intruder) = false .
 	eq (r4 = intruder) = false .
 	eq (a = r3) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4190,13 +4486,13 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = true .
-	eq (scertM(r4, r4, r3, cert(r4, pubKey(r4), sign(ca, r4, pubKey(r4)))) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = true .
+	eq (scertM(r4,r4,r3,cert(r4,pubKey(r4),sign(ca,r4,pubKey(r4)))) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4215,12 +4511,12 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = true .
-	eq (shM(r4, r4, r3, r7, r8, r9) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = true .
+	eq (shM(r4,r4,r3,r7,r8,r9) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> true 
+--> true
 open INV .
 	op a : -> Prin .
 	op b : -> Prin .
@@ -4239,8 +4535,8 @@ open INV .
 	op r9 : -> Sid .
 	op s : -> Sys .
 	eq (r1 \in uk(s)) = false .
-	eq (chM(r2, r3, r4, r5, r6) \in nw(s)) = false .
-	red inv8(s, a, b, b1, pk, pk2, ci) implies inv8(skeyex(s, r1, r2, r3, r4, r5, r6, r7, r8, r9), a, b, b1, pk, pk2, ci) .
+	eq (chM(r2,r3,r4,r5,r6) \in nw(s)) = false .
+	red inv8(s,a,b,b1,pk,pk2,ci) implies inv8(skeyex(s,r1,r2,r3,r4,r5,r6,r7,r8,r9),a,b,b1,pk,pk2,ci) .
 close
 
---> Time taken is 3796ms
+--> Time taken is 4397ms

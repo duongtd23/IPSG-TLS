@@ -1,6 +1,6 @@
-load tls12-v16.cafe .
-load invariants.cafe .
-load proof-scripts/annotated-proofscores/inv8.cafe .
+load TLS/tls12.cafe .
+load TLS/invariants.cafe .
+load TLS/proof-scripts/annotated-proofscores/inv8.cafe .
 
 -- set-cores 4 .
 
@@ -8,9 +8,9 @@ load proof-scripts/annotated-proofscores/inv8.cafe .
 :proven(inv5(S:Sys,PK:PubKeyEx,K:PriKeyEx))
 :infer-proof inv8 .
 
-set-output proof-scripts/gen8.cafe .
+set-output TLS/proof-scripts/gen8.cafe .
 :save-proof .
 
 eof
 
-load proof-scripts/inputs/input8.cafe .
+load TLS/proof-scripts/inputs/input8.cafe .

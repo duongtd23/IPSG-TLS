@@ -1,14 +1,14 @@
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
 	op r : -> Rand .
 	op s : -> Sys .
-	red inv12(init, p, q, r, e2) .
+	red inv12(init,p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -19,10 +19,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm11(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm11(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -33,10 +33,10 @@ open INV .
 	op r3 : -> Cipher1 .
 	op s : -> Sys .
 	eq (r3 \in cenc1(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm11(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm11(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -47,10 +47,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm12(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm12(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -61,10 +61,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm12(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm12(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -76,10 +76,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = true .
 	eq p = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(fkm21(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm21(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -92,10 +92,10 @@ open INV .
 	eq (r3 \in cenc2(nw(s))) = true .
 	eq (p = intruder) = false .
 	eq e2 = r3 .
-	red inv12(s, p, q, r, e2) implies inv12(fkm21(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm21(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -108,10 +108,10 @@ open INV .
 	eq (r3 \in cenc2(nw(s))) = true .
 	eq (p = intruder) = false .
 	eq (e2 = r3) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm21(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm21(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -122,10 +122,10 @@ open INV .
 	op r3 : -> Cipher2 .
 	op s : -> Sys .
 	eq (r3 \in cenc2(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm21(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm21(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -139,10 +139,10 @@ open INV .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = true .
 	eq p = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -161,11 +161,11 @@ open INV .
 	eq r2 = p .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq e2 = enc2(p, r3, r4, intruder) .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq e2 = enc2(p,r3,r4,intruder) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -184,11 +184,11 @@ open INV .
 	eq r2 = p .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq (e2 = enc2(p, r3, r4, intruder)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (e2 = enc2(p,r3,r4,intruder)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -207,10 +207,10 @@ open INV .
 	eq r2 = p .
 	eq principal(e2) = intruder .
 	eq (key(e2) = p) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -228,10 +228,10 @@ open INV .
 	eq r1 = intruder .
 	eq r2 = p .
 	eq (principal(e2) = intruder) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -250,12 +250,12 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -274,13 +274,13 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -299,15 +299,15 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = true .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = true .
 	eq r2 = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -326,16 +326,16 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = true .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, intruder) .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq e2 = enc2(r2,r3,r4,intruder) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -354,16 +354,16 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = true .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, r3, r4, intruder)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (e2 = enc2(r2,r3,r4,intruder)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -382,14 +382,14 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -408,11 +408,11 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq (nonce1(e2) = n(p, intruder, r)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (nonce1(e2) = n(p,intruder,r)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -431,10 +431,10 @@ open INV .
 	eq (r2 = p) = false .
 	eq principal(e2) = intruder .
 	eq (key(e2) = p) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -452,10 +452,10 @@ open INV .
 	eq r1 = intruder .
 	eq (r2 = p) = false .
 	eq (principal(e2) = intruder) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -473,12 +473,12 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -496,13 +496,13 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -520,15 +520,15 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = true .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = true .
 	eq r2 = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -546,16 +546,16 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = true .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -573,16 +573,16 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = true .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, r3, r4, r1)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (e2 = enc2(r2,r3,r4,r1)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -600,14 +600,14 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq nonce1(e2) = n(p, intruder, r) .
+	eq nonce1(e2) = n(p,intruder,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(intruder, intruder, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, intruder, enc1(intruder, n(p, intruder, r), p)) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (m2(intruder,intruder,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,intruder,enc1(intruder,n(p,intruder,r),p)) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -625,11 +625,11 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq key(e2) = p .
-	eq (nonce1(e2) = n(p, intruder, r)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (nonce1(e2) = n(p,intruder,r)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -647,10 +647,10 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq principal(e2) = intruder .
 	eq (key(e2) = p) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -667,10 +667,10 @@ open INV .
 	eq q = intruder .
 	eq (r1 = intruder) = false .
 	eq (principal(e2) = intruder) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -687,12 +687,12 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -709,13 +709,13 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (m2(q,q,p,e2) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -732,15 +732,15 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq r2 = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -757,19 +757,19 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
 	eq p = r2 .
 	eq q = r1 .
 	eq r1 = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true, use inv3 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -786,21 +786,23 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
 	eq p = r2 .
 	eq q = r1 .
 	eq (r1 = intruder) = false .
-	eq r3 = n(r2, r1, r) .
-	eq (n(r2, r1, r) \in cnonce(nw(s))) = true .
-	red inv3(s, r3) implies inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq r3 = n(r2,r1,r) .
+	eq (n(r2,r1,r) \in cnonce(nw(s))) = true .
+	eq (m1(r2,r2,r1,enc1(r1,n(r2,r1,r),r2)) \in nw(s)) = true .
+	eq (enc2(r2,n(r2,r1,r),r4,r1) \in cenc2(nw(s))) = true .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -817,21 +819,24 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
 	eq p = r2 .
 	eq q = r1 .
 	eq (r1 = intruder) = false .
-	eq r3 = n(r2, r1, r) .
-	eq (n(r2, r1, r) \in cnonce(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq r3 = n(r2,r1,r) .
+	eq (n(r2,r1,r) \in cnonce(nw(s))) = true .
+	eq (m1(r2,r2,r1,enc1(r1,n(r2,r1,r),r2)) \in nw(s)) = true .
+	eq (enc2(r2,n(r2,r1,r),r4,r1) \in cenc2(nw(s))) = false .
+	eq (m2(r1,r1,r2,enc2(r2,n(r2,r1,r),r4,r1)) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true, use inv3 as a lemma
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -848,20 +853,24 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
 	eq p = r2 .
 	eq q = r1 .
 	eq (r1 = intruder) = false .
-	eq (r3 = n(r2, r1, r)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq r3 = n(r2,r1,r) .
+	eq (n(r2,r1,r) \in cnonce(nw(s))) = true .
+	eq (m1(r2,r2,r1,enc1(r1,n(r2,r1,r),r2)) \in nw(s)) = true .
+	eq (enc2(r2,n(r2,r1,r),r4,r1) \in cenc2(nw(s))) = false .
+	eq (m2(r1,r1,r2,enc2(r2,n(r2,r1,r),r4,r1)) \in nw(s)) = false .
+	red inv3(s,r3) implies inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -878,18 +887,111 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq p = r2 .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq r3 = n(r2,r1,r) .
+	eq (n(r2,r1,r) \in cnonce(nw(s))) = true .
+	eq (m1(r2,r2,r1,enc1(r1,n(r2,r1,r),r2)) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (p = intruder) = false .
+	eq (q = intruder) = false .
+	eq key(e2) = p .
+	eq principal(e2) = q .
+	eq nonce1(e2) = n(p,q,r) .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq p = r2 .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq r3 = n(r2,r1,r) .
+	eq (n(r2,r1,r) \in cnonce(nw(s))) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (p = intruder) = false .
+	eq (q = intruder) = false .
+	eq key(e2) = p .
+	eq principal(e2) = q .
+	eq nonce1(e2) = n(p,q,r) .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
+	eq p = r2 .
+	eq q = r1 .
+	eq (r1 = intruder) = false .
+	eq (r3 = n(r2,r1,r)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Nonce .
+	op r4 : -> Nonce .
+	op s : -> Sys .
+	eq (r3 \in cnonce(nw(s))) = true .
+	eq (r4 \in cnonce(nw(s))) = true .
+	eq (p = intruder) = false .
+	eq (q = intruder) = false .
+	eq key(e2) = p .
+	eq principal(e2) = q .
+	eq nonce1(e2) = n(p,q,r) .
+	eq (e2 \in cenc2(nw(s))) = false .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
+	eq (r2 = intruder) = false .
+	eq e2 = enc2(r2,r3,r4,r1) .
 	eq p = r2 .
 	eq (q = r1) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -906,17 +1008,17 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, r3, r4, r1) .
+	eq e2 = enc2(r2,r3,r4,r1) .
 	eq (p = r2) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -933,16 +1035,16 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, r3, r4, r1)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (e2 = enc2(r2,r3,r4,r1)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -959,14 +1061,14 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -983,11 +1085,11 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq (nonce1(e2) = n(p, q, r)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	eq (nonce1(e2) = n(p,q,r)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1004,10 +1106,10 @@ open INV .
 	eq (q = intruder) = false .
 	eq key(e2) = p .
 	eq (principal(e2) = q) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1023,10 +1125,10 @@ open INV .
 	eq (p = intruder) = false .
 	eq (q = intruder) = false .
 	eq (key(e2) = p) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1039,10 +1141,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
 	eq (r4 \in cnonce(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1054,10 +1156,10 @@ open INV .
 	op r4 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm22(s, r1, r2, r3, r4), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm22(s,r1,r2,r3,r4),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1068,10 +1170,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm31(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm31(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1082,10 +1184,10 @@ open INV .
 	op r3 : -> Cipher3 .
 	op s : -> Sys .
 	eq (r3 \in cenc3(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm31(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm31(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1096,10 +1198,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(fkm32(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm32(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1110,10 +1212,10 @@ open INV .
 	op r3 : -> Nonce .
 	op s : -> Sys .
 	eq (r3 \in cnonce(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(fkm32(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(fkm32(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1124,10 +1226,10 @@ open INV .
 	op r3 : -> Rand .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1142,10 +1244,10 @@ open INV .
 	eq q = r2 .
 	eq r = r3 .
 	eq r1 = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true, use inv19 as a lemma 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1163,11 +1265,12 @@ open INV .
 	eq key(e2) = r1 .
 	eq principal(e2) = r2 .
 	eq (e2 \in cenc2(nw(s))) = true .
-	eq nonce1(e2) = n(r1, r2, r3) .
-	red inv19(s, e2) implies inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	eq nonce1(e2) = n(r1,r2,r3) .
+	eq (m2(r2,r2,r1,e2) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1185,11 +1288,59 @@ open INV .
 	eq key(e2) = r1 .
 	eq principal(e2) = r2 .
 	eq (e2 \in cenc2(nw(s))) = true .
-	eq (nonce1(e2) = n(r1, r2, r3)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	eq nonce1(e2) = n(r1,r2,r3) .
+	eq (m2(r2,r2,r1,e2) \in nw(s)) = false .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r3),r1)) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true, use inv19 as a lemma
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Rand .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = false .
+	eq p = r1 .
+	eq q = r2 .
+	eq r = r3 .
+	eq (r1 = intruder) = false .
+	eq key(e2) = r1 .
+	eq principal(e2) = r2 .
+	eq (e2 \in cenc2(nw(s))) = true .
+	eq nonce1(e2) = n(r1,r2,r3) .
+	eq (m2(r2,r2,r1,e2) \in nw(s)) = false .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r3),r1)) \in nw(s)) = false .
+	red inv19(s,e2) implies inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
+close
+
+--> true
+open INV .
+	op e2 : -> Cipher2 .
+	op p : -> Prin .
+	op q : -> Prin .
+	op r : -> Rand .
+	op r1 : -> Prin .
+	op r2 : -> Prin .
+	op r3 : -> Rand .
+	op s : -> Sys .
+	eq (r3 \in ur(s)) = false .
+	eq p = r1 .
+	eq q = r2 .
+	eq r = r3 .
+	eq (r1 = intruder) = false .
+	eq key(e2) = r1 .
+	eq principal(e2) = r2 .
+	eq (e2 \in cenc2(nw(s))) = true .
+	eq (nonce1(e2) = n(r1,r2,r3)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
+close
+
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1207,10 +1358,10 @@ open INV .
 	eq key(e2) = r1 .
 	eq principal(e2) = r2 .
 	eq (e2 \in cenc2(nw(s))) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1227,10 +1378,10 @@ open INV .
 	eq (r1 = intruder) = false .
 	eq key(e2) = r1 .
 	eq (principal(e2) = r2) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1246,10 +1397,10 @@ open INV .
 	eq r = r3 .
 	eq (r1 = intruder) = false .
 	eq (key(e2) = r1) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1263,10 +1414,10 @@ open INV .
 	eq p = r1 .
 	eq q = r2 .
 	eq (r = r3) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1279,10 +1430,10 @@ open INV .
 	eq (r3 \in ur(s)) = false .
 	eq p = r1 .
 	eq (q = r2) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1294,10 +1445,10 @@ open INV .
 	op s : -> Sys .
 	eq (r3 \in ur(s)) = false .
 	eq (p = r1) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm1(s, r1, r2, r3), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm1(s,r1,r2,r3),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1312,10 +1463,10 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1330,12 +1481,12 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq p = intruder .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1350,15 +1501,15 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1373,15 +1524,15 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1396,18 +1547,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq q = r4 .
 	eq key(e2) = r2 .
 	eq principal(e2) = r4 .
-	eq e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4) .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1422,18 +1573,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq q = r4 .
 	eq key(e2) = r2 .
 	eq principal(e2) = r4 .
-	eq (e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1448,17 +1599,17 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq q = r4 .
 	eq key(e2) = r2 .
 	eq (principal(e2) = r4) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1473,16 +1624,16 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq q = r4 .
 	eq (key(e2) = r2) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1497,19 +1648,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq principal(e2) = q .
 	eq key(e2) = r2 .
-	eq nonce1(e2) = n(r2, q, r) .
+	eq nonce1(e2) = n(r2,q,r) .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1524,20 +1675,20 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq principal(e2) = q .
 	eq key(e2) = r2 .
-	eq nonce1(e2) = n(r2, q, r) .
+	eq nonce1(e2) = n(r2,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, r2, e2) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(q,q,r2,e2) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1552,22 +1703,22 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq principal(e2) = q .
 	eq key(e2) = r2 .
-	eq nonce1(e2) = n(r2, q, r) .
+	eq nonce1(e2) = n(r2,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, r2, e2) \in nw(s)) = false .
-	eq (m1(r2, r2, q, enc1(q, n(r2, q, r), r2)) \in nw(s)) = true .
-	eq e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4) .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(q,q,r2,e2) \in nw(s)) = false .
+	eq (m1(r2,r2,q,enc1(q,n(r2,q,r),r2)) \in nw(s)) = true .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1582,22 +1733,22 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq principal(e2) = q .
 	eq key(e2) = r2 .
-	eq nonce1(e2) = n(r2, q, r) .
+	eq nonce1(e2) = n(r2,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, r2, e2) \in nw(s)) = false .
-	eq (m1(r2, r2, q, enc1(q, n(r2, q, r), r2)) \in nw(s)) = true .
-	eq (e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(q,q,r2,e2) \in nw(s)) = false .
+	eq (m1(r2,r2,q,enc1(q,n(r2,q,r),r2)) \in nw(s)) = true .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1612,21 +1763,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq principal(e2) = q .
 	eq key(e2) = r2 .
-	eq nonce1(e2) = n(r2, q, r) .
+	eq nonce1(e2) = n(r2,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, r2, e2) \in nw(s)) = false .
-	eq (m1(r2, r2, q, enc1(q, n(r2, q, r), r2)) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(q,q,r2,e2) \in nw(s)) = false .
+	eq (m1(r2,r2,q,enc1(q,n(r2,q,r),r2)) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1641,18 +1792,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq principal(e2) = q .
 	eq key(e2) = r2 .
-	eq (nonce1(e2) = n(r2, q, r)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (nonce1(e2) = n(r2,q,r)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1667,17 +1818,17 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq principal(e2) = q .
 	eq (key(e2) = r2) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1692,16 +1843,16 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq p = r2 .
 	eq (r2 = intruder) = false .
 	eq (q = r4) = false .
 	eq (principal(e2) = q) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1716,17 +1867,17 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1741,18 +1892,18 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(q,q,p,e2) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1767,21 +1918,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1796,21 +1947,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq r2 = intruder .
-	eq (m1(r3, intruder, r4, r5) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m1(r3,intruder,r4,r5) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1825,21 +1976,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4) .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1854,21 +2005,21 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = true .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = true .
 	eq (r2 = intruder) = false .
-	eq (e2 = enc2(r2, nonce(r5), n(r4, r2, r1), r4)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (e2 = enc2(r2,nonce(r5),n(r4,r2,r1),r4)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1883,19 +2034,19 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq nonce1(e2) = n(p, q, r) .
+	eq nonce1(e2) = n(p,q,r) .
 	eq (e2 \in cenc2(nw(s))) = false .
-	eq (m2(q, q, p, e2) \in nw(s)) = false .
-	eq (m1(p, p, q, enc1(q, n(p, q, r), p)) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(q,q,p,e2) \in nw(s)) = false .
+	eq (m1(p,p,q,enc1(q,n(p,q,r),p)) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1910,16 +2061,16 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq principal(e2) = q .
-	eq (nonce1(e2) = n(p, q, r)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (nonce1(e2) = n(p,q,r)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1934,15 +2085,15 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq key(e2) = p .
 	eq (principal(e2) = q) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1957,14 +2108,14 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = true .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = true .
 	eq (p = intruder) = false .
 	eq (p = r2) = false .
 	eq (key(e2) = p) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1979,11 +2130,11 @@ open INV .
 	eq principal(r5) = r2 .
 	eq key(r5) = r4 .
 	eq (r1 \in ur(s)) = false .
-	eq (m1(r3, r2, r4, r5) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m1(r3,r2,r4,r5) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -1997,10 +2148,10 @@ open INV .
 	op s : -> Sys .
 	eq principal(r5) = r2 .
 	eq (key(r5) = r4) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -2013,10 +2164,10 @@ open INV .
 	op r5 : -> Cipher1 .
 	op s : -> Sys .
 	eq (principal(r5) = r2) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm2(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm2(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -2030,13 +2181,13 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = true .
-	red inv12(s, p, q, r, e2) implies inv12(sdm3(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = true .
+	red inv12(s,p,q,r,e2) implies inv12(sdm3(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -2050,13 +2201,13 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq nonce1(r5) = n(r1, r2, r4) .
-	eq (m1(r1, r1, r2, enc1(r2, n(r1, r2, r4), r1)) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm3(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq nonce1(r5) = n(r1,r2,r4) .
+	eq (m1(r1,r1,r2,enc1(r2,n(r1,r2,r4),r1)) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm3(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -2070,12 +2221,12 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = true .
-	eq (nonce1(r5) = n(r1, r2, r4)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm3(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = true .
+	eq (nonce1(r5) = n(r1,r2,r4)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm3(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -2089,11 +2240,11 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq principal(r5) = r2 .
-	eq (m2(r3, r2, r1, r5) \in nw(s)) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm3(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	eq (m2(r3,r2,r1,r5) \in nw(s)) = false .
+	red inv12(s,p,q,r,e2) implies inv12(sdm3(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -2107,10 +2258,10 @@ open INV .
 	op s : -> Sys .
 	eq key(r5) = r1 .
 	eq (principal(r5) = r2) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm3(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm3(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> true 
+--> true
 open INV .
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
@@ -2123,7 +2274,7 @@ open INV .
 	op r5 : -> Cipher2 .
 	op s : -> Sys .
 	eq (key(r5) = r1) = false .
-	red inv12(s, p, q, r, e2) implies inv12(sdm3(s, r1, r2, r3, r4, r5), p, q, r, e2) .
+	red inv12(s,p,q,r,e2) implies inv12(sdm3(s,r1,r2,r3,r4,r5),p,q,r,e2) .
 close
 
---> Time taken is 1500ms
+--> Time taken is 806ms

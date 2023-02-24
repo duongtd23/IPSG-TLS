@@ -12,6 +12,7 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
+	eq pc(s,r1) = rs .
 	eq locked(s) = true .
 	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
 close
@@ -22,6 +23,7 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
+	eq pc(s,r1) = rs .
 	eq locked(s) = false .
 	eq p = r1 .
 	eq q = r1 .
@@ -34,10 +36,10 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
+	eq pc(s,r1) = rs .
 	eq locked(s) = false .
 	eq p = r1 .
 	eq (q = r1) = false .
-	eq pc(s,r1) = rs .
 	eq pc(s,q) = cs .
 	red inv1(s,q) implies mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
 close
@@ -48,24 +50,11 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq (q = r1) = false .
 	eq pc(s,r1) = rs .
-	eq (pc(s,q) = cs) = false .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
 	eq locked(s) = false .
 	eq p = r1 .
 	eq (q = r1) = false .
-	eq (pc(s,r1) = rs) = false .
+	eq (pc(s,q) = cs) = false .
 	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
 close
 
@@ -75,10 +64,10 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
+	eq pc(s,r1) = rs .
 	eq locked(s) = false .
 	eq (p = r1) = false .
 	eq q = r1 .
-	eq pc(s,r1) = rs .
 	eq pc(s,p) = cs .
 	red inv1(s,p) implies mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
 close
@@ -89,10 +78,10 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
+	eq pc(s,r1) = rs .
 	eq locked(s) = false .
 	eq (p = r1) = false .
 	eq q = r1 .
-	eq pc(s,r1) = rs .
 	eq (pc(s,p) = cs) = false .
 	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
 close
@@ -103,23 +92,10 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq q = r1 .
-	eq (pc(s,r1) = rs) = false .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq (q = r1) = false .
 	eq pc(s,r1) = rs .
+	eq locked(s) = false .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
 	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
 close
 
@@ -129,9 +105,6 @@ open TAS .
 	op q : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq (q = r1) = false .
 	eq (pc(s,r1) = rs) = false .
 	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
 close
@@ -193,6 +166,7 @@ open TAS .
 	op p : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
+	eq pc(s,r1) = rs .
 	eq locked(s) = true .
 	red inv1(s,p) implies inv1(enter(s,r1),p) .
 close
@@ -202,9 +176,8 @@ open TAS .
 	op p : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
 	eq pc(s,r1) = rs .
+	eq locked(s) = false .
 	red inv1(s,p) implies inv1(enter(s,r1),p) .
 close
 
@@ -213,30 +186,6 @@ open TAS .
 	op p : -> Pid .
 	op r1 : -> Pid .
 	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq (pc(s,r1) = rs) = false .
-	red inv1(s,p) implies inv1(enter(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq pc(s,r1) = rs .
-	red inv1(s,p) implies inv1(enter(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
 	eq (pc(s,r1) = rs) = false .
 	red inv1(s,p) implies inv1(enter(s,r1),p) .
 close
@@ -295,328 +244,4 @@ open TAS .
 	red inv1(s,p) implies inv1(exit(s,r1),p) .
 close
 
-
-Maude> q
-Bye.
-
-real	0m5.194s
-user	0m1.479s
-sys	0m0.084s
-duongtd-imac:ipsg duongtd$ time ./tool examples/tas/tas.cafe examples/tas/input.cafe 
-		     \||||||||||||||||||/
-		   --- Welcome to Maude ---
-		     /||||||||||||||||||\
-	     Maude 3.0 built: Dec 17 2019 12:08:10
-	     Copyright 1997-2019 SRI International
-		   Mon May 10 11:31:57 2021
-q
-
-	          Full Maude 3.0 Dec 17 2019
-
-
-	IPSG 1.0 (June,2020) started.
-
-Introduced module 3TUPLE
-
-Introduced Tight Cafe Module: LABEL
-
-Introduced Loose Cafe Module: PID
-
-Introduced Loose Cafe Module: TAS
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op s : -> Sys .
-	red mutex(init,p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = true .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq q = r1 .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true, use inv1 as a lemma
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq (q = r1) = false .
-	eq pc(s,r1) = rs .
-	eq pc(s,q) = cs .
-	red inv1(s,q) implies mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq (q = r1) = false .
-	eq pc(s,r1) = rs .
-	eq (pc(s,q) = cs) = false .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq (q = r1) = false .
-	eq (pc(s,r1) = rs) = false .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true, use inv1 as a lemma
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq q = r1 .
-	eq pc(s,r1) = rs .
-	eq pc(s,p) = cs .
-	red inv1(s,p) implies mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq q = r1 .
-	eq pc(s,r1) = rs .
-	eq (pc(s,p) = cs) = false .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq q = r1 .
-	eq (pc(s,r1) = rs) = false .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq (q = r1) = false .
-	eq pc(s,r1) = rs .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq (q = r1) = false .
-	eq (pc(s,r1) = rs) = false .
-	red mutex(s,p,q) implies mutex(enter(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq pc(s,r1) = cs .
-	eq p = r1 .
-	red mutex(s,p,q) implies mutex(exit(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq pc(s,r1) = cs .
-	eq (p = r1) = false .
-	eq q = r1 .
-	red mutex(s,p,q) implies mutex(exit(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq pc(s,r1) = cs .
-	eq (p = r1) = false .
-	eq (q = r1) = false .
-	red mutex(s,p,q) implies mutex(exit(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq (pc(s,r1) = cs) = false .
-	red mutex(s,p,q) implies mutex(exit(s,r1),p,q) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op s : -> Sys .
-	red inv1(init,p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = true .
-	red inv1(s,p) implies inv1(enter(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq pc(s,r1) = rs .
-	red inv1(s,p) implies inv1(enter(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq p = r1 .
-	eq (pc(s,r1) = rs) = false .
-	red inv1(s,p) implies inv1(enter(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq pc(s,r1) = rs .
-	red inv1(s,p) implies inv1(enter(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq locked(s) = false .
-	eq (p = r1) = false .
-	eq (pc(s,r1) = rs) = false .
-	red inv1(s,p) implies inv1(enter(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq pc(s,r1) = cs .
-	eq p = r1 .
-	red inv1(s,p) implies inv1(exit(s,r1),p) .
-close
-
---> true, use mutex as a lemma
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq pc(s,r1) = cs .
-	eq (p = r1) = false .
-	eq pc(s,p) = cs .
-	eq locked(s) = true .
-	red mutex(s,p,r1) implies inv1(s,p) implies inv1(exit(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq pc(s,r1) = cs .
-	eq (p = r1) = false .
-	eq pc(s,p) = cs .
-	eq locked(s) = false .
-	red inv1(s,p) implies inv1(exit(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq pc(s,r1) = cs .
-	eq (p = r1) = false .
-	eq (pc(s,p) = cs) = false .
-	red inv1(s,p) implies inv1(exit(s,r1),p) .
-close
-
---> true
-open TAS .
-	op p : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq (pc(s,r1) = cs) = false .
-	red inv1(s,p) implies inv1(exit(s,r1),p) .
-close
+--> Time taken is 20ms

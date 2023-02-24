@@ -24,28 +24,19 @@ mod! LABEL {
 }
 
 mod! PID {
-  [ErrPid Pid < Pid&Err]
-  op none : -> ErrPid
-  var I : Pid
-  var EI : ErrPid
-  eq (I = EI) = false .
+  [Pid]
 }
 
-mod* TRIVerr {
-  [ErrElt Elt < Elt&Err]
-  op err : -> ErrElt
-}
-
-mod! QUEUE(E :: TRIVerr) {
+mod! QUEUE(E :: TRIV) {
   [EQueue NeQueue < Queue]
-  op empty :             -> EQueue {constr}
-  op __   : Elt.E Queue -> NeQueue {constr}
-  op enq : Queue Elt.E -> NeQueue
+  [Elt.E < Elt&Err]
+  op err   :             -> Elt&Err {constr}
+  op empty :             -> EQueue  {constr}
+  op __    : Elt.E Queue -> NeQueue {constr}
+  op enq : Queue Elt.E  -> NeQueue
   op deq : Queue -> Queue
-  op top : EQueue -> ErrElt.E
-  op top : NeQueue -> Elt.E
-  op top : Queue -> Elt&Err.E
-  op _\in_ : Elt Queue -> Bool
+  op top : Queue -> Elt&Err
+  op _\in_ : Elt.E Queue -> Bool
   op del : Queue Elt.E -> Queue
   var Q : Queue
   vars X Y : Elt.E
@@ -53,7 +44,7 @@ mod! QUEUE(E :: TRIVerr) {
   eq enq(Y Q, X) = Y  enq(Q,X) .
   eq deq(empty) = empty .
   eq deq(X Q) = Q .
-  eq top(empty) = err.E .
+  eq top(empty) = err .
   eq top(X Q) = X .
   eq X \in empty = false .
   eq X \in (Y Q) = (if X = Y then true else X \in Q fi) .
@@ -67,16 +58,13 @@ mod! QUEUE(E :: TRIVerr) {
   ceq (top(enq(Q,Y)) = X) = true if top(Q) = X .
 }
 
-view TRIVerr2PID from TRIVerr to PID {
-  sort Elt -> Pid,
-  sort ErrElt -> ErrPid,
-  sort Elt&Err -> Pid&Err,
-  op err -> none,
+view TRIV2PID from TRIV to PID {
+  sort Elt -> Pid
 }
 
 mod* QLOCK {
   pr(LABEL + PID)
-  pr(QUEUE(E <= TRIVerr2PID))
+  pr(QUEUE(E <= TRIV2PID))
   [Sys]
 -- any initial state
   op init : -> Sys {constr}

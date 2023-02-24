@@ -493,12 +493,16 @@ mod INV {
         m3(P,P,Q,enc3(Q,n(Q,P,R))) \in nw(S) .
 
   eq inv9(S,M) = (m2?(M) and M \in nw(S))
-    implies (random(nonce1(cipher2(M))) \in ur(S) and
-      random(nonce2(cipher2(M))) \in ur(S)) .
+    implies ((creator(nonce1(cipher2(M))) = intruder or 
+              random(nonce1(cipher2(M))) \in ur(S)) and
+        (creator(nonce2(cipher2(M))) = intruder or 
+          random(nonce2(cipher2(M))) \in ur(S))) .
   eq inv10(S,M) = (m1?(M) and M \in nw(S))
-    implies random(nonce(cipher1(M))) \in ur(S) .
+    implies (random(nonce(cipher1(M))) \in ur(S) or
+        creator(nonce(cipher1(M))) = intruder) .
   eq inv11(S,M) = (m3?(M) and M \in nw(S))
-    implies random(nonce(cipher3(M))) \in ur(S) .
+    implies (random(nonce(cipher3(M))) \in ur(S) or
+        creator(nonce(cipher3(M))) = intruder) .
 
   eq inv12(S,P,Q,R,E2)
      = (not(P = intruder) and
@@ -537,9 +541,15 @@ mod INV {
   op inv18 : Sys Nonce -> Bool
   op inv19 : Sys Cipher2 -> Bool
   op inv20 : Sys Cipher3 -> Bool
-  eq inv17(S,E1) = E1 \in cenc1(nw(S)) implies random(nonce(E1)) \in ur(S) .
-  eq inv18(S,N) = N \in cnonce(nw(S)) implies random(N) \in ur(S) .
-  eq inv19(S,E2) = E2 \in cenc2(nw(S)) 
-    implies (random(nonce1(E2)) \in ur(S) and random(nonce2(E2)) \in ur(S)) .
-  eq inv20(S,E3) = E3 \in cenc3(nw(S)) implies random(nonce(E3)) \in ur(S) .
+  eq inv17(S,E1) = (not(creator(nonce(E1)) = intruder) and E1 \in cenc1(nw(S))) 
+    implies random(nonce(E1)) \in ur(S) .
+  eq inv18(S,N) = (not(creator(N) = intruder) and N \in cnonce(nw(S))) 
+    implies random(N) \in ur(S) .
+  eq inv19(S,E2) = E2 \in cenc2(nw(S))
+    implies ((random(nonce1(E2)) \in ur(S) or 
+              creator(nonce1(E2)) = intruder)
+        and (random(nonce2(E2)) \in ur(S) or
+              creator(nonce2(E2)) = intruder)) .
+  eq inv20(S,E3) = (not(creator(nonce(E3)) = intruder) and E3 \in cenc3(nw(S)))
+    implies random(nonce(E3)) \in ur(S) .
 }

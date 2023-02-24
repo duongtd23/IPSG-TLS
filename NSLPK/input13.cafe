@@ -13,3 +13,4 @@ set-output NSLPK/prsc13.cafe .
 eof
 
 load NSLPK/input13.cafe .
+-- note that depthTryUseLm is required to be 2

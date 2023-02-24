@@ -58,6 +58,7 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
+	eq pc(s,r1) = ws .
 	eq p = r1 .
 	eq q = r1 .
 	red inv1(s,p,q) implies inv1(try(s,r1),p,q) .
@@ -70,9 +71,9 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
+	eq pc(s,r1) = ws .
 	eq p = r1 .
 	eq (q = r1) = false .
-	eq pc(s,r1) = ws .
 	eq pc(s,q) = cs .
 	red inv2(s,q) implies inv1(s,p,q) implies inv1(try(s,r1),p,q) .
 close
@@ -84,23 +85,10 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
-	eq p = r1 .
-	eq (q = r1) = false .
 	eq pc(s,r1) = ws .
-	eq (pc(s,q) = cs) = false .
-	red inv1(s,p,q) implies inv1(try(s,r1),p,q) .
-close
-
---> true
-open QLOCK .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq top(queue(s)) = r1 .
 	eq p = r1 .
 	eq (q = r1) = false .
-	eq (pc(s,r1) = ws) = false .
+	eq (pc(s,q) = cs) = false .
 	red inv1(s,p,q) implies inv1(try(s,r1),p,q) .
 close
 
@@ -111,9 +99,9 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
+	eq pc(s,r1) = ws .
 	eq (p = r1) = false .
 	eq q = r1 .
-	eq pc(s,r1) = ws .
 	eq pc(s,p) = cs .
 	red inv2(s,p) implies inv1(s,p,q) implies inv1(try(s,r1),p,q) .
 close
@@ -125,9 +113,9 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
+	eq pc(s,r1) = ws .
 	eq (p = r1) = false .
 	eq q = r1 .
-	eq pc(s,r1) = ws .
 	eq (pc(s,p) = cs) = false .
 	red inv1(s,p,q) implies inv1(try(s,r1),p,q) .
 close
@@ -139,22 +127,9 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
-	eq (p = r1) = false .
-	eq q = r1 .
-	eq (pc(s,r1) = ws) = false .
-	red inv1(s,p,q) implies inv1(try(s,r1),p,q) .
-close
-
---> true
-open QLOCK .
-	op p : -> Pid .
-	op q : -> Pid .
-	op r1 : -> Pid .
-	op s : -> Sys .
-	eq top(queue(s)) = r1 .
-	eq (p = r1) = false .
-	eq (q = r1) = false .
 	eq pc(s,r1) = ws .
+	eq (p = r1) = false .
+	eq (q = r1) = false .
 	red inv1(s,p,q) implies inv1(try(s,r1),p,q) .
 close
 
@@ -165,8 +140,6 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
-	eq (p = r1) = false .
-	eq (q = r1) = false .
 	eq (pc(s,r1) = ws) = false .
 	red inv1(s,p,q) implies inv1(try(s,r1),p,q) .
 close
@@ -307,6 +280,7 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
+	eq pc(s,r1) = ws .
 	eq p = r1 .
 	red inv2(s,p) implies inv2(try(s,r1),p) .
 close
@@ -317,8 +291,8 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
-	eq (p = r1) = false .
 	eq pc(s,r1) = ws .
+	eq (p = r1) = false .
 	red inv2(s,p) implies inv2(try(s,r1),p) .
 close
 
@@ -328,7 +302,6 @@ open QLOCK .
 	op r1 : -> Pid .
 	op s : -> Sys .
 	eq top(queue(s)) = r1 .
-	eq (p = r1) = false .
 	eq (pc(s,r1) = ws) = false .
 	red inv2(s,p) implies inv2(try(s,r1),p) .
 close
@@ -382,3 +355,5 @@ open QLOCK .
 	eq (pc(s,r1) = rs) = false .
 	red inv2(s,p) implies inv2(want(s,r1),p) .
 close
+
+--> Time taken is 49ms

@@ -1,9 +1,7 @@
 mod! AGENT {
   [Agent]
   op enemy : -> Agent {constr}
-  -- eq (P:Agent = P) = true .
 }
-
 mod! KEY {
   pr(AGENT)
   [Key]
@@ -18,9 +16,7 @@ mod! KEY {
 
 mod! RAND {
   [Rand]
-  -- op _=_ : Rand Rand -> Bool {comm}
 }
-
 mod! CIPHER {
   pr(AGENT + KEY + RAND)
   [Cipher]
@@ -123,7 +119,6 @@ view TRIV2CIPHER from TRIV to CIPHER {
 view TRIV2RAND from TRIV to RAND {
   sort Elt -> Rand
 }
-
 mod! NETWORK {
   pr(BAG(D <= TRIV2MSG)*{ sort Bag -> Network })
   pr(COLLECTION(D <= TRIV2RAND)*{sort Col -> ColRands})
@@ -150,13 +145,12 @@ mod! NETWORK {
   ceq C \in ciphers(M,NW) = (rm?(M) and C = c(M)) if C \in ciphers(NW) = false .
 
 }
-
 --
 -- Identify-Friend-or-Foe System
 --
-mod* IFF {
+mod IFF {
   pr(NETWORK)
-  pr(SET(RAND)*{sort Set -> URands})
+  pr(SET(D <= TRIV2RAND)*{sort Set -> URands})
   [Field]
 -- an arbitrary initial state
   op init : -> Field {constr}
