@@ -1,0 +1,16 @@
+load NSLPK/nslpk.cafe .
+load NSLPK/proof-scripts/annotated-proofscores/prsc17+18+19+20.cafe .
+
+-- set-cores 4 .
+
+:proven(inv9(S:Sys,M:Msg))
+:proven(inv9'(S:Sys,M:Msg))
+:proven(inv10(S:Sys,M:Msg))
+:infer-proof inv17+18+19+20 .
+
+set-output NSLPK/proof-scripts/script17+18+19+20.cafe .
+:save-proof .
+
+eof
+
+load NSLPK/proof-scripts/inputs/input17+18+19+20.cafe .

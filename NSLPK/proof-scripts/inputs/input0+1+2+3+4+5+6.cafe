@@ -1,0 +1,17 @@
+load NSLPK/nslpk.cafe .
+load NSLPK/proof-scripts/annotated-proofscores/prsc0+1+2+3+4+5+6.cafe .
+
+-- set-cores 4 .
+
+:proven(lm1(M:Msg, NW:Network))
+:proven(lm2(E1:Cipher1, M:Msg, NW:Network))
+:proven(lm3(M:Msg, NW:Network))
+:proven(lm4(E2:Cipher2, M:Msg, NW:Network))
+:infer-proof inv0+1+2+3+4+5+6 .
+
+set-output NSLPK/proof-scripts/script0+1+2+3+4+5+6.cafe .
+:save-proof .
+
+eof
+
+load NSLPK/proof-scripts/inputs/input0+1+2+3+4+5+6.cafe .

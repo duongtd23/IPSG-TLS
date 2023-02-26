@@ -4,12 +4,15 @@ ipsgopen INV .
   inv inv17(S:Sys, E1:Cipher1) .
   inv inv18(S:Sys, N:Nonce) .
   inv inv19(S:Sys, E2:Cipher2) .
+  inv inv19'(S:Sys, E2:Cipher2) .
   inv inv20(S:Sys, E3:Cipher3) .
   inv inv9(S:Sys,M:Msg) .
+  inv inv9'(S:Sys,M:Msg) .
   inv inv10(S:Sys,M:Msg) .
   generate inv17(S:Sys, E1:Cipher1) induction on S:Sys .
   generate inv18(S:Sys, N:Nonce) induction on S:Sys .
   generate inv19(S:Sys, E2:Cipher2) induction on S:Sys .
+  generate inv19'(S:Sys, E2:Cipher2) induction on S:Sys .
   generate inv20(S:Sys, E3:Cipher3) induction on S:Sys .
 close
 

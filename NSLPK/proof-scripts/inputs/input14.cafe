@@ -1,0 +1,16 @@
+load NSLPK/nslpk.cafe .
+load NSLPK/proof-scripts/annotated-proofscores/prsc14.cafe .
+
+-- set-cores 4 .
+
+:proven(inv3(S:Sys,N:Nonce))
+:proven(inv9(S:Sys,M:Msg))
+:proven(inv12(S:Sys,P:Prin,Q:Prin,R:Rand,E2:Cipher2))
+:infer-proof inv14 .
+
+set-output NSLPK/proof-scripts/script14.cafe .
+:save-proof .
+
+eof
+
+load NSLPK/proof-scripts/inputs/input14.cafe .

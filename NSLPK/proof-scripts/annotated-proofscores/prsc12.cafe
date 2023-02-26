@@ -1,5 +1,6 @@
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -10,6 +11,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -24,6 +26,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -38,6 +41,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -52,6 +56,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -66,6 +71,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -81,6 +87,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -97,6 +104,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -113,6 +121,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -127,6 +136,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -144,6 +154,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -167,6 +178,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -190,6 +202,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -212,6 +225,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -233,6 +247,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -257,6 +272,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -282,6 +298,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -309,6 +326,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -337,6 +355,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -365,6 +384,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -391,6 +411,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -414,6 +435,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -436,6 +458,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -457,6 +480,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -480,6 +504,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -504,6 +529,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -530,6 +556,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -557,6 +584,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -584,6 +612,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -609,6 +638,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -631,6 +661,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -652,6 +683,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -672,6 +704,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -694,6 +727,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -717,6 +751,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -742,6 +777,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -771,6 +807,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -804,6 +841,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -838,6 +876,7 @@ close
 
 --> true, use inv3 as a lemma
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -872,6 +911,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -904,6 +944,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -935,6 +976,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -965,6 +1007,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -993,6 +1036,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1020,6 +1064,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1046,6 +1091,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1070,6 +1116,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1091,6 +1138,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1111,6 +1159,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1130,6 +1179,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1146,6 +1196,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1161,6 +1212,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1175,6 +1227,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1189,6 +1242,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1203,6 +1257,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1217,6 +1272,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1231,6 +1287,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1249,6 +1306,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1272,6 +1330,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1296,6 +1355,7 @@ close
 
 --> true, use inv19 as a lemma
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1320,6 +1380,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1342,6 +1403,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1363,6 +1425,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1383,6 +1446,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1402,6 +1466,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1419,6 +1484,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1435,6 +1501,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1450,6 +1517,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1468,6 +1536,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1488,6 +1557,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1511,6 +1581,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1534,6 +1605,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1560,6 +1632,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1586,6 +1659,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1611,6 +1685,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1635,6 +1710,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1662,6 +1738,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1690,6 +1767,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1720,6 +1798,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1750,6 +1829,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1779,6 +1859,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1805,6 +1886,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1830,6 +1912,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1854,6 +1937,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1879,6 +1963,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1905,6 +1990,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1934,6 +2020,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1963,6 +2050,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -1992,6 +2080,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2021,6 +2110,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2048,6 +2138,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2072,6 +2163,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2095,6 +2187,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2117,6 +2210,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2136,6 +2230,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2153,6 +2248,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2169,6 +2265,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2189,6 +2286,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2209,6 +2307,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2228,6 +2327,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2246,6 +2346,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .
@@ -2263,6 +2364,7 @@ close
 
 --> true
 open INV .
+  :id(inv12)
 	op e2 : -> Cipher2 .
 	op p : -> Prin .
 	op q : -> Prin .

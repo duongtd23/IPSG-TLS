@@ -2,13 +2,16 @@
 
 ipsgopen INV .
   inv inv9(S:Sys,M:Msg) .
+  inv inv9'(S:Sys,M:Msg) .
   inv inv10(S:Sys,M:Msg) .
   inv inv11(S:Sys,M:Msg) .
   inv inv17(S:Sys,E1:Cipher1) .
   inv inv18(S:Sys,N:Nonce) .
   inv inv19(S:Sys,E2:Cipher2) .
+  inv inv19'(S:Sys,E2:Cipher2) .
   inv inv20(S:Sys,E3:Cipher3) .
   generate inv9(S:Sys,M:Msg) induction on S:Sys .
+  generate inv9'(S:Sys,M:Msg) induction on S:Sys .
   generate inv10(S:Sys,M:Msg) induction on S:Sys .
   generate inv11(S:Sys,M:Msg) induction on S:Sys .
 close

@@ -1,0 +1,519 @@
+
+:proven(inv3(S:Sys, N:Nonce))
+:proven(inv14(S:Sys, P:Prin, Q:Prin, Q1:Prin, R:Rand, E2:Cipher2))
+:proven(inv15(S:Sys, P:Prin, Q:Prin, Q1:Prin, R:Rand, E2:Cipher2))
+:proven(inv16(S:Sys, P:Prin, Q:Prin, E2:Cipher2))
+:goal{
+eq [inv13 :nonexec] : inv13(S:Sys, P:Prin, P0:Prin, R:Rand)  = true .
+}
+:ind on (S:Sys)
+:apply(si)
+:sel(1)
+	:apply(tc)
+
+	:def csb1#1 = :ctf [C#Cipher1 \in cenc1(nw(S#Sys))  .]
+
+	:apply(csb1#1)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(2)
+	:apply(tc)
+
+	:def csb1#2 = :ctf [N#Nonce \in cnonce(nw(S#Sys))  .]
+
+	:apply(csb1#2)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(3)
+	:apply(tc)
+
+	:def csb1#3 = :ctf [C#Cipher2 \in cenc2(nw(S#Sys))  .]
+
+	:apply(csb1#3)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(4)
+	:apply(tc)
+
+	:def csb1#4 = :ctf [N#Nonce \in cnonce(nw(S#Sys))  .]
+
+	:apply(csb1#4)
+
+	:def csb2#4 = :ctf [N0#Nonce \in cnonce(nw(S#Sys))  .]
+
+	:apply(csb2#4)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(5)
+	:apply(tc)
+
+	:def csb1#5 = :ctf [C#Cipher3 \in cenc3(nw(S#Sys))  .]
+
+	:apply(csb1#5)
+
+	:def csb2#5 = :ctf {eq P@Prin  = intruder .}
+
+	:apply(csb2#5)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb3#5 = :ctf {eq P0@Prin  = intruder .}
+
+	:apply(csb3#5)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb4#5 = :ctf [enc3(P0@Prin, n(P0@Prin, P@Prin, R@Rand)) \in cenc3(nw(S#Sys))  .]
+
+	:apply(csb4#5)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb5#5 = :ctf [m3(P@Prin, P@Prin, P0@Prin, enc3(P0@Prin, n(P0@Prin, P@Prin, R@Rand))) \in nw(S#Sys)  .]
+
+	:apply(csb5#5)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb6#5 = :ctf {eq C#Cipher3  = enc3(P0@Prin, n(P0@Prin, P@Prin, R@Rand)) .}
+
+	:apply(csb6#5)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(6)
+	:apply(tc)
+
+	:def csb1#6 = :ctf [N#Nonce \in cnonce(nw(S#Sys))  .]
+
+	:apply(csb1#6)
+
+	:def csb2#6 = :ctf {eq P@Prin  = intruder .}
+
+	:apply(csb2#6)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb3#6 = :ctf {eq P0@Prin  = intruder .}
+
+	:apply(csb3#6)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb4#6 = :ctf [enc3(P0@Prin, n(P0@Prin, P@Prin, R@Rand)) \in cenc3(nw(S#Sys))  .]
+
+	:apply(csb4#6)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb5#6 = :ctf [m3(P@Prin, P@Prin, P0@Prin, enc3(P0@Prin, n(P0@Prin, P@Prin, R@Rand))) \in nw(S#Sys)  .]
+
+	:apply(csb5#6)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb6#6 = :ctf {eq P0#Prin  = P0@Prin .}
+
+	:apply(csb6#6)
+
+	:def csb7#6 = :ctf {eq N#Nonce  = n(P0@Prin, P@Prin, R@Rand) .}
+
+	:apply(csb7#6)
+
+	:def csb8#6 = :ctf [n(P0@Prin, P@Prin, R@Rand) \in cnonce(nw(S#Sys))  .]
+
+	:apply(csb8#6)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal3]  by {N:Nonce <- N#Nonce ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(7)
+	:apply(tc)
+
+	:apply (rd)
+
+
+:sel(8)
+	:apply(tc)
+
+	:def csb1#8 = :ctf [R#Rand \in ur(S#Sys)  .]
+
+	:apply(csb1#8)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(9)
+	:apply(tc)
+
+	:def csb1#9 = :ctf {eq principal(C#Cipher1)  = P#Prin .}
+
+	:apply(csb1#9)
+
+	:def csb2#9 = :ctf {eq key(C#Cipher1)  = P1#Prin .}
+
+	:apply(csb2#9)
+
+	:def csb3#9 = :ctf [R#Rand \in ur(S#Sys)  .]
+
+	:apply(csb3#9)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb4#9 = :ctf [m1(P0#Prin, P#Prin, P1#Prin, C#Cipher1) \in nw(S#Sys)  .]
+
+	:apply(csb4#9)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+:sel(10)
+	:apply(tc)
+
+	:def csb1#10 = :ctf {eq key(C#Cipher2)  = P#Prin .}
+
+	:apply(csb1#10)
+
+	:def csb2#10 = :ctf {eq principal(C#Cipher2)  = P0#Prin .}
+
+	:apply(csb2#10)
+
+	:def csb3#10 = :ctf [m2(P1#Prin, P0#Prin, P#Prin, C#Cipher2) \in nw(S#Sys)  .]
+
+	:apply(csb3#10)
+
+	:def csb4#10 = :ctf {eq nonce1(C#Cipher2)  = n(P#Prin, P0#Prin, R#Rand) .}
+
+	:apply(csb4#10)
+
+	:def csb5#10 = :ctf [m1(P#Prin, P#Prin, P0#Prin, enc1(P0#Prin, n(P#Prin, P0#Prin, R#Rand), P#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb5#10)
+
+	:def csb6#10 = :ctf {eq P@Prin  = intruder .}
+
+	:apply(csb6#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb7#10 = :ctf {eq P0@Prin  = intruder .}
+
+	:apply(csb7#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb8#10 = :ctf {eq P@Prin  = P#Prin .}
+
+	:apply(csb8#10)
+
+	:def csb9#10 = :ctf {eq P#Prin  = intruder .}
+
+	:apply(csb9#10)
+
+	:def csb10#10 = :ctf [m2(P1#Prin, P0#Prin, intruder, C#Cipher2) \in nw(S#Sys)  .]
+
+	:apply(csb10#10)
+
+	:def csb11#10 = :ctf [m1(intruder, intruder, P0#Prin, enc1(P0#Prin, n(intruder, P0#Prin, R#Rand), intruder)) \in nw(S#Sys)  .]
+
+	:apply(csb11#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb12#10 = :ctf {eq P0@Prin  = P0#Prin .}
+
+	:apply(csb12#10)
+
+	:def csb13#10 = :ctf {eq P0#Prin  = intruder .}
+
+	:apply(csb13#10)
+
+	:def csb14#10 = :ctf [m2(P1#Prin, intruder, P#Prin, C#Cipher2) \in nw(S#Sys)  .]
+
+	:apply(csb14#10)
+
+	:def csb15#10 = :ctf [m1(P#Prin, P#Prin, intruder, enc1(intruder, n(P#Prin, intruder, R#Rand), P#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb15#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb16#10 = :ctf {eq nonce2(C#Cipher2)  = n(P0#Prin, P#Prin, R@Rand) .}
+
+	:apply(csb16#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb17#10 = :ctf [enc3(P0@Prin, n(P0@Prin, P@Prin, R@Rand)) \in cenc3(nw(S#Sys))  .]
+
+	:apply(csb17#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb18#10 = :ctf [m3(P@Prin, P@Prin, P0@Prin, enc3(P0@Prin, n(P0@Prin, P@Prin, R@Rand))) \in nw(S#Sys)  .]
+
+	:apply(csb18#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb19#10 = :ctf {eq P0@Prin  = P0#Prin .}
+
+	:apply(csb19#10)
+
+	:def csb20#10 = :ctf {eq P0#Prin  = intruder .}
+
+	:apply(csb20#10)
+
+	:def csb21#10 = :ctf [m2(P1#Prin, intruder, P#Prin, C#Cipher2) \in nw(S#Sys)  .]
+
+	:apply(csb21#10)
+
+	:def csb22#10 = :ctf [m1(P#Prin, P#Prin, intruder, enc1(intruder, n(P#Prin, intruder, R#Rand), P#Prin)) \in nw(S#Sys)  .]
+
+	:apply(csb22#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb23#10 = :ctf [enc3(P0#Prin, n(P0#Prin, P@Prin, R@Rand)) \in cenc3(nw(S#Sys))  .]
+
+	:apply(csb23#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb24#10 = :ctf [m3(P@Prin, P@Prin, P0#Prin, enc3(P0#Prin, n(P0#Prin, P@Prin, R@Rand))) \in nw(S#Sys)  .]
+
+	:apply(csb24#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb25#10 = :ctf {eq nonce2(C#Cipher2)  = n(P0#Prin, P@Prin, R@Rand) .}
+
+	:apply(csb25#10)
+
+	:def csb26#10 = :ctf {eq P#Prin  = intruder .}
+
+	:apply(csb26#10)
+
+	:def csb27#10 = :ctf [m2(P1#Prin, P0#Prin, intruder, C#Cipher2) \in nw(S#Sys)  .]
+
+	:apply(csb27#10)
+
+	:def csb28#10 = :ctf [m1(intruder, intruder, P0#Prin, enc1(P0#Prin, n(intruder, P0#Prin, R#Rand), intruder)) \in nw(S#Sys)  .]
+
+	:apply(csb28#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal1]  by {E2:Cipher2 <- C#Cipher2 ; P:Prin <- P#Prin ; Q1:Prin <- P1#Prin ; Q:Prin <- P0#Prin ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb29#10 = :ctf [m2(P0#Prin, P0#Prin, P#Prin, C#Cipher2) \in nw(S#Sys)  .]
+
+	:apply(csb29#10)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal2]  by {E2:Cipher2 <- C#Cipher2 ; P:Prin <- P0#Prin ; Q:Prin <- P#Prin ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:imp [proven-goal0]  by {E2:Cipher2 <- C#Cipher2 ; P:Prin <- P#Prin ; Q1:Prin <- P1#Prin ; Q:Prin <- P0#Prin ; R:Rand <- R#Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv13]  by {P0:Prin <- P0@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+

@@ -1,0 +1,13 @@
+load NSLPK/nslpk.cafe .
+load NSLPK/proof-scripts/annotated-proofscores/prsc16.cafe .
+
+-- set-cores 4 .
+
+:infer-proof inv16 .
+
+set-output NSLPK/proof-scripts/script16.cafe .
+:save-proof .
+
+eof
+
+load NSLPK/proof-scripts/inputs/input16.cafe .

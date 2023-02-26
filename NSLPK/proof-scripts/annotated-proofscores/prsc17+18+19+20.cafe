@@ -1,5 +1,6 @@
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op s : -> Sys .
 	red inv17(init,e1) .
@@ -7,6 +8,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -19,6 +21,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -32,6 +35,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -46,6 +50,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -61,6 +66,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -76,6 +82,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -87,6 +94,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -99,6 +107,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -112,6 +121,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -126,6 +136,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -141,6 +152,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -158,6 +170,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -176,6 +189,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -195,6 +209,7 @@ close
 
 --> true, use inv18 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -214,6 +229,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -230,6 +246,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -241,6 +258,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -252,6 +270,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -263,6 +282,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -276,6 +296,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -289,6 +310,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -301,6 +323,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -312,6 +335,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -323,6 +347,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -334,6 +359,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -345,6 +371,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -356,6 +383,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -368,6 +396,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -381,6 +410,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -395,6 +425,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -410,6 +441,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -426,6 +458,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -443,6 +476,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -460,6 +494,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -475,6 +510,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -491,6 +527,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -507,6 +544,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -521,6 +559,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -534,6 +573,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -551,6 +591,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -568,6 +609,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -584,6 +626,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -599,6 +642,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -613,6 +657,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e1 : -> Cipher1 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -626,6 +671,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op s : -> Sys .
 	red inv18(init,n) .
@@ -633,6 +679,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -645,6 +692,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -658,6 +706,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -672,6 +721,7 @@ close
 
 --> true, use inv17 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -688,6 +738,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -704,6 +755,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -719,6 +771,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -730,6 +783,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -742,6 +796,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -755,6 +810,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -769,6 +825,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -784,6 +841,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -799,6 +857,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -810,6 +869,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -822,6 +882,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -835,6 +896,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -849,6 +911,7 @@ close
 
 --> true, use inv19 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -865,6 +928,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -881,6 +945,7 @@ close
 
 --> true, use inv19' as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -898,6 +963,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -915,6 +981,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -931,6 +998,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -942,6 +1010,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -956,6 +1025,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -971,6 +1041,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -987,6 +1058,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1004,6 +1076,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1022,6 +1095,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1040,6 +1114,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1053,6 +1128,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1065,6 +1141,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1077,6 +1154,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1090,6 +1168,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1104,6 +1183,7 @@ close
 
 --> true, use inv20 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1120,6 +1200,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1136,6 +1217,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1151,6 +1233,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1162,6 +1245,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1174,6 +1258,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1187,6 +1272,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1201,6 +1287,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1216,6 +1303,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1231,6 +1319,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1242,6 +1331,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1253,6 +1343,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1265,6 +1356,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1278,6 +1370,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1292,6 +1385,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1307,6 +1401,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1324,6 +1419,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1341,6 +1437,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1357,6 +1454,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1372,6 +1470,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1389,6 +1488,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1407,6 +1507,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1426,6 +1527,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1446,6 +1548,7 @@ close
 
 --> true, use inv10 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1469,6 +1572,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1493,6 +1597,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1517,6 +1622,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1539,6 +1645,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1560,6 +1667,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1576,6 +1684,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1590,6 +1699,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -1603,6 +1713,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1621,6 +1732,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1640,6 +1752,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1660,6 +1773,7 @@ close
 
 --> true, use inv9' as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1684,6 +1798,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1708,6 +1823,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1731,6 +1847,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1753,6 +1870,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1774,6 +1892,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1791,6 +1910,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1807,6 +1927,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1822,6 +1943,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1836,6 +1958,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op n : -> Nonce .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1849,6 +1972,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op s : -> Sys .
 	red inv19(init,e2) .
@@ -1856,6 +1980,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1867,6 +1992,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1878,6 +2004,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1889,6 +2016,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1900,6 +2028,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1912,6 +2041,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1925,6 +2055,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1939,6 +2070,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1954,6 +2086,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1969,6 +2102,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1980,6 +2114,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -1994,6 +2129,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2009,6 +2145,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2025,6 +2162,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2042,6 +2180,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2061,6 +2200,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2081,6 +2221,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2102,6 +2243,7 @@ close
 
 --> true, use inv18 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2123,6 +2265,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2141,6 +2284,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2154,6 +2298,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2166,6 +2311,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2177,6 +2323,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2188,6 +2335,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2199,6 +2347,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2210,6 +2359,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2221,6 +2371,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2232,6 +2383,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2247,6 +2399,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2264,6 +2417,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2282,6 +2436,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2301,6 +2456,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2321,6 +2477,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2343,6 +2500,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2365,6 +2523,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2388,6 +2547,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2412,6 +2572,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2437,6 +2598,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2463,6 +2625,7 @@ close
 
 --> true, use inv10 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2489,6 +2652,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2511,6 +2675,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2527,6 +2692,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2541,6 +2707,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -2554,6 +2721,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2571,6 +2739,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2588,6 +2757,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2604,6 +2774,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2619,6 +2790,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2633,6 +2805,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2646,6 +2819,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op s : -> Sys .
 	red inv19'(init,e2) .
@@ -2653,6 +2827,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2664,6 +2839,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2675,6 +2851,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2686,6 +2863,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2697,6 +2875,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2709,6 +2888,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2722,6 +2902,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2736,6 +2917,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2751,6 +2933,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2766,6 +2949,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2777,6 +2961,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2791,6 +2976,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2806,6 +2992,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2822,6 +3009,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2839,6 +3027,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2858,6 +3047,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2878,6 +3068,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2899,6 +3090,7 @@ close
 
 --> true, use inv18 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2920,6 +3112,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2938,6 +3131,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2951,6 +3145,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2963,6 +3158,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2974,6 +3170,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2985,6 +3182,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -2996,6 +3194,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3007,6 +3206,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3018,6 +3218,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3029,6 +3230,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3044,6 +3246,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3061,6 +3264,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3079,6 +3283,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3098,6 +3303,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3118,6 +3324,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3140,6 +3347,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3162,6 +3370,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3184,6 +3393,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3206,6 +3416,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3222,6 +3433,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3236,6 +3448,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3249,6 +3462,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3266,6 +3480,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3283,6 +3498,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3299,6 +3515,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3314,6 +3531,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3328,6 +3546,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e2 : -> Cipher2 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3341,6 +3560,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op s : -> Sys .
 	red inv20(init,e3) .
@@ -3348,6 +3568,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3359,6 +3580,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3370,6 +3592,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3381,6 +3604,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3392,6 +3616,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3403,6 +3628,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3414,6 +3640,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3427,6 +3654,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3440,6 +3668,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3452,6 +3681,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3464,6 +3694,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3477,6 +3708,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3491,6 +3723,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3506,6 +3739,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3521,6 +3755,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3532,6 +3767,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3544,6 +3780,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3557,6 +3794,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3571,6 +3809,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3586,6 +3825,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3603,6 +3843,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3621,6 +3862,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3640,6 +3882,7 @@ close
 
 --> true, use inv18 as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3659,6 +3902,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3675,6 +3919,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3686,6 +3931,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3697,6 +3943,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3708,6 +3955,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3723,6 +3971,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3739,6 +3988,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3755,6 +4005,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3769,6 +4020,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Rand .
 	op r2 : -> Prin .
@@ -3782,6 +4034,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3800,6 +4053,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3819,6 +4073,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3839,6 +4094,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3862,6 +4118,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3885,6 +4142,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3907,6 +4165,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3930,6 +4189,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3954,6 +4214,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -3979,6 +4240,7 @@ close
 
 --> true, use inv9' as a lemma
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -4004,6 +4266,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -4026,6 +4289,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -4043,6 +4307,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -4059,6 +4324,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -4074,6 +4340,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
@@ -4088,6 +4355,7 @@ close
 
 --> true
 open INV .
+  :id(inv17+18+19+20)
 	op e3 : -> Cipher3 .
 	op r1 : -> Prin .
 	op r2 : -> Prin .
