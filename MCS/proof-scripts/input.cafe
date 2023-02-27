@@ -1,0 +1,15 @@
+load MCS/mcs.cafe .
+load MCS/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+
+:infer-proof mcs .
+
+set-output MCS/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load MCS/proof-scripts/input.cafe .
+
+-- exp:  16:03 -> 17:08

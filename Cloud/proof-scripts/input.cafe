@@ -1,0 +1,15 @@
+load Cloud/cloud.cafe .
+load Cloud/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+
+:infer-proof cloud .
+
+set-output Cloud/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load Cloud/proof-scripts/input.cafe .
+
+-- exp:  21:13:01  ->  21:13:34

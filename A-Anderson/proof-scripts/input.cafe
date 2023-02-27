@@ -1,0 +1,15 @@
+load A-Anderson/anderson.cafe .
+load A-Anderson/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+
+:infer-proof anderson .
+
+set-output A-Anderson/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load A-Anderson/proof-scripts/input.cafe .
+
+-- exp:  21:13:59  ->  21:16:59

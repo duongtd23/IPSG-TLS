@@ -1,0 +1,15 @@
+load Qlock/qlock.cafe .
+load Qlock/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+
+:infer-proof qlock .
+
+set-output Qlock/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load Qlock/proof-scripts/input.cafe .
+
+-- exp:  21:06:10 -> 21:06:16

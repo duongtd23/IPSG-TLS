@@ -1,0 +1,172 @@
+
+:goal{
+eq [tas :nonexec] : inv1(S:Sys, P:Pid)  = true .
+ eq [tas1 :nonexec] : mutex(S:Sys, P:Pid, P0:Pid)  = true .
+}
+:ind on (S:Sys)
+:apply(si)
+:sel(1)
+	:apply(tc)
+
+	:def csb1#1 = :ctf {eq pc(S#Sys, P#Pid)  = rs .}
+
+	:apply(csb1#1)
+
+	:def csb2#1 = :ctf [locked(S#Sys)  .]
+
+	:apply(csb2#1)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:def csb3#1 = :ctf {eq pc(S#Sys, P#Pid)  = rs .}
+
+	:apply(csb3#1)
+
+	:def csb4#1 = :ctf [locked(S#Sys)  .]
+
+	:apply(csb4#1)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:def csb5#1 = :ctf {eq P@Pid  = P#Pid .}
+
+	:apply(csb5#1)
+
+	:def csb6#1 = :ctf {eq P0@Pid  = P#Pid .}
+
+	:apply(csb6#1)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:def csb7#1 = :ctf {eq pc(S#Sys, P0@Pid)  = cs .}
+
+	:apply(csb7#1)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:imp [tas]  by {P:Pid <- P0@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:def csb8#1 = :ctf {eq P0@Pid  = P#Pid .}
+
+	:apply(csb8#1)
+
+	:def csb9#1 = :ctf {eq pc(S#Sys, P@Pid)  = cs .}
+
+	:apply(csb9#1)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+
+:sel(2)
+	:apply(tc)
+
+	:def csb1#2 = :ctf {eq pc(S#Sys, P#Pid)  = cs .}
+
+	:apply(csb1#2)
+
+	:def csb2#2 = :ctf {eq P@Pid  = P#Pid .}
+
+	:apply(csb2#2)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:def csb3#2 = :ctf {eq pc(S#Sys, P@Pid)  = cs .}
+
+	:apply(csb3#2)
+
+	:def csb4#2 = :ctf [locked(S#Sys)  .]
+
+	:apply(csb4#2)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:imp [tas1]  by {P0:Pid <- P#Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas]  by {P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:def csb5#2 = :ctf {eq pc(S#Sys, P#Pid)  = cs .}
+
+	:apply(csb5#2)
+
+	:def csb6#2 = :ctf {eq P@Pid  = P#Pid .}
+
+	:apply(csb6#2)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:def csb7#2 = :ctf {eq P0@Pid  = P#Pid .}
+
+	:apply(csb7#2)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+	:imp [tas1]  by {P0:Pid <- P0@Pid ; P:Pid <- P@Pid ;}
+
+	:apply (rd)
+
+
+:sel(3)
+	:apply(tc)
+
+	:apply (rd)
+
+	:apply (rd)
+

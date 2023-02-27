@@ -1,0 +1,15 @@
+load TAS/tas.cafe .
+load TAS/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+
+:infer-proof tas .
+
+set-output TAS/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load TAS/proof-scripts/input.cafe .
+
+-- exp:  21:09:16 -> 21:09:19
