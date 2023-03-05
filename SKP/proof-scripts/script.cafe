@@ -1,0 +1,2820 @@
+
+:goal{
+eq [skp :nonexec] : inv1(S:Sys, N:NzNat)  = true .
+ eq [skp1 :nonexec] : inv2(S:Sys, N:NzNat)  = true .
+ eq [skp3 :nonexec] : inv3(S:Sys, N:NzNat, N0:NzNat)  = true .
+ eq [skp4 :nonexec] : inv4(S:Sys, N:NzNat, N0:NzNat, P:Privilege)  = true .
+ eq [skp5 :nonexec] : inv5(S:Sys, N:NzNat, N0:NzNat, P:Privilege, P0:Privilege)  = true .
+ eq [skp2 :nonexec] : mutex(S:Sys, N:NzNat, N0:NzNat)  = true .
+}
+:ind on (S:Sys)
+:apply(si)
+:sel(1)
+	:apply(tc)
+
+	:def csb1#1 = :ctf {eq pc(S#Sys, N#NzNat)  = l2 .}
+
+	:apply(csb1#1)
+
+	:def csb2#1 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#1)
+
+	:def csb3#1 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb3#1)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb4#1 = :ctf {eq pc(S#Sys, N#NzNat)  = l2 .}
+
+	:apply(csb4#1)
+
+	:def csb5#1 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb5#1)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#1 = :ctf {eq pc(S#Sys, N#NzNat)  = l2 .}
+
+	:apply(csb6#1)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb7#1 = :ctf {eq pc(S#Sys, N#NzNat)  = l2 .}
+
+	:apply(csb7#1)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#1 = :ctf {eq pc(S#Sys, N#NzNat)  = l2 .}
+
+	:apply(csb8#1)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb9#1 = :ctf {eq pc(S#Sys, N#NzNat)  = l2 .}
+
+	:apply(csb9#1)
+
+	:def csb10#1 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb10#1)
+
+	:def csb11#1 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb11#1)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb12#1 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb12#1)
+
+	:def csb13#1 = :ctf {eq pc(S#Sys, N0@NzNat)  = cs .}
+
+	:apply(csb13#1)
+
+	:def csb14#1 = :ctf [havePriv(S#Sys, N0@NzNat)  .]
+
+	:apply(csb14#1)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N0@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb15#1 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb15#1)
+
+	:def csb16#1 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb16#1)
+
+	:def csb17#1 = :ctf {eq pc(S#Sys, N@NzNat)  = cs .}
+
+	:apply(csb17#1)
+
+	:def csb18#1 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb18#1)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(2)
+	:apply(tc)
+
+	:def csb1#2 = :ctf {eq pc(S#Sys, N#NzNat)  = l8 .}
+
+	:apply(csb1#2)
+
+	:def csb2#2 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#2)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#2 = :ctf {eq pc(S#Sys, N#NzNat)  = l8 .}
+
+	:apply(csb3#2)
+
+	:def csb4#2 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#2)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#2 = :ctf {eq pc(S#Sys, N#NzNat)  = l8 .}
+
+	:apply(csb5#2)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#2 = :ctf {eq pc(S#Sys, N#NzNat)  = l8 .}
+
+	:apply(csb6#2)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#2 = :ctf {eq pc(S#Sys, N#NzNat)  = l8 .}
+
+	:apply(csb7#2)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#2 = :ctf {eq pc(S#Sys, N#NzNat)  = l8 .}
+
+	:apply(csb8#2)
+
+	:def csb9#2 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#2)
+
+	:def csb10#2 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#2)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb11#2 = :ctf [empty?(queue(S#Sys, N#NzNat))  .]
+
+	:apply(csb11#2)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb12#2 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb12#2)
+
+	:def csb13#2 = :ctf [empty?(queue(S#Sys, N#NzNat))  .]
+
+	:apply(csb13#2)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(3)
+	:apply(tc)
+
+	:def csb1#3 = :ctf {eq pc(S#Sys, N#NzNat)  = l6 .}
+
+	:apply(csb1#3)
+
+	:def csb2#3 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#3)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#3 = :ctf {eq pc(S#Sys, N#NzNat)  = l6 .}
+
+	:apply(csb3#3)
+
+	:def csb4#3 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#3)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#3 = :ctf {eq pc(S#Sys, N#NzNat)  = l6 .}
+
+	:apply(csb5#3)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#3 = :ctf {eq pc(S#Sys, N#NzNat)  = l6 .}
+
+	:apply(csb6#3)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#3 = :ctf {eq pc(S#Sys, N#NzNat)  = l6 .}
+
+	:apply(csb7#3)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#3 = :ctf {eq pc(S#Sys, N#NzNat)  = l6 .}
+
+	:apply(csb8#3)
+
+	:def csb9#3 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#3)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb10#3 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#3)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(4)
+	:apply(tc)
+
+	:def csb1#4 = :ctf {eq pc(S#Sys, N#NzNat)  = cs .}
+
+	:apply(csb1#4)
+
+	:def csb2#4 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#4)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#4 = :ctf {eq pc(S#Sys, N#NzNat)  = cs .}
+
+	:apply(csb3#4)
+
+	:def csb4#4 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#4)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#4 = :ctf {eq pc(S#Sys, N#NzNat)  = cs .}
+
+	:apply(csb5#4)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#4 = :ctf {eq pc(S#Sys, N#NzNat)  = cs .}
+
+	:apply(csb6#4)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#4 = :ctf {eq pc(S#Sys, N#NzNat)  = cs .}
+
+	:apply(csb7#4)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#4 = :ctf {eq pc(S#Sys, N#NzNat)  = cs .}
+
+	:apply(csb8#4)
+
+	:def csb9#4 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#4)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb10#4 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#4)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(5)
+	:apply(tc)
+
+	:def csb1#5 = :ctf {eq pc(S#Sys, N#NzNat)  = l3 .}
+
+	:apply(csb1#5)
+
+	:def csb2#5 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#5)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#5 = :ctf {eq pc(S#Sys, N#NzNat)  = l3 .}
+
+	:apply(csb3#5)
+
+	:def csb4#5 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#5)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#5 = :ctf {eq pc(S#Sys, N#NzNat)  = l3 .}
+
+	:apply(csb5#5)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#5 = :ctf {eq pc(S#Sys, N#NzNat)  = l3 .}
+
+	:apply(csb6#5)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#5 = :ctf {eq pc(S#Sys, N#NzNat)  = l3 .}
+
+	:apply(csb7#5)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#5 = :ctf {eq pc(S#Sys, N#NzNat)  = l3 .}
+
+	:apply(csb8#5)
+
+	:def csb9#5 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#5)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb10#5 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#5)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(6)
+	:apply(tc)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:def csb1#6 = :ctf {eq N@NzNat  = 1 .}
+
+	:apply(csb1#6)
+
+	:def csb2#6 = :ctf {eq N0@NzNat  = 1 .}
+
+	:apply(csb2#6)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+
+:sel(7)
+	:apply(tc)
+
+	:def csb1#7 = :ctf {eq node(R#Request)  = N#NzNat .}
+
+	:apply(csb1#7)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb2#7 = :ctf [msg(N#NzNat, R#Request) \in nw(S#Sys)  .]
+
+	:apply(csb2#7)
+
+	:def csb3#7 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb3#7)
+
+	:def csb4#7 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb4#7)
+
+	:def csb5#7 = :ctf [requesting(S#Sys, N#NzNat)  .]
+
+	:apply(csb5#7)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#7 = :ctf {eq rn(S#Sys, N#NzNat)[node(R#Request)]  = s(ln(S#Sys, N#NzNat)[node(R#Request)]) .}
+
+	:apply(csb6#7)
+
+	:def csb7#7 = :ctf {eq pc(S#Sys, N#NzNat)  = cs .}
+
+	:apply(csb7#7)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp1]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb8#7 = :ctf {eq pc(S#Sys, N#NzNat)  = l6 .}
+
+	:apply(csb8#7)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp1]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb9#7 = :ctf {eq pc(S#Sys, N#NzNat)  = l7 .}
+
+	:apply(csb9#7)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp1]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb10#7 = :ctf {eq pc(S#Sys, N#NzNat)  = l8 .}
+
+	:apply(csb10#7)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp1]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb11#7 = :ctf {eq pc(S#Sys, N#NzNat)  = l9 .}
+
+	:apply(csb11#7)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp1]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb12#7 = :ctf {eq node(R#Request)  = N#NzNat .}
+
+	:apply(csb12#7)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb13#7 = :ctf [msg(N#NzNat, R#Request) \in nw(S#Sys)  .]
+
+	:apply(csb13#7)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb14#7 = :ctf {eq node(R#Request)  = N#NzNat .}
+
+	:apply(csb14#7)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb15#7 = :ctf [msg(N#NzNat, R#Request) \in nw(S#Sys)  .]
+
+	:apply(csb15#7)
+
+	:def csb16#7 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb16#7)
+
+	:def csb17#7 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb17#7)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb18#7 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb18#7)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb19#7 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb19#7)
+
+	:def csb20#7 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb20#7)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb21#7 = :ctf {eq node(R#Request)  = N#NzNat .}
+
+	:apply(csb21#7)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb22#7 = :ctf [msg(N#NzNat, R#Request) \in nw(S#Sys)  .]
+
+	:apply(csb22#7)
+
+	:def csb23#7 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb23#7)
+
+	:def csb24#7 = :ctf [requesting(S#Sys, N#NzNat)  .]
+
+	:apply(csb24#7)
+
+	:def csb25#7 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb25#7)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb26#7 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb26#7)
+
+	:def csb27#7 = :ctf {eq rn(S#Sys, N#NzNat)[node(R#Request)]  = s(ln(S#Sys, N#NzNat)[node(R#Request)]) .}
+
+	:apply(csb27#7)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb28#7 = :ctf {eq rn(S#Sys, N#NzNat)[node(R#Request)]  = s(ln(S#Sys, N#NzNat)[node(R#Request)]) .}
+
+	:apply(csb28#7)
+
+	:def csb29#7 = :ctf {eq node(R#Request)  = N@NzNat .}
+
+	:apply(csb29#7)
+
+	:def csb30#7 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb30#7)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb31#7 = :ctf {eq rn(S#Sys, N#NzNat)[N@NzNat]  = s(ln(S#Sys, N#NzNat)[N@NzNat]) .}
+
+	:apply(csb31#7)
+
+	:def csb32#7 = :ctf {eq P@Privilege  = priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb32#7)
+
+	:def csb33#7 = :ctf [havePriv(S#Sys, N0@NzNat)  .]
+
+	:apply(csb33#7)
+
+	:def csb34#7 = :ctf [msg(N@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb34#7)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb35#7 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb35#7)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb36#7 = :ctf {eq node(R#Request)  = N#NzNat .}
+
+	:apply(csb36#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb37#7 = :ctf [msg(N#NzNat, R#Request) \in nw(S#Sys)  .]
+
+	:apply(csb37#7)
+
+	:def csb38#7 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb38#7)
+
+	:def csb39#7 = :ctf [requesting(S#Sys, N#NzNat)  .]
+
+	:apply(csb39#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb40#7 = :ctf {eq rn(S#Sys, N#NzNat)[node(R#Request)]  = s(ln(S#Sys, N#NzNat)[node(R#Request)]) .}
+
+	:apply(csb40#7)
+
+	:def csb41#7 = :ctf {eq node(R#Request)  = N@NzNat .}
+
+	:apply(csb41#7)
+
+	:def csb42#7 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb42#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb43#7 = :ctf {eq rn(S#Sys, N#NzNat)[N@NzNat]  = s(ln(S#Sys, N#NzNat)[N@NzNat]) .}
+
+	:apply(csb43#7)
+
+	:def csb44#7 = :ctf {eq P@Privilege  = priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb44#7)
+
+	:def csb45#7 = :ctf [msg(N0@NzNat, P0@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb45#7)
+
+	:def csb46#7 = :ctf [msg(N@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb46#7)
+
+	:def csb47#7 = :ctf [msg(N0@NzNat, P0@Privilege) \in del(nw(S#Sys), msg(N@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))))  .]
+
+	:apply(csb47#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P0@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb48#7 = :ctf {eq N0@NzNat  = N@NzNat .}
+
+	:apply(csb48#7)
+
+	:def csb49#7 = :ctf {eq P0@Privilege  = priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb49#7)
+
+	:def csb50#7 = :ctf [msg(N@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb50#7)
+
+	:def csb51#7 = :ctf [msg(N@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb51#7)
+
+	:def csb52#7 = :ctf [msg(N@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in del(nw(S#Sys), msg(N@NzNat, P@Privilege))  .]
+
+	:apply(csb52#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb53#7 = :ctf {eq node(R#Request)  = N0@NzNat .}
+
+	:apply(csb53#7)
+
+	:def csb54#7 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb54#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb55#7 = :ctf {eq rn(S#Sys, N#NzNat)[N0@NzNat]  = s(ln(S#Sys, N#NzNat)[N0@NzNat]) .}
+
+	:apply(csb55#7)
+
+	:def csb56#7 = :ctf {eq N@NzNat  = N0@NzNat .}
+
+	:apply(csb56#7)
+
+	:def csb57#7 = :ctf {eq P@Privilege  = priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb57#7)
+
+	:def csb58#7 = :ctf [msg(N0@NzNat, P0@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb58#7)
+
+	:def csb59#7 = :ctf [msg(N0@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb59#7)
+
+	:def csb60#7 = :ctf [msg(N0@NzNat, P0@Privilege) \in del(nw(S#Sys), msg(N0@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))))  .]
+
+	:apply(csb60#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P0@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb61#7 = :ctf {eq P0@Privilege  = priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb61#7)
+
+	:def csb62#7 = :ctf [msg(N0@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb62#7)
+
+	:def csb63#7 = :ctf [msg(N0@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb63#7)
+
+	:def csb64#7 = :ctf [msg(N0@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in del(nw(S#Sys), msg(N0@NzNat, P@Privilege))  .]
+
+	:apply(csb64#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb65#7 = :ctf {eq P0@Privilege  = priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb65#7)
+
+	:def csb66#7 = :ctf [msg(N@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb66#7)
+
+	:def csb67#7 = :ctf [msg(N0@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb67#7)
+
+	:def csb68#7 = :ctf [msg(N0@NzNat, priv(queue(S#Sys, N#NzNat), ln(S#Sys, N#NzNat))) \in del(nw(S#Sys), msg(N@NzNat, P@Privilege))  .]
+
+	:apply(csb68#7)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb69#7 = :ctf {eq node(R#Request)  = N#NzNat .}
+
+	:apply(csb69#7)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb70#7 = :ctf [msg(N#NzNat, R#Request) \in nw(S#Sys)  .]
+
+	:apply(csb70#7)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(8)
+	:apply(tc)
+
+	:def csb1#8 = :ctf {eq pc(S#Sys, N#NzNat)  = l10 .}
+
+	:apply(csb1#8)
+
+	:def csb2#8 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#8)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#8 = :ctf {eq pc(S#Sys, N#NzNat)  = l10 .}
+
+	:apply(csb3#8)
+
+	:def csb4#8 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#8)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#8 = :ctf {eq pc(S#Sys, N#NzNat)  = l10 .}
+
+	:apply(csb5#8)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#8 = :ctf {eq pc(S#Sys, N#NzNat)  = l10 .}
+
+	:apply(csb6#8)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#8 = :ctf {eq pc(S#Sys, N#NzNat)  = l10 .}
+
+	:apply(csb7#8)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#8 = :ctf {eq pc(S#Sys, N#NzNat)  = l10 .}
+
+	:apply(csb8#8)
+
+	:def csb9#8 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#8)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb10#8 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#8)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(9)
+	:apply(tc)
+
+	:def csb1#9 = :ctf {eq pc(S#Sys, N#NzNat)  = l4 .}
+
+	:apply(csb1#9)
+
+	:def csb2#9 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#9)
+
+	:def csb3#9 = :ctf {eq idx(S#Sys, N#NzNat)  = N .}
+
+	:apply(csb3#9)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb4#9 = :ctf {eq pc(S#Sys, N#NzNat)  = l4 .}
+
+	:apply(csb4#9)
+
+	:def csb5#9 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb5#9)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#9 = :ctf {eq pc(S#Sys, N#NzNat)  = l4 .}
+
+	:apply(csb6#9)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb7#9 = :ctf {eq pc(S#Sys, N#NzNat)  = l4 .}
+
+	:apply(csb7#9)
+
+	:def csb8#9 = :ctf {eq idx(S#Sys, N#NzNat)  = N#NzNat .}
+
+	:apply(csb8#9)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb9#9 = :ctf {eq pc(S#Sys, N#NzNat)  = l4 .}
+
+	:apply(csb9#9)
+
+	:def csb10#9 = :ctf {eq idx(S#Sys, N#NzNat)  = N#NzNat .}
+
+	:apply(csb10#9)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb11#9 = :ctf {eq pc(S#Sys, N#NzNat)  = l4 .}
+
+	:apply(csb11#9)
+
+	:def csb12#9 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb12#9)
+
+	:def csb13#9 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb13#9)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb14#9 = :ctf {eq idx(S#Sys, N#NzNat)  = N .}
+
+	:apply(csb14#9)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb15#9 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb15#9)
+
+	:def csb16#9 = :ctf {eq idx(S#Sys, N#NzNat)  = N .}
+
+	:apply(csb16#9)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(10)
+	:apply(tc)
+
+	:def csb1#10 = :ctf {eq pc(S#Sys, N#NzNat)  = l1 .}
+
+	:apply(csb1#10)
+
+	:def csb2#10 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#10)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#10 = :ctf {eq pc(S#Sys, N#NzNat)  = l1 .}
+
+	:apply(csb3#10)
+
+	:def csb4#10 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#10)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#10 = :ctf {eq pc(S#Sys, N#NzNat)  = l1 .}
+
+	:apply(csb5#10)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#10 = :ctf {eq pc(S#Sys, N#NzNat)  = l1 .}
+
+	:apply(csb6#10)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#10 = :ctf {eq pc(S#Sys, N#NzNat)  = l1 .}
+
+	:apply(csb7#10)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#10 = :ctf {eq pc(S#Sys, N#NzNat)  = l1 .}
+
+	:apply(csb8#10)
+
+	:def csb9#10 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#10)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb10#10 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#10)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(11)
+	:apply(tc)
+
+	:def csb1#11 = :ctf {eq pc(S#Sys, N#NzNat)  = l9 .}
+
+	:apply(csb1#11)
+
+	:def csb2#11 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#11)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#11 = :ctf {eq pc(S#Sys, N@NzNat)  = cs .}
+
+	:apply(csb3#11)
+
+	:def csb4#11 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb4#11)
+
+	:def csb5#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb5#11)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#11 = :ctf {eq pc(S#Sys, N@NzNat)  = l6 .}
+
+	:apply(csb6#11)
+
+	:def csb7#11 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb7#11)
+
+	:def csb8#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb8#11)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb9#11 = :ctf {eq pc(S#Sys, N@NzNat)  = l7 .}
+
+	:apply(csb9#11)
+
+	:def csb10#11 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb10#11)
+
+	:def csb11#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb11#11)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb12#11 = :ctf {eq pc(S#Sys, N@NzNat)  = l8 .}
+
+	:apply(csb12#11)
+
+	:def csb13#11 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb13#11)
+
+	:def csb14#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb14#11)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb15#11 = :ctf {eq pc(S#Sys, N@NzNat)  = l9 .}
+
+	:apply(csb15#11)
+
+	:def csb16#11 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb16#11)
+
+	:def csb17#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb17#11)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp3]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb18#11 = :ctf {eq pc(S#Sys, N#NzNat)  = l9 .}
+
+	:apply(csb18#11)
+
+	:def csb19#11 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb19#11)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb20#11 = :ctf {eq pc(S#Sys, N#NzNat)  = l9 .}
+
+	:apply(csb20#11)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb21#11 = :ctf {eq pc(S#Sys, N#NzNat)  = l9 .}
+
+	:apply(csb21#11)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb22#11 = :ctf {eq pc(S#Sys, N#NzNat)  = l9 .}
+
+	:apply(csb22#11)
+
+	:def csb23#11 = :ctf {eq top(queue(S#Sys, N#NzNat))  = N@NzNat .}
+
+	:apply(csb23#11)
+
+	:def csb24#11 = :ctf {eq P@Privilege  = priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb24#11)
+
+	:def csb25#11 = :ctf [msg(N0@NzNat, P0@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb25#11)
+
+	:def csb26#11 = :ctf [msg(N@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb26#11)
+
+	:def csb27#11 = :ctf [msg(N0@NzNat, P0@Privilege) \in del(nw(S#Sys), msg(N@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))))  .]
+
+	:apply(csb27#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb28#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb28#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat)) ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb29#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb29#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P0@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb30#11 = :ctf {eq N0@NzNat  = N@NzNat .}
+
+	:apply(csb30#11)
+
+	:def csb31#11 = :ctf {eq P0@Privilege  = priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb31#11)
+
+	:def csb32#11 = :ctf [msg(N@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb32#11)
+
+	:def csb33#11 = :ctf [msg(N@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb33#11)
+
+	:def csb34#11 = :ctf [msg(N@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in del(nw(S#Sys), msg(N@NzNat, P@Privilege))  .]
+
+	:apply(csb34#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb35#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb35#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb36#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb36#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb37#11 = :ctf {eq top(queue(S#Sys, N#NzNat))  = N0@NzNat .}
+
+	:apply(csb37#11)
+
+	:def csb38#11 = :ctf {eq N@NzNat  = N0@NzNat .}
+
+	:apply(csb38#11)
+
+	:def csb39#11 = :ctf {eq P@Privilege  = priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb39#11)
+
+	:def csb40#11 = :ctf [msg(N0@NzNat, P0@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb40#11)
+
+	:def csb41#11 = :ctf [msg(N0@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb41#11)
+
+	:def csb42#11 = :ctf [msg(N0@NzNat, P0@Privilege) \in del(nw(S#Sys), msg(N0@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))))  .]
+
+	:apply(csb42#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb43#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb43#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P0@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb44#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb44#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P0@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb45#11 = :ctf {eq P0@Privilege  = priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb45#11)
+
+	:def csb46#11 = :ctf [msg(N0@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb46#11)
+
+	:def csb47#11 = :ctf [msg(N0@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb47#11)
+
+	:def csb48#11 = :ctf [msg(N0@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in del(nw(S#Sys), msg(N0@NzNat, P@Privilege))  .]
+
+	:apply(csb48#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb49#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb49#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb50#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb50#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N0@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb51#11 = :ctf {eq P0@Privilege  = priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat)) .}
+
+	:apply(csb51#11)
+
+	:def csb52#11 = :ctf [msg(N@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb52#11)
+
+	:def csb53#11 = :ctf [msg(N0@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in nw(S#Sys)  .]
+
+	:apply(csb53#11)
+
+	:def csb54#11 = :ctf [msg(N0@NzNat, priv(get(queue(S#Sys, N#NzNat)), ln(S#Sys, N#NzNat))) \in del(nw(S#Sys), msg(N@NzNat, P@Privilege))  .]
+
+	:apply(csb54#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb55#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb55#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:def csb56#11 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb56#11)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp4]  by {N0:NzNat <- N#NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp]  by {N:NzNat <- N#NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb57#11 = :ctf {eq pc(S#Sys, N#NzNat)  = l9 .}
+
+	:apply(csb57#11)
+
+	:def csb58#11 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb58#11)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb59#11 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb59#11)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(12)
+	:apply(tc)
+
+	:def csb1#12 = :ctf {eq pc(S#Sys, N#NzNat)  = rem .}
+
+	:apply(csb1#12)
+
+	:def csb2#12 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#12)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#12 = :ctf {eq pc(S#Sys, N#NzNat)  = rem .}
+
+	:apply(csb3#12)
+
+	:def csb4#12 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#12)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#12 = :ctf {eq pc(S#Sys, N#NzNat)  = rem .}
+
+	:apply(csb5#12)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#12 = :ctf {eq pc(S#Sys, N#NzNat)  = rem .}
+
+	:apply(csb6#12)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#12 = :ctf {eq pc(S#Sys, N#NzNat)  = rem .}
+
+	:apply(csb7#12)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#12 = :ctf {eq pc(S#Sys, N#NzNat)  = rem .}
+
+	:apply(csb8#12)
+
+	:def csb9#12 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#12)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb10#12 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#12)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(13)
+	:apply(tc)
+
+	:def csb1#13 = :ctf {eq pc(S#Sys, N#NzNat)  = l7 .}
+
+	:apply(csb1#13)
+
+	:def csb2#13 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb2#13)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb3#13 = :ctf {eq pc(S#Sys, N#NzNat)  = l7 .}
+
+	:apply(csb3#13)
+
+	:def csb4#13 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb4#13)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb5#13 = :ctf {eq pc(S#Sys, N#NzNat)  = l7 .}
+
+	:apply(csb5#13)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb6#13 = :ctf {eq pc(S#Sys, N#NzNat)  = l7 .}
+
+	:apply(csb6#13)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb7#13 = :ctf {eq pc(S#Sys, N#NzNat)  = l7 .}
+
+	:apply(csb7#13)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb8#13 = :ctf {eq pc(S#Sys, N#NzNat)  = l7 .}
+
+	:apply(csb8#13)
+
+	:def csb9#13 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#13)
+
+	:def csb10#13 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#13)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb11#13 = :ctf {eq idx(S#Sys, N#NzNat)  = N .}
+
+	:apply(csb11#13)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb12#13 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb12#13)
+
+	:def csb13#13 = :ctf {eq idx(S#Sys, N#NzNat)  = N .}
+
+	:apply(csb13#13)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+
+:sel(14)
+	:apply(tc)
+
+	:def csb1#14 = :ctf {eq pc(S#Sys, N#NzNat)  = l5 .}
+
+	:apply(csb1#14)
+
+	:def csb2#14 = :ctf [msg(N#NzNat, P#Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb2#14)
+
+	:def csb3#14 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb3#14)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb4#14 = :ctf {eq pc(S#Sys, N#NzNat)  = l5 .}
+
+	:apply(csb4#14)
+
+	:def csb5#14 = :ctf [msg(N#NzNat, P#Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb5#14)
+
+	:def csb6#14 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb6#14)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp1]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb7#14 = :ctf {eq pc(S#Sys, N#NzNat)  = l5 .}
+
+	:apply(csb7#14)
+
+	:def csb8#14 = :ctf [msg(N#NzNat, P#Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb8#14)
+
+	:def csb9#14 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb9#14)
+
+	:def csb10#14 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb10#14)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb11#14 = :ctf [havePriv(S#Sys, N0@NzNat)  .]
+
+	:apply(csb11#14)
+
+	:def csb12#14 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb12#14)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N#NzNat ; P:Privilege <- P#Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb13#14 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb13#14)
+
+	:def csb14#14 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb14#14)
+
+	:def csb15#14 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb15#14)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp4]  by {N0:NzNat <- N@NzNat ; N:NzNat <- N#NzNat ; P:Privilege <- P#Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp3]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb16#14 = :ctf {eq pc(S#Sys, N#NzNat)  = l5 .}
+
+	:apply(csb16#14)
+
+	:def csb17#14 = :ctf [msg(N#NzNat, P#Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb17#14)
+
+	:def csb18#14 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb18#14)
+
+	:def csb19#14 = :ctf [msg(N@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb19#14)
+
+	:def csb20#14 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb20#14)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb21#14 = :ctf [msg(N@NzNat, P@Privilege) \in del(nw(S#Sys), msg(N#NzNat, P#Privilege))  .]
+
+	:apply(csb21#14)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:imp [skp5]  by {N0:NzNat <- N@NzNat ; N:NzNat <- N#NzNat ; P0:Privilege <- P@Privilege ; P:Privilege <- P#Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb22#14 = :ctf [havePriv(S#Sys, N#NzNat)  .]
+
+	:apply(csb22#14)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb23#14 = :ctf [havePriv(S#Sys, N0@NzNat)  .]
+
+	:apply(csb23#14)
+
+	:def csb24#14 = :ctf [msg(N@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb24#14)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb25#14 = :ctf {eq pc(S#Sys, N#NzNat)  = l5 .}
+
+	:apply(csb25#14)
+
+	:def csb26#14 = :ctf [msg(N#NzNat, P#Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb26#14)
+
+	:def csb27#14 = :ctf [msg(N@NzNat, P@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb27#14)
+
+	:def csb28#14 = :ctf [msg(N@NzNat, P@Privilege) \in del(nw(S#Sys), msg(N#NzNat, P#Privilege))  .]
+
+	:apply(csb28#14)
+
+	:def csb29#14 = :ctf [msg(N0@NzNat, P0@Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb29#14)
+
+	:def csb30#14 = :ctf [msg(N0@NzNat, P0@Privilege) \in del(nw(S#Sys), msg(N@NzNat, P@Privilege))  .]
+
+	:apply(csb30#14)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp5]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ; P0:Privilege <- P0@Privilege ; P:Privilege <- P@Privilege ;}
+
+	:apply (rd)
+
+	:def csb31#14 = :ctf {eq pc(S#Sys, N#NzNat)  = l5 .}
+
+	:apply(csb31#14)
+
+	:def csb32#14 = :ctf [msg(N#NzNat, P#Privilege) \in nw(S#Sys)  .]
+
+	:apply(csb32#14)
+
+	:def csb33#14 = :ctf {eq N@NzNat  = N#NzNat .}
+
+	:apply(csb33#14)
+
+	:def csb34#14 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb34#14)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb35#14 = :ctf {eq pc(S#Sys, N0@NzNat)  = cs .}
+
+	:apply(csb35#14)
+
+	:def csb36#14 = :ctf [havePriv(S#Sys, N0@NzNat)  .]
+
+	:apply(csb36#14)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp4]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N#NzNat ; P:Privilege <- P#Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N0@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:def csb37#14 = :ctf {eq N0@NzNat  = N#NzNat .}
+
+	:apply(csb37#14)
+
+	:def csb38#14 = :ctf {eq pc(S#Sys, N@NzNat)  = cs .}
+
+	:apply(csb38#14)
+
+	:def csb39#14 = :ctf [havePriv(S#Sys, N@NzNat)  .]
+
+	:apply(csb39#14)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp4]  by {N0:NzNat <- N@NzNat ; N:NzNat <- N#NzNat ; P:Privilege <- P#Privilege ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:imp [skp]  by {N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+
+	:imp [skp2]  by {N0:NzNat <- N0@NzNat ; N:NzNat <- N@NzNat ;}
+
+	:apply (rd)
+

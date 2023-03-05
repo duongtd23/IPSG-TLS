@@ -1,0 +1,441 @@
+mod! QUEUE {
+  pr(NAT)
+  [NeQueue < Queue]
+  op empty : -> Queue {constr} .
+  op _|_ : NzNat Queue -> NeQueue {constr} .
+  op top : Queue -> NzNat .
+  op put : Queue NzNat -> Queue .
+  op get : Queue -> Queue .
+  op _\in_ : NzNat Queue -> Bool .
+  op empty? : Queue -> Bool .
+  vars I J : NzNat .
+  var Q : Queue .
+  eq top(I | Q) = I .
+  eq top(empty) = 0 .
+  eq put(empty,I) = I | empty .
+  eq put(J | Q,I) = J | put(Q,I) .
+  -- eq put(J | Q,I) = (if I = J then J | Q else 
+  --           (if I \in Q then Q else J | put(Q,I) fi) fi).
+  eq get(empty) = empty .
+  eq get(I | Q) = Q .
+  eq I \in empty = false .
+  eq I \in (J | Q) = (if I = J then true else I \in Q fi) .
+  eq empty?(empty) = true .
+  eq empty?(I | Q) = false .
+  eq (0 = I) = false .
+  eq top(put(Q,I)) = I .
+  -- eq (top(get(I | Q)) = top(Q)) = false .
+}
+
+mod! ARRAY {
+  pr(NAT)
+  [AElm < Array]
+  op ia : -> Array {constr} .
+  op _|->_ : NzNat Nat -> AElm {constr} .
+  op _,_ : Array Array -> Array { constr assoc comm id: ia } .
+  op _[_] : Array NzNat -> Nat .
+  op _[_] :=_ : Array NzNat Nat -> Array .
+  var A : Array .
+  vars I J : NzNat .
+  vars X Y N : Nat .
+  eq ia[I] = 0 .
+  eq (ia[I] := X) = (I |-> X) .
+  eq ((I |-> X)[J] := Y) = (if I = J then (I |-> Y) else ((I |-> X), (J |-> Y)) fi) .
+  eq (((I |-> X) , A)[J] := Y) = (if I = J then ((I |-> Y), A) else ((I |-> X), (A[J] := Y)) fi) .
+  eq ((I |-> X)[J]) = (if I = J then X else ia[J] fi) .
+  eq ((I |-> X) , A)[J] = (if I = J then X else A[J] fi) .  
+}
+
+mod! REQUEST {
+  pr(NAT)
+  [Request]
+  op req : NzNat Nat -> Request {constr} .
+  op node : Request -> NzNat .
+  op sn : Request -> Nat .
+  var J : NzNat .
+  var X : Nat .
+  eq node(req(J,X)) = J .
+  eq sn(req(J,X)) = X .
+}
+
+mod! PRIVILEGE {
+  pr(QUEUE)
+  pr(ARRAY)
+  [Privilege]
+  op priv : Queue Array -> Privilege {constr} .
+  op q : Privilege -> Queue .
+  op ln : Privilege -> Array .
+  vars Q : Queue .
+  vars A : Array .
+  eq q(priv(Q,A)) = Q .
+  eq ln(priv(Q,A)) = A .
+}
+
+mod! MESSAGE {
+  pr(REQUEST)
+  pr(PRIVILEGE)
+  [Message]
+  op msg : NzNat Request -> Message {constr} .
+  op msg : NzNat Privilege -> Message {constr} .
+  vars RE RE1 : Request .
+  vars PRI PRI1 : Privilege .
+  vars I J : NzNat .
+
+  eq (msg(I,PRI) = msg(J,RE)) = false .
+  eq (msg(I,PRI) = msg(J,PRI1)) = (I = J and PRI = PRI1) .
+  eq (msg(I,RE) = msg(J,RE1)) = (I = J and RE = RE1) .
+}
+
+mod! NETWORK {
+  pr(MESSAGE)
+  [Message < Network]
+  op void : -> Network {constr} .
+  op __ : Network Network -> Network {constr assoc comm id: void} .
+  op _\in_ : Message Network -> Bool .
+  op del : Network Message -> Network .
+  vars M M1 M2 : Message .
+  var N : Network .
+  eq M \in void = false .
+  eq M \in (M1 N) = (if M = M1 then true else M \in N fi) .
+  eq del(void, M) = void .
+  eq del((M N), M1) = (if M = M1 then N else M del(N, M1) fi) .
+
+-- lemmas
+  ceq M \in del(N, M1) = false if not(M \in N) .
+  ceq M \in del(del(N, M1), M2) = false if not(M \in del(N, M2)) .
+}
+
+mod! LABEL {
+  [Label]
+  ops rem l1 l2 l3 l4 l5 cs l6 l7 l8 l9 l10 : -> Label {constr} .
+  eq (rem = l1) = false .
+  eq (rem = l2) = false .
+  eq (rem = l3) = false .
+  eq (rem = l4) = false .
+  eq (rem = l5) = false .
+  eq (rem = cs) = false .
+  eq (rem = l6) = false .
+  eq (rem = l7) = false .
+  eq (rem = l8) = false .
+  eq (rem = l9) = false .
+  eq (rem = l10) = false .
+  eq (l1 = l2) = false .
+  eq (l1 = l3) = false .
+  eq (l1 = l4) = false .
+  eq (l1 = l5) = false .
+  eq (l1 = cs) = false .
+  eq (l1 = l6) = false .
+  eq (l1 = l7) = false .
+  eq (l1 = l8) = false .
+  eq (l1 = l9) = false .
+  eq (l1 = l10) = false .
+  eq (l2 = l3) = false .
+  eq (l2 = l4) = false .
+  eq (l2 = l5) = false .
+  eq (l2 = cs) = false .
+  eq (l2 = l6) = false .
+  eq (l2 = l7) = false .
+  eq (l2 = l8) = false .
+  eq (l2 = l9) = false .
+  eq (l2 = l10) = false .
+  eq (l3 = l4) = false .
+  eq (l3 = l5) = false .
+  eq (l3 = cs) = false .
+  eq (l3 = l6) = false .
+  eq (l3 = l7) = false .
+  eq (l3 = l8) = false .
+  eq (l3 = l9) = false .
+  eq (l3 = l10) = false .
+  eq (l4 = l5) = false .
+  eq (l4 = cs) = false .
+  eq (l4 = l6) = false .
+  eq (l4 = l7) = false .
+  eq (l4 = l8) = false .
+  eq (l4 = l9) = false .
+  eq (l4 = l10) = false .
+  eq (l5 = cs) = false .
+  eq (l5 = l6) = false .
+  eq (l5 = l7) = false .
+  eq (l5 = l8) = false .
+  eq (l5 = l9) = false .
+  eq (l5 = l10) = false .
+  eq (cs = l6) = false .
+  eq (cs = l7) = false .
+  eq (cs = l8) = false .
+  eq (cs = l9) = false .
+  eq (cs = l10) = false .
+  eq (l6 = l7) = false .
+  eq (l6 = l8) = false .
+  eq (l6 = l9) = false .
+  eq (l6 = l10) = false .
+  eq (l7 = l8) = false .
+  eq (l7 = l9) = false .
+  eq (l7 = l10) = false .
+  eq (l8 = l9) = false .
+  eq (l8 = l10) = false .
+  eq (l9 = l10) = false .
+}
+
+mod SKP { 
+  pr(NETWORK)
+  pr(LABEL)
+  [Sys]
+
+  -- initial states
+  op init : -> Sys {constr} .
+  -- transitions
+  op try : Sys NzNat -> Sys {constr} .
+  op setReq : Sys NzNat -> Sys {constr} .
+  op checkPriv : Sys NzNat -> Sys {constr} .
+  op incReqNo : Sys NzNat -> Sys {constr} .
+  op sendReq : Sys NzNat -> Sys {constr} .
+  op waitPriv : Sys NzNat Privilege -> Sys {constr} .
+  op exit : Sys NzNat -> Sys {constr} .
+  op completeReq : Sys NzNat -> Sys {constr} .
+  op updateQueue : Sys NzNat -> Sys {constr} .
+  op checkQueue : Sys NzNat -> Sys {constr} .
+  op transferPriv : Sys NzNat -> Sys {constr} .
+  op resetReq : Sys NzNat -> Sys {constr} .
+  op receiveReq : Sys NzNat Request -> Sys {constr} .
+  -- observers
+  op requesting : Sys NzNat -> Bool .
+  op pc         : Sys NzNat -> Label .
+  op havePriv   : Sys NzNat -> Bool .
+  op rn         : Sys NzNat -> Array .
+  op ln         : Sys NzNat -> Array .
+  op queue      : Sys NzNat -> Queue .
+  op idx        : Sys NzNat  -> NzNat .
+  op nw         : Sys        -> Network .
+  
+  op N : -> NzNat .
+  -- variables
+  var S : Sys .
+  vars I J : NzNat . 
+  vars RN LN : Array .
+  var P : Privilege .
+  var R : Request .
+
+  -- init
+  eq requesting(init,I) = false .
+  eq havePriv(init,I) = (if I = s(0) then true else false fi) .
+  eq queue(init,I) = empty .
+  eq ln(init,I) = ia .
+  eq rn(init,I) = ia .
+  eq pc(init,I) = rem .
+  eq nw(init) = void .
+
+  -- try 
+  op c-try : Sys NzNat -> Bool .
+  eq c-try(S,I) = (pc(S,I) = rem) .
+  eq requesting(try(S,I),J)    = requesting(S,J) .
+  eq havePriv(try(S,I),J)      = havePriv(S,J) .
+  eq queue(try(S,I),J)         = queue(S,J) .
+  eq ln(try(S,I),J)            = ln(S,J) .
+  eq rn(try(S,I),J)            = rn(S,J) .
+  eq idx(try(S,I),J)           = idx(S,J) .
+  ceq pc(try(S,I),J)            = (if I = J then l1 else pc(S,J) fi) if c-try(S,I) .
+  eq nw(try(S,I))              = nw(S) .
+  ceq try(S,I)                  = S if not c-try(S,I) .
+
+  -- setReq
+  op c-setReq : Sys NzNat -> Bool .
+  eq c-setReq(S,I) = (pc(S,I) = l1) .
+  ceq requesting(setReq(S,I),J)    = (if I = J then true else requesting(S,J) fi) if c-setReq(S,I) .
+  eq havePriv(setReq(S,I),J)      = havePriv(S,J) .
+  eq queue(setReq(S,I),J)         = queue(S,J) .
+  eq ln(setReq(S,I),J)            = ln(S,J) .
+  eq rn(setReq(S,I),J)            = rn(S,J) .
+  eq idx(setReq(S,I),J)           = idx(S,J) .
+  ceq pc(setReq(S,I),J)            = (if I = J then l2 else pc(S,J) fi) if c-setReq(S,I) .
+  eq nw(setReq(S,I))              = nw(S) .
+  ceq setReq(S,I)                  = S if not c-setReq(S,I) .
+
+  -- checkPriv
+  op c-checkPriv : Sys NzNat -> Bool .
+  eq c-checkPriv(S,I) = (pc(S,I) = l2) .
+  eq requesting(checkPriv(S,I),J)    = requesting(S,J) .
+  eq havePriv(checkPriv(S,I),J)      = havePriv(S,J) .
+  eq queue(checkPriv(S,I),J)         = queue(S,J) .
+  eq ln(checkPriv(S,I),J)            = ln(S,J) .
+  eq rn(checkPriv(S,I),J)            = rn(S,J) .
+  eq idx(checkPriv(S,I),J)           = idx(S,J) .
+  ceq pc(checkPriv(S,I),J)            = (if I = J then (if havePriv(S,I) then cs else l3 fi) else pc(S,J) fi) if c-checkPriv(S,I) .
+  eq nw(checkPriv(S,I))              = nw(S) .
+  ceq checkPriv(S,I)                  = S if not c-checkPriv(S,I) .
+
+  -- incReqNo
+  op c-incReqNo : Sys NzNat -> Bool .
+  eq c-incReqNo(S,I) = (pc(S,I) = l3) .
+  eq requesting(incReqNo(S,I),J)    = requesting(S,J) .
+  eq havePriv(incReqNo(S,I),J)      = havePriv(S,J) .
+  eq queue(incReqNo(S,I),J)         = queue(S,J) .
+  eq ln(incReqNo(S,I),J)            = ln(S,J) .
+  ceq rn(incReqNo(S,I),J)            = (if I = J then (rn(S,I)[I] := s(rn(S,I)[I])) else rn(S,J) fi) if c-incReqNo(S,I) .
+  ceq idx(incReqNo(S,I),J)           = (if I = J then s(0) else idx(S,J) fi) if c-incReqNo(S,I) .
+  ceq pc(incReqNo(S,I),J)            = (if I = J then l4 else pc(S,J) fi) if c-incReqNo(S,I) .
+  eq nw(incReqNo(S,I))              = nw(S) .
+  ceq incReqNo(S,I)                  = S if not c-incReqNo(S,I) .
+
+  -- sendReq
+  op c-sendReq : Sys NzNat -> Bool .
+  eq c-sendReq(S,I) = (pc(S,I) = l4) .
+  eq requesting(sendReq(S,I),J)    = requesting(S,J) .
+  eq havePriv(sendReq(S,I),J)      = havePriv(S,J) .
+  eq queue(sendReq(S,I),J)         = queue(S,J) .
+  eq ln(sendReq(S,I),J)            = ln(S,J) .
+  eq rn(sendReq(S,I),J)            = rn(S,J) .
+  ceq idx(sendReq(S,I),J)          = (if I = J then s(idx(S,I)) else idx(S,J) fi) if c-sendReq(S,I) .
+  ceq pc(sendReq(S,I),J)            = (if I = J then (if idx(S,I) = N then l5 else l4 fi) else pc(S,J) fi) if c-sendReq(S,I) .
+  ceq nw(sendReq(S,I))              = (if I = idx(S,I) then nw(S) else (msg(idx(S,I), req(I,rn(S,I)[I])) nw(S)) fi) if c-sendReq(S,I) .
+  ceq sendReq(S,I)                  = S if not c-sendReq(S,I) .
+
+  -- waitPriv
+  op c-waitPriv : Sys NzNat Privilege -> Bool .
+  eq c-waitPriv(S,I,P) = ((pc(S,I) = l5) and (msg(I,P) \in nw(S))) .
+  eq requesting(waitPriv(S,I,P),J)    = requesting(S,J) .
+  ceq havePriv(waitPriv(S,I,P),J)      = (if I = J then true else havePriv(S,J) fi) if c-waitPriv(S,I,P) .
+  ceq queue(waitPriv(S,I,P),J)         = (if I = J then q(P) else queue(S,J) fi) if c-waitPriv(S,I,P) .
+  ceq ln(waitPriv(S,I,P),J)            = (if I = J then ln(P) else ln(S,J) fi) if c-waitPriv(S,I,P) .
+  eq rn(waitPriv(S,I,P),J)            = rn(S,J) .
+  eq idx(waitPriv(S,I,P),J)           = idx(S,I) .
+  ceq pc(waitPriv(S,I,P),J)            = (if I = J then cs else pc(S,J) fi) if c-waitPriv(S,I,P) .
+  ceq nw(waitPriv(S,I,P))              = del(nw(S), msg(I,P)) if c-waitPriv(S,I,P) .
+  ceq waitPriv(S,I,P)                  = S if not c-waitPriv(S,I,P) .
+
+  -- exit
+  op c-exit : Sys NzNat -> Bool .
+  eq c-exit(S,I) = (pc(S,I) = cs) .
+  eq requesting(exit(S,I),J)    = requesting(S,J) .
+  eq havePriv(exit(S,I),J)      = havePriv(S,J) .
+  eq queue(exit(S,I),J)         = queue(S,J) .
+  eq ln(exit(S,I),J)            = ln(S,J) .
+  eq rn(exit(S,I),J)            = rn(S,J) .
+  eq idx(exit(S,I),J)           = idx(S,J) .
+  ceq pc(exit(S,I),J)            = (if I = J then l6 else pc(S,J) fi) if c-exit(S,I) .
+  eq nw(exit(S,I))              = nw(S) .
+  ceq exit(S,I)                  = S if not c-exit(S,I) .
+
+  -- completeReq
+  op c-completeReq : Sys NzNat -> Bool .
+  eq c-completeReq(S,I) = (pc(S,I) = l6) .
+  eq requesting(completeReq(S,I),J)    = requesting(S,J) .
+  eq havePriv(completeReq(S,I),J)      = havePriv(S,J) .
+  eq queue(completeReq(S,I),J)         = queue(S,J) .
+  ceq ln(completeReq(S,I),J)            = (if I = J then (ln(S,I)[I] := rn(S,I)[I]) else ln(S,J) fi) if c-completeReq(S,I) .
+  eq rn(completeReq(S,I),J)            = rn(S,J) .
+  ceq idx(completeReq(S,I),J)           = (if I = J then s(0) else idx(S,J) fi) if c-completeReq(S,I) .
+  ceq pc(completeReq(S,I),J)            = (if I = J then l7 else pc(S,J) fi) if c-completeReq(S,I) .
+  eq nw(completeReq(S,I))              = nw(S) .
+  ceq completeReq(S,I)                  = S if not c-completeReq(S,I) .
+
+  -- updateQueue
+  op c-updateQueue : Sys NzNat -> Bool .
+  eq c-updateQueue(S,I) = (pc(S,I) = l7) .
+  eq requesting(updateQueue(S,I),J)    = requesting(S,J) .
+  eq havePriv(updateQueue(S,I),J)      = havePriv(S,J) .
+  ceq queue(updateQueue(S,I),J)         = (if I = J then 
+            (if ( not(idx(S,I) \in queue(S,I)) and 
+                  not(idx(S,I) = I) and 
+                  (rn(S,I)[idx(S,I)] = s(ln(S,I)[idx(S,I)])) )
+            then put(queue(S,I),idx(S,I))
+             else queue(S,J) fi) 
+            else queue(S,J) fi) 
+            if c-updateQueue(S,I) .
+  eq ln(updateQueue(S,I),J)            = ln(S,J) .
+  eq rn(updateQueue(S,I),J)            = rn(S,J) .
+  ceq idx(updateQueue(S,I),J)           = (if I = J then s(idx(S,I)) else idx(S,J) fi) if c-updateQueue(S,I) .
+  ceq pc(updateQueue(S,I),J)            = (if I = J then (if idx(S,I) = N then l8 else l7 fi) else pc(S,J) fi) if c-updateQueue(S,I) .
+  eq nw(updateQueue(S,I))              = nw(S) .
+  ceq updateQueue(S,I)                  = S if not c-updateQueue(S,I) .
+
+  -- checkQueue
+  op c-checkQueue : Sys NzNat -> Bool .
+  eq c-checkQueue(S,I) = (pc(S,I) = l8) .
+  eq requesting(checkQueue(S,I),J)    = requesting(S,J) .
+  eq havePriv(checkQueue(S,I),J)      = havePriv(S,J) .
+  eq queue(checkQueue(S,I),J)         = queue(S,J) .
+  eq ln(checkQueue(S,I),J)            = ln(S,J) .
+  eq rn(checkQueue(S,I),J)            = rn(S,J) .
+  eq idx(checkQueue(S,I),J)           = idx(S,J) .
+  ceq pc(checkQueue(S,I),J)            = (if I = J then (if empty?(queue(S,I)) then l10 else l9 fi) 
+            else pc(S,J) fi) if c-checkQueue(S,I) .
+  eq nw(checkQueue(S,I))              = nw(S) .
+  ceq checkQueue(S,I)                  = S if not c-checkQueue(S,I) .
+
+  -- transferPriv
+  op c-transferPriv : Sys NzNat -> Bool .
+  eq c-transferPriv(S,I) = (pc(S,I) = l9) .
+  eq requesting(transferPriv(S,I),J)    = requesting(S,J) .
+  ceq havePriv(transferPriv(S,I),J)      = (if I = I then false else havePriv(S,J) fi) if c-transferPriv(S,I) .
+  ceq queue(transferPriv(S,I),J)         = queue(S,J) if c-transferPriv(S,I) .
+  eq ln(transferPriv(S,I),J)            = ln(S,J) .
+  eq rn(transferPriv(S,I),J)            = rn(S,J) .
+  eq idx(transferPriv(S,I),J)           = idx(S,J) .
+  ceq pc(transferPriv(S,I),J)            = (if I = J then l10 else pc(S,J) fi) if c-transferPriv(S,I) .
+  ceq nw(transferPriv(S,I))              = (msg(top(queue(S,I)), priv(get(queue(S,I)), ln(S,I)) ) nw(S)) if c-transferPriv(S,I) .
+  ceq transferPriv(S,I)                  = S if not c-transferPriv(S,I) .
+
+  -- resetReq
+  op c-resetReq : Sys NzNat -> Bool .
+  eq c-resetReq(S,I) = (pc(S,I) = l10) .
+  ceq requesting(resetReq(S,I),J)    = (if I = J then false else requesting(S,J) fi) if c-resetReq(S,I) .
+  eq havePriv(resetReq(S,I),J)      = havePriv(S,J) .
+  eq queue(resetReq(S,I),J)         = queue(S,J) .
+  eq ln(resetReq(S,I),J)            = ln(S,J) .
+  eq rn(resetReq(S,I),J)            = rn(S,J) .
+  eq idx(resetReq(S,I),J)           = idx(S,J) .
+  ceq pc(resetReq(S,I),J)            = (if I = J then rem else pc(S,J) fi) if c-resetReq(S,I) .
+  eq nw(resetReq(S,I))              = nw(S) .
+  ceq resetReq(S,I)                  = S if not c-resetReq(S,I) .
+
+  -- receiveReq
+  op c-receiveReq : Sys NzNat Request -> Bool .
+  eq c-receiveReq(S,I,R) = (((msg(I,R)) \in nw(S)) and (not(node(R) = I) )) .
+  eq requesting(receiveReq(S,I,R),J)    = requesting(S,J) .
+  ceq havePriv(receiveReq(S,I,R),J)      = 
+  (if I = J then (if havePriv(S,I) and not(requesting(S,I)) and (rn(S,I)[node(R)] = s(ln(S,I)[node(R)]) )
+    then false else havePriv(S,I) fi) 
+    else havePriv(S,J) fi) if c-receiveReq(S,I,R) .
+  eq queue(receiveReq(S,I,R),J)         = queue(S,J) .
+  eq ln(receiveReq(S,I,R),J)            = ln(S,J) .
+  ceq rn(receiveReq(S,I,R),J)            = 
+    (if I = J then (if sn(R) > (rn(S,I)[node(R)]) then rn(S,I)[node(R)] := sn(R) 
+                     else rn(S,I) fi) 
+    else rn(S,J) fi) if c-receiveReq(S,I,R) .
+  eq idx(receiveReq(S,I,R),J)           = idx(S,J) .
+  eq pc(receiveReq(S,I,R),J)            = pc(S,J) .
+  ceq nw(receiveReq(S,I,R))              = 
+                    (if havePriv(S,I) and not(requesting(S,I)) and 
+                        (rn(S,I)[node(R)] = s(ln(S,I)[node(R)]) )
+                    then (msg(node(R), priv(queue(S,I),ln(S,I))) nw(S)) else nw(S) fi) if c-receiveReq(S,I,R) .
+  ceq receiveReq(S,I,R)                  = S if not c-receiveReq(S,I,R) .
+}
+
+mod INV {
+  pr(SKP)
+
+  -- invariants
+  op mutex : Sys NzNat NzNat -> Bool
+  op inv1 : Sys NzNat -> Bool
+  op inv2 : Sys NzNat -> Bool
+  op inv3 : Sys NzNat NzNat -> Bool
+  op inv4 : Sys NzNat NzNat Privilege -> Bool
+  op inv5 : Sys NzNat NzNat Privilege Privilege -> Bool
+
+  -- variables
+  var S : Sys
+  vars I J : NzNat
+  var Qu : Queue
+--   var NW : Network 
+  vars Pri Pri1 : Privilege
+  var Re : Request
+
+  -- invariants
+  eq mutex(S,I,J) = ((pc(S,I) = cs and pc(S,J) = cs) implies I = J) .
+  eq inv1(S,I) = (pc(S,I) = cs or pc(S,I) = l9 or pc(S,I) = l8 or pc(S,I) = l7 or pc(S,I) = l6) 
+    implies havePriv(S,I) .
+  eq inv2(S,I) = not(pc(S,I) = rem or pc(S,I) = l1) implies requesting(S,I) .
+  eq inv3(S,I,J) = ((havePriv(S,I) and havePriv(S,J)) implies I = J) .
+  eq inv4(S,I,J,Pri) = msg(I,Pri) \in nw(S) implies not(havePriv(S,J)) .
+  eq inv5(S,I,J,Pri,Pri1) = msg(I,Pri) \in nw(S) implies not msg(J,Pri1) \in del(nw(S),msg(I,Pri)) .
+}

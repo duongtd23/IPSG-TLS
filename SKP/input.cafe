@@ -1,0 +1,24 @@
+load SKP/SKP.cafe .
+
+ipsgopen INV .
+  inv inv1(S:Sys, I:NzNat) .
+  inv inv2(S:Sys, I:NzNat) .
+  inv inv3(S:Sys, I:NzNat, J:NzNat) .
+  inv inv4(S:Sys, I:NzNat, J:NzNat, P:Privilege) .
+  inv inv5(S:Sys, I:NzNat, J:NzNat, P1:Privilege, P2:Privilege) .
+  generate mutex(S:Sys, I:NzNat, J:NzNat) induction on S:Sys .
+  generate inv1(S:Sys, I:NzNat) induction on S:Sys .
+  generate inv2(S:Sys, I:NzNat) induction on S:Sys .
+  generate inv3(S:Sys, I:NzNat, J:NzNat) induction on S:Sys .
+  generate inv4(S:Sys, I:NzNat, J:NzNat, P:Privilege) induction on S:Sys .
+  generate inv5(S:Sys, I:NzNat, J:NzNat, P1:Privilege, P2:Privilege) induction on S:Sys .
+close
+
+set-output SKP/proof-scores.cafe .
+:save-proof .
+
+eof
+
+load SKP/input.cafe .
+
+-- depthTryUseLm = 1

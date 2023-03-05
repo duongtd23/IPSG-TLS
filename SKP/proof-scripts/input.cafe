@@ -1,0 +1,15 @@
+load SKP/SKP.cafe .
+load SKP/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+
+:infer-proof skp .
+
+set-output SKP/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load SKP/proof-scripts/input.cafe .
+
+-- exp:  17:31:00 -> 18:39:37

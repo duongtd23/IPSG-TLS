@@ -1,0 +1,5121 @@
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op s : -> Sys .
+	red mutex(init,i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq pc(s,j) = cs .
+	eq havePriv(s,j) = true .
+	red inv3(s,j,r1) implies mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq pc(s,j) = cs .
+	eq havePriv(s,j) = false .
+	red inv1(s,j) implies mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq (pc(s,j) = cs) = false .
+	red mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = false .
+	red mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq pc(s,i) = cs .
+	eq havePriv(s,i) = true .
+	red inv3(s,i,r1) implies mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq pc(s,i) = cs .
+	eq havePriv(s,i) = false .
+	red inv1(s,i) implies mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq (pc(s,i) = cs) = false .
+	red mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,r1) = false .
+	red mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l2) = false .
+	red mutex(s,i,j) implies mutex(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq i = r1 .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq empty?(queue(s,r1)) = true .
+	red mutex(s,i,j) implies mutex(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq empty?(queue(s,r1)) = false .
+	red mutex(s,i,j) implies mutex(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq empty?(queue(s,r1)) = true .
+	red mutex(s,i,j) implies mutex(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq empty?(queue(s,r1)) = false .
+	red mutex(s,i,j) implies mutex(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l8) = false .
+	red mutex(s,i,j) implies mutex(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	eq i = r1 .
+	red mutex(s,i,j) implies mutex(completeReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(completeReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(completeReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l6) = false .
+	red mutex(s,i,j) implies mutex(completeReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	eq i = r1 .
+	red mutex(s,i,j) implies mutex(exit(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(exit(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(exit(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = cs) = false .
+	red mutex(s,i,j) implies mutex(exit(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	eq i = r1 .
+	red mutex(s,i,j) implies mutex(incReqNo(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(incReqNo(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(incReqNo(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l3) = false .
+	red mutex(s,i,j) implies mutex(incReqNo(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq node(r2) = r1 .
+	red mutex(s,i,j) implies mutex(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	red mutex(s,i,j) implies mutex(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red mutex(s,i,j) implies mutex(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	eq i = r1 .
+	red mutex(s,i,j) implies mutex(resetReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(resetReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(resetReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l10) = false .
+	red mutex(s,i,j) implies mutex(resetReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq i = r1 .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq idx(s,r1) = N .
+	red mutex(s,i,j) implies mutex(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq (idx(s,r1) = N) = false .
+	red mutex(s,i,j) implies mutex(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq idx(s,r1) = N .
+	red mutex(s,i,j) implies mutex(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq (idx(s,r1) = N) = false .
+	red mutex(s,i,j) implies mutex(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l4) = false .
+	red mutex(s,i,j) implies mutex(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	eq i = r1 .
+	red mutex(s,i,j) implies mutex(setReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(setReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(setReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l1) = false .
+	red mutex(s,i,j) implies mutex(setReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq i = r1 .
+	red mutex(s,i,j) implies mutex(transferPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(transferPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(transferPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l9) = false .
+	red mutex(s,i,j) implies mutex(transferPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	eq i = r1 .
+	red mutex(s,i,j) implies mutex(try(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	eq (i = r1) = false .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(try(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(try(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = rem) = false .
+	red mutex(s,i,j) implies mutex(try(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq i = r1 .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq idx(s,r1) = N .
+	red mutex(s,i,j) implies mutex(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq (idx(s,r1) = N) = false .
+	red mutex(s,i,j) implies mutex(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq idx(s,r1) = N .
+	red mutex(s,i,j) implies mutex(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq (idx(s,r1) = N) = false .
+	red mutex(s,i,j) implies mutex(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l7) = false .
+	red mutex(s,i,j) implies mutex(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq j = r1 .
+	red mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq pc(s,j) = cs .
+	eq havePriv(s,j) = true .
+	red inv4(s,r1,j,r2) implies mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq pc(s,j) = cs .
+	eq havePriv(s,j) = false .
+	red inv1(s,j) implies mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq (pc(s,j) = cs) = false .
+	red mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq pc(s,i) = cs .
+	eq havePriv(s,i) = true .
+	red inv4(s,r1,i,r2) implies mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq pc(s,i) = cs .
+	eq havePriv(s,i) = false .
+	red inv1(s,i) implies mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq (pc(s,i) = cs) = false .
+	red mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq (pc(s,r1) = l5) = false .
+	red mutex(s,i,j) implies mutex(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op s : -> Sys .
+	red inv1(init,i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	red inv1(s,i) implies inv1(checkPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	eq havePriv(s,r1) = false .
+	red inv1(s,i) implies inv1(checkPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(checkPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l2) = false .
+	red inv1(s,i) implies inv1(checkPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(checkQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(checkQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l8) = false .
+	red inv1(s,i) implies inv1(checkQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(completeReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(completeReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l6) = false .
+	red inv1(s,i) implies inv1(completeReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(exit(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(exit(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = cs) = false .
+	red inv1(s,i) implies inv1(exit(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(incReqNo(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(incReqNo(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l3) = false .
+	red inv1(s,i) implies inv1(incReqNo(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq node(r2) = r1 .
+	red inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = true .
+	red inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true, use inv2 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq pc(s,r1) = cs .
+	red inv2(s,r1) implies inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true, use inv2 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (pc(s,r1) = cs) = false .
+	eq pc(s,r1) = l6 .
+	red inv2(s,r1) implies inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true, use inv2 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (pc(s,r1) = cs) = false .
+	eq (pc(s,r1) = l6) = false .
+	eq pc(s,r1) = l7 .
+	red inv2(s,r1) implies inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true, use inv2 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (pc(s,r1) = cs) = false .
+	eq (pc(s,r1) = l6) = false .
+	eq (pc(s,r1) = l7) = false .
+	eq pc(s,r1) = l8 .
+	red inv2(s,r1) implies inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true, use inv2 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (pc(s,r1) = cs) = false .
+	eq (pc(s,r1) = l6) = false .
+	eq (pc(s,r1) = l7) = false .
+	eq (pc(s,r1) = l8) = false .
+	eq pc(s,r1) = l9 .
+	red inv2(s,r1) implies inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (pc(s,r1) = cs) = false .
+	eq (pc(s,r1) = l6) = false .
+	eq (pc(s,r1) = l7) = false .
+	eq (pc(s,r1) = l8) = false .
+	eq (pc(s,r1) = l9) = false .
+	red inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq ((rn(s,r1) [ node(r2)]) =  s (ln(s,r1) [ node(r2)])) = false .
+	red inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq havePriv(s,r1) = false .
+	red inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv1(s,i) implies inv1(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(resetReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(resetReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l10) = false .
+	red inv1(s,i) implies inv1(resetReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq i = r1 .
+	eq idx(s,r1) = N .
+	red inv1(s,i) implies inv1(sendReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq i = r1 .
+	eq (idx(s,r1) = N) = false .
+	red inv1(s,i) implies inv1(sendReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(sendReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l4) = false .
+	red inv1(s,i) implies inv1(sendReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(setReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(setReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l1) = false .
+	red inv1(s,i) implies inv1(setReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq pc(s,i) = cs .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq pc(s,i) = cs .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq pc(s,i) = cs .
+	eq havePriv(s,i) = false .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq pc(s,i) = l6 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq pc(s,i) = l6 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq pc(s,i) = l6 .
+	eq havePriv(s,i) = false .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq pc(s,i) = l7 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq pc(s,i) = l7 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq pc(s,i) = l7 .
+	eq havePriv(s,i) = false .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq (pc(s,i) = l7) = false .
+	eq pc(s,i) = l8 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq (pc(s,i) = l7) = false .
+	eq pc(s,i) = l8 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq (pc(s,i) = l7) = false .
+	eq pc(s,i) = l8 .
+	eq havePriv(s,i) = false .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq (pc(s,i) = l7) = false .
+	eq (pc(s,i) = l8) = false .
+	eq pc(s,i) = l9 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq (pc(s,i) = l7) = false .
+	eq (pc(s,i) = l8) = false .
+	eq pc(s,i) = l9 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq (pc(s,i) = l7) = false .
+	eq (pc(s,i) = l8) = false .
+	eq pc(s,i) = l9 .
+	eq havePriv(s,i) = false .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	eq (pc(s,i) = cs) = false .
+	eq (pc(s,i) = l6) = false .
+	eq (pc(s,i) = l7) = false .
+	eq (pc(s,i) = l8) = false .
+	eq (pc(s,i) = l9) = false .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l9) = false .
+	red inv1(s,i) implies inv1(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(try(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(try(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = rem) = false .
+	red inv1(s,i) implies inv1(try(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(updateQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(updateQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l7) = false .
+	red inv1(s,i) implies inv1(updateQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	red inv1(s,i) implies inv1(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	red inv1(s,i) implies inv1(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv1(s,i) implies inv1(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq (pc(s,r1) = l5) = false .
+	red inv1(s,i) implies inv1(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op s : -> Sys .
+	red inv2(init,i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(checkPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(checkPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l2) = false .
+	red inv2(s,i) implies inv2(checkPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(checkQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(checkQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l8) = false .
+	red inv2(s,i) implies inv2(checkQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(completeReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(completeReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l6) = false .
+	red inv2(s,i) implies inv2(completeReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(exit(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(exit(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = cs) = false .
+	red inv2(s,i) implies inv2(exit(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(incReqNo(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(incReqNo(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l3) = false .
+	red inv2(s,i) implies inv2(incReqNo(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq node(r2) = r1 .
+	red inv2(s,i) implies inv2(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	red inv2(s,i) implies inv2(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv2(s,i) implies inv2(receiveReq(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(resetReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(resetReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l10) = false .
+	red inv2(s,i) implies inv2(resetReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(sendReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(sendReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l4) = false .
+	red inv2(s,i) implies inv2(sendReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(setReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(setReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l1) = false .
+	red inv2(s,i) implies inv2(setReq(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l9) = false .
+	red inv2(s,i) implies inv2(transferPriv(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(try(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(try(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = rem) = false .
+	red inv2(s,i) implies inv2(try(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(updateQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(updateQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l7) = false .
+	red inv2(s,i) implies inv2(updateQueue(s,r1),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	red inv2(s,i) implies inv2(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	red inv2(s,i) implies inv2(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv2(s,i) implies inv2(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq (pc(s,r1) = l5) = false .
+	red inv2(s,i) implies inv2(waitPriv(s,r1,r2),i) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op s : -> Sys .
+	eq i = s 0 .
+	eq j = s 0 .
+	red inv3(init,i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op s : -> Sys .
+	eq i = s 0 .
+	eq (j =  s 0) = false .
+	red inv3(init,i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op s : -> Sys .
+	eq (i =  s 0) = false .
+	red inv3(init,i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	red inv3(s,i,j) implies inv3(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l2) = false .
+	red inv3(s,i,j) implies inv3(checkPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	red inv3(s,i,j) implies inv3(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l8) = false .
+	red inv3(s,i,j) implies inv3(checkQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	red inv3(s,i,j) implies inv3(completeReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l6) = false .
+	red inv3(s,i,j) implies inv3(completeReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	red inv3(s,i,j) implies inv3(exit(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = cs) = false .
+	red inv3(s,i,j) implies inv3(exit(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	red inv3(s,i,j) implies inv3(incReqNo(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l3) = false .
+	red inv3(s,i,j) implies inv3(incReqNo(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq node(r2) = r1 .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq j = r1 .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = false .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,r1) = false .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv3(s,i,j) implies inv3(receiveReq(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	red inv3(s,i,j) implies inv3(resetReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l10) = false .
+	red inv3(s,i,j) implies inv3(resetReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	red inv3(s,i,j) implies inv3(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l4) = false .
+	red inv3(s,i,j) implies inv3(sendReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	red inv3(s,i,j) implies inv3(setReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l1) = false .
+	red inv3(s,i,j) implies inv3(setReq(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	red inv3(s,i,j) implies inv3(transferPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l9) = false .
+	red inv3(s,i,j) implies inv3(transferPriv(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	red inv3(s,i,j) implies inv3(try(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = rem) = false .
+	red inv3(s,i,j) implies inv3(try(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	red inv3(s,i,j) implies inv3(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l7) = false .
+	red inv3(s,i,j) implies inv3(updateQueue(s,r1),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq j = r1 .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,j) = true .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,j) = true .
+	eq havePriv(s,r1) = false .
+	red inv4(s,r1,j,r2) implies inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq i = r1 .
+	eq (j = r1) = false .
+	eq havePriv(s,j) = false .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = true .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,i) = true .
+	eq havePriv(s,r1) = false .
+	red inv4(s,r1,i,r2) implies inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq j = r1 .
+	eq havePriv(s,i) = false .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (i = r1) = false .
+	eq (j = r1) = false .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq (pc(s,r1) = l5) = false .
+	red inv3(s,i,j) implies inv3(waitPriv(s,r1,r2),i,j) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op s : -> Sys .
+	red inv4(init,i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	red inv4(s,i,j,p) implies inv4(checkPriv(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l2) = false .
+	red inv4(s,i,j,p) implies inv4(checkPriv(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	red inv4(s,i,j,p) implies inv4(checkQueue(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l8) = false .
+	red inv4(s,i,j,p) implies inv4(checkQueue(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	red inv4(s,i,j,p) implies inv4(completeReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l6) = false .
+	red inv4(s,i,j,p) implies inv4(completeReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	red inv4(s,i,j,p) implies inv4(exit(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = cs) = false .
+	red inv4(s,i,j,p) implies inv4(exit(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	red inv4(s,i,j,p) implies inv4(incReqNo(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l3) = false .
+	red inv4(s,i,j,p) implies inv4(incReqNo(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq node(r2) = r1 .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = true .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq ((rn(s,r1) [ node(r2)]) =  s (ln(s,r1) [ node(r2)])) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = true .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq i = r1 .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq p = priv(queue(s,r1),ln(s,r1)) .
+	eq havePriv(s,j) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true, use inv3 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq p = priv(queue(s,r1),ln(s,r1)) .
+	eq havePriv(s,j) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = false .
+	red inv3(s,j,r1) implies inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq p = priv(queue(s,r1),ln(s,r1)) .
+	eq havePriv(s,j) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq (p = priv(queue(s,r1),ln(s,r1))) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq ((rn(s,r1) [ i]) =  s (ln(s,r1) [ i])) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq ((rn(s,r1) [ node(r2)]) =  s (ln(s,r1) [ node(r2)])) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,r1) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv4(s,i,j,p) implies inv4(receiveReq(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	red inv4(s,i,j,p) implies inv4(resetReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l10) = false .
+	red inv4(s,i,j,p) implies inv4(resetReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq idx(s,r1) = r1 .
+	red inv4(s,i,j,p) implies inv4(sendReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq (idx(s,r1) = r1) = false .
+	red inv4(s,i,j,p) implies inv4(sendReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l4) = false .
+	red inv4(s,i,j,p) implies inv4(sendReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	red inv4(s,i,j,p) implies inv4(setReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l1) = false .
+	red inv4(s,i,j,p) implies inv4(setReq(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	red inv4(s,i,j,p) implies inv4(transferPriv(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l9) = false .
+	red inv4(s,i,j,p) implies inv4(transferPriv(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	red inv4(s,i,j,p) implies inv4(try(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = rem) = false .
+	red inv4(s,i,j,p) implies inv4(try(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	red inv4(s,i,j,p) implies inv4(updateQueue(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l7) = false .
+	red inv4(s,i,j,p) implies inv4(updateQueue(s,r1),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq (msg(i,p) \in nw(s)) = true .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = true .
+	eq (msg(i,p) \in nw(s)) = false .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true, use inv5 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = false .
+	eq (msg(i,p) \in nw(s)) = true .
+	eq (msg(i,p) \in del(nw(s),msg(r1,r2))) = true .
+	red inv5(s,r1,i,r2,p) implies inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = false .
+	eq (msg(i,p) \in nw(s)) = true .
+	eq (msg(i,p) \in del(nw(s),msg(r1,r2))) = false .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq j = r1 .
+	eq havePriv(s,r1) = false .
+	eq (msg(i,p) \in nw(s)) = false .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,j) = true .
+	eq (msg(i,p) \in nw(s)) = true .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,j) = true .
+	eq (msg(i,p) \in nw(s)) = false .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (j = r1) = false .
+	eq havePriv(s,j) = false .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq (pc(s,r1) = l5) = false .
+	red inv4(s,i,j,p) implies inv4(waitPriv(s,r1,r2),i,j,p) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op s : -> Sys .
+	red inv5(init,i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l2 .
+	red inv5(s,i,j,p1,p2) implies inv5(checkPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l2) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(checkPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l8 .
+	red inv5(s,i,j,p1,p2) implies inv5(checkQueue(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l8) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(checkQueue(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l6 .
+	red inv5(s,i,j,p1,p2) implies inv5(completeReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l6) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(completeReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = cs .
+	red inv5(s,i,j,p1,p2) implies inv5(exit(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = cs) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(exit(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l3 .
+	red inv5(s,i,j,p1,p2) implies inv5(incReqNo(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l3) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(incReqNo(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq node(r2) = r1 .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq i = r1 .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(i,priv(queue(s,r1),ln(s,r1))))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(i,priv(queue(s,r1),ln(s,r1))))) = false .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = false .
+	red inv4(s,j,r1,p2) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in del(nw(s),msg(i,p1))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in del(nw(s),msg(i,p1))) = false .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = false .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq j = i .
+	eq (p2 = priv(queue(s,r1),ln(s,r1))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq (rn(s,r1) [ i]) = s (ln(s,r1) [ i]) .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq (j = i) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq node(r2) = i .
+	eq (i = r1) = false .
+	eq ((rn(s,r1) [ i]) =  s (ln(s,r1) [ i])) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq j = r1 .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(j,priv(queue(s,r1),ln(s,r1))))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(j,priv(queue(s,r1),ln(s,r1))))) = false .
+	red inv4(s,j,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = false .
+	red inv4(s,j,r1,p2) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq p1 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in del(nw(s),msg(j,p1))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in del(nw(s),msg(j,p1))) = false .
+	red inv4(s,j,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = false .
+	red inv4(s,j,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq i = j .
+	eq (p1 = priv(queue(s,r1),ln(s,r1))) = false .
+	eq (p2 = priv(queue(s,r1),ln(s,r1))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq (i = j) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in del(nw(s),msg(i,p1))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq (i = j) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in del(nw(s),msg(i,p1))) = false .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq (i = j) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(queue(s,r1),ln(s,r1))) \in nw(s)) = false .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq (i = j) = false .
+	eq p2 = priv(queue(s,r1),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq (rn(s,r1) [ j]) = s (ln(s,r1) [ j]) .
+	eq (i = j) = false .
+	eq (p2 = priv(queue(s,r1),ln(s,r1))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq node(r2) = j .
+	eq (j = r1) = false .
+	eq ((rn(s,r1) [ j]) =  s (ln(s,r1) [ j])) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq (rn(s,r1) [ node(r2)]) = s (ln(s,r1) [ node(r2)]) .
+	eq (node(r2) = i) = false .
+	eq (node(r2) = j) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = true .
+	eq requesting(s,r1) = false .
+	eq ((rn(s,r1) [ node(r2)]) =  s (ln(s,r1) [ node(r2)])) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq havePriv(s,r1) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Request .
+	op s : -> Sys .
+	eq (node(r2) = r1) = false .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(receiveReq(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l10 .
+	red inv5(s,i,j,p1,p2) implies inv5(resetReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l10) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(resetReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq idx(s,r1) = r1 .
+	red inv5(s,i,j,p1,p2) implies inv5(sendReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l4 .
+	eq (idx(s,r1) = r1) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(sendReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l4) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(sendReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l1 .
+	red inv5(s,i,j,p1,p2) implies inv5(setReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l1) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(setReq(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(i,priv(get(queue(s,r1)),ln(s,r1))))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(i,priv(get(queue(s,r1)),ln(s,r1))))) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,i,r1,priv(get(queue(s,r1)),ln(s,r1))) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(i,priv(get(queue(s,r1)),ln(s,r1))))) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,j,r1,p2) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(i,p1))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(i,p1))) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(i,p1))) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq j = i .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq j = i .
+	eq (p2 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq top(queue(s,r1)) = i .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq (j = i) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(j,priv(get(queue(s,r1)),ln(s,r1))))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(j,priv(get(queue(s,r1)),ln(s,r1))))) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,j,r1,p2) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(j,priv(get(queue(s,r1)),ln(s,r1))))) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,j,r1,p2) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq p1 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p2) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(j,p1))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(j,p1))) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,j,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(j,p1))) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,j,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(j,p1) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq i = j .
+	eq (p1 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	eq (p2 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq (i = j) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(i,p1))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq (i = j) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(i,p1))) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq (i = j) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in del(nw(s),msg(i,p1))) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq (i = j) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = true .
+	red inv4(s,i,r1,p1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true, use inv1 as a lemma
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq (i = j) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(j,priv(get(queue(s,r1)),ln(s,r1))) \in nw(s)) = false .
+	eq havePriv(s,r1) = false .
+	red inv1(s,r1) implies inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq (i = j) = false .
+	eq p2 = priv(get(queue(s,r1)),ln(s,r1)) .
+	eq (msg(i,p1) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq top(queue(s,r1)) = j .
+	eq (i = j) = false .
+	eq (p2 = priv(get(queue(s,r1)),ln(s,r1))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l9 .
+	eq (top(queue(s,r1)) = i) = false .
+	eq (top(queue(s,r1)) = j) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l9) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(transferPriv(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = rem .
+	red inv5(s,i,j,p1,p2) implies inv5(try(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = rem) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(try(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq pc(s,r1) = l7 .
+	red inv5(s,i,j,p1,p2) implies inv5(updateQueue(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op s : -> Sys .
+	eq (pc(s,r1) = l7) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(updateQueue(s,r1),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,p1) \in del(nw(s),msg(r1,r2))) = true .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(i,p1))) = true .
+	red inv5(s,i,j,p1,p2) implies inv5(waitPriv(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,p1) \in del(nw(s),msg(r1,r2))) = true .
+	eq (msg(j,p2) \in nw(s)) = true .
+	eq (msg(j,p2) \in del(nw(s),msg(i,p1))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(waitPriv(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,p1) \in del(nw(s),msg(r1,r2))) = true .
+	eq (msg(j,p2) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(waitPriv(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (msg(i,p1) \in nw(s)) = true .
+	eq (msg(i,p1) \in del(nw(s),msg(r1,r2))) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(waitPriv(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = true .
+	eq (msg(i,p1) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(waitPriv(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq pc(s,r1) = l5 .
+	eq (msg(r1,r2) \in nw(s)) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(waitPriv(s,r1,r2),i,j,p1,p2) .
+close
+
+--> true
+open INV .
+	op i : -> NzNat .
+	op j : -> NzNat .
+	op p1 : -> Privilege .
+	op p2 : -> Privilege .
+	op r1 : -> NzNat .
+	op r2 : -> Privilege .
+	op s : -> Sys .
+	eq (pc(s,r1) = l5) = false .
+	red inv5(s,i,j,p1,p2) implies inv5(waitPriv(s,r1,r2),i,j,p1,p2) .
+close
+
+--> Time taken is 4176ms
