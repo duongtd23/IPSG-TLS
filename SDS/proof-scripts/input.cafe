@@ -1,0 +1,16 @@
+load SDS/sds.cafe .
+load SDS/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+
+:proven(lm1(D1:Data, DL2:DataL, DL3:DataL))
+:infer-proof sds .
+
+set-output SDS/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load SDS/proof-scripts/input.cafe .
+
+-- exp:  14:03:15 -> 14:14:14

@@ -1,0 +1,26 @@
+load SDS/sds.cafe .
+ipsgopen INV .
+  inv lm1(D:Data,DL:DataL,DL2:DataL) .
+  inv inv1(S:Sys,A:Prin,B:Prin,K:Secret,N:Nat) .
+  inv inv2(S:Sys,K:Secret) .
+  inv inv3(S:Sys,D1:Data,DL1:DataL,K:Secret) .
+  inv inv4(S:Sys,D1:Data,DL1:DataL,D2:Data,DL2:DataL) .
+  inv inv5(S:Sys,A:Prin) .
+  inv inv6(S:Sys,D1:Data,DL1:DataL,SK:PriKey) .
+  inv inv7(S:Sys,A:Prin,DL1:DataL) .
+  inv inv8(S:Sys,D1:Data,DL1:DataL,D2:Data,DL2:DataL) .
+  generate keySe(S:Sys,A:Prin,B:Prin,K:Secret,N:Nat) induction on S:Sys .
+  generate inv1(S:Sys,A:Prin,B:Prin,K:Secret,N:Nat) induction on S:Sys .
+  generate inv2(S:Sys,K:Secret) induction on S:Sys .
+  generate inv3(S:Sys,D1:Data,DL1:DataL,K:Secret) induction on S:Sys .
+  generate inv4(S:Sys,D1:Data,DL1:DataL,D2:Data,DL2:DataL) induction on S:Sys .
+  generate inv5(S:Sys,A:Prin) induction on S:Sys .
+  generate inv6(S:Sys,D1:Data,DL1:DataL,SK:PriKey) induction on S:Sys .
+  generate inv7(S:Sys,A:Prin,DL1:DataL) induction on S:Sys .
+  generate inv8(S:Sys,D1:Data,DL1:DataL,D2:Data,DL2:DataL) induction on S:Sys .
+close
+set-output SDS/proof-scores.cafe .
+:save-proof .
+
+eof
+load SDS/input.cafe .

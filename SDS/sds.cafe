@@ -1,0 +1,435 @@
+-- A -> B : aenc(pubK(B), aenc(priK(A), B || K))
+-- B -> A : senc(K, A || B)
+
+mod* PRINCIPAL {
+  [Prin PubKey PriKey]
+  op intru : -> Prin {constr}
+  op priK : Prin -> PriKey {constr}
+  op pubK : Prin -> PubKey {constr}
+  op priK : PubKey -> PriKey
+  vars A B : Prin 
+  eq (priK(A) = priK(B)) = (A = B) .
+  eq (pubK(A) = pubK(B)) = (A = B) .
+  eq priK(pubK(A)) = priK(A) .
+}
+mod! SECRET {
+  [Secret]
+}
+mod! DATA {
+  pr(PRINCIPAL + SECRET)
+  [Data < DataL]
+  [Prin PubKey PriKey Secret < Data]
+  op _||_ : DataL DataL -> DataL {assoc r-assoc constr}
+
+  op _\in_ : DataL DataL -> Bool
+
+  vars D1 D2 : Data
+  vars DL DL2 DL3 : DataL
+  var P : Prin
+  var K : PriKey
+  var PK : PubKey
+  var SE : Secret
+
+  eq (D1 = (D2 || DL2)) = false .
+  eq ((D1 || DL) = (D2 || DL2)) 
+      = (D1 = D2 and DL = DL2) .
+
+  eq (D1 || DL) \in D2 = false .
+  eq (D1 || DL) \in DL2 = (D1 \in DL2 and DL \in DL2) .
+  eq D1 \in D2 = (D1 = D2) .
+  eq D1 \in (D2 || DL2) = (D1 = D2 or D1 \in DL2) .
+
+  ceq (P = D1)   = false if (D1 :is PriKey) or 
+                            (D1 :is PubKey) or 
+                            (D1 :is Secret) .
+  ceq (K = D1)   = false if (D1 :is Prin) or 
+                            (D1 :is PubKey) or 
+                            (D1 :is Secret) .
+  ceq (PK = D1)  = false if (D1 :is Prin) or 
+                            (D1 :is PriKey) or 
+                            (D1 :is Secret) .
+  ceq (SE = D1)  = false if (D1 :is Prin) or 
+                            (D1 :is PriKey) or 
+                            (D1 :is PubKey) .
+
+-- lemmas
+  eq D1 \in (DL2 || DL3) = D1 \in DL2 or D1 \in DL3 .
+  ceq DL \in (DL2 || DL3) = true if DL \in DL3 .
+}
+mod! ENCRYPTION {
+  pr(DATA)
+  
+--          Key   Plaintext     Ciphertext
+  op aenc : Data  DataL      -> Data {constr}
+  op senc : Data  DataL      -> Data {constr}
+--          Key   Ciphertext    Plaintext
+  op adec : Data  Data       -> DataL
+  op sdec : Data  Data       -> DataL
+
+  vars A B : Prin 
+  vars KE KE2 D D2 : Data
+  vars DL DL2 : DataL
+  vars PK : PubKey
+  vars K : PriKey
+  vars SE : Secret
+
+  eq adec(pubK(A), aenc(priK(A),DL)) = DL .
+  eq adec(priK(A), aenc(pubK(A),DL)) = DL .
+  eq (adec(pubK(A), D2) = DL) = (D2 = aenc(priK(A),DL)) .
+  eq (adec(priK(A), D2) = DL) = (D2 = aenc(pubK(A),DL)) .
+  ceq (adec(KE, D) = DL2) = false 
+    if (KE :is Prin) or not(KE :is Secret) .
+
+  eq sdec(SE, senc(SE,DL)) = DL .
+  eq (sdec(SE, D2) = DL) = (D2 = senc(SE,DL)) .
+  ceq (sdec(KE, D) = DL2) = false 
+    if (KE :is Prin) or (KE :is PubKey) or (KE :is PriKey) .
+
+  eq (aenc(KE,DL) = aenc(KE2,DL2)) = (KE = KE2 and DL = DL2) .
+  eq (senc(KE,DL) = senc(KE2,DL2)) = (KE = KE2 and DL = DL2) .
+  eq (aenc(KE,DL) = senc(KE2,DL2)) = false .
+  ceq (aenc(KE,DL) = D) = false if (D :is Prin) or 
+                                   (D :is PriKey) or 
+                                   (D :is PubKey) or 
+                                   (D :is Secret) .
+  ceq (senc(KE,DL) = D) = false if (D :is Prin) or 
+                                   (D :is PriKey) or 
+                                   (D :is PubKey) or 
+                                   (D :is Secret) .
+}
+mod! MESSAGE {
+  pr(NAT)
+  pr(ENCRYPTION)
+  [Msg]
+  op msg1 : Prin Prin Prin DataL Nat -> Msg {constr}
+  op msg2 : Prin Prin Prin DataL Nat -> Msg {constr}
+ 
+  vars A B A2 B2 A' A2' : Prin 
+  vars D D2 : DataL 
+  vars N N2 : Nat
+  eq (msg1(A',A,B,D,N) = msg1(A2',A2,B2,D2,N2)) =
+    (A' = A2' and A = A2 and B = B2 and D = D2 and N = N2) .
+  eq (msg2(A',A,B,D,N) = msg2(A2',A2,B2,D2,N2)) =
+    (A' = A2' and A = A2 and B = B2 and D = D2 and N = N2) .
+  eq (msg1(A',A,B,D,N) = msg2(A2',A2,B2,D2,N2)) = false .
+}
+mod! SET (D :: TRIV) {
+  [Elt.D < Set]
+  op empty : -> Set {constr}
+  op __ : Set Set -> Set {assoc constr comm idem id: empty}
+  op _\in_ : Elt.D Set -> Bool
+  var S : Set
+  vars E1 E2 : Elt.D
+  eq E1 \in empty = false .
+  eq E1 \in E2 = (E1 = E2) .
+  eq E1 \in (E2 S) = (E1 = E2) or (E1 \in S) .
+}
+mod! BAG (D :: TRIV) {
+  [Elt.D < Bag]
+  op void : -> Bag {constr}
+  op _,_ : Bag Bag -> Bag {assoc constr comm id: void}
+  op _\in_ : Elt.D Bag -> Bool
+  var B : Bag
+  vars E1 E2 : Elt.D
+  eq E1 \in void = false .
+  eq E1 \in E2 = (E1 = E2) .
+  eq E1 \in (E2,B) = (E1 = E2) or (E1 \in B) .
+}
+view TRIV2MESSAGE from TRIV to MESSAGE {
+  sort Elt -> Msg
+}
+mod! NETWORK {
+  pr(BAG(D <= TRIV2MESSAGE)*{sort Bag -> Network})
+}
+view TRIV2DATA from TRIV to DATA {
+  sort Elt -> Data
+}
+mod PROTOCOL {
+  pr(NETWORK)
+  pr(SET(D <= TRIV2DATA)*{sort Set -> SecretSet})
+
+  [Sys]
+-- initial states
+  op init : -> Sys {constr}
+  op send1 : Sys Prin Prin Secret -> Sys {constr}
+  op send2 : Sys Prin Prin Prin Data Nat Data Secret -> Sys {constr}
+
+  op nw : Sys -> Network
+  op usecret : Sys -> SecretSet
+  op knl : Sys -> DataL
+  op time : Sys -> Nat
+
+  var S : Sys
+  vars A B A2 B2 A3 B3 : Prin 
+  vars D D1 D2 : Data
+  vars K SE SE2 : Secret
+  vars PK : PubKey
+  vars SK : PriKey
+  vars DL DL2 : DataL
+  vars N N2 : Nat
+
+  eq nw(init) = void .
+  eq usecret(init) = empty .
+  eq time(init) = 0 .
+  eq knl(init) = (priK(intru) || pubK(intru)) .
+
+  op c-send1 : Sys Secret -> Bool
+  eq c-send1(S,K) = not(K \in usecret(S)) .
+  ceq nw(send1(S,A,B,K)) = 
+      (msg1(A,A,B, aenc(pubK(B), aenc(priK(A), B || K)), time(S)) , nw(S)) 
+    if c-send1(S,K) .
+  ceq usecret(send1(S,A,B,K)) = (K usecret(S)) 
+    if c-send1(S,K) .
+  ceq time(send1(S,A,B,K)) = s(time(S)) 
+    if c-send1(S,K) .
+  ceq knl(send1(S,A,B,K)) = 
+      (aenc(pubK(B), aenc(priK(A), B || K)) || knl(S)) 
+    if c-send1(S,K) .
+  ceq send1(S,A,B,K) = S 
+    if not c-send1(S,K) .
+
+  op c-send2 : Sys Prin Prin Prin Data Nat Data Secret -> Bool
+  eq c-send2(S,A2,A,B,D,N,D2,K) = 
+   (msg1(A2,A,B, D, N) \in nw(S) and
+    adec(priK(B), D) = D2 and
+    adec(pubK(A), D2) = B || K) .
+  ceq nw(send2(S,A2,A,B,D,N,D2,K)) = 
+      (msg2(B,B,A, senc(K, A || B), time(S)) , nw(S))
+    if c-send2(S,A2,A,B,D,N,D2,K) .
+  eq usecret(send2(S,A2,A,B,D,N,D2,K)) = usecret(S) .
+  ceq time(send2(S,A2,A,B,D,N,D2,K)) = s(time(S))
+    if c-send2(S,A2,A,B,D,N,D2,K) .
+  ceq knl(send2(S,A2,A,B,D,N,D2,K)) = 
+      (senc(K, A || B) || knl(S))
+    if c-send2(S,A2,A,B,D,N,D2,K) .
+  ceq send2(S,A2,A,B,D,N,D2,K) = S
+    if not c-send2(S,A2,A,B,D,N,D2,K) .
+
+-- intruder capabilities
+-- selecting a nonce by themself
+  op gSecret : Sys Secret -> Sys {constr}
+  op c-gSecret : Sys Secret -> Bool
+  eq c-gSecret(S,SE) = not(SE \in usecret(S)) .
+  eq nw(gSecret(S,SE)) = nw(S) .
+  ceq usecret(gSecret(S,SE)) = (SE usecret(S))
+    if c-gSecret(S,SE) .
+  eq time(gSecret(S,SE)) = time(S) .
+  ceq knl(gSecret(S,SE)) = (SE || knl(S))
+    if c-gSecret(S,SE) .
+  ceq gSecret(S,SE) = S 
+    if not c-gSecret(S,SE) .
+ 
+-- know all possible values of basic data types
+  op gBasic : Sys Prin PubKey -> Sys {constr}
+  eq nw(gBasic(S,A,PK)) = nw(S) .
+  eq usecret(gBasic(S,A,PK)) = usecret(S) .
+  eq time(gBasic(S,A,PK)) = time(S) .
+  eq knl(gBasic(S,A,PK)) = 
+    (A || PK || knl(S)) .
+
+  op g2 : Sys Data DataL -> Sys {constr}
+  op c-g2 : Sys Data DataL -> Bool
+  eq c-g2(S,D1,DL2) = (D1 \in knl(S) and DL2 \in knl(S)) .
+  eq nw(g2(S,D1,DL2)) = nw(S) .
+  eq usecret(g2(S,D1,DL2)) = usecret(S) .
+  eq time(g2(S,D1,DL2)) = time(S) .
+  ceq knl(g2(S,D1,DL2)) = 
+      (aenc(D1,DL2) || senc(D1,DL2) || knl(S)) 
+    if c-g2(S,D1,DL2) .
+  ceq g2(S,D1,DL2) = S if not c-g2(S,D1,DL2) .
+
+-- decryption capabilities
+  op g21 : Sys Prin DataL -> Sys {constr}
+  op c-g21 : Sys Prin DataL -> Bool
+  eq c-g21(S,A,DL) = 
+    (not(A = intru) and priK(A) \in knl(S) and aenc(pubK(A),DL) \in knl(S)) .
+  eq nw(g21(S,A,DL)) = nw(S) .
+  eq usecret(g21(S,A,DL)) = usecret(S) .
+  eq time(g21(S,A,DL)) = time(S) .
+  ceq knl(g21(S,A,DL)) = (DL || knl(S))
+    if c-g21(S,A,DL) .
+  ceq g21(S,A,DL) = S if not c-g21(S,A,DL) .
+
+  op g22 : Sys Data DataL -> Sys {constr}
+  op c-g22 : Sys Data DataL -> Bool
+  eq c-g22(S,D1,DL2) = (D1 \in knl(S) and senc(D1,DL2) \in knl(S)) .
+  eq nw(g22(S,D1,DL2)) = nw(S) .
+  eq usecret(g22(S,D1,DL2)) = usecret(S) .
+  eq time(g22(S,D1,DL2)) = time(S) .
+  ceq knl(g22(S,D1,DL2)) = (DL2 || knl(S)) 
+    if c-g22(S,D1,DL2) .
+  ceq g22(S,D1,DL2) = S if not c-g22(S,D1,DL2) .
+
+  op g23 : Sys Prin DataL -> Sys {constr}
+  op c-g23 : Sys Prin DataL -> Bool
+  eq c-g23(S,A,DL) = 
+    (not(A = intru) and aenc(priK(A),DL) \in knl(S)) .
+  eq nw(g23(S,A,DL)) = nw(S) .
+  eq usecret(g23(S,A,DL)) = usecret(S) .
+  eq time(g23(S,A,DL)) = time(S) .
+  ceq knl(g23(S,A,DL)) = (DL || knl(S))
+    if c-g23(S,A,DL) .
+  ceq g23(S,A,DL) = S if not c-g23(S,A,DL) .
+
+-- faking msg1 messages
+  op fkmsg1 : Sys Prin Prin Data -> Sys {constr}
+  op c-fkmsg1 : Sys Prin Prin Data -> Bool
+  eq c-fkmsg1(S,A,B,D1) = 
+    (D1 \in knl(S)) .
+  ceq nw(fkmsg1(S,A,B,D1)) = 
+      (msg1(intru,A,B, D1, time(S)) , nw(S))
+    if c-fkmsg1(S,A,B,D1) .
+  eq usecret(fkmsg1(S,A,B,D1)) = usecret(S) .
+  ceq time(fkmsg1(S,A,B,D1)) = s(time(S))
+    if c-fkmsg1(S,A,B,D1) .
+  eq knl(fkmsg1(S,A,B,D1)) = knl(S) .
+  ceq fkmsg1(S,A,B,D1) = S 
+    if not c-fkmsg1(S,A,B,D1) .
+
+-- faking msg2 messages
+  op fkmsg2 : Sys Prin Prin Data -> Sys {constr}
+  op c-fkmsg2 : Sys Prin Prin Data -> Bool
+  eq c-fkmsg2(S,A,B,D1) = 
+    (D1 \in knl(S)) .
+  ceq nw(fkmsg2(S,A,B,D1)) = 
+      (msg2(intru,A,B, D1, time(S)) , nw(S))
+    if c-fkmsg2(S,A,B,D1) .
+  eq usecret(fkmsg2(S,A,B,D1)) = usecret(S) .
+  ceq time(fkmsg2(S,A,B,D1)) = s(time(S))
+    if c-fkmsg2(S,A,B,D1) .
+  eq knl(fkmsg2(S,A,B,D1)) = knl(S) .
+  ceq fkmsg2(S,A,B,D1) = S 
+    if not c-fkmsg2(S,A,B,D1) .
+}
+mod INV {
+  pr(PROTOCOL)
+  vars A B A2 B2 A3 B3 : Prin 
+  var SK : PriKey
+  vars D1 D2 : Data
+  vars DL1 DL2 DL3 : DataL
+  vars K SE SE2 K2 : Secret
+  vars S : Sys
+  vars N N2 ?T : Nat
+
+  op che : Sys Prin Prin Secret Nat Nat -> Bool
+  eq che(S,A,B,K,N,N2) = 
+    (msg1(A,A,B, aenc(pubK(B), aenc(priK(A), B || K)), N) \in nw(S) and
+     msg2(B,B,A, senc(K, A || B), N2) \in nw(S)) .
+
+  op secrecy : Sys Prin Prin Prin Secret Nat Nat -> Bool
+  eq secrecy(S,B2,A,B,K,N,N2) = 
+  (not(A = intru or B = intru) and
+    msg1(A,A,B, aenc(pubK(B), aenc(priK(A), B || K)), N) \in nw(S) and
+    msg2(B2,B,A, senc(K, A || B), N2) \in nw(S))
+   implies not(K \in knl(S)) .
+
+-- 1+2+3+5+7
+  op keySe : Sys Prin Prin Secret Nat -> Bool
+  eq keySe(S,A,B,K,N) = 
+  (not(A = intru or B = intru) and
+      msg1(A,A,B, aenc(pubK(B), aenc(priK(A), B || K)), N) \in nw(S))
+    implies not(K \in knl(S)) .
+
+-- no lemma
+  op inv1 : Sys Prin Prin Secret Nat -> Bool
+  eq inv1(S,A,B,K,N) = 
+  (not(A = intru or B = intru) and
+      msg1(A,A,B, aenc(pubK(B), aenc(priK(A), B || K)), N) \in nw(S))
+    implies (K \in usecret(S)) .
+
+-- 3+5+7
+  op inv2 : Sys Secret -> Bool
+  eq inv2(S,K) = K \in knl(S)
+    implies K \in usecret(S) .
+
+-- 4+5+7+lm1
+  op inv3 : Sys Data DataL Secret -> Bool
+  eq inv3(S,D1,DL1,K) = 
+    (senc(D1, DL1) \in knl(S) and
+      K \in DL1)
+    implies K \in knl(S) .
+
+-- 4+5+7+lm1
+  op inv4 : Sys Data DataL Data DataL -> Bool
+  eq inv4(S,D1,DL1,D2,DL2) = 
+    (senc(D1, DL1) \in knl(S) and
+      senc(D2,DL2) \in DL1)
+    implies senc(D2,DL2) \in knl(S) .
+
+-- 5+6+7
+  op inv5 : Sys Prin -> Bool
+  eq inv5(S,A) = not(A = intru)
+    implies not(priK(A) \in knl(S)) .
+
+-- 4+5+7+lm1
+  op inv6 : Sys Data DataL PriKey -> Bool
+  eq inv6(S,D1,DL1,SK) = 
+    (senc(D1, DL1) \in knl(S) and
+      SK \in DL1)
+    implies SK \in knl(S) .
+
+-- 5+7+8
+  op inv7 : Sys Prin DataL -> Bool
+  eq inv7(S,A,DL1) = not(A = intru)
+    implies not(aenc(priK(A),DL1) \in knl(S)) .
+
+-- 4+5+7+lm1
+  op inv8 : Sys Data DataL Data DataL -> Bool
+  eq inv8(S,D1,DL1,D2,DL2) = 
+    (senc(D1, DL1) \in knl(S) and
+      aenc(D2,DL2) \in DL1)
+    implies aenc(D2,DL2) \in knl(S) .
+
+  op lm1 : Data DataL DataL -> Bool
+  eq lm1(D1,DL1,DL2) = (D1 \in DL1 and DL1 \in DL2)
+    implies D1 \in DL2 .
+
+
+-- for authentication property
+-- 9+14
+  op auth : Sys Prin Prin Prin Secret Nat Nat Nat -> Bool
+  eq auth(S,B2,A,B,K,N,N2,?T) = 
+  ((not(A = intru or B = intru) and
+    msg1(A,A,B, aenc(pubK(B), aenc(priK(A), B || K)), N) \in nw(S) and
+    msg2(B2,B,A, senc(K, A || B), N2) \in nw(S))
+   implies msg2(B,B,A, senc(K, A || B), ?T) \in nw(S)) .
+
+-- 10+11
+  op inv9 : Sys Prin Prin Prin Secret Nat -> Bool
+  eq inv9(S,B2,A,B,K,N) = 
+    msg2(B2,B,A, senc(K, A || B), N) \in nw(S)
+    implies K \in usecret(S) .
+
+-- 2+4+5+7+11
+  op inv10 : Sys Prin Prin Secret -> Bool
+  eq inv10(S,A,B,K) = 
+    senc(K, A || B) \in knl(S)
+    implies K \in usecret(S) .
+
+-- 12
+  op inv11 : Sys Prin Prin Prin Secret Nat -> Bool
+  eq inv11(S,A2,A,B,K,N) = 
+  (msg1(A2,A,B, aenc(pubK(B), aenc(priK(A), B || K)), N) \in nw(S))
+    implies K \in usecret(S) .
+
+-- 5+7+8+13
+  op inv12 : Sys Prin Prin Secret -> Bool
+  eq inv12(S,A,B,K) = 
+    aenc(pubK(B), aenc(priK(A), B || K)) \in knl(S)
+    implies K \in usecret(S) .
+
+-- 2+5+7+8
+  op inv13 : Sys Prin Prin Secret -> Bool
+  eq inv13(S,A,B,K) = 
+    aenc(priK(A), B || K) \in knl(S)
+    implies K \in usecret(S) .
+
+-- keySe+4+5+7+10
+  op inv14 : Sys Prin Prin Secret Nat Nat -> Bool
+  eq inv14(S,A,B,K,N,?T) = 
+  (not(A = intru or B = intru) and
+    msg1(A,A,B, aenc(pubK(B), aenc(priK(A), B || K)), N) \in nw(S) and
+    senc(K, A || B) \in knl(S))
+   implies msg2(B,B,A, senc(K, A || B), ?T) \in nw(S) .
+
+}
