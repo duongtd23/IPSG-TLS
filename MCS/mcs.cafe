@@ -278,43 +278,114 @@ mod* MCS {
 }
 
 mod! INV {
-   pr(MCS)
+  pr(MCS)
 
-   var S : Sys
-   vars P Q R : Pid
+  var S : Sys
+  vars P Q R : Pid
 
-   op mutex : Sys Pid Pid -> Bool
-   op inv1 : Sys Pid Pid -> Bool
-   op inv2 : Sys Pid Pid -> Bool
-   op inv3 : Sys Pid -> Bool
-   op inv4 : Sys Pid -> Bool
-   op inv5 : Sys Pid Pid -> Bool
-   op inv6 : Sys Pid Pid -> Bool
-   op inv7 : Sys Pid Pid -> Bool
+-- invariants/lemmas used to prove the mutual exclusion property
+  op mutex : Sys Pid Pid -> Bool
+  op inv1 : Sys Pid Pid -> Bool
+  op inv2 : Sys Pid Pid -> Bool
+  op inv3 : Sys Pid -> Bool
+  op inv4 : Sys Pid -> Bool
+  op inv5 : Sys Pid Pid -> Bool
+  op inv6 : Sys Pid Pid -> Bool
+  op inv7 : Sys Pid Pid -> Bool
   
-   eq mutex(S,P,Q) = (pc(S,P) = cs and pc(S,Q) = cs implies (P = Q)) .
+  eq mutex(S,P,Q) = (pc(S,P) = cs and pc(S,Q) = cs implies (P = Q)) .
 
-   eq inv1(S,P,Q) = ((pc(S,Q) = l3 and prede(S,Q) = nop and (P = Q) = false) implies 
+  eq inv1(S,P,Q) = ((pc(S,Q) = l3 and prede(S,Q) = nop and (P = Q) = false) implies 
       ((pc(S,P) = cs or pc(S,P) = l7 or pc(S,P) = l8 or pc(S,P) = l10 or pc(S,P) = l11 or 
       (pc(S,P) = l6 and lock(S,P) = false)) = false)) .
 
-   eq inv2(S,P,Q) = ((pc(S,P) = l3 and prede(S,P) = nop and pc(S,Q) = l3 and (P = Q) = false)
+  eq inv2(S,P,Q) = ((pc(S,P) = l3 and prede(S,P) = nop and pc(S,Q) = l3 and (P = Q) = false)
       implies (prede(S,Q) = nop) = false) .
 
-   eq inv3(S,P) = (pc(S,P) = l5 implies lock(S,P) = true) .
+  eq inv3(S,P) = (pc(S,P) = l5 implies lock(S,P) = true) .
 
-   eq inv4(S,P) = (((pc(S,P) = l6 and lock(S,P) = false) or (pc(S,P) = l3 and prede(S,P) = nop)
+  eq inv4(S,P) = (((pc(S,P) = l6 and lock(S,P) = false) or (pc(S,P) = l3 and prede(S,P) = nop)
       or pc(S,P) = cs or pc(S,P) = l7 or pc(S,P) = l8 or pc(S,P) = l10 or pc(S,P) = l11)
       implies (glock(S) = nop) = false) .
 
-   eq inv5(S,P,Q) = (((pc(S,Q) = l12 or pc(S,Q) = l1 or pc(S,Q) = rs) = false and (P = Q) = false and
+  eq inv5(S,P,Q) = (((pc(S,Q) = l12 or pc(S,Q) = l1 or pc(S,Q) = rs) = false and (P = Q) = false and
       next(S,Q) = P) implies (pc(S,P) = l6 and lock(S,P) = true and prede(S,P) = Q)) .
 
-   eq inv6(S,P,Q) = ((pc(S,Q) = l6 and lock(S,Q) = false and (P = Q) = false) implies
+  eq inv6(S,P,Q) = ((pc(S,Q) = l6 and lock(S,Q) = false and (P = Q) = false) implies
       ((pc(S,P) = cs or pc(S,P) = l7 or pc(S,P) = l8 or pc(S,P) = l10 or pc(S,P) = l11 or
       (pc(S,P) = l6 and lock(S,P) = false)) = false)) .
 
-   eq inv7(S,P,Q) = (((pc(S,Q) = l11 or pc(S,Q) = l10 or pc(S,Q) = l8 or pc(S,Q) = l7 or
+  eq inv7(S,P,Q) = (((pc(S,Q) = l11 or pc(S,Q) = l10 or pc(S,Q) = l8 or pc(S,Q) = l7 or
       pc(S,Q) = cs) and (P = Q) = false) implies ((pc(S,P) = cs or pc(S,P) = l7 or pc(S,P) = l8
       or pc(S,P) = l10 or pc(S,P) = l11 or (pc(S,P) = l6 and lock(S,P) = false)) = false)) .
+
+
+-- OTHER invariant property/lemma candidates when the technique Lemma Weakening is not used
+-- inv4-0 is a stronger and more generic version of inv4
+-- but we could not prove inv4-0, inv4-1, inv4-2.
+  op inv4-0 : Sys Pid -> Bool
+  eq inv4-0(S,P) = ((pc(S,P) = l3 or pc(S,P) = l4 or pc(S,P) = l5 or pc(S,P) = l6 or 
+      pc(S,P) = cs or pc(S,P) = l7 or pc(S,P) = l8 or pc(S,P) = l10 or pc(S,P) = l11) 
+    implies not(glock(S) = nop)) .
+   
+  op inv4-1 : Sys Pid Pid -> Bool
+  eq inv4-1(S,P,Q) = ((pc(S,P) = l3 or pc(S,P) = l4 or pc(S,P) = l5 or pc(S,P) = l6 or 
+      pc(S,P) = cs or pc(S,P) = l7 or pc(S,P) = l8 or pc(S,P) = l10 or pc(S,P) = l11) 
+      and glock(S) = Q and not(P = Q))
+    implies not(pc(S,Q) = cs or pc(S,Q) = l7 or pc(S,Q) = l8 or pc(S,Q) = l10 or
+        pc(S,Q) = l11 or (pc(S,Q) = l6 and lock(S,Q) = false)) .
+   
+  op inv4-2 : Sys Pid Pid Pid -> Bool
+  eq inv4-2(S,P,Q,R) = (glock(S) = Q and next(S,R) = Q and not(P = R or Q = R or P = Q)
+      and (pc(S,R) = cs or pc(S,R) = l7 or pc(S,R) = l8 or pc(S,R) = l10 or 
+           pc(S,R) = l11 or (pc(S,R) = l6 and lock(S,R) = false)) )
+    implies not(pc(S,P) = l3 or pc(S,P) = l4 or pc(S,P) = l5 or pc(S,P) = l6) .
+
+-- inv5-0 is a stronger and more generic version of inv5
+-- but its proof requires inv5-1, inv5-2,..., inv5-9
+  op inv5-0 : Sys Pid Pid -> Bool
+  eq inv5-0(S,P,Q) = (not(pc(S,Q) = l12 or pc(S,Q) = l1 or pc(S,Q) = rs) and
+      next(S,Q) = P)
+    implies (pc(S,P) = l6 and lock(S,P) = true and prede(S,P) = Q) .
+
+  op inv5-1 : Sys Pid Pid -> Bool
+  eq inv5-1(S,P,Q) = (not(pc(S,P) = l12 or pc(S,P) = l1 or pc(S,P) = rs) and 
+      not(pc(S,Q) = l1 or pc(S,Q) = l12 or pc(S,Q) = rs) and
+      not(next(S,Q) = nop) and not(P = Q)) 
+    implies not(next(S,P) = next(S,Q)) .
+
+  op inv5-2 : Sys Pid -> Bool
+  eq inv5-2(S,P) = not(next(S,P) = P) .
+
+  op inv5-3 : Sys Pid -> Bool
+  eq inv5-3(S,P) = not(prede(S,P) = P) .
+
+  op inv5-4 : Sys Pid -> Bool
+  eq inv5-4(S,P) = (pc(S,P) = l2 or pc(S,P) = l1 or pc(S,P) = rs or pc(S,P) = l9 or
+      pc(S,P) = l12 or pc(S,P) = l11 or pc(S,P) = l10)
+    implies not(glock(S) = P) .
+   
+  op inv5-5 : Sys Pid -> Bool
+  eq inv5-5(S,P) = (glock(S) = P) implies (next(S,P) = nop) .
+
+  op inv5-6 : Sys Pid -> Bool
+  eq inv5-6(S,P) = (pc(S,P) = l2 or pc(S,P) = l9) implies (next(S,P) = nop) .
+
+  op inv5-7 : Sys Pid Pid -> Bool
+  eq inv5-7(S,P,Q) = (prede(S,Q) = P and (P = Q) = false and (glock(S) = P or pc(S,P) = l2 or
+      pc(S,P) = l1 or pc(S,P) = rs or pc(S,P) = l9 or pc(S,P) = l11 or pc(S,P) = l12 or
+      ((pc(S,P) = l7 or pc(S,P) = l8 or pc(S,P) = cs or pc(S,P) = l6 or pc(S,P) = l10 or 
+        pc(S,P) = l3 or pc(S,P) = l5 or pc(S,P) = l4) and (next(S,P) = nop) = false)))
+    implies ((pc(S,Q) = l5 or pc(S,Q) = l4 or pc(S,Q) = l3) = false) .
+
+  op inv5-8 : Sys Pid Pid -> Bool
+  eq inv5-8(S,P,Q) = ((pc(S,Q) = l4 or pc(S,Q) = l5 or pc(S,Q) = l3) and
+      (pc(S,P) = l5 or pc(S,P) = l4 or pc(S,P) = l3) and not(prede(S,P) = nop) and 
+      not(prede(S,Q) = nop) and not(P = Q))
+    implies not(prede(S,Q) = prede(S,P)) .
+
+  op inv5-9 : Sys Pid -> Bool
+  eq inv5-9(S,P) = ((pc(S,P) = l3 or pc(S,P) = l4 or pc(S,P) = l5) and not(prede(S,P) = nop))
+    implies not(glock(S) = prede(S,P)) .
+
 }

@@ -1,0 +1,547 @@
+open INV .
+  op i : -> Pid .
+  red inv5-6(init,i) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l8) = false .
+  red inv5-6(s,p) implies inv5-6(chglk(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l8 .
+  eq (p = r) = false .
+  eq glock(s) = r .
+  red inv5-6(s,p) implies inv5-6(chglk(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l8 .
+  eq (p = r) = false .
+  eq (glock(s) = r) = false .
+  red inv5-6(s,p) implies inv5-6(chglk(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l8 .
+  eq p = r .
+  eq (glock(s) = r) = false .
+  red inv5-6(s,p) implies inv5-6(chglk(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l8 .
+  eq p = r .
+  eq glock(s) = r .
+  red inv5-5(s,r) implies inv5-6(s,p) implies inv5-6(chglk(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l6) = false .
+  red inv5-6(s,p) implies inv5-6(chlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l6 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(chlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l6 .
+  eq p = r .
+  eq lock(s,r) = true .
+  red inv5-6(s,p) implies inv5-6(chlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l6 .
+  eq p = r .
+  eq lock(s,r) = false .
+  red inv5-6(s,p) implies inv5-6(chlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l7) = false .
+  red inv5-6(s,p) implies inv5-6(chnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l7 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(chnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l7 .
+  eq p = r .
+  eq (glock(s) = r) = false .
+  eq next(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(chnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l7 .
+  eq p = r .
+  eq (glock(s) = r) = false .
+  eq (next(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(chnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l7 .
+  eq p = r .
+  eq glock(s) = r .
+  eq next(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(chnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l7 .
+  eq p = r .
+  eq glock(s) = r .
+  eq (next(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(chnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l10) = false .
+  red inv5-6(s,p) implies inv5-6(chnxt2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l10 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(chnxt2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l10 .
+  eq p = r .
+  eq (next(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(chnxt2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l10 .
+  eq p = r .
+  eq next(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(chnxt2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l3) = false .
+  red inv5-6(s,p) implies inv5-6(chprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l3 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(chprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l3 .
+  eq p = r .
+  eq (prede(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(chprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l3 .
+  eq p = r .
+  eq prede(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(chprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = cs) = false .
+  red inv5-6(s,p) implies inv5-6(exit(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = cs .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(exit(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = cs .
+  eq p = r .
+  eq (prede(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(exit(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = cs .
+  eq p = r .
+  eq prede(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(exit(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l9) = false .
+  red inv5-6(s,p) implies inv5-6(go2rs(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l9 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(go2rs(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l9 .
+  eq p = r .
+  eq (prede(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(go2rs(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l9 .
+  eq p = r .
+  eq prede(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(go2rs(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l12) = false .
+  red inv5-6(s,p) implies inv5-6(go2rs2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l12 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(go2rs2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l12 .
+  eq p = r .
+  eq (prede(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(go2rs2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l12 .
+  eq p = r .
+  eq prede(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(go2rs2(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l4) = false .
+  red inv5-6(s,p) implies inv5-6(stlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l4 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(stlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l4 .
+  eq p = r .
+  eq (prede(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(stlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l4 .
+  eq p = r .
+  eq prede(s,r) = nop .
+  red inv5-6(s,p) implies inv5-6(stlck(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l11) = false .
+  red inv5-6(s,p) implies inv5-6(stlnx(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l11 .
+  eq p = r .
+  red inv5-6(s,p) implies inv5-6(stlnx(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l11 .
+  eq (p = r) = false .
+  eq (next(s,r) = p) = false .
+  red inv5-6(s,p) implies inv5-6(stlnx(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r q : -> Pid .
+  eq pc(s,r) = l11 .
+  eq (p = r) = false .
+  eq next(s,r) = p .
+  eq (pc(s,p) = l5) = false .
+  red inv5-6(s,p) implies inv5-6(stlnx(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r q : -> Pid .
+  eq pc(s,r) = l11 .
+  eq (p = r) = false .
+  eq next(s,r) = p .
+  eq pc(s,p) = l5 .
+  red inv5-6(s,p) implies inv5-6(stlnx(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l5) = false .
+  red inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq p = r .
+  eq next(s,r) = nop .
+  eq (prede(s,r) = r) = false .
+  red inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq p = r .
+  eq next(s,r) = nop .
+  eq prede(s,r) = r .
+  red inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq p = r .
+  eq (next(s,r) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq (p = r) = false .
+  eq (prede(s,r) = p) = false .
+  red inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq (p = r) = false .
+  eq prede(s,r) = p .
+  eq (next(s,p) = nop) = false .
+  red inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq (p = r) = false .
+  eq prede(s,r) = p .
+  eq next(s,p) = nop .
+  eq pc(s,p) = l9 .
+  red inv5-7(s,p,r) implies inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq (p = r) = false .
+  eq prede(s,r) = p .
+  eq next(s,p) = nop .
+  eq (pc(s,p) = l9) = false .
+  eq pc(s,p) = l2 .
+  red inv5-7(s,p,r) implies inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l5 .
+  eq (p = r) = false .
+  eq prede(s,r) = p .
+  eq next(s,p) = nop .
+  eq (pc(s,p) = l9) = false .
+  eq (pc(s,p) = l2) = false .
+  red inv5-6(s,p) implies inv5-6(stnpr(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l1) = false .
+  red inv5-6(s,p) implies inv5-6(stnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l1 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(stnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l1 .
+  eq p = r .
+  red inv5-6(s,p) implies inv5-6(stnxt(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = l2) = false .
+  red inv5-6(s,p) implies inv5-6(stprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l2 .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(stprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l2 .
+  eq p = r .
+  eq (glock(s) = r) = false .
+  red inv5-6(s,p) implies inv5-6(stprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = l2 .
+  eq p = r .
+  eq glock(s) = r .
+  red inv5-6(s,p) implies inv5-6(stprd(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq (pc(s,r) = rs) = false .
+  red inv5-6(s,p) implies inv5-6(want(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = rs .
+  eq (p = r) = false .
+  red inv5-6(s,p) implies inv5-6(want(s,r),p) .
+close
+
+open INV .
+  op s : -> Sys .
+  ops p r : -> Pid .
+  eq pc(s,r) = rs .
+  eq p = r .
+  red inv5-6(s,p) implies inv5-6(want(s,r),p) .
+close

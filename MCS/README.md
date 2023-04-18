@@ -1,0 +1,10 @@
+### In this folder, you can find:
+
+- `proof-scores.cafe`: the generated proof scores when the technique "case splitting is used first before reduction" is NOT used. In this case, IPSG took about 110.66 seconds to generate these proof scores, which consists of 665 open-close fragments.
+- `proof-scores-csFirst-20.cafe`: the generated proof scores when the technique "case splitting is used first before reduction" is used with the threshold = 20. In this case, IPSG took about 50.75 seconds to generate these proof scores, which consists of 1788 open-close fragments.
+- `proof-scores-csFirst-15.cafe`: the generated proof scores when the technique is used with the threshold = 15. In this case, IPSG took about 48.31 seconds to generate these proof scores, which consists of 1837 open-close fragments.
+- `proof-scores-csFirst-10.cafe`: the generated proof scores when the technique is used with the threshold = 10. In this case, IPSG took about 39.67 seconds to generate these proof scores, which consists of 2030 open-close fragments.
+- `proof-scores-csFirst-7.cafe`: the generated proof scores when the technique is used with the threshold = 7. In this case, IPSG took about 38.87 seconds to generate these proof scores, which consists of 2355 open-close fragments.
+- `proof-scores-csFirst-5.cafe`: the generated proof scores when the technique is used with the threshold = 5. In this case, IPSG took about 40.08 seconds to generate these proof scores, which consists of 2601 open-close fragments.
+
+In the specification `mcs.cafe`, there are some other invariant property/lemma candidates when the technique Lemma Weakening is not used, including `inv4-0`, `inv4-1`, and `inv4-2`, which we could not prove that they are invariants, and `inv5-0`,..., `inv5-9`, where their proof scores are in the folder `others`.
