@@ -1,7 +1,6 @@
 load A-Anderson/anderson.cafe .
 
 ipsgopen INV .
-  inv lm1(I:SNat, J:SNat) .
   inv mutex(S:Sys, P:Pid, Q:Pid) .
   inv inv1(S:Sys, P:Pid, Q:Pid) .
   inv inv2(S:Sys, P:Pid) .
@@ -29,3 +28,5 @@ set-output A-Anderson/proof-scores.cafe .
 eof
 
 load A-Anderson/input.cafe .
+
+-- need to set depthTryUseLm = 1

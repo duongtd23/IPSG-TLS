@@ -134,7 +134,4 @@ mod INV {
   eq inv7(S) = (array(S,s(next(S))) = false) . 
 
   eq inv8(S,I,J) = ((array(S,J) = true and I < s(J)) implies array(S,I) = true) .
-
-  op lm1 : SNat SNat -> Bool .
-  eq lm1(I,J) = (((I = J) = false and I < s(J)) implies I < J) .
 }

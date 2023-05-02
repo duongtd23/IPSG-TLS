@@ -1,6 +1,7 @@
 load SDS/sds.cafe .
 ipsgopen INV .
   inv lm1(D:Data,DL:DataL,DL2:DataL) .
+  inv keySe(S:Sys,A:Prin,B:Prin,K:Secret,N:Nat) .
   inv inv1(S:Sys,A:Prin,B:Prin,K:Secret,N:Nat) .
   inv inv2(S:Sys,K:Secret) .
   inv inv3(S:Sys,D1:Data,DL1:DataL,K:Secret) .

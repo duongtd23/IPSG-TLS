@@ -21,4 +21,4 @@ eof
 
 load SKP/input.cafe .
 
--- depthTryUseLm = 1
+-- need to set depthTryUseLm = 1
