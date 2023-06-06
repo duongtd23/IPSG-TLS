@@ -1,1223 +1,800 @@
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	red inv1(init,a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  red inv1(init,a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkcm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = true .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkcm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkcm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkcm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq k(enemy) = k .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq p(k) = enemy .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = enemy .
+  eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq r1 = enemy .
-	eq enc(k,r,enemy) = r3 .
-	eq (rm(enemy,enemy,a3,r3) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = enemy .
+  eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq r2 = a3 .
+  eq r1 = enemy .
+  eq enc(k,r,enemy) = r3 .
+  eq (rm(enemy,enemy,a3,r3) \in nw(f)) = true .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true, use inv2 as a lemma
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq r1 = enemy .
-	eq enc(k,r,enemy) = r3 .
-	eq (rm(enemy,enemy,a3,r3) \in nw(f)) = false .
-	red inv2(f,k,r) implies inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = enemy .
+  eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq r2 = a3 .
+  eq r1 = enemy .
+  eq enc(k,r,enemy) = r3 .
+  eq (rm(enemy,enemy,a3,r3) \in nw(f)) = false .
+  red inv2(f,k,r) implies inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq r1 = enemy .
-	eq (enc(k,r,enemy) = r3) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = enemy .
+  eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq r2 = a3 .
+  eq r1 = enemy .
+  eq (enc(k,r,enemy) = r3) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq (r1 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = enemy .
+  eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq r2 = a3 .
+  eq (r1 = enemy) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (r2 = a3) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = enemy .
+  eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq (r2 = a3) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (a1 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq (a1 = enemy) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq (a2 = enemy) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq r1 = enemy .
-	eq enc(k,r,enemy) = r3 .
-	eq (rm(enemy,enemy,a3,r3) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
-close
-
---> true, use inv2 as a lemma
-open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq r1 = enemy .
-	eq enc(k,r,enemy) = r3 .
-	eq (rm(enemy,enemy,a3,r3) \in nw(f)) = false .
-	red inv2(f,k,r) implies inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = true .
+  eq a2 = enemy .
+  eq p(k) = enemy .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq r1 = enemy .
-	eq (enc(k,r,enemy) = r3) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r2 = a3 .
-	eq (r1 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = true .
+  eq (a2 = enemy) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = enemy .
-	eq (rm(enemy,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (r2 = a3) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (a1 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in ur(f)) = true .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdcm(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq (a2 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in ur(f)) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdcm(f,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm1(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq a2 = enemy .
+  eq p(k) = enemy .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq k(enemy) = k .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = r1 .
+  eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = r1 .
+  eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq r1 = enemy .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	eq (a2 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq a1 = r1 .
+  eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq (r1 = enemy) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(fkrm2(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq a2 = enemy .
+  eq (p(k) = enemy) = false .
+  eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
+  eq (a1 = r1) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in ur(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdcm(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq (a2 = enemy) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in ur(f)) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdcm(f,r1,r2,r3),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq k(enemy) = k .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op a1 : -> Agent .
+  op a2 : -> Agent .
+  op a3 : -> Agent .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq (dst(r2) = r1) = false .
+  red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = r1 .
-	eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  red inv2(init,k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = r1 .
-	eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r1 = enemy .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = true .
+  red inv2(f,k,r) implies inv2(fkcm1(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = r1 .
-	eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (r1 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = false .
+  red inv2(f,k,r) implies inv2(fkcm1(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (a1 = r1) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq p(k) = enemy .
+  red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq (p(k) = enemy) = false .
+  eq (enc(k,r,enemy) \in ciphers(nw(f))) = true .
+  red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = r1 .
-	eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = true .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq (p(k) = enemy) = false .
+  eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
+  eq enc(k,r,enemy) = r3 .
+  red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = r1 .
-	eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq r1 = enemy .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = true .
+  eq (p(k) = enemy) = false .
+  eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
+  eq (enc(k,r,enemy) = r3) = false .
+  red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq a1 = r1 .
-	eq (rm(r1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (r1 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Cipher .
+  eq (r3 \in ciphers(nw(f))) = false .
+  red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq a2 = enemy .
-	eq (p(k) = enemy) = false .
-	eq (rm(a1,enemy,a3,enc(k,r,enemy)) \in nw(f)) = false .
-	eq (a1 = r1) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = true .
+  eq p(k) = enemy .
+  red inv2(f,k,r) implies inv2(fkrm2(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq (a2 = enemy) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = true .
+  eq (p(k) = enemy) = false .
+  red inv2(f,k,r) implies inv2(fkrm2(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in rands(nw(f))) = false .
+  red inv2(f,k,r) implies inv2(fkrm2(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in ur(f)) = true .
+  red inv2(f,k,r) implies inv2(sdcm(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op a1 : -> Agent .
-	op a2 : -> Agent .
-	op a3 : -> Agent .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq (dst(r2) = r1) = false .
-	red inv1(f,a1,a2,a3,k,r) implies inv1(sdrm(f,r1,r2),a1,a2,a3,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Agent .
+  op r3 : -> Rand .
+  eq (r3 \in ur(f)) = false .
+  red inv2(f,k,r) implies inv2(sdcm(f,r1,r2,r3),k,r) .
 close
 
 --> true
 open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	red inv2(init,k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq p(k) = enemy .
+  red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
 close
 
 --> true
 open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	red inv2(f,k,r) implies inv2(fkcm1(f,r1,r2,r3),k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq (p(k) = enemy) = false .
+  eq (enc(k,r,enemy) \in ciphers(nw(f))) = true .
+  red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
 close
 
 --> true
 open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = false .
-	red inv2(f,k,r) implies inv2(fkcm1(f,r1,r2,r3),k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq (p(k) = enemy) = false .
+  eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
+  eq r1 = enemy .
+  red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
 close
 
 --> true
 open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq p(k) = enemy .
-	eq k(enemy) = k .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = true .
+  eq (p(k) = enemy) = false .
+  eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
+  eq (r1 = enemy) = false .
+  red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
 close
 
 --> true
 open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = true .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = true .
+  eq (r2 \in nw(f)) = false .
+  red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
 close
 
 --> true
 open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq enc(k,r,enemy) = r3 .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq dst(r2) = r1 .
+  eq cm?(r2) = false .
+  red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
 close
 
 --> true
 open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq (enc(k,r,enemy) = r3) = false .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
+  op f : -> Field .
+  op k : -> Key .
+  op r : -> Rand .
+  op r1 : -> Agent .
+  op r2 : -> Msg .
+  eq (dst(r2) = r1) = false .
+  red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
 close
 
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq (p(k) = enemy) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = true .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq (p(k) = enemy) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq enc(k,r,enemy) = r3 .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = true .
-	eq (p(k) = enemy) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq (enc(k,r,enemy) = r3) = false .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Cipher .
-	eq (r3 \in ciphers(nw(f))) = false .
-	red inv2(f,k,r) implies inv2(fkrm1(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	eq p(k) = enemy .
-	eq k(enemy) = k .
-	red inv2(f,k,r) implies inv2(fkrm2(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	red inv2(f,k,r) implies inv2(fkrm2(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = true .
-	eq (p(k) = enemy) = false .
-	red inv2(f,k,r) implies inv2(fkrm2(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(f))) = false .
-	red inv2(f,k,r) implies inv2(fkrm2(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in ur(f)) = true .
-	red inv2(f,k,r) implies inv2(sdcm(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Agent .
-	op r3 : -> Rand .
-	eq (r3 \in ur(f)) = false .
-	red inv2(f,k,r) implies inv2(sdcm(f,r1,r2,r3),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq p(k) = enemy .
-	eq k(enemy) = k .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = true .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq r1 = enemy .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq p(k) = enemy .
-	eq (k(enemy) = k) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq (r1 = enemy) = false .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq (p(k) = enemy) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = true .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq (p(k) = enemy) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq r1 = enemy .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = true .
-	eq (p(k) = enemy) = false .
-	eq (enc(k,r,enemy) \in ciphers(nw(f))) = false .
-	eq (r1 = enemy) = false .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = true .
-	eq (r2 \in nw(f)) = false .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq dst(r2) = r1 .
-	eq cm?(r2) = false .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> true
-open IFF .
-	op f : -> Field .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Agent .
-	op r2 : -> Msg .
-	eq (dst(r2) = r1) = false .
-	red inv2(f,k,r) implies inv2(sdrm(f,r1,r2),k,r) .
-close
-
---> Time taken is 210ms
+--> Time taken is 165ms

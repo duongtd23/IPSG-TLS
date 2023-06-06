@@ -10,6 +10,7 @@ mod! KEY {
   var P : Agent
   vars K1 K2 : Key
   eq p(k(P)) = P .
+  ceq (K1 = K2) = true if p(K1) = enemy and p(K2) = enemy .
   ceq (K1 = K2) = true if not(p(K1) = enemy) and not(p(K2) = enemy) .
   ceq (K1 = K2) = false if not(p(K1) = enemy) and p(K2) = enemy .
 }
@@ -214,11 +215,6 @@ mod IFF {
 -- declare invariant candidates
   op inv1 : Field Agent Agent Agent Key Rand -> Bool
   op inv2 : Field Key Rand -> Bool
--- CafeOBJ variables
-  var F : Field
-  vars P1 P2 P3 : Agent
-  var K : Key
-  var R : Rand
 -- define invariant candidates
   eq inv1(F,P1,P2,P3,K,R) = ((not(K = k(enemy)) and rm(P1,P2,P3,enc(K,R,P2)) \in nw(F)) implies not(P2 = enemy)) .
   eq inv2(F,K,R) = (enc(K,R,enemy) \in ciphers(nw(F)) implies (K = k(enemy))) .
