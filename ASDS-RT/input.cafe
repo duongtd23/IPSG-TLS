@@ -10,11 +10,11 @@ ipsgopen INV .
   generate inv5(S:Sys) induction on S:Sys .
 close
 
-set-output ASDS/proof-scores.cafe .
+set-output ASDS-RT/proof-scores.cafe .
 :save-proof .
 
 eof
-load ASDS/asds.cafe .
-load ASDS/input.cafe .
+load ASDS-RT/asds.cafe .
+load ASDS-RT/input.cafe .
 
 -- need to set depthTryUseLm = 1 

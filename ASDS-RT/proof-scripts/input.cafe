@@ -1,0 +1,15 @@
+load ASDS-RT/asds.cafe .
+load ASDS-RT/proof-scripts/annotated-proofscores.cafe .
+
+-- set-cores 4 .
+:proven(lemma1(T:Timeval, T1:Timeval, T2:Timeval))
+:infer-proof asds .
+
+set-output ASDS-RT/proof-scripts/script.cafe .
+:save-proof .
+
+eof
+
+load ASDS-RT/proof-scripts/input.cafe .
+
+-- exp:  11:15:26 -> 11:15:33
