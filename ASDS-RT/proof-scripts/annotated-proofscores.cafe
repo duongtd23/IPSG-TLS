@@ -1,0 +1,344 @@
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  red inv1(init) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = true .
+  red inv1(s) implies inv1(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = false .
+  eq list(s) = (0 .. dec(dec(data(s)))) .
+  eq put((0 .. dec(dec(data(s)))),content(s)) = (0 .. dec(data(s))) .
+  red inv1(s) implies inv1(rec(s)) .
+close
+
+--> true, use inv4 as a lemma
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = false .
+  eq list(s) = (0 .. dec(dec(data(s)))) .
+  eq (put((0 .. dec(dec(data(s)))),content(s)) = (0 .. dec(data(s)))) = false .
+  red inv4(s) implies inv1(s) implies inv1(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = false .
+  eq (list(s) = (0 .. dec(dec(data(s))))) = false .
+  red inv1(s) implies inv1(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  eq empty(s) = true .
+  red inv1(s) implies inv1(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  eq empty(s) = false .
+  eq list(s) = (0 .. dec(data(s))) .
+  red inv1(s) implies inv1(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  eq empty(s) = false .
+  eq (list(s) = (0 .. dec(data(s)))) = false .
+  eq list(s) = (0 .. dec(dec(data(s)))) .
+  eq (0 .. dec(dec(data(s)))) = (0 .. dec(data(s))) .
+  red inv1(s) implies inv1(send(s)) .
+close
+
+--> true, use inv2 as a lemma
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  eq empty(s) = false .
+  eq (list(s) = (0 .. dec(data(s)))) = false .
+  eq list(s) = (0 .. dec(dec(data(s)))) .
+  eq ((0 .. dec(dec(data(s)))) = (0 .. dec(data(s)))) = false .
+  red inv2(s) implies inv1(s) implies inv1(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  eq empty(s) = false .
+  eq (list(s) = (0 .. dec(data(s)))) = false .
+  eq (list(s) = (0 .. dec(dec(data(s))))) = false .
+  red inv1(s) implies inv1(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = false .
+  red inv1(s) implies inv1(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  red inv1(s) implies inv1(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = false .
+  red inv1(s) implies inv1(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  red inv2(init) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = true .
+  red inv2(s) implies inv2(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = false .
+  red inv2(s) implies inv2(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  red inv2(s) implies inv2(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = false .
+  red inv2(s) implies inv2(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  eq empty(s) = true .
+  red inv2(s) implies inv2(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  eq empty(s) = false .
+  eq (l(s) <= now(s)) = true .
+  red inv2(s) implies inv2(tick(s,r1)) .
+close
+
+--> true, use inv5 as a lemma
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  eq empty(s) = false .
+  eq (l(s) <= now(s)) = false .
+  eq (l(s) <= (r1 + now(s))) = true .
+  eq (l(s) <= u(s)) = true .
+  red inv5(s) implies inv2(s) implies inv2(tick(s,r1)) .
+close
+
+--> true, use lemma1 as a lemma
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  eq empty(s) = false .
+  eq (l(s) <= now(s)) = false .
+  eq (l(s) <= (r1 + now(s))) = true .
+  eq (l(s) <= u(s)) = false .
+  red lemma1(l(s),(r1 + now(s)),u(s)) implies inv2(s) implies inv2(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  eq empty(s) = false .
+  eq (l(s) <= now(s)) = false .
+  eq (l(s) <= (r1 + now(s))) = false .
+  red inv2(s) implies inv2(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = false .
+  red inv2(s) implies inv2(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  red inv4(init) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = true .
+  red inv4(s) implies inv4(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = false .
+  red inv4(s) implies inv4(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  red inv4(s) implies inv4(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = false .
+  red inv4(s) implies inv4(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  red inv4(s) implies inv4(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = false .
+  red inv4(s) implies inv4(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  red inv5(init) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = true .
+  red inv5(s) implies inv5(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq empty(s) = false .
+  red inv5(s) implies inv5(rec(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = true .
+  red inv5(s) implies inv5(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op s : -> Sys .
+  eq (l(s) <= now(s)) = false .
+  red inv5(s) implies inv5(send(s)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = true .
+  red inv5(s) implies inv5(tick(s,r1)) .
+close
+
+--> true
+open INV .
+  :id(asds)
+  op r1 : -> Real+ .
+  op s : -> Sys .
+  eq ((r1 + now(s)) <= u(s)) = false .
+  red inv5(s) implies inv5(tick(s,r1)) .
+close

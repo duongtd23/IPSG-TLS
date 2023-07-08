@@ -1,0 +1,265 @@
+
+:proven(lemma1(T:Timeval, T1:Timeval, T2:Timeval))
+:goal{
+eq [asds :nonexec] : inv1(S:Sys)  = true .
+ eq [asds1 :nonexec] : inv2(S:Sys)  = true .
+ eq [asds2 :nonexec] : inv4(S:Sys)  = true .
+ eq [asds3 :nonexec] : inv5(S:Sys)  = true .
+}
+:ind on (S:Sys)
+:apply(si)
+:sel(1)
+	:apply(tc)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+	:apply (rd)
+
+
+:sel(2)
+	:apply(tc)
+
+	:def csb1#2 = :ctf [empty(S#Sys)  .]
+
+	:apply(csb1#2)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:def csb2#2 = :ctf {eq list(S#Sys)  = 0 .. dec(dec(data(S#Sys))) .}
+
+	:apply(csb2#2)
+
+	:def csb3#2 = :ctf {eq put(0 .. dec(dec(data(S#Sys))), content(S#Sys))  = 0 .. dec(data(S#Sys)) .}
+
+	:apply(csb3#2)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:imp [asds]  .
+
+	:imp [asds2]  .
+
+	:apply (rd)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:def csb4#2 = :ctf [empty(S#Sys)  .]
+
+	:apply(csb4#2)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:def csb5#2 = :ctf [empty(S#Sys)  .]
+
+	:apply(csb5#2)
+
+	:imp [asds2]  .
+
+	:apply (rd)
+
+	:imp [asds2]  .
+
+	:apply (rd)
+
+	:def csb6#2 = :ctf [empty(S#Sys)  .]
+
+	:apply(csb6#2)
+
+	:imp [asds3]  .
+
+	:apply (rd)
+
+	:imp [asds3]  .
+
+	:apply (rd)
+
+
+:sel(3)
+	:apply(tc)
+
+	:def csb1#3 = :ctf [l(S#Sys) <= now(S#Sys)  .]
+
+	:apply(csb1#3)
+
+	:def csb2#3 = :ctf [empty(S#Sys)  .]
+
+	:apply(csb2#3)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:def csb3#3 = :ctf {eq list(S#Sys)  = 0 .. dec(data(S#Sys)) .}
+
+	:apply(csb3#3)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:def csb4#3 = :ctf {eq list(S#Sys)  = 0 .. dec(dec(data(S#Sys))) .}
+
+	:apply(csb4#3)
+
+	:def csb5#3 = :ctf {eq 0 .. dec(dec(data(S#Sys)))  = 0 .. dec(data(S#Sys)) .}
+
+	:apply(csb5#3)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:imp [asds]  .
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:def csb6#3 = :ctf [l(S#Sys) <= now(S#Sys)  .]
+
+	:apply(csb6#3)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:def csb7#3 = :ctf [l(S#Sys) <= now(S#Sys)  .]
+
+	:apply(csb7#3)
+
+	:imp [asds2]  .
+
+	:apply (rd)
+
+	:imp [asds2]  .
+
+	:apply (rd)
+
+	:def csb8#3 = :ctf [l(S#Sys) <= now(S#Sys)  .]
+
+	:apply(csb8#3)
+
+	:imp [asds3]  .
+
+	:apply (rd)
+
+	:imp [asds3]  .
+
+	:apply (rd)
+
+
+:sel(4)
+	:apply(tc)
+
+	:def csb1#4 = :ctf [(R#Real+ + now(S#Sys)) <= u(S#Sys)  .]
+
+	:apply(csb1#4)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:imp [asds]  .
+
+	:apply (rd)
+
+	:def csb2#4 = :ctf [(R#Real+ + now(S#Sys)) <= u(S#Sys)  .]
+
+	:apply(csb2#4)
+
+	:def csb3#4 = :ctf [empty(S#Sys)  .]
+
+	:apply(csb3#4)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:def csb4#4 = :ctf [l(S#Sys) <= now(S#Sys)  .]
+
+	:apply(csb4#4)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:def csb5#4 = :ctf [l(S#Sys) <= R#Real+ + now(S#Sys)  .]
+
+	:apply(csb5#4)
+
+	:def csb6#4 = :ctf [l(S#Sys) <= u(S#Sys)  .]
+
+	:apply(csb6#4)
+
+	:imp [asds1]  .
+
+	:imp [asds3]  .
+
+	:apply (rd)
+
+	:imp [asds1]  .
+
+	:imp [proven-goal0]  by {T1:Timeval <- _+_(R#Real+, now(S#Sys)) ; T2:Timeval <- u(S#Sys) ; T:Timeval <- l(S#Sys) ;}
+
+	:apply (rd)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:imp [asds1]  .
+
+	:apply (rd)
+
+	:def csb7#4 = :ctf [(R#Real+ + now(S#Sys)) <= u(S#Sys)  .]
+
+	:apply(csb7#4)
+
+	:imp [asds2]  .
+
+	:apply (rd)
+
+	:imp [asds2]  .
+
+	:apply (rd)
+
+	:def csb8#4 = :ctf [(R#Real+ + now(S#Sys)) <= u(S#Sys)  .]
+
+	:apply(csb8#4)
+
+	:imp [asds3]  .
+
+	:apply (rd)
+
+	:imp [asds3]  .
+
+	:apply (rd)
+

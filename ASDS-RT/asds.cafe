@@ -1,0 +1,171 @@
+mod* TIMEVAL {
+  [Zero NzReal+ < Real+]
+  [NzReal+ Inf < NzTimeval]
+  [Real+ NzTimeval < Timeval]
+  op 0 : -> Zero
+  op oo : -> Inf
+  op _+_ : Real+ Real+ -> Real+ {assoc comm}
+  op _+_ : Timeval Timeval -> Timeval {assoc comm}
+  op _<_ : Timeval Timeval -> Bool
+  op _<=_ : Timeval Timeval -> Bool
+  op _=_ : Timeval Timeval -> Bool {comm}
+
+  vars X Y : Real+
+  vars T T1 T2 : Timeval
+
+  eq X < 0 = false .
+  eq X < oo = true .
+  eq oo < X = false .
+  eq X < X = false .
+  -- ceq T1 < T2 = false if T2 <= T1 .
+  ceq X + T1 <= X + T2 = false if T2 < T1 .
+  ceq T < T1 + T2 = true if T < T2 .
+  eq 0 <= X = true .
+  eq X <= oo = true .
+  eq oo <= X = false .
+  eq X <= X = true .
+  eq X <= X + T = true .
+  ceq (T1 + T2 <= T1) = false if 0 < T2 .
+  -- ceq (T1 <= T2) = false if T2 < T1 .
+  eq T2 < T1 = not(T1 <= T2) .
+
+-- lemma
+  op lemma1 : Timeval Timeval Timeval -> Bool
+  eq lemma1(T,T1,T2) = (T <= T1 and T1 <= T2)
+    implies T <= T2 .
+}
+
+mod! LIST(M :: TRIV) { 
+  [Elt.M < List]
+  op nil : -> List {constr}
+  op __ : Elt.M List -> List {constr}
+  op put : List Elt.M -> List 
+  vars L L1 L2 : List 
+  vars X Y : Elt.M 
+  eq (nil = X L) = false . 
+  eq (X L1 = Y L2) = (X = Y and L1 = L2) .
+  eq put(nil, X) = X .
+  eq put((Y L), X) = Y put(L,X) .
+
+-- lemmas
+  eq (X L = L) = false .
+  eq (Y (X L) = L) = false .
+
+  -- op hd : List -> Elt.M 
+  -- op tl : List -> List 
+  -- eq hd(X L) = X . 
+  -- eq tl(X L) = L . 
+}
+mod! PNAT { 
+  [Nat] 
+  op 0 : -> Nat {constr}
+  op s : Nat -> Nat {constr}
+  vars X Y : Nat 
+  eq (0 = s(X)) = false . 
+  eq (s(X) = s(Y)) = (X = Y) .
+
+  op _<_ : Nat Nat -> Bool 
+  eq (X < X) = false .
+  eq (s(X) < 0) = false .
+  eq (0 < s(X)) = true .
+  eq (s(X) < s(Y)) = (X < Y) .
+
+  op inc : Nat -> Nat
+  eq inc(X) = s(X) .
+
+  op dec : Nat -> Nat .
+  eq dec(s(X)) = X .
+  eq dec(dec(0)) = dec(0) .
+  eq dec(0) < 0 = true .
+}
+view TRIV2NAT from TRIV to PNAT {
+  sort Elt -> Nat
+}
+mod! PNAT-LIST {
+  pr(LIST(M <= TRIV2NAT)) 
+  op _.._ : Nat Nat -> List {constr}
+  vars N M X Y : Nat 
+  vars L L1 L2 : List 
+  ceq M .. N = nil if N < M .
+  eq put(M .. N, s(N)) = M .. s(N) .
+  eq put(M .. dec(N), N) = M .. N .
+
+  ceq (M = N) = false 
+    if not(put(0 .. dec(N), M) = (0 .. N)) .
+}
+mod ASDS {
+  pr(TIMEVAL + PNAT-LIST)
+  [Sys]
+
+-- an arbitrary initial state
+  op init : -> Sys {constr}
+-- observation operators
+  op empty : Sys -> Bool
+  op content : Sys -> Nat
+  op data : Sys -> Nat
+  op list : Sys -> List
+  op now : Sys -> Real+
+  op l : Sys -> Real+
+  op u : Sys -> NzTimeval
+-- action operators
+  op send : Sys -> Sys {constr}
+  op rec : Sys -> Sys {constr}
+  op tick : Sys Real+ -> Sys {constr}
+
+  ops d1 d2 : -> Real+ .
+  eq 0 < d1 = true .
+  eq 0 < d2 = true .
+  eq d1 <= d2 = false .
+
+  var S : Sys 
+  var D : Real+
+
+  eq empty(init) = true .
+  eq data(init) = 0 .
+  eq list(init) = nil .
+  eq now(init) = 0 .
+  eq l(init) = d1 .
+  eq u(init) = oo .
+
+  ceq empty(send(S)) = false if l(S) <= now(S) .
+  ceq content(send(S)) = data(S) if l(S) <= now(S) .
+  ceq data(send(S)) = inc(data(S)) if l(S) <= now(S) .
+  eq list(send(S)) = list(S) .
+  eq now(send(S)) = now(S) .
+  ceq l(send(S)) = now(S) + d1 if l(S) <= now(S) .
+  ceq u(send(S)) = now(S) + d2 if l(S) <= now(S) .
+  ceq send(S) = S if not(l(S) <= now(S)) .
+
+  ceq empty(rec(S)) = true if not empty(S) .
+  eq content(rec(S)) = content(S) .
+  eq data(rec(S)) = data(S) .
+  ceq list(rec(S)) = put(list(S),content(S)) if not empty(S) .
+  eq now(rec(S)) = now(S) .
+  eq l(rec(S)) = l(S) .
+  ceq u(rec(S)) = oo if not empty(S) .
+  ceq rec(S) = S if empty(S) .
+
+  eq empty(tick(S,D)) = empty(S) .
+  eq content(tick(S,D)) = content(S) .
+  eq data(tick(S,D)) = data(S) .
+  eq list(tick(S,D)) = list(S) .
+  ceq now(tick(S,D)) = now(S) + D if now(S) + D <= u(S) .
+  eq l(tick(S,D)) = l(S) .
+  eq u(tick(S,D)) = u(S) .
+  ceq tick(S,D) = S if not(now(S) + D <= u(S)) .
+}
+
+mod INV {
+  pr(ASDS)
+  op inv1 : Sys -> Bool
+  op inv2 : Sys -> Bool
+  op inv4 : Sys -> Bool
+  op inv5 : Sys -> Bool
+  
+  var S : Sys
+  eq inv1(S) = (empty(S) implies (list(S) = (0 .. dec(data(S))))) and
+    (not empty(S) implies list(S) = (0 .. dec(dec(data(S))))) .
+  eq inv2(S) = (l(S) <= now(S)) implies empty(S) .
+  eq inv4(S) = not empty(S) implies (content(S) = dec(data(S))) .
+  eq inv5(S) = not empty(S) implies u(S) < l(S) .
+}

@@ -1,0 +1,20 @@
+ipsgopen INV .
+  inv inv1(S:Sys) .
+  inv inv2(S:Sys) .
+  inv inv4(S:Sys) .
+  inv inv5(S:Sys) .
+  inv lemma1(T:Timeval, T1:Timeval, T2:Timeval) .
+  generate inv1(S:Sys) induction on S:Sys .
+  generate inv2(S:Sys) induction on S:Sys .
+  generate inv4(S:Sys) induction on S:Sys .
+  generate inv5(S:Sys) induction on S:Sys .
+close
+
+set-output ASDS-RT/proof-scores.cafe .
+:save-proof .
+
+eof
+load ASDS-RT/asds.cafe .
+load ASDS-RT/input.cafe .
+
+-- need to set depthTryUseLm = 1 
