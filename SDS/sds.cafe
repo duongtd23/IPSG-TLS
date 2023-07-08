@@ -78,7 +78,7 @@ mod! ENCRYPTION {
   eq (adec(pubK(A), D2) = DL) = (D2 = aenc(priK(A),DL)) .
   eq (adec(priK(A), D2) = DL) = (D2 = aenc(pubK(A),DL)) .
   ceq (adec(KE, D) = DL2) = false 
-    if (KE :is Prin) or not(KE :is Secret) .
+    if (KE :is Prin) or (KE :is Secret) .
 
   eq sdec(SE, senc(SE,DL)) = DL .
   eq (sdec(SE, D2) = DL) = (D2 = senc(SE,DL)) .
