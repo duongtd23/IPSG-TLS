@@ -37,7 +37,7 @@ mod* SIMPLE-NAT {
   -- ceq (I = J) = true if ((I < J) = false and (J < I) = false) .
 }
 
-mod ANDERSON {
+mod* ANDERSON {
   pr(LABEL + SIMPLE-NAT)
   [Pid] [Sys]
 -- any initial state

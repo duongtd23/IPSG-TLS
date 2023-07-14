@@ -1,4 +1,4 @@
-mod* TIMEVAL {
+mod! TIMEVAL {
   [Zero NzReal+ < Real+]
   [NzReal+ Inf < NzTimeval]
   [Real+ NzTimeval < Timeval]
@@ -93,7 +93,7 @@ mod! PNAT-LIST {
   ceq (M = N) = false 
     if not(put(0 .. dec(N), M) = (0 .. N)) .
 }
-mod ASDS {
+mod* ASDS {
   pr(TIMEVAL + PNAT-LIST)
   [Sys]
 
